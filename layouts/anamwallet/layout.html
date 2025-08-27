@@ -130,7 +130,7 @@
 			<button class="top_banner_close">3일 동안 보지 않기 <i class="xi-close"></i></button>
 		</div>
 		<!--@if(!$is_deep)-->
-			{@ $is_busan_wallet = ($mid == 'busan_wallet' || strpos($_SERVER['HTTP_HOST'], 'busanwallet') !== false); }
+			{@ $is_busan_wallet = ($mid == 'busan_wallet' || $mid == 'reporter_support' || $mid == 'busan_ilbo_support' || $mid == 'ad_service' || strpos($_SERVER['HTTP_HOST'], 'busanwallet') !== false); }
 			<!--@if($is_busan_wallet)-->
 				<include target="_header_busan.html" />
 			<!--@else-->
