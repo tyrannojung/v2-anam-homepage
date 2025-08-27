@@ -1,0 +1,24 @@
+<!-- Language-based page loader example -->
+<!-- 
+This is an example of how to load different content based on selected language.
+Use this pattern in your layout files to include language-specific content.
+-->
+
+<!--@if($lang_type == 'en')-->
+    <include target="../../pages/en/about.html" />
+<!--@else-->
+    <include target="../../pages/ko/about.html" />
+<!--@end-->
+
+<!-- Alternative approach using switch statement -->
+{@ 
+    switch($lang_type) {
+        case 'en':
+            $page_path = 'pages/en/';
+            break;
+        case 'ko':
+        default:
+            $page_path = 'pages/ko/';
+            break;
+    }
+}

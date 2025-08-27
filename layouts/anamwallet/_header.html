@@ -130,7 +130,8 @@
 							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}"><span>{$lang->cmd_find_member_account}</span></a>
 						</li>
 					<!--@end-->
-					<div class="select_lang" cond="$layout_info->use_select_lang">
+					<!-- Language Toggle - Temporarily enabled -->
+					<div class="select_lang">
 						<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="icon langToggle" title="Select Language">EN <img src="img/lang_EN.png" alt="EN" /></a>
 						<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="icon langToggle" title="Select Language">KO <img src="img/lang_KO.png" alt="KO" /></a>
 					</div>
@@ -285,10 +286,9 @@
 				</a>
 			</div>
 			<a href="#" class="mobile_menu_btn mobile_menu mobile_menu_act bh_layer_toggle" data-target="bh_layer_m_menu"><i class="ri-menu-fill"></i></a>
-			<!--@if($layout_info->use_select_lang && !$layout_info->m_phone_number)-->
+			<!-- Mobile Language Toggle - Temporarily enabled -->
 			<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_EN.png" alt="EN" /></a>
 			<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_KO.png" alt="KO" /></a>
-			<!--@end-->
 			<a cond="$layout_info->m_phone_number" href="tel:{$layout_info->m_phone_number}" class="mobile_act_btn mobile_menu mobile_menu_phone"><i class="ri-phone-fill"></i></a>
 			<a cond="$layout_info->m_search" href="#" class="mobile_act_btn mobile_menu mobile_menu_search"><i class="ri-search-line"></i></a>
 			<a cond="0" href="#" onclick="doDarkThemeToggle()" class="mobile_act_btn mobile_menu mobile_menu_dark"><i class="ri-moon-fill ds-ib dark:ds-n"></i><i class="ri-sun-fill ds-n dark:ds-ib"></i></a>
