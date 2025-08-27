@@ -130,7 +130,12 @@
 			<button class="top_banner_close">3일 동안 보지 않기 <i class="xi-close"></i></button>
 		</div>
 		<!--@if(!$is_deep)-->
-			<include target="_header.html" />
+			{@ $is_busan_wallet = ($mid == 'busan_wallet' || strpos($_SERVER['HTTP_HOST'], 'busanwallet') !== false); }
+			<!--@if($is_busan_wallet)-->
+				<include target="_header_busan.html" />
+			<!--@else-->
+				<include target="_header.html" />
+			<!--@end-->
 		<!--@end-->
 		<div class="body">
 			<div class="bh_wrap clearfix"|cond="$is_index && !$layout_info->main_slider_wide" cond="$is_index || (!$is_index && $layout_info->use_sub_top_banner)">

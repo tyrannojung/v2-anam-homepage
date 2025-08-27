@@ -1,0 +1,23 @@
+<load target="_header.scss" />
+
+<style>
+<!--@if($layout_info->logo_margin)-->
+.bh .logo {margin: {$layout_info->logo_margin};}
+<!--@end-->
+.busan-header .logo a {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+}
+</style>
+
+<!-- 부산월렛 전용 심플 헤더 -->
+<header class="header_wrap busan-header">
+	<div class="header bh_wrap clearfix">
+		<div class="bh_row ai-c">
+			<h1 class="logo col">
+				<a href="/">Busan Wallet</a>
+			</h1>
+		</div>
+	</div>
+</header>
