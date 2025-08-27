@@ -1,0 +1,75 @@
+<div class="sec3_wrap">
+	<div class="sec3_con_wrap animate-in" data-anim-delay="0" data-anim-type="fade-in-right">
+		<div class="main_common_title">
+			<p class="title1">Everything Digital, One Wallet</p>
+			<p class="title2">당신의 모든 디지털 자산, <br> 하나의 지갑에</p>
+		</div>
+		<div class="check_text_items">
+			<p class="check_text"><span class="check"><img src="/assets/images/icon/icon_check.svg" alt=""></span><span class="text">신분증부터 결제까지, 모든 것이 하나로</span></p>
+			<p class="check_text"><span class="check"><img src="/assets/images/icon/icon_check.svg" alt=""></span><span class="text">디지털 신원부터 블록체인 자산까지 <br> 한 곳에서 관리하는 진짜 디지털 지갑</span></p>
+		</div>
+	</div>
+	<div class="sec3_slide_wrap animate-in" data-anim-delay="0" data-anim-type="fade-in-left">
+		<div class="swiper-slider step_slider">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide step_slide slide1">
+					<div class="slide_inner"><img src="/assets/images/main/main_step_slide1.png" alt=""></div>
+				</div>
+				<div class="swiper-slide step_slide slide2">
+					<div class="slide_inner"><img src="/assets/images/main/main_step_slide2.png" alt=""></div>
+				</div>
+				<div class="swiper-slide step_slide slide3">
+					<div class="slide_inner"><img src="/assets/images/main/main_step_slide3.png" alt=""></div>
+				</div>
+				<div class="swiper-slide step_slide slide4">
+					<div class="slide_inner"><img src="/assets/images/main/main_step_slide4.png" alt=""></div>
+				</div>
+			</div>
+			<div class="step_nav_wrap">
+				<a href="#" class="step_nav nav_prev"><i class="ri-arrow-left-s-line"></i></a>
+				<a href="#" class="step_nav nav_next"><i class="ri-arrow-right-s-line"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	let stepSliderEl = document.querySelector('.step_slider');
+	const stepSlider = new Swiper(stepSliderEl, {
+		slidesPerView: 'auto',
+		loop: true,
+		navigation: {
+			prevEl: '.step_nav.nav_prev',
+			nextEl: '.step_nav.nav_next',
+		},
+		breakpoints: {
+			0: {
+				spaceBetween: 10
+			},
+			992: {
+				spaceBetween: 30
+			},
+		},
+		on: {
+			init: (s) => {
+				s.disable();
+			}
+		}
+	})
+	document.addEventListener("DOMContentLoaded", (event) => {
+		gsap.registerPlugin(ScrollTrigger)
+		let stepTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: stepSliderEl,
+				start: 'top center',
+				end: 'top center',
+				onEnter: () => {
+					stepSliderEl.classList.add('init');
+					stepSlider.enable();
+				},
+			}
+		})
+		let stepSlides = stepSliderEl.querySelectorAll('.step_slide');
+		stepTl.to(stepSlides, { position: 'relative', left: 0 })
+	});
+</script>

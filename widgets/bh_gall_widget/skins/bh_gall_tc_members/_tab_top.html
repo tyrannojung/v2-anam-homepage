@@ -1,0 +1,20 @@
+@version(2)
+
+<div class="bh tab_top bh_tab_wrap">
+	<div class="bh_widget_tab">
+		<ul class="bh bh_row no-gutters clearfix">
+			@foreach ($widget_info->tab as $module_srl => $tab)
+				<li class="bh col-auto lg:col-auto"><a class="bh_tab_btn bh_tab_btn{{ $loop->iteration }}@if ($loop->first) active@end hover:bh_color_main active:bh_color_main" data-li="bh_li{{ $loop->iteration }}"><span class="after:bh_bg_color_main">{{ $tab->title }}</span></a></li>
+			@end
+		</ul>
+	</div>
+
+	@foreach ($widget_info->tab as $module_srl => $tab)
+		<div class="bh bh_tab_li bh_li{{ $loop->iteration }} mb-30@if ($loop->first) on@end" id="bh_li{{ $loop->iteration }}">
+			@php
+				$widget_info->content_items = $tab->content_items; $widget_info->page_navigation = $tab->page_navigation ?? null;
+			@endphp
+			@include ('_tab_none.html')
+		</div>
+	@end
+</div>

@@ -1,0 +1,246 @@
+<load target="_comment.scss" />
+<load target="../../../../editor/tpl/js/editor_common.min.js" />
+<load target="../../../../editor/skins/ckeditor/js/xe_textarea.min.js" />
+<div class="bh bh_comment">
+	<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/board/commentinsert/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+		<p>{$XE_VALIDATOR_MESSAGE}</p>
+	</div>
+	<div class="bh fs-20 fw-m pt-30 mb-10">댓글 <small class="bh_color_888">{$oDocument->getCommentcount()}</small></div>
+	<div class="bh comment_list_wrap" id="comment">
+		<ul cond="$oDocument->getCommentcount()">
+			{@ $oMemberModel = getModel('member'); if(!$oForratingModel) $oForratingModel = getModel('forrating'); }
+			<!--@foreach($oDocument->getComments() as $key => $comment)-->
+			<li class="comment_item depth depth{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}">
+				<div class="bh bh_profile_wrap clearfix">
+					<div class="bh bh_profile_img">
+						<a href="#">
+							{@ $profile_src = $comment->getProfileImage(); }
+							<img cond="$profile_src" alt="profile" src="{$profile_src}">
+							<img cond="!$profile_src" alt="noprofile" src="../img/noprofile.png">
+						</a>
+					</div>
+					<div class="bh bh_profile_info">
+						<span class="name"><a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->nick_name}</a></span>
+						<ul class="detail">
+							<li cond="0">
+								<span class="detail_title"><i class="xi-user"></i> </span>
+								<span cond="0" class="detail_content">
+									{@ $rating = $oForratingModel->getRating($comment->comment_srl); }
+									<span class="bh_star_wrap">
+										<span class="star-1<!--@if($rating>0)--> selected<!--@end-->"></span>
+										<span class="star-2<!--@if($rating>1)--> selected<!--@end-->"></span>
+										<span class="star-3<!--@if($rating>2)--> selected<!--@end-->"></span>
+										<span class="star-4<!--@if($rating>3)--> selected<!--@end-->"></span>
+										<span class="star-5<!--@if($rating>4)--> selected<!--@end-->"></span>
+									</span>
+								</span>
+							</li>
+							<li>
+								<span cond="0" class="detail_title"><i class="xi-time"></i> </span>
+								<span class="detail_content">{zdate($comment->regdate,'Y.m.d H:i:s')}</span>
+								<!--@if(is_array($module_info->content_act_btn) && in_array('vote',$module_info->content_act_btn))-->
+									<!--@if($comment->getMyVote() === false || $comment->getMyVote() < 0)-->
+									<a href="#" title="{$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false;" class="bh act_comment_vote">
+										<span class="detail_title"><i class="xi-thumbs-up"></i> </span>
+										<span class="detail_content">{$comment->get('voted_count')}</span>
+									</a>
+									<!--@elseif($comment->getMyVote() > 0)-->
+									<a href="#" title="{$lang->cmd_cancel_vote}" onclick="doCallModuleAction('comment','procCommentVoteUpCancel','{$comment->comment_srl}');return false;" class="bh act_comment_vote active">
+										<span class="detail_title"><i class="xi-thumbs-up"></i> </span>
+										<span class="detail_content">{$comment->get('voted_count')}</span>
+									</a>
+									<!--@end-->
+								<!--@end-->
+								<!--@if(is_array($module_info->content_act_btn) && in_array('vote_down',$module_info->content_act_btn))-->
+									<!--@if($comment->getMyVote() === false || $comment->getMyVote() > 0)-->
+									<a href="#" title="{$lang->cmd_vote_down}" onclick="doCallModuleAction('comment','procCommentVoteDown','{$comment->comment_srl}');return false;" class="bh act_comment_vote_down">
+										<span class="detail_title"><i class="xi-thumbs-down"></i> </span>
+										<span class="detail_content">{$comment->get('blamed_count')}</span>
+									</a>
+									<!--@elseif($comment->getMyVote() < 0)-->
+									<a href="#" title="{$lang->cmd_cancel_vote_down}" onclick="doCallModuleAction('comment','procCommentVoteDownCancel','{$comment->comment_srl}');return false;" class="bh act_comment_vote_down active">
+										<span class="detail_title"><i class="xi-thumbs-down"></i> </span>
+										<span class="detail_content">{$comment->get('blamed_count')}</span>
+									</a>
+									<!--@end-->
+								<!--@end-->
+							</li>
+							<!--@if(!$board_features->comment->max_thread_depth || $comment->depth + 1 < $board_features->comment->max_thread_depth)-->
+							<li cond="$grant->write_comment && $oDocument->isEnableComment()">
+								<span class="detail_content"><a href="#" class="_commentReply" data-comment-srl="{$comment->comment_srl}">{$lang->cmd_reply}</a></span>
+							</li>
+							<!--@endif-->
+							<li cond="$comment->isGranted() || !$comment->get('member_srl')">
+								<span class="detail_content"><a href="#" class="_commentModify" data-comment-srl="{$comment->comment_srl}">{$lang->cmd_modify}</a></span>
+							</li>
+							<li cond="$comment->isGranted() || !$comment->get('member_srl')">
+								<span class="detail_content"><a href="#" class="_commentDelete" data-comment-srl="{$comment->comment_srl}">{$lang->cmd_delete}</a></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="bh_content">
+					{$comment->getContent(false)|noescape}
+				</div>
+				<div cond="$comment->hasUploadedFiles()" class="bh_comment_file_list_wrap mt-10">
+					<a class="bh bh_comment_file_title" onclick="jQuery(this).next('ul').toggle();"><i class="xi-file-text mr-5"></i> {$lang->uploaded_file}{$lang->file} <small>({$comment->get('uploaded_count')})</small></a>
+					<ul class="bh bh_comment_file_list" style="display: none;">
+						<!--@foreach($comment->getUploadedFiles() as $key => $file)-->
+						<li class="bh bh_file_item"><a href="{getUrl('')}{$file->download_url}" class="bh fs-15">{$file->source_filename} <span class="bh file_size">[{FileHandler::filesize($file->file_size)}]</span></a></li>
+						<!--@endforeach-->
+					</ul>
+				</div>
+				<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
+				<form class="bh form_modify mt-10" style="display: none;" action="./" method="post">
+					<input type="hidden" name="module" value="board" />
+					<input type="hidden" name="act" value="procBoardInsertComment" />
+					<input type="hidden" name="success_return_url" value="{getUrl('mid',$mid,'document_srl',$oDocument->document_srl)}" />
+					<input type="hidden" name="xe_validator_id" value="modules/board/commentinsert/1" />
+					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+					<input type="hidden" name="comment_srl" value="{$comment->comment_srl}" />
+					<input type="hidden" name="content" value="{$comment->get('content')|escape}" />
+					<div class="bh comment_write_wrap">
+						<div class="bh comment_input_wrap">
+							<!--@if($module_info->comment_use_editor === 'Y' || $module_info->comment_use_editor === 'modify_only')-->
+								{$comment->getEditor()}
+							<!--@else-->
+								<input type="hidden" name="use_html" value="Y" />
+								<input type="hidden" id="htm_{$comment->comment_srl}" value="N" />
+								<textarea id="editor_{$comment->comment_srl}" class="bh comment_input" placeholder="내용을 입력하세요."></textarea>
+								<script type="text/javascript">
+									editorStartTextarea({$comment->comment_srl}, "content", "comment_srl");
+								</script>
+							<!--@end-->
+						</div>
+						<div class="bh tool_wrap clearfix">
+							<span class="bh bh_color_888 fw-l">건전한 댓글 문화를 위해 노력합시다.</span>
+							<span cond="0" class="bh_star_wrap">
+								<input type="radio" id="star-5" name="rating" value="5" checked="checked" /><label for="star-5">5</label>
+								<input type="radio" id="star-4" name="rating" value="4" /><label for="star-4">4</label>
+								<input type="radio" id="star-3" name="rating" value="3" /><label for="star-3">3</label>
+								<input type="radio" id="star-2" name="rating" value="2" /><label for="star-2">2</label>
+								<input type="radio" id="star-1" name="rating" value="1" /><label for="star-1">1</label>
+								<input type="radio" id="star-0" name="rating" value="0" class="star-clear" /><label for="star-0">0</label>
+							</span>
+							<input type="submit" value="{$lang->cmd_modify}" class="bh_bd_btn" />
+						</div>
+					</div>
+				</form>
+				<!--@end-->
+				<!--@if($grant->write_comment && $oDocument->isEnableComment())-->
+				<form class="bh form_reply mt-10" style="display: none;" action="./" method="post">
+					<input type="hidden" name="module" value="board" />
+					<input type="hidden" name="act" value="procBoardInsertComment" />
+					<input type="hidden" name="success_return_url" value="{getUrl('mid',$mid,'document_srl',$oDocument->document_srl)}" />
+					<input type="hidden" name="xe_validator_id" value="modules/board/commentinsert/1" />
+					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+					<input type="hidden" name="parent_srl" value="{$comment->comment_srl}" />
+					<input type="hidden" name="comment_srl" value="" />
+					<input type="hidden" name="content" value="" />
+					<div class="bh comment_write_wrap">
+						<div class="bh comment_input_wrap">
+							<!--@if($module_info->comment_use_editor === 'Y')-->
+								{$oDocument->getCommentEditor()}
+							<!--@else-->
+								<input type="hidden" name="use_html" value="Y" />
+								<input type="hidden" id="htm_{$comment->comment_srl}1" value="N" />
+								<textarea id="editor_{$comment->comment_srl}1" class="bh comment_input" placeholder="@{$comment->nick_name}님에게 답글"></textarea>
+								<script type="text/javascript">
+									editorStartTextarea({$comment->comment_srl}1, "content", "comment_srl");
+								</script>
+							<!--@end-->
+						</div>
+						<div class="bh tool_wrap clearfix">
+							<span class="bh bh_color_888 fw-l">건전한 댓글 문화를 위해 노력합시다.</span>
+							<span cond="0" class="bh_star_wrap">
+								<input type="radio" id="star-5" name="rating" value="5" checked="checked" /><label for="star-5">5</label>
+								<input type="radio" id="star-4" name="rating" value="4" /><label for="star-4">4</label>
+								<input type="radio" id="star-3" name="rating" value="3" /><label for="star-3">3</label>
+								<input type="radio" id="star-2" name="rating" value="2" /><label for="star-2">2</label>
+								<input type="radio" id="star-1" name="rating" value="1" /><label for="star-1">1</label>
+								<input type="radio" id="star-0" name="rating" value="0" class="star-clear" /><label for="star-0">0</label>
+							</span>
+							<input type="submit" value="{$lang->cmd_submit}" class="bh_bd_btn" />
+						</div>
+					</div>
+				</form>
+				<!--@end-->
+				<!--@if(is_array($module_info->content_act_btn) && in_array('report',$module_info->content_act_btn))-->
+				<div class="act_comment_report">
+					<a href="#" title="{$lang->cmd_declare}" onclick="doCallModuleAction('comment','procCommentDeclare','{$comment->comment_srl}');return false;" class="bh"><i class="xi-info-circle"></i> {$lang->cmd_declare}</a>
+				</div>
+				<!--@end-->
+			</li>
+			<!--@endforeach-->
+		</ul>
+		<div cond="!$oDocument->getCommentcount()" class="bh_bg_box3 ta-c">
+			<!--@if($oDocument->allowComment())-->
+				등록된 댓글이 없습니다.
+			<!--@else-->
+				작성자가 댓글 작성을 허용하지 않았습니다.
+			<!--@end-->
+		</div>
+	</div>
+	<div class="pagination" cond="$oDocument->comment_page_navigation">
+		{@ $prev_page = max($page-1, 1)}
+		{@ $next_page = min($page+1, $oDocument->comment_page_navigation->last_page)}
+		<div class="prev_wrap">
+			<a href="{getUrl('cpage','','division',$division,'last_division',$last_division)}#comment"|cond="$cpage!=$prev_page" class="direction prev" title="{$lang->first_page}"><i class="xi-angle-double-left"></i></a>
+			<a href="{getUrl('cpage',$prev_page,'division',$division,'last_division',$last_division)}#comment"|cond="$cpage!=$prev_page" class="direction prev" title="Prev"><i class="xi-angle-left"></i></a>
+		</div>
+		<div class="page_no_wrap">
+		<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
+			<strong cond="$cpage==$page_no" class="direction active">{$page_no}</strong>
+			<a cond="$cpage!=$page_no" href="{getUrl('cpage',$page_no,'division',$division,'last_division',$last_division)}#comment" class="direction">{$page_no}</a>
+		</block>
+		</div>
+		<div class="next_wrap">
+			<a href="{getUrl('cpage',$next_page,'division',$division,'last_division',$last_division)}#comment"|cond="$cpage!=$next_page" class="direction next" title="Next"><i class="xi-angle-right"></i></a>
+			<a href="{getUrl('cpage',$page_navigation->last_page,'division',$division,'last_division',$last_division)}#comment"|cond="$cpage!=$next_page" class="direction next" title="{$lang->last_page}"><i class="xi-angle-double-right"></i></a>
+		</div>
+	</div>
+	<!--@if($grant->write_comment && $oDocument->isEnableComment())-->
+	<div class="bh px-15 lg:px-0">
+		<div class="bh fs-20 fw-m mt-30 mb-10">댓글 남기기</div>
+		<form action="./" method="post">
+			<input type="hidden" name="module" value="board" />
+			<input type="hidden" name="act" value="procBoardInsertComment" />
+			<input type="hidden" name="success_return_url" value="{getUrl('mid',$mid,'document_srl',$oDocument->document_srl)}" />
+			<input type="hidden" name="xe_validator_id" value="modules/board/commentinsert/1" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<input type="hidden" name="comment_srl" value="" />
+			<input type="hidden" name="content" value="" />
+			<div class="bh comment_write_wrap">
+				<div class="bh comment_input_wrap">
+					<!--@if($module_info->comment_use_editor === 'Y')-->
+						{$oDocument->getCommentEditor()}
+					<!--@else-->
+						<input type="hidden" name="use_html" value="Y" />
+						<input type="hidden" id="htm_{$oDocument->document_srl}" value="N" />
+						<textarea id="editor_{$oDocument->document_srl}" class="bh comment_input" placeholder="내용을 입력하세요."></textarea>
+						<script type="text/javascript">
+							editorStartTextarea({$oDocument->document_srl}, "content", "comment_srl");
+						</script>
+					<!--@end-->
+				</div>
+				<div class="bh tool_wrap clearfix">
+					<span class="bh bh_color_888 fw-l">건전한 댓글 문화를 위해 노력합시다.</span>
+					<span cond="0" class="bh_star_wrap">
+						<input type="radio" id="star-5" name="rating" value="5" checked="checked" /><label for="star-5">5</label>
+						<input type="radio" id="star-4" name="rating" value="4" /><label for="star-4">4</label>
+						<input type="radio" id="star-3" name="rating" value="3" /><label for="star-3">3</label>
+						<input type="radio" id="star-2" name="rating" value="2" /><label for="star-2">2</label>
+						<input type="radio" id="star-1" name="rating" value="1" /><label for="star-1">1</label>
+						<input type="radio" id="star-0" name="rating" value="0" class="star-clear" /><label for="star-0">0</label>
+					</span>
+					<input type="submit" value="{$lang->cmd_submit}" class="bh_bd_btn" />
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--@else-->
+		<div cond="0" class="bh_bg_box3 ta-c">
+			댓글 작성 권한이 없습니다.
+		</div>
+	<!--@end-->
+</div>

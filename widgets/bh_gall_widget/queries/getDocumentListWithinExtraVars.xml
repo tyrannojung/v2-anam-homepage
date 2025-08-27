@@ -1,0 +1,35 @@
+<query id="getDocumentListWithinExtraVars" action="select">
+	<tables>
+		<table name="documents" />
+		<table name="document_extra_vars" alias="extra_vars" />
+	</tables>
+	<columns distinct="distinct">
+		<column name="documents.*" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="extra_vars.document_srl" default="documents.document_srl" pipe="and" />
+		<condition operation="search" column="extra_vars.value" var="search_keyword_extra" notnull="notnull" pipe="and" />
+		<condition operation="in" column="documents.module_srl" var="module_srl" filter="number" notnull="notnull" pipe="and" />
+		<condition operation="equal" column="documents.category_srl" var="category_srl" pipe="and" />
+		<condition operation="in" column="documents.category_srl" var="category_srls" pipe="and" />
+		<condition operation="in" column="documents.member_srl" var="member_srl" filter="number" pipe="and" />
+		<condition operation="equal" column="is_notice" var="is_notice" pipe="and" />
+		<condition operation="equal" column="title_bold" var="title_bold" pipe="and" />
+		<condition operation="in" column="status" var="statusList" pipe="and" />
+		<group pipe="and">
+			<condition operation="search" column="title" var="s_title" />
+			<condition operation="search" column="content" var="s_content" pipe="or" />
+		</group>
+		<group pipe="and">
+			<condition operation="more" column="regdate" var="start_regdate" pipe="and" />
+			<condition operation="less" column="regdate" var="end_regdate" pipe="and" />
+		</group>
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="documents.list_order" order="order_type" if="is_index_default" />
+		<index default="rand()" if="is_index_rand" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query>

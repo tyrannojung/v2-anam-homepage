@@ -1,0 +1,32 @@
+<div class="bh list_header">
+	<div class="list_header_html" cond="$module_info->list_header_html">
+		{$module_info->list_header_html}
+	</div>
+	<div class="bh category">
+		<ul class="bh_board_tab style2" cond="$module_info->use_category=='Y'">
+			<a class="on"|cond="!$category" href="{getUrl('category', '', 'page', '')}">
+				<li>{$lang->total}</li>
+			</a>
+			<!--@foreach($cate_list as $key => $val)-->
+			<a class="on"|cond="$category==$val->category_srl" href="{getUrl('category', $val->category_srl, 'document_srl', '', 'page', '')}">
+				<li>{$val->title}<!--<em cond="$val->document_count">[{$val->document_count}]</em>--></li>
+				{@ if ($val->selected || $val->expand) $cate_list_children = $val->children; }
+			</a>
+			<!--@endforeach-->
+		</ul>
+	</div>
+	<div class="bh category_sub" cond="$cate_list_children">
+		<ul>
+			<!--@foreach($cate_list_children as $key => $val)-->
+				<a class="on"|cond="$category === $val->category_srl" href="{getUrl('category', $val->category_srl, 'document_srl', '', 'page', '')}">
+					<li><span>{$val->title}</span></li>
+				</a>
+			<!--@endforeach-->
+		</ul>
+	</div>
+	<div class="bh bh_row" cond="$mid != 'news'">
+		<div class="bh col-12">
+			<div class="item_count">{$lang_type === 'ko' ? '총' : 'Total :'} <!--@if($total_count)--><span>{$total_count}</span><!--@else-->0<!--@end-->{$lang_type === 'ko' ? '건' : ''}</div>
+		</div>
+	</div>
+</div>

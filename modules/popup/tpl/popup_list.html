@@ -1,0 +1,82 @@
+<include target="header.html" />
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<div class="table even">
+	<table class="table table-striped table-hover">
+		<caption>
+			Total: {number_format($total_count)}, Page: {number_format($page)}/{number_format($total_page)}
+			<!--// <span class="x_pull-right">
+				<a class="x_btn x_btn-primary" href="{getUrl('act','dispPopupAdminInsertPopup','popup_srl','')}">{$lang->cmd_make}</a>
+			</span> -->
+		</caption>
+		<thead>
+			<tr>
+				<th>{$lang->no}</th>
+				<th>{$lang->target_type}</th>
+				<th>{$lang->open_target}</th>
+				<th>{$lang->popup_type}</th>
+				<th>{$lang->popup_border_style}</th>
+				<th>{$lang->popup_title}</th>
+				<th>{$lang->start_date}</th>
+				<th>-</th>
+				<th>{$lang->end_date}</th>
+				<!--// <th>{$lang->regdate}</th> -->
+				<th colspan="2">{$lang->management}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--@foreach($popup_list as $no => $val)-->
+			<tr>
+				<td>{$no}</td>
+				<td>{$val->target_type}</td>
+				<td>
+					<!--@if($val->target_actions && $val->target_type=='action')-->
+						{htmlspecialchars($val->target_actions)}
+					<!--@else-->
+						{$val->target_browser_title}<span cond="$val->target_mid"><a href="{getUrl('','mid', $val->target_mid,'act','')}" title="Preview" target="_blank">({$val->target_mid})</a></span>
+					<!--@end-->
+				</td>
+				<td>{$val->popup_type}</td>
+				<td><!--@if($val->popup_style == 'border')-->B<!--@else if($val->popup_style == 'borderless')-->L<!--@end--></td>
+				<td>{htmlspecialchars($val->popup_title)}</td>
+				<td>{zdate($val->start_date,"Y-m-d")}</td>
+				<td>
+					<!--@if($val->start_date <= date('Ymd') && $val->end_date >= date('Ymd'))-->
+						<span style="color:red">IN</span>
+					<!--@else if($val->start_date > date('Ymd') && $val->end_date > date('Ymd'))-->
+						<span style="color:green">PRE</span>
+					<!--@else-->
+						<span>END</span>
+					<!--@end-->
+				</td>
+				<td>{zdate($val->end_date,"Y-m-d")}</td>
+				<!--// <td>{zdate($val->regdate,"Y-m-d")}</td> -->
+				<td><a href="{getUrl('act','dispPopupAdminInsertPopup','popup_srl',$val->popup_srl)}">{$lang->cmd_setup}</a></td>
+				<td><a href="{getUrl('act','dispPopupAdminDeletePopup','popup_srl', $val->popup_srl)}">{$lang->cmd_delete}</a></td>
+			</tr>
+			<!--@end-->
+		</tbody>
+	</table>
+</div>
+
+<div class="x_clearfix btnArea">
+	<div class="x_pull-right">
+		<a class="x_btn x_btn-primary" href="{getUrl('act','dispPopupAdminInsertPopup','popup_srl','')}">{$lang->cmd_make}</a>
+	</div>
+</div>
+
+<!-- 페이지 네비게이션 -->
+<div class="pagination">
+	<a href="{getUrl('page','','module_srl','')}" class="direction">&lsaquo; {$lang->first_page}</a>
+	<!--@while($page_no = $page_navigation->getNextPage())-->
+		<!--@if($page == $page_no)-->
+			<strong>{$page_no}</strong>
+		<!--@else-->
+			<a href="{getUrl('page',$page_no,'module_srl','')}">{$page_no}</a>
+		<!--@end-->
+	<!--@end-->
+	<a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="direction">{$lang->last_page} &rsaquo;</a>
+</div>

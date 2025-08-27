@@ -1,0 +1,11 @@
+<include target="_header.html" />
+<div class="board_message">
+	<h1>{$message}</h1>
+	<div class="tool_wrap clearfix">
+		<div class="bd_btn_wrap">
+			<a cond="!$is_logged" class="bh_bd_btn" href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a>
+			<button type="button" class="bh_bd_btn outline" onclick="history.back()">{$lang->cmd_back}</button>
+		</div>
+	</div>
+</div>
+<include target="_footer.html" />

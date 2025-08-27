@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon version="0.2">
+	<title xml:lang="ko">제작 안내</title>
+	<description xml:lang="ko">
+	</description>
+	<version>1.41</version>
+	<date>2023-02-16</date>
+	<author email_address="" link="">
+		<name xml:lang="ko">wp</name>
+	</author>
+	<extra_vars>
+		<group>
+			<title>설정</title>
+			<var name="is_z_index" type="text">
+				<title xml:lang="ko">z-index값</title>
+				<description xml:lang="ko">z-index값을 입력해주세요. 기본 9999</description>
+			</var>
+			<var name="is_bg" type="text">
+				<title xml:lang="ko">팝업 배경색</title>
+				<description xml:lang="ko">팝업 배경색을 입력해주세요. 기본 #222</description>
+			</var>
+			<var name="is_bg_t" type="text">
+				<title xml:lang="ko">팝업 배경 투명도</title>
+				<description xml:lang="ko">1~9을 입력해주세요. 기본은 불투명입니다.</description>
+			</var>
+			<var name="is_info" type="textarea">
+				<title xml:lang="ko">설명글</title>
+				<description xml:lang="ko">기본적으로 설명글을 넣으세요.</description>
+			</var>
+			<var name="is_btn" type="text">
+				<title xml:lang="ko">버튼색</title>
+				<description xml:lang="ko">버튼색을 입력해주세요. 기본 #5cb6e7</description>
+			</var>
+		</group>
+		<group>
+			<title>접근 설정</title>
+			<var name="allow_ip" type="textarea">
+				<title xml:lang="ko">허용 IP</title>
+				<description xml:lang="ko">여러개의 ip는 줄을 바꾸어 입력하세요. (111.111.*.* 등 대역폭 지정 가능)</description>
+			</var>
+		</group>
+	</extra_vars>
+</addon>

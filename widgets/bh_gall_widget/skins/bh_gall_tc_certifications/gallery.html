@@ -1,0 +1,37 @@
+@version(2)
+
+@if ($widget_info->use_link === 'p' || $widget_info->use_slider === 'Y')
+	@load ('^' . $layout_info->path . 'slider/swiper.min.js')
+	@load ('^' . $layout_info->path . 'slider/swiper.min.css')
+	@load ('^' . $layout_info->path . 'slider/swiper.default.scss')
+	@load ('css/swiper.card.scss', ['skin' => $widget_info->skin])
+	@load ('css/swiper.popup.scss', ['skin' => $widget_info->skin])
+@end
+
+@php
+	if ($widget_info->use_slider === 'Y')
+	{
+		$widget_srl = rand();
+	}
+@endphp
+
+<div class="certification_items">
+	@foreach ($widget_info->content_items as $key => $item)
+	<div class="certification_item">
+		<div class="item_inner">
+			<div class="item_img">
+				@php
+					$thumbnail_src = $item->getThumbnail() ?: $layout_info->path . 'img/noimage.jpg';
+				@endphp
+				<img src="{{ $thumbnail_src }}" srcset="{{ $item->getThumbnail(2) }} 2x"|cond="$item->getThumbnail(2)" alt="image">
+			</div>
+			<div class="item_content">
+				<p class="title">{{ $item->getTitle()|noescape }}</p>
+				<p class="certi_num">
+					No. {{ $item->getExtraVar_1() }}
+				</p>
+			</div>
+		</div>
+	</div>
+	@endforeach
+</div>

@@ -1,0 +1,60 @@
+@version(2)
+
+@php
+	$page_list = array_chunk($widget_info->content_items, $widget_info->list_count, true);
+@endphp
+@foreach ($page_list as $page => $content_items)
+	@php
+		$widget_info->content_items = $content_items;
+	@endphp
+	<div class="bh bh_page page page{{ $page+1 }}@if (!$page) active@end" data-page="{{ $page+1 }}">
+		@if ($widget_info->list_type == "gallery")
+			@include ('gallery.html')
+		@else
+			@include ('gallery.html')
+		@end
+		@if ($widget_info->page_type === 'add' && $page+1 != $widget_info->page_navigation->last_page)
+		<div class="btn_wrap ta-c">
+			<a href="#" class="btn_change_page_content add mt-30" onclick="doChangePageContent(this, 'add', {{ $page+2 }}); return false;">더보기 <i class="ri-arrow-down-s-line"></i></a>
+		</div>
+		@end
+		@if ($widget_info->page_type === 'refresh')
+		<div class="btn_wrap ta-c">
+			<a href="#" class="btn_change_page_content refresh mt-30" onclick="doChangePageContent(this, 'refresh', {{ $page+1 === $widget_info->page_navigation->last_page ? 1 : $page+2 }}); return false;"><i class="ri-restart-line"></i> 새로보기 <span class="page_info">({{ $page+1 }}/{{ $widget_info->page_navigation->total_page }})</span></a>
+		</div>
+		@end
+	</div>
+@endforeach
+@php
+	unset($page);
+@endphp
+
+@if ($widget_info->page_type === 'pagination')
+<div class="pagination">
+	<div class="prev_wrap">
+		<a href="#" class="direction prev" title="Prev" onclick="doChangePageContent(this, 'prev'); return false;"><i class="ri-arrow-left-s-line"></i></a>
+	</div>
+	<div class="page_no_wrap">
+	@foreach ($widget_info->page_navigation as $page_no)
+		<a href="#" class="direction page_no page_no{{ $page_no }}@if ($page_no === 1) active@end" onclick="doChangePageContent(this, 'refresh', {{ $page_no }}); return false;">{{ $page_no }}</a>
+	@endforeach
+	</div>
+	<div class="next_wrap">
+		<a href="#" class="direction next" title="Next" onclick="doChangePageContent(this, 'next'); return false;"><i class="ri-arrow-right-s-line"></i></a>
+	</div>
+</div>
+@end
+
+@if ($widget_info->page_type === 'pagination_simple')
+<div class="pagination_simple">
+	<div class="prev_wrap">
+		<a href="#" class="direction prev" title="Prev" onclick="doChangePageContent(this, 'prev'); return false;"><i class="ri-arrow-left-s-line"></i></a>
+	</div>
+	<div class="page_no_wrap">
+		<span class="page_info"><span class="current_page_no">1</span> / {{ $widget_info->page_navigation->total_page }}</span>
+	</div>
+	<div class="next_wrap">
+		<a href="#" class="direction next" title="Next" onclick="doChangePageContent(this, 'next'); return false;"><i class="ri-arrow-right-s-line"></i></a>
+	</div>
+</div>
+@end

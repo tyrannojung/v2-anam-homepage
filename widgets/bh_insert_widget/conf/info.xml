@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">문서 등록 위젯</title>
+	<description xml:lang="ko">문서를 등록하는 위젯입니다.</description>
+	<version>1.24</version>
+	<date>2019-04-17</date>
+	<update>2025-02-05</update>
+	<author email_address="9haging@gmail.com" link="">
+		<name xml:lang="ko">bh</name>
+	</author>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">설정</title>
+			<var id="module_srls" type="module_srl_list">
+				<name xml:lang="ko">대상모듈</name>
+				<description xml:lang="ko">가져올 모듈을 선택해주세요.</description>
+			</var>
+			<var id="use_secret" type="select">
+				<name xml:lang="ko">비밀글 사용</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용함</name>
+				</options>
+				<options>
+					<value>N</value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">내용 기본값 고정</title>
+			<var id="title_message" type="text">
+				<name xml:lang="ko">제목</name>
+			</var>
+			<var id="writer_message" type="text">
+				<name xml:lang="ko">글쓴이</name>
+			</var>
+			<var id="email_message" type="text">
+				<name xml:lang="ko">이메일주소</name>
+			</var>
+			<var id="use_content" type="select">
+				<name xml:lang="ko">내용 사용</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용함</name>
+				</options>
+				<options>
+					<value>content_only</value>
+					<name xml:lang="ko">내용만 사용</name>
+				</options>
+				<options>
+					<value>file_only</value>
+					<name xml:lang="ko">파일만 사용</name>
+				</options>
+				<options>
+					<value>N</value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+			</var>
+			<var id="content_default" type="text">
+				<name xml:lang="ko">내용 기본값</name>
+				<description xml:lang="ko">본문 사용안함시 기본 내용으로 작성됩니다.</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">기존 이름 변경</title>
+			<var id="title_name" type="text">
+				<name xml:lang="ko">제목</name>
+			</var>
+			<var id="writer_name" type="text">
+				<name xml:lang="ko">글쓴이</name>
+			</var>
+			<var id="email_name" type="text">
+				<name xml:lang="ko">이메일주소</name>
+			</var>
+			<var id="submit_name" type="text">
+				<name xml:lang="ko">(등록버튼)</name>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">완료 설정</title>
+			<var id="done_redirect" type="select">
+				<name xml:lang="ko">완료 페이지 이동</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+				<options>
+					<value>document</value>
+					<name xml:lang="ko">게시글로 이동</name>
+				</options>
+				<options>
+					<value>done</value>
+					<name xml:lang="ko">완료페이지로 이동</name>
+				</options>
+				<options>
+					<value>link</value>
+					<name xml:lang="ko">링크직접작성</name>
+				</options>
+			</var>
+			<var id="done_redirect_url" type="text">
+				<name xml:lang="ko">완료 링크 주소</name>
+				<description xml:lang="ko">예) http://</description>
+			</var>
+			<var id="done_message" type="text">
+				<name xml:lang="ko">완료 문구</name>
+			</var>
+		</group>
+	</extra_vars>
+</widget>

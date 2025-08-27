@@ -1,0 +1,182 @@
+<load target="list.scss" />
+<table class="list_wrap" border="0" cellpadding="0" cellspacing="0" summary="List of Articles">
+	<caption>List of Articles</caption>
+	<thead>
+		<!-- LIST HEADER -->
+		<tr>
+			<!--@foreach($list_config as $key => $val)-->
+			<th scope="col" cond="$val->type=='no' && $val->idx==-1"><span>{$lang->no}</span></th>
+			<!--@if($val->type=='title' && $val->idx==-1)-->
+			<th scope="col" cond="$module_info->list_category_add && $module_info->use_category=='Y'" class="ds-n lg:ds-r"><span><!--@if(!$module_info->write_category_name)-->{$lang->category}<!--@else-->{$module_info->write_category_name}<!--@end--></span></th>
+			</th>
+			<th scope="col" class="title"><span><!--@if(!$module_info->write_title_name)-->{$lang->title}<!--@else-->{$module_info->write_title_name}<!--@end--></span></th>
+			<!--@end-->
+			<th scope="col" cond="$val->type=='nick_name' && $val->idx==-1"><span>{$lang->writer}</span></th>
+			<th scope="col" cond="$val->type=='user_id' && $val->idx==-1"><span>{$lang->user_id}</span></th>
+			<th scope="col" cond="$val->type=='user_name' && $val->idx==-1"><span>{$lang->user_name}</span></th>
+			<th scope="col" cond="$val->type=='regdate' && $val->idx==-1" class="ds-n lg:ds-r"><span><a href="{getUrl('sort_index','regdate','order_type',$order_type)}" rel="nofollow">{$lang->date}</a></span></th>
+			<th scope="col" cond="$val->type=='last_update' && $val->idx==-1"><span><a href="{getUrl('sort_index','update_order','order_type',$order_type)}" rel="nofollow">{$lang->last_update}</a></span></th>
+			<th scope="col" cond="$val->type=='last_post' && $val->idx==-1"><span><a href="{getUrl('sort_index','update_order','order_type',$order_type)}" rel="nofollow">{$lang->last_post}</a></span></th>
+			<th scope="col" cond="$val->type=='readed_count' && $val->idx==-1"><span><a href="{getUrl('sort_index','readed_count','order_type',$order_type)}" rel="nofollow">{$lang->readed_count}</a></span></th>
+			<th scope="col" cond="$val->type=='voted_count' && $val->idx==-1"><span><a href="{getUrl('sort_index','voted_count','order_type',$order_type)}" rel="nofollow">{$lang->voted_count}</a></span></th>
+			<th scope="col" cond="$val->type=='blamed_count' && $val->idx==-1"><span><a href="{getUrl('sort_index','blamed_count','order_type',$order_type)}" rel="nofollow">{$lang->blamed_count}</a></span></th>
+			<th scope="col" cond="$val->idx!=-1" class="ds-n lg:ds-r"><span><a href="{getUrl('sort_index', $val->eid, 'order_type', $order_type)}" rel="nofollow">{$val->name}</a></span></th>
+			<!--@endforeach-->
+			<th scope="col" cond="$module_info->list_file_add"><span>{$lang->file}</span></th>
+			<th class="ds-n lg:ds-r" scope="col" cond="$grant->manager && $grant->can('moderate:document')" style="width:44px"><span><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" class="iCheck" title="Check All" /></span></th>
+		</tr>
+		<!-- /LIST HEADER -->
+	</thead>
+	<tbody cond="!$document_list && !$notice_list">
+		<tr class="no_article">
+			<td colspan="{count($list_config)}"|cond="!$grant->manager || !$grant->can('moderate:document')" colspan="{count($list_config)+1}"|cond="$grant->manager && $grant->can('moderate:document')">
+				<p style="text-align:center">{$lang->no_documents}</p>
+			</td>
+		</tr>
+	</tbody>
+	<tbody cond="$document_list || $notice_list">
+		<!-- NOTICE -->
+		<!--@foreach($notice_list as $no => $document)-->
+		<tr cond="!$module_info->write_check_notice_name" class="notice">
+			<!--@foreach($list_config as $key => $val)-->
+			<td class="notice" cond="$val->type=='no' && $val->idx==-1">
+				<block cond="$document_srl==$document->document_srl">&raquo;</block>
+				<block cond="$document_srl!=$document->document_srl"><span class="label">{$lang->notice}</span></block>
+			</td>
+			<!--@if($val->type=='title' && $val->idx==-1)-->
+			<td cond="$module_info->list_category_add && $module_info->use_category=='Y'" class="cate<!--@if($module_info->list_category_add=='B')--> bg<!--@end--> ds-n lg:ds-r"><span style="<!--@if($module_info->list_category_add=='B')-->background-<!--@end-->color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span></td>
+			<td class="title">
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+					{$document->getTitle()|noescape}
+				</a>
+				<a cond="$module_info->use_comment === 'Y' && $document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#comment" class="replyNum" title="Replies">
+					[{$document->getCommentCount()}]
+				</a>
+			</td>
+			<!--@end-->
+			<td class="author" cond="$val->type=='nick_name' && $val->idx==-1"><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a></td>
+			<td class="author" cond="$val->type=='user_id' && $val->idx==-1">{$document->getUserID()}</td>
+			<td class="author" cond="$val->type=='user_name' && $val->idx==-1">{$document->getUserName()}</td>
+			<td class="time ds-n lg:ds-r" cond="$val->type=='regdate' && $val->idx==-1">{$document->getRegdate('Y.m.d')}</td>
+			<td class="time" cond="$val->type=='last_update' && $val->idx==-1">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td class="lastReply" cond="$val->type=='last_post' && $val->idx==-1">
+				<block cond="(int)($document->get('comment_count'))>0">
+					<a href="{$document->getUrl()}#comment" title="Last Reply">
+						{zdate($document->get('last_update'),'Y.m.d')}
+					</a>
+					<span cond="$document->getLastUpdater()">
+						<sub>by</sub>
+						{$document->getLastUpdater()}
+					</span>
+				</block>
+				<block cond="(int)($document->get('comment_count'))==0">&nbsp;</block>
+			</td>
+			<td class="readNum" cond="$val->type=='readed_count' && $val->idx==-1">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td class="voteNum" cond="$val->type=='voted_count' && $val->idx==-1">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td class="voteNum" cond="$val->type=='blamed_count' && $val->idx==-1">{$document->get('blamed_count')!=0?$document->get('blamed_count'):'0'}</td>
+			<td cond="$val->idx!=-1" class="ds-n lg:ds-r">{$document->getExtraValueHTML($val->idx)|noescape}&nbsp;</td>
+			<!--@endforeach-->
+			<td cond="$module_info->list_file_add">
+				<!--@foreach($document->getUploadedFiles() as $key => $file)-->
+					<a cond="!preg_match('/\.(jpe?g|png|gif)$/i', $file->source_filename)" href="{$file->download_url}"><i class="xi-download"></i></a>
+				<!--@endforeach-->
+			</td>
+			<td cond="$grant->manager && $grant->can('moderate:document')" class="check ds-n lg:ds-r"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+		<!--@endforeach-->
+		<!-- /NOTICE -->
+
+		<!-- LIST -->
+		<!--@foreach($document_list as $no => $document)-->
+		<tr>
+			<!--@foreach($list_config as $key => $val)-->
+			<td class="number" cond="$val->type=='no' && $val->idx==-1">
+				<block cond="$document_srl==$document->document_srl">&raquo;</block>
+				<block cond="$document_srl!=$document->document_srl">{$no}</block>
+			</td>
+			<!--@if($val->type=='title' && $val->idx==-1)-->
+			<td cond="$module_info->list_category_add && $module_info->use_category=='Y'" class="cate<!--@if($module_info->list_category_add=='B')--> bg<!--@end--> ds-n lg:ds-r"><span style="<!--@if($module_info->list_category_add=='B')-->background-<!--@end-->color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span></td>
+			<td class="title">
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">{$document->getTitle()|noescape}</a>
+				<a cond="$module_info->use_comment === 'Y' && $document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#comment" class="replyNum" title="Replies">[{$document->getCommentCount()}]</a>
+				{$document->printExtraImages(60*60*$module_info->duration_new)|noescape}
+				<p class="info ds-b lg:ds-n">
+					<!--@foreach($list_config as $key2 => $val2)-->
+						<!--@if($val2->idx!=-1)-->
+							<!--@if(strpos($val2->eid, 'price') !== false)-->
+								{number_format($document->getExtraValueHTML($val2->idx))}원
+							<!--@elseif(strpos($val2->eid, '_star1') !== false)-->
+								{@
+									$star = $document->getExtraValueHTML($val2->idx);
+									$len = mb_strlen($star);
+									$star = $len>1?mb_substr($star,0,1).str_repeat('*',$len-1):str_repeat('*',$len);
+								}
+								{$star}
+							<!--@elseif(strpos($val2->eid, '_star2') !== false)-->
+								{@
+									$star = $document->getExtraValueHTML($val2->idx);
+									$len = mb_strlen($star);
+									$star = $len>2?mb_substr($star,0,1).str_repeat('*',$len-2).mb_substr($star,-1,1):str_repeat('*',$len);
+								}
+								{$star}
+							<!--@else-->
+								<span><span>{$document->getExtraValueHTML($val2->idx)|noescape}</span></span>&nbsp;
+							<!--@end-->
+						<!--@end-->
+					<!--@endforeach-->
+				</p>
+			</td>
+			<!--@end-->
+			<td class="author" cond="$val->type=='nick_name' && $val->idx==-1"><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a></td>
+			<td class="author" cond="$val->type=='user_id' && $val->idx==-1">{$document->getUserID()}</td>
+			<td class="author" cond="$val->type=='user_name' && $val->idx==-1">{$document->getUserName()}</td>
+			<td class="time ds-n lg:ds-r" cond="$val->type=='regdate' && $val->idx==-1">{$document->getRegdate('Y.m.d')}</td>
+			<td class="time" cond="$val->type=='last_update' && $val->idx==-1">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td class="lastReply" cond="$val->type=='last_post' && $val->idx==-1">
+				<block cond="(int)($document->get('comment_count'))>0">
+					<a href="{$document->getUrl()}#comment" title="Last Reply">
+						{zdate($document->get('last_update'),'Y.m.d')}
+					</a>
+					<span cond="$document->getLastUpdater()">
+						<sub>by</sub>
+						{$document->getLastUpdater()}
+					</span>
+				</block>
+				<block cond="(int)($document->get('comment_count'))==0">&nbsp;</block>
+			</td>
+			<td class="readNum" cond="$val->type=='readed_count' && $val->idx==-1">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td class="voteNum" cond="$val->type=='voted_count' && $val->idx==-1">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td class="voteNum" cond="$val->type=='blamed_count' && $val->idx==-1">{$document->get('blamed_count')!=0?$document->get('blamed_count'):'0'}</td>
+			<td cond="$val->idx!=-1" class="ta-c ds-n lg:ds-r">
+				<!--@if(strpos($val->eid, 'price') !== false)-->
+					{number_format($document->getExtraValueHTML($val->idx))}원
+				<!--@elseif(strpos($val->eid, '_star1') !== false)-->
+					{@
+						$star = $document->getExtraValueHTML($val->idx);
+						$len = mb_strlen($star);
+						$star = $len>1?mb_substr($star,0,1).str_repeat('*',$len-1):str_repeat('*',$len);
+					}
+					{$star}
+				<!--@elseif(strpos($val->eid, '_star2') !== false)-->
+					{@
+						$star = $document->getExtraValueHTML($val->idx);
+						$len = mb_strlen($star);
+						$star = $len>2?mb_substr($star,0,1).str_repeat('*',$len-2).mb_substr($star,-1,1):str_repeat('*',$len);
+					}
+					{$star}
+				<!--@else-->
+					{$document->getExtraValueHTML($val->idx)|noescape}&nbsp;
+				<!--@end-->
+			</td>
+			<!--@endforeach-->
+			<td cond="$module_info->list_file_add">
+				<!--@foreach($document->getUploadedFiles() as $key => $file)-->
+					<a cond="!preg_match('/\.(jpe?g|png|gif)$/i', $file->source_filename)" href="{$file->download_url}"><i class="xi-download"></i></a>
+				<!--@endforeach-->
+			</td>
+			<td cond="$grant->manager && $grant->can('moderate:document')" class="check ds-n lg:ds-r"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+		<!--@endforeach-->
+		<!-- /LIST -->
+	</tbody>
+</table>

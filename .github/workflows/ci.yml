@@ -1,0 +1,35 @@
+name: PHP Lint & Codeception
+on: [ push, pull_request ]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3', '8.4' ]
+
+    name: PHP ${{ matrix.php }}
+    steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Install PHP
+      run: chmod +x .github/workflows/setup-php.sh && .github/workflows/setup-php.sh ${{ matrix.php }}
+
+    - name: Create test database
+      run: chmod +x .github/workflows/setup-mysql.sh && .github/workflows/setup-mysql.sh
+
+    - name: PHP Lint
+      run: if find . -name "*.php" ! -path "./common/vendor/*" -print0 | xargs -0 -n 1 -P 8 php -l | grep -v "No syntax errors detected"; then exit 1; fi
+
+    - name: Download codeception
+      run: wget https://res.rhymix.org/ci/php${{ matrix.php }}/codecept.phar
+
+    - name: Run PHP development server
+      run: php -S localhost:8000 &
+
+    - name: Build and run codeception
+      run: |
+        php codecept.phar build
+        php codecept.phar run --debug --fail-fast

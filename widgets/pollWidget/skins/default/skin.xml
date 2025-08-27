@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">그라데이션과 둥근 모서리</title>
+	<title xml:lang="en">Gradation and Rounded edge</title>
+	<description xml:lang="ko">그라데이션과 둥근 모서리를 가진 설문조사 기본 스킨입니다.</description>
+	<description xml:lang="en">Default Skin of the Poll. There are gradation and round edges.</description>
+	<version>2.0.2</version>
+	<date>2016-01-26</date>
+	<author email_address="misol.kr@gmail.com" link="https://github.com/misol">
+		<name xml:lang="ko">misol</name>
+		<name xml:lang="en">misol</name>
+	</author>
+	<author email_address="developers@xpressengine.com" link="https://www.xpressengine.com/">
+		<name xml:lang="ko">NAVER</name>
+		<name xml:lang="en">NAVER</name>
+	</author>
+	<colorset>
+		<color name="normal">
+			<title xml:lang="ko">기본</title>
+			<title xml:lang="en">Default</title>
+		</color>
+	</colorset>
+</skin>

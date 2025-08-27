@@ -1,0 +1,599 @@
+<include target="_setting.php" />
+{@
+	$variables = layoutSetting::$variables;
+	$fonts = $variables['fonts']; unset($variables['fonts']);
+	if (config('mobile.viewport') === HTMLDisplayHandler::DEFAULT_VIEWPORT) \Rhymix\Framework\Config::set('mobile.viewport', 'width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover');
+	Context::addMetaTag("theme-color", $variables['bh_color_main']);
+}
+<load target="layout.scss" vars="$variables" />
+<include target="fonts/fonts.html" />
+<load target="fonts/fonts.scss" vars="$fonts" />
+<load target="layout.js" type="body" />
+<load target="css/animations.min.css" />
+<load target="js/animations.min.js" />
+<load target="js/appear.min.js" />
+<load target="css/aos.min.css" />
+<load target="js/aos.min.js" />
+<load target="js/particles.min.js" />
+<load target="js/scrollspy.min.js" />
+<load target="js/countup.min.js" />
+<load target="js/waypoints.min.js" />
+<load target="js/smoothscroll.min.js" />
+<load target="js/bodyscrolllock.min.js" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<load target="slider/swiper.min.css" />
+<load target="slider/swiper.min.js" />
+
+<style>
+<!--@if($layout_info->content_padding)-->
+.bh #content {padding: {$layout_info->content_padding};}
+<!--@end-->
+
+<!--@if($layout_info->sub_top_banner_height)-->
+.sub_top_banner {height: {$layout_info->sub_top_banner_height}<!--@if(strpos($layout_info->sub_top_banner_height, 'vh') === false)-->px<!--@end-->;}
+<!--@end-->
+@media (max-width: 992px) {
+	<!--@if($layout_info->m_sub_top_banner_height)-->
+	.sub_top_banner {height: {$layout_info->m_sub_top_banner_height}<!--@if(strpos($layout_info->m_sub_top_banner_height, 'vh') === false)-->px<!--@end-->;}
+	<!--@end-->
+}
+
+<!--@if($layout_info->footer_logo_margin)-->
+.bh .footer .footer_logo {margin: {$layout_info->footer_logo_margin};}
+<!--@end-->
+<!--@if($layout_info->footer_background_color)-->
+.bh .footer {background-color: {$layout_info->footer_background_color} !important;}
+<!--@end-->
+<!--@if($layout_info->footer_background_image)-->
+.bh .footer {background-image: url('{$layout_info->footer_background_image}');}
+<!--@end-->
+<!--@if($layout_info->footer_height)-->
+.bh .footer {height: {$layout_info->footer_height}<!--@if(strpos($layout_info->footer_height, 'vh') === false)-->px<!--@end-->;}
+<!--@end-->
+@media (max-width: 992px) {
+	<!--@if($layout_info->m_footer_height)-->
+	.bh .footer {height: {$layout_info->m_footer_height}<!--@if(strpos($layout_info->m_footer_height, 'vh') === false)-->px<!--@end-->;}
+	<!--@end-->
+}
+<!--@if($layout_info->footer_padding)-->
+.bh .footer {padding: {$layout_info->footer_padding};}
+<!--@end-->
+
+@media (max-width: 992px) {
+	<!--@if($layout_info->footer_m_padding)-->
+	.bh .footer {padding: {$layout_info->footer_m_padding};}
+	<!--@end-->
+}
+<!--@if($layout_info->custom_css)-->
+{$layout_info->custom_css}
+<!--@end-->
+</style>
+
+<div class="skip"><a href="#content">{$lang->skip_to_content}</a></div>
+<div class="bh_loader" cond="$layout_info->layout_loader === 'Y'">
+	<div class="loader_circle">
+		<div class="bh_bd_color_main"></div>
+		<div class="bh_bd_color_main"></div>
+	</div>
+</div>
+<div class="bh {$mid}{!empty($act)?' has_act':''}{$module_info->module=='board'?' has_board':''}{!empty($document_srl)?' has_document':''}">
+	{@ $li = get_object_vars($layout_info); }
+	{@ $is_index = ($site_module_info->module_srl === $current_module_info->module_srl || $layout_info->layout_type === 'main' || Context::get('mid') === 'index') && empty($act); }
+	{@
+		$is_mobile = Mobile::isMobileCheckByAgent();
+		$browser = \Rhymix\Framework\UA::getBrowserInfo();
+		$is_ios = $browser->os === 'iOS' ? true : false;
+		$is_app = preg_match("/WpApp/", $_SERVER['HTTP_USER_AGENT']);
+		$is_deep = !empty($deep) || preg_match("/WpPop/", $_SERVER['HTTP_USER_AGENT']);
+	}
+	{@
+		$main_menu_depth1 = $main_menu->list ?? [];
+		$main_menu_depth2 = [];
+		$main_menu_depth3 = [];
+		$main_menu_depth1_selected = false;
+		$main_menu_depth2_selected = false;
+		$main_menu_depth3_selected = false;
+		foreach ($main_menu_depth1 as $key => $val):
+			if ($val['selected']) $main_menu_depth1_selected = $val;
+			if ($val['selected'] && isset($val['list']) && count($val['list']) > 0):
+				$main_menu_depth2 = $val['list'];
+				foreach ($main_menu_depth2 as $key => $val):
+					if ($val['selected']) $main_menu_depth2_selected = $val;
+					if ($val['selected'] && isset($val['list']) && count($val['list']) > 0):
+						$main_menu_depth3 = $val['list'];
+						foreach ($main_menu_depth3 as $key => $val):
+							if ($val['selected']) $main_menu_depth3_selected = $val;
+						endforeach;
+					endif;
+				endforeach;
+			endif;
+		endforeach;
+	}
+	<!--@if(isset($content_only) && $content_only)-->
+		<div class="body">
+			<div class="content_wrap">
+				<div class="bh_wrap clearfix">
+					<div class="content">
+						<div class="content_inner clearfix">
+							{$content|noescape}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--@else-->
+		<div class="top_banner" cond="$layout_info->float_banner_top_img_1">
+			<a href="{$layout_info->float_banner_top_url_1}" target="_blank"|cond="$layout_info->float_banner_top_new_window_1 && in_array('Y', $layout_info->float_banner_top_new_window_1)">
+				<img src="{$layout_info->float_banner_top_img_1}" alt="{$layout_info->float_banner_top_text_1}">
+			</a>
+			<button class="top_banner_close">3일 동안 보지 않기 <i class="xi-close"></i></button>
+		</div>
+		<!--@if(!$is_deep)-->
+			<include target="_header.html" />
+		<!--@end-->
+		<div class="body">
+			<div class="bh_wrap clearfix"|cond="$is_index && !$layout_info->main_slider_wide" cond="$is_index || (!$is_index && $layout_info->use_sub_top_banner)">
+				<!--@if(!$is_index || ($is_index && $layout_info->layout_type === 'main'))-->
+					<div class="sub_top_banner clearfix" cond="$layout_info->use_sub_top_banner && $layout_info->sub_top_banner_img">
+						{@ $mid = Context::get('mid');}
+						<!--@if($layout_info->custom_1_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_1_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_1_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_1_sub_top_banner_img;
+								if($layout_info->custom_1_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_1_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_2_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_2_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_2_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_2_sub_top_banner_img;
+								if($layout_info->custom_2_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_2_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_3_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_3_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_3_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_3_sub_top_banner_img;
+								if($layout_info->custom_3_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_3_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_4_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_4_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_4_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_4_sub_top_banner_img;
+								if($layout_info->custom_4_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_4_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_5_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_5_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_5_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_5_sub_top_banner_img;
+								if($layout_info->custom_5_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_5_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_6_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_6_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_6_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_6_sub_top_banner_img;
+								if($layout_info->custom_6_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_6_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_7_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_7_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_7_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_7_sub_top_banner_img;
+								if($layout_info->custom_7_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_7_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_8_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_8_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_8_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_8_sub_top_banner_img;
+								if($layout_info->custom_8_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_8_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_9_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_9_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_9_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_9_sub_top_banner_img;
+								if($layout_info->custom_9_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_9_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<!--@if($layout_info->custom_10_sub_top_banner_name && in_array($mid, explode(',', $layout_info->custom_10_sub_top_banner_name)))-->
+							{@
+								if($layout_info->custom_10_sub_top_banner_img) $layout_info->sub_top_banner_img = $layout_info->custom_10_sub_top_banner_img;
+								if($layout_info->custom_10_sub_top_banner_text_img) $layout_info->sub_top_banner_text_img = $layout_info->custom_10_sub_top_banner_text_img;
+							}
+						<!--@end-->
+						<style>
+						.sub_top_banner {background-image: url('{$layout_info->sub_top_banner_img}');}
+						</style>
+						<div class="breadcrumb_wrap" cond="$layout_info->use_sub_top_banner_breadcrumb">
+							<div class="bh_wrap clearfix">
+								<div class="breadcrumb fl-{$layout_info->use_sub_top_banner_breadcrumb}">
+									<a href="{getSiteUrl()}">HOME</a>
+									<a cond="($main_menu_depth1_selected && !$is_mobile) || ($is_mobile && !$main_menu_depth2_selected)" href="{$main_menu_depth1_selected['href']}"><i class="xi-angle-right"></i> {$main_menu_depth1_selected['text']}</a>
+									<a cond="$main_menu_depth2_selected" href="{$menu_depth2['href']}"><i class="xi-angle-right"></i> {$main_menu_depth2_selected['text']}</a>
+									<a cond="$main_menu_depth3_selected" href="{$menu_depth3['href']}"><i class="xi-angle-right"></i> {$main_menu_depth3_selected['text']}</a>
+									<a cond="!$main_menu_depth1_selected"><i class="xi-angle-right"></i> {$module_info->browser_title}</a>
+								</div>
+							</div>
+						</div>
+						<div class="sub_top_banner_content_wrap">
+							<div class="bh bh_row ai-c h-100 mg-0">
+								<div class="bh col-12">
+								<!--@if(!$layout_info->sub_top_banner_text_img)-->
+									{@
+										if ($layout_info->sub_top_banner_text_level !== 'N'):
+											$sub_top_banner_text = ($layout_info->sub_top_banner_text_level !== 'C' && $main_menu_depth1_selected) ? $main_menu_depth1_selected['text'] : $module_info->browser_title;
+										endif;
+									}
+									<!--@if($sub_top_banner_text)-->
+										<span class="<!--@if(!$layout_info->sub_top_banner_text_color)-->bh_color_white<!--@end--> ts-1">{$sub_top_banner_text}</span>
+										<div class="hr-line<!--@if(!$layout_info->sub_top_banner_text_color)--> bh_bg_color_white<!--@else--> bh_bg_color_333<!--@end--> mt-10" style="height:2px;">&nbsp;</div>
+									<!--@end-->
+								<!--@else-->
+									<img src="{$layout_info->sub_top_banner_text_img}" />
+								<!--@end-->
+								</div>
+							</div>
+						</div>
+					</div>
+				<!--@end-->
+				<!--@if($is_index)-->
+					<div id="index" class="slider_wrap clearfix" style="margin-top:30px;"|cond="$is_index && !$layout_info->main_slider_wide" cond="$layout_info->use_main_slider">
+						<include target="slider/swiper.html" />
+					</div>
+					<include target="_main.html" />
+				<!--@end-->
+			</div>
+			<!--@if($layout_info->middle_sub_menu)-->
+				<div cond="$main_menu_depth1_selected" class="bh middle_sub_menu">
+					<div class="bh bh_wrap">
+						<ul class="bh_row jc-c">
+							{@$idx=1}
+							<!--@foreach($main_menu_depth2 as $key => $val)-->
+							<li id="li{$idx}" class="col-lg-auto col<!--@if($val['selected'])--> active<!--@end-->">
+								<a class="active:bh_color_333" href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'">{$val['link']}</a>
+							{@$idx++}
+							</li>
+							<!--@endforeach-->
+						</ul>
+					</div>
+				</div>
+			<!--@end-->
+			<!--@if($layout_info->middle_breadcrumb_menu && !$is_index)-->
+				<div class="bh middle_breadcrumb_menu clearfix">
+					<div class="bh bh_wrap">
+						<ul cond="$main_menu_depth1 && $main_menu_depth1_selected">
+							<li>
+								<a href="{getSiteUrl()}"><i class="xi-home fs-18"></i></a>
+							</li>
+							<li id="middle_breadcrumb_menu_li{$idx}" cond="$main_menu_depth1 && $main_menu_depth1_selected">
+								<a class="bh" href="{$main_menu_depth1_selected['href']}" target="_blank"|cond="$main_menu_depth1_selected['open_window']=='Y'">{$main_menu_depth1_selected['link']}</a>
+								<ul class="bh_toggle_content">
+									<!--@foreach($main_menu_depth1 as $key => $val)-->
+										{@$idx=1}
+										<li class="active"|cond="$val['selected']">
+											<a class="hover:bh_color_main" href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'">{$val['link']}</a>
+										</li>
+										{@$idx++}
+									<!--@endforeach-->
+								</ul>
+								<div class="bh_toggle">
+									<i class="bh_toggle_down xi-angle-down"></i>
+									<i class="bh_toggle_up xi-angle-up"></i>
+								</div>
+							</li>
+							<li id="middle_breadcrumb_menu_li{$idx}" cond="$main_menu_depth2 && $main_menu_depth2_selected">
+								<a class="bh" href="{$main_menu_depth2_selected['href']}" target="_blank"|cond="$main_menu_depth2_selected['open_window']=='Y'">{$main_menu_depth2_selected['link']}</a>
+								<ul class="bh_toggle_content">
+									<!--@foreach($main_menu_depth2 as $key => $val)-->
+										{@$idx=1}
+										<li class="active"|cond="$val['selected']">
+											<a class="hover:bh_color_main" href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'">{$val['link']}</a>
+										</li>
+										{@$idx++}
+									<!--@endforeach-->
+								</ul>
+								<div class="bh_toggle">
+									<i class="bh_toggle_down xi-angle-down"></i>
+									<i class="bh_toggle_up xi-angle-up"></i>
+								</div>
+							</li>
+							<li id="middle_breadcrumb_menu_li{$idx}" cond="$main_menu_depth3 && $main_menu_depth3_selected">
+								<a class="bh" href="{$main_menu_depth3_selected['href']}" target="_blank"|cond="$main_menu_depth3_selected['open_window']=='Y'">{$main_menu_depth3_selected['link']}</a>
+								<ul class="bh_toggle_content">
+									<!--@foreach($main_menu_depth3 as $key => $val)-->
+										{@$idx=1}
+										<li class="active"|cond="$val['selected']">
+											<a class="hover:bh_color_main" href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'">{$val['link']}</a>
+										</li>
+										{@$idx++}
+									<!--@endforeach-->
+								</ul>
+								<div class="bh_toggle">
+									<i class="bh_toggle_down xi-angle-down"></i>
+									<i class="bh_toggle_up xi-angle-up"></i>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			<!--@end-->
+			<div class="content_header_html" cond="$layout_info->content_header_html_position && $layout_info->content_header_html && !$is_index && empty($act)">
+				{$layout_info->content_header_html}
+			</div>
+			<div class="content_wrap">
+				<div class="bh_wrap clearfix"|cond="$layout_info->content_width_type !== 'wide'">
+					<!--@if(!empty($act) && $act === 'IS')-->
+					{@ $layout_info->use_sub_left = '';$layout_info->use_sub_right = '';}
+					<!--@end-->
+					<!--@if($layout_info->use_sub_left)-->
+					{@
+						if($layout_info->sub_left_width): $sub_left_width=$layout_info->sub_left_width; else: $sub_left_width=250; endif;
+					}
+					<!--@end-->
+					<!--@if($layout_info->use_sub_right)-->
+					{@
+						if($layout_info->sub_right_width): $sub_right_width=$layout_info->sub_right_width; else: $sub_right_width=250; endif;
+					}
+					<!--@end-->
+					{@ $sum_sub_width = ($sub_left_width ?? 0) + ($sub_right_width ?? 0);}
+					<div class="sub_left fl-l" style="width:{$sub_left_width}px;" cond="$layout_info->use_sub_left && !$is_index">
+						{@ $sub_position = "left";}
+						<include target="_sub.html" />
+					</div>
+					<div class="content<!--@if($is_index && $layout_info->main_slider_wide)--> pd-0<!--@end--> clearfix" id="content" style="float:left;width:calc(100% - {$sum_sub_width}px)"|cond="$sum_sub_width && !$is_index">
+						<div cond="$layout_info->content_sub_menu">
+							<div cond="$main_menu_depth1_selected" class="bh content_sub_menu">
+								<ul class="bh_row jc-c">
+									{@$idx=1}
+									<!--@foreach($main_menu_depth2 as $key => $val)-->
+									<li id="li{$idx}" class="col-lg-auto<!--@if($val['selected'])--> active<!--@end-->">
+										<a class="active:bh_color_white active:bh_bg_color_main active:bh_bd_color_main" href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'">{$val['link']}</a>
+									{@$idx++}
+									</li>
+									<!--@endforeach-->
+								</ul>
+							</div>
+						</div>
+						<div class="content_breadcrumb_wrap" cond="$layout_info->content_breadcrumb && !$is_index">
+							<div class="bh clearfix">
+								<div class="content_breadcrumb fl-{$layout_info->content_breadcrumb}">
+									<a href="{getSiteUrl()}">HOME</a>
+									<a cond="($main_menu_depth1_selected && !$is_mobile) || ($is_mobile && !$main_menu_depth2_selected)" href="{$main_menu_depth1_selected['href']}" class="bh_color_main fw-b"|cond="!$main_menu_depth2_selected"><i class="xi-angle-right"></i> {$main_menu_depth1_selected['text']}</a>
+									<a cond="$main_menu_depth2_selected" href="{$main_menu_depth2_selected['href']}" class="bh_color_main fw-b"|cond="!$main_menu_depth3_selected"><i class="xi-angle-right"></i> {$main_menu_depth2_selected['text']}</a>
+									<a cond="$main_menu_depth3_selected" href="{$main_menu_depth3_selected['href']}" class="bh_color_main fw-b"><i class="xi-angle-right"></i> {$main_menu_depth3_selected['text']}</a>
+									<a cond="!$main_menu_depth1_selected" class="bh_color_main fw-b"><i class="xi-angle-right"></i> {$module_info->browser_title}</a>
+								</div>
+							</div>
+						</div>
+						<div class="content_header_html" cond="!$layout_info->content_header_html_position && $layout_info->content_header_html && !$is_index && empty($act)">
+							{$layout_info->content_header_html}
+						</div>
+						<div class="content_inner clearfix">
+							<!--@if($layout_info->use_custom)-->
+								{@ $custom_id = $mid;}
+								<include target="_custom.html" />
+							<!--@end-->
+							<!--@if($layout_info->content_replace_act && !empty($act) && in_array($act, explode(',', $layout_info->content_replace_act)))-->
+								<include target="include/tools.html" />
+							<!--@else-->
+								{$content|noescape}
+							<!--@end-->
+						</div>
+						<div class="content_footer_html" cond="!$layout_info->content_footer_html_position && $layout_info->content_footer_html && !$is_index && !$act">
+							{$layout_info->content_footer_html}
+						</div>
+						<!--// Float Banner -->
+						<div id="float_banner_left" cond="$layout_info->use_float_banner_left && $layout_info->float_banner_left_img_1">
+							<a href="{$layout_info->float_banner_left_url_1}" cond="$layout_info->float_banner_left_url_1">
+								<img src="{$layout_info->float_banner_left_img_1}" />
+							</a>
+							<img src="{$layout_info->float_banner_left_img_1}" cond="!$layout_info->float_banner_left_url_1" />
+							<a href="{$layout_info->float_banner_left_url_2}" cond="$layout_info->float_banner_left_url_2">
+								<img src="{$layout_info->float_banner_left_img_2}" />
+							</a>
+							<img src="{$layout_info->float_banner_left_img_2}" cond="!$layout_info->float_banner_left_url_2" />
+						</div>
+						<div id="float_banner_right" cond="$layout_info->use_float_banner_right && $layout_info->float_banner_right_img_1">
+							<a href="{$layout_info->float_banner_right_url_1}" cond="$layout_info->float_banner_right_url_1">
+								<img src="{$layout_info->float_banner_right_img_1}" />
+							</a>
+							<img src="{$layout_info->float_banner_right_img_1}" cond="!$layout_info->float_banner_right_url_1" />
+							<a href="{$layout_info->float_banner_right_url_2}" cond="$layout_info->float_banner_right_url_2">
+								<img src="{$layout_info->float_banner_right_img_2}" />
+							</a>
+							<img src="{$layout_info->float_banner_right_img_2}" cond="!$layout_info->float_banner_right_url_2" />
+						</div>
+						<!--// Float Banner End -->
+					</div>
+					<div class="sub_right fl-r" style="width:{$sub_right_width}px;" cond="$layout_info->use_sub_right && !$is_index">
+						{@ $sub_position = "right";}
+						<include target="_sub.html" />
+					</div>
+				</div>
+			</div>
+			<div class="content_footer_html" cond="$layout_info->content_footer_html_position && $layout_info->content_footer_html && !$is_index && empty($act)">
+				{$layout_info->content_footer_html}
+			</div>
+			<!--// Quick Menu -->
+			<div id="quick_menu" cond="$layout_info->use_quick_menu && ($layout_info->quick_menu_img_1 || $layout_info->quick_menu_icon_1) || $layout_info->use_scrolltop">
+				<div class="quick_menu_inner">
+					<ul cond="$layout_info->use_quick_menu && ($layout_info->quick_menu_img_1 || $layout_info->quick_menu_icon_1)">
+						<li cond="$layout_info->quick_menu_url_1" class="has_hover"|cond="$layout_info->quick_menu_img_hover_1">
+							<a href="{$layout_info->quick_menu_url_1}" target="_blank"|cond="$layout_info->quick_menu_new_window_1 && in_array('Y', $layout_info->quick_menu_new_window_1)">
+								<!--@if(!$layout_info->quick_menu_icon_1)-->
+									<img src="{$layout_info->quick_menu_img_1}" alt="{$layout_info->quick_menu_text_1}">
+									<!--@if($layout_info->quick_menu_img_hover_1)-->
+									<img class="img_hover" src="{$layout_info->quick_menu_img_hover_1}" alt="{$layout_info->quick_menu_text_1}">
+									<!--@end-->
+								<!--@else-->
+									<i class="{$layout_info->quick_menu_icon_1}"></i>
+								<!--@end-->
+								<span>{$layout_info->quick_menu_text_1}</span>
+							</a>
+						</li>
+						<li cond="$layout_info->quick_menu_url_2" class="has_hover"|cond="$layout_info->quick_menu_img_hover_2">
+							<a href="{$layout_info->quick_menu_url_2}" target="_blank"|cond="$layout_info->quick_menu_new_window_2 && in_array('Y', $layout_info->quick_menu_new_window_2)">
+								<!--@if(!$layout_info->quick_menu_icon_2)-->
+									<img src="{$layout_info->quick_menu_img_2}" alt="{$layout_info->quick_menu_text_2}">
+									<!--@if($layout_info->quick_menu_img_hover_2)-->
+									<img class="img_hover" src="{$layout_info->quick_menu_img_hover_2}" alt="{$layout_info->quick_menu_text_2}">
+									<!--@end-->
+								<!--@else-->
+									<i class="{$layout_info->quick_menu_icon_2}"></i>
+								<!--@end-->
+								<span>{$layout_info->quick_menu_text_2}</span>
+							</a>
+						</li>
+						<li cond="$layout_info->quick_menu_url_3" class="has_hover"|cond="$layout_info->quick_menu_img_hover_3">
+							<a href="{$layout_info->quick_menu_url_3}" target="_blank"|cond="$layout_info->quick_menu_new_window_3 && in_array('Y', $layout_info->quick_menu_new_window_3)">
+								<!--@if(!$layout_info->quick_menu_icon_3)-->
+									<img src="{$layout_info->quick_menu_img_3}" alt="{$layout_info->quick_menu_text_3}">
+									<!--@if($layout_info->quick_menu_img_hover_3)-->
+									<img class="img_hover" src="{$layout_info->quick_menu_img_hover_3}" alt="{$layout_info->quick_menu_text_3}">
+									<!--@end-->
+								<!--@else-->
+									<i class="{$layout_info->quick_menu_icon_3}"></i>
+								<!--@end-->
+								<span>{$layout_info->quick_menu_text_3}</span>
+							</a>
+						</li>
+						<li cond="$layout_info->quick_menu_url_4" class="has_hover"|cond="$layout_info->quick_menu_img_hover_4">
+							<a href="{$layout_info->quick_menu_url_4}" target="_blank"|cond="$layout_info->quick_menu_new_window_4 && in_array('Y', $layout_info->quick_menu_new_window_4)">
+								<!--@if(!$layout_info->quick_menu_icon_4)-->
+									<img src="{$layout_info->quick_menu_img_4}" alt="{$layout_info->quick_menu_text_4}">
+									<!--@if($layout_info->quick_menu_img_hover_4)-->
+									<img class="img_hover" src="{$layout_info->quick_menu_img_hover_4}" alt="{$layout_info->quick_menu_text_4}">
+									<!--@end-->
+								<!--@else-->
+									<i class="{$layout_info->quick_menu_icon_4}"></i>
+								<!--@end-->
+								<span>{$layout_info->quick_menu_text_4}</span>
+							</a>
+						</li>
+						<li cond="$layout_info->quick_menu_url_5" class="has_hover"|cond="$layout_info->quick_menu_img_hover_5">
+							<a href="{$layout_info->quick_menu_url_5}" target="_blank"|cond="$layout_info->quick_menu_new_window_5 && in_array('Y', $layout_info->quick_menu_new_window_5)">
+								<!--@if(!$layout_info->quick_menu_icon_5)-->
+									<img src="{$layout_info->quick_menu_img_5}" alt="{$layout_info->quick_menu_text_5}">
+									<!--@if($layout_info->quick_menu_img_hover_5)-->
+									<img class="img_hover" src="{$layout_info->quick_menu_img_hover_5}" alt="{$layout_info->quick_menu_text_5}">
+									<!--@end-->
+								<!--@else-->
+									<i class="{$layout_info->quick_menu_icon_5}"></i>
+								<!--@end-->
+								<span>{$layout_info->quick_menu_text_5}</span>
+							</a>
+						</li>
+					</ul>
+					<div class="scrollTop style_menu" cond="$layout_info->use_scrolltop">
+						<a href="#">
+							<i class="ri-arrow-up-line"></i>
+							<span>TOP</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--// Quick Menu End -->
+		</div>
+		<footer class="bh dark_no">
+			<div class="footer<!--@if(!$layout_info->footer_text_color)--> style_white<!--@end-->">
+				<div class="bh_wrap">
+					<nav class="footer_menu" id="footer_menu" cond="count($footer_menu->list) > 0">
+						<a href="/privacy" class="footer_menu_item item_privacy">개인정보처리방침</a>
+						<ul>
+							<!--@foreach($footer_menu->list as $key1 => $val1)-->
+							<li>
+								<a class="footer_menu_item" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'"><span>{$val1['link']}</span></a>
+							</li>
+							<!--@endforeach-->
+						</ul>
+					</nav>
+					<div class="footer_con_wrap">
+						<div class="footer_logo" cond="$layout_info->footer_logo_img">
+							<img src="{$layout_info->footer_logo_img}" alt="footer_logo" />
+						</div>
+						<div class="footer_con" cond="!$layout_info->footer_html">
+							<div class="footer_con_items">
+								<div class="footer_con_item"><span>안암145</span></div>
+								<div class="footer_con_item"><span>대표</span> 이중희/심준식</div>
+							</div>
+							<div class="footer_con_items">
+								<div class="footer_con_item"><span>대표 전화</span> 000-0000-0000</div>
+								<div class="footer_con_item"><span>이메일</span> tyrannojung@anam145.com</div>
+								<div class="footer_con_item"><span>팩스</span> 000-000-0000</div>
+								<div class="footer_con_item"><span>사업자 등록번호</span> 140-86-02988</div>
+							</div>
+							<div class="footer_con_items">
+								<div class="footer_con_item"><span>주소</span> 서울특별시 성북구 안암로 145, 고려대학교 로봇융합관 308호(안암동5가)</div>
+							</div>
+							<div class="footer_copyright_text">Copyright 2025. 안암145 Co. All rights reserved.</div>
+						</div>
+						<div class="footer_con" cond="$layout_info->footer_html">
+							{$layout_info->footer_html}
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--// Quick Icon -->
+		<div id="quick_icon" cond="$layout_info->use_quick_icon && ($layout_info->quick_icon_img_1 || $layout_info->quick_icon_icon_1)">
+			<div class="balloon ds-n lg:ds-b" cond="$layout_info->quick_icon_text_desc_1">
+				<span>{$layout_info->quick_icon_text_desc_1}</span>
+			</div>
+			<a href="{$layout_info->quick_icon_url_1}" target="_blank"|cond="$layout_info->quick_icon_new_window_1 && in_array('Y', $layout_info->quick_icon_new_window_1)" class="has_hover"|cond="$layout_info->quick_icon_img_hover_1">
+				<!--@if(!$layout_info->quick_icon_icon_1)-->
+					<img src="{$layout_info->quick_icon_img_1}" alt="{$layout_info->quick_icon_text_1}">
+					<!--@if($layout_info->quick_icon_img_hover_1)-->
+					<img class="img_hover" src="{$layout_info->quick_icon_img_hover_1}" alt="{$layout_info->quick_icon_text_1}">
+					<!--@end-->
+				<!--@else-->
+					<i class="{$layout_info->quick_icon_icon_1}"></i>
+				<!--@end-->
+				<span>{$layout_info->quick_icon_text_1}</span>
+			</a>
+		</div>
+		<!--// Quick Icon End -->
+		<div class="bottom_banner" cond="$layout_info->use_float_banner_bottom">
+			<div class="bh_wrap">
+				<img class="zbxe_widget_output" widget="bh_insert_widget" skin="simple_width" widget_cache="0m" module_srls="68" use_secret="Y" title_message="신청입니다." writer_message="신청자" email_message="a@a.com" use_content="N" content_default="." />
+			</div>
+		</div>
+		<!--@if($logged_info && $logged_info->is_admin === 'Y' && $layout_info->layout_admin_btn)-->
+		<a class="layout_admin_btn" href="{getUrl('','module','admin')}"|cond="$layout_info->layout_admin_btn === 'A'" href="{getUrl('','module','admin','act','dispLayoutAdminInstanceList','layout',$layout_info->layout)}"|cond="$layout_info->layout_admin_btn === 'L'" href="{getUrl('','module','admin','act','dispLayoutAdminModify','layout',$layout_info->layout,'layout_srl',$layout_info->layout_srl)}"|cond="$layout_info->layout_admin_btn === 'LM'">
+			<span><i class="xi-cog"></i></span>
+		</a>
+		<!--@end-->
+		<!--@if($logged_info && $logged_info->is_admin === 'Y' && $layout_info->content_admin_btn)-->
+		<div class="bh_setting_wrap">
+			<a class="bh_setting content_admin_btn" href="#"><span>내용관리</span></a>
+		</div>
+		<!--@end-->
+	<!--@end-->
+</div>
+
+<style type="text/css" cond="!empty($act) && stripos($act, 'Admin') && $act !== 'dispPageAdminContentModify'">
+	#content, #content *, #content *:before, #content *:after {
+		-webkit-box-sizing: initial;
+		-moz-box-sizing: initial;
+		box-sizing: initial;
+	}
+	#content .bh, #content .bh *, #content .bh *:before, #content .bh *:after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.x {
+		font-size: 13px;
+		background-color: white !important;
+	}
+	.x .simpleTree li {
+		padding-left: 34px;
+	}
+</style>
+<style type="text/css" cond="empty($act)">
+	#content .content_inner > .btnArea {
+		position: absolute;
+		right: 10px;
+		bottom: 0;
+		z-index: 7;
+	}
+</style>
+
+<load target="css/bh.scss" />
+<load target="page.scss" index="10000" />
+<load target="page.js" type="body" />

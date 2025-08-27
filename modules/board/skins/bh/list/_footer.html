@@ -1,0 +1,52 @@
+<div class="bh list_footer">
+	<div class="tool_wrap clearfix">
+		<div class="bd_btn_wrap">
+			<a cond="$grant->manager && $grant->can('config:*')" class="bh_bd_btn outline" href="{getUrl('', 'mid', $mid, 'act', 'dispBoardAdminBoardInfo')}" title="{$lang->cmd_setup}"><i class="xi-cog"></i> {$lang->cmd_setup}</a>
+			<a cond="$grant->manager && $grant->can('moderate:document')" href="{getUrl('', 'mid', $mid, 'act', 'dispDocumentManageDocument')}" class="bh_bd_btn outline" onclick="popopen(this.href,'manageDocument'); return false;">{$lang->cmd_manage_document}</a>
+			<a cond="$module_info->list_write_btn === 'Y' || (($module_info->list_write_btn === 'G' || !$module_info->list_write_btn) && $grant->write_document)" href="{getUrl('', 'mid', $mid, 'act', 'dispBoardWrite', 'category', $category ?? null)}" class="bh_bd_btn"><i class="xi-pen"></i> {$lang->cmd_write}</a>
+		</div>
+	</div>
+
+	<form cond="$grant->view && $module_info->list_search" action="{getUrl()}" method="get" id="board_search" class="board_search" rx-autoform="false">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="category" value="{$category}" />
+		<div class="bh bh_row gutters-5">
+			<div class="bh col-auto">
+				<select name="search_target">
+					<option loop="$search_option=>$key,$val" value="{$key}" selected="selected"|cond="$search_target==$key">{$val}</option>
+				</select>
+			</div>
+			<div class="bh col">
+				<input type="text" name="search_keyword" value="{escape($search_keyword ?? '', false)}" title="{$lang->cmd_search}" placeholder="{$lang->cmd_search}{$lang_type === 'ko' ? '단어 입력' : ''}" />
+			</div>
+			<div class="bh col-auto">
+				<button type="submit" class="bh_bd_btn">{$lang->cmd_search}</button>
+				<a cond="$last_division" href="{getUrl('page',1,'document_srl','','division',$last_division,'last_division','')}" class="bh_bd_btn outline">{$lang->cmd_search_next}</a>
+			</div>
+		</div>
+	</form>
+
+	<div class="pagination" cond="$document_list || $notice_list">
+		{@ $prev_page = max($page-1, 1)}
+		{@ $next_page = min($page+1, $page_navigation->last_page)}
+		<div class="prev_wrap">
+			<a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}"|cond="$page!=$prev_page" class="direction prev <!--@if($page == $prev_page)-->disabled<!--@end-->" title="{$lang->first_page}"><i class="ri-arrow-left-double-line"></i></a>
+			<a href="{getUrl('page',$prev_page,'document_srl','','division',$division,'last_division',$last_division)}"|cond="$page!=$prev_page" class="direction prev <!--@if($page == $prev_page)-->disabled<!--@end-->" title="Prev"><i class="ri-arrow-left-s-line"></i></a>
+		</div>
+		<div class="page_no_wrap">
+		<block loop="$page_no=$page_navigation->getNextPage()">
+			<strong cond="$page==$page_no" class="direction active">{$page_no}</strong>
+			<a cond="$page!=$page_no" href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division)}" class="direction">{$page_no}</a>
+		</block>
+		</div>
+		<div class="next_wrap">
+			<a href="{getUrl('page',$next_page,'document_srl','','division',$division,'last_division',$last_division)}"|cond="$page!=$next_page" class="direction next <!--@if($page == $next_page)-->disabled<!--@end-->" title="Next"><i class="ri-arrow-right-s-line"></i></a>
+			<a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division)}"|cond="$page!=$next_page" class="direction next <!--@if($page == $next_page)-->disabled<!--@end-->" title="{$lang->last_page}"><i class="ri-arrow-right-double-line"></i></a>
+		</div>
+	</div>
+
+	<div class="list_footer_html" cond="$module_info->list_footer_html">
+		{$module_info->list_footer_html}
+	</div>
+
+</div>

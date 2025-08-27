@@ -1,0 +1,45 @@
+<load target="./css/edit.css" />
+<load target="./js/edit.js" />
+<load target="./libs/ace/ace.js" />
+<load target="./libs/ace/ext-language_tools.js" />
+
+{@ $widget_srl = rand()}
+<div id="page_edit_{$widget_srl}">
+	<form class="bh" action="./" method="post" enctype="multipart/form-data" onsubmit="return insertPage(this)">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="ajax" value="Y">
+		<input type="hidden" name="content_path" value="{$content_path}">
+		<input type="hidden" id="page_content_{$widget_srl}" name="content" value="{htmlspecialchars($content)}" />
+		<div class="bh bh_page_widget_edit_wrap" style="margin: {$widget_info->margin};"|cond="isset($widget_info->margin)">
+			<div class="bh bh_page_widget_edit_inner">
+				<pre class="page_editor" id="page_editor_{$widget_srl}"></pre>
+			</div>
+			<div class="bh bd_btn_wrap">
+				<button class="bh_btn" type="submit">저장</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var page_edit = document.getElementById("page_edit_{$widget_srl}");
+	var page_edit_html = page_edit.innerHTML;
+	page_edit.innerHTML = '';
+	document.getElementsByClassName("body")[0].innerHTML = '<div class="content_wrap">' + page_edit_html + '</div>';
+
+	ace.require("ace/ext/language_tools");
+	var editor = ace.edit("page_editor_{$widget_srl}");
+	editor.session.setMode("ace/mode/html");
+	editor.setTheme("ace/theme/chrome");
+	editor.setOptions({
+		enableBasicAutocompletion: true,
+		enableSnippets: true,
+		enableLiveAutocompletion: false,
+		showPrintMargin: false,
+		tabSize: 4,
+		useSoftTabs: true
+	});
+
+	content_html = document.getElementById("page_content_{$widget_srl}");
+	editor.session.setValue(content_html.value);
+</script>

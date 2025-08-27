@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">심플 갤러리 출력 위젯</title>
+	<description xml:lang="ko">사진을 출력하는 위젯입니다.</description>
+	<version>1.60</version>
+	<date>2019-04-06</date>
+	<author email_address="9haging@gmail.com" link="">
+		<name xml:lang="ko">bh</name>
+	</author>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">추출대상</title>
+			<var id="content_type" type="select">
+				<name xml:lang="ko">추출대상</name>
+				<name xml:lang="en">Target</name>
+				<options>
+					<value>document</value>
+					<name xml:lang="ko">게시물</name>
+					<name xml:lang="en">Article</name>
+				</options>
+				<options>
+					<value>comment</value>
+					<name xml:lang="ko">댓글</name>
+					<name xml:lang="en">Comment</name>
+				</options>
+			</var>
+			<var id="module_srls" type="module_srl_list">
+				<name xml:lang="ko">대상모듈</name>
+				<description xml:lang="ko">가져올 모듈을 선택해주세요.</description>
+			</var>
+			<var id="include_days" type="text">
+				<name xml:lang="ko">대상기간</name>
+				<description xml:lang="ko">최근 글만 표시합니다. 예) 7 (7일)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">설정</title>
+			<var id="list_type">
+				<type>select</type>
+				<name xml:lang="ko">내용형태</name>
+				<options>
+					<value>gallery</value>
+					<name xml:lang="ko">갤러리</name>
+				</options>
+			</var>
+			<var id="list_count" type="text">
+				<name xml:lang="ko">목록수</name>
+			</var>
+			<var id="m_list_count" type="text">
+				<name xml:lang="ko">모바일 목록수</name>
+			</var>
+			<var id="cols_list_count" type="select">
+				<name xml:lang="ko">가로 목록수</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko"></name>
+				</options>
+				<options>
+					<value>1</value>
+					<name xml:lang="ko">1</name>
+				</options>
+				<options>
+					<value>2</value>
+					<name xml:lang="ko">2</name>
+				</options>
+				<options>
+					<value>3</value>
+					<name xml:lang="ko">3</name>
+				</options>
+				<options>
+					<value>4</value>
+					<name xml:lang="ko">4</name>
+				</options>
+				<options>
+					<value>5</value>
+					<name xml:lang="ko">5</name>
+				</options>
+				<options>
+					<value>6</value>
+					<name xml:lang="ko">6</name>
+				</options>
+			</var>
+			<var id="m_cols_list_count" type="select">
+				<name xml:lang="ko">모바일 가로 목록수</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko"></name>
+				</options>
+				<options>
+					<value>1</value>
+					<name xml:lang="ko">1</name>
+				</options>
+				<options>
+					<value>2</value>
+					<name xml:lang="ko">2</name>
+				</options>
+				<options>
+					<value>3</value>
+					<name xml:lang="ko">3</name>
+				</options>
+				<options>
+					<value>4</value>
+					<name xml:lang="ko">4</name>
+				</options>
+				<options>
+					<value>5</value>
+					<name xml:lang="ko">5</name>
+				</options>
+				<options>
+					<value>6</value>
+					<name xml:lang="ko">6</name>
+				</options>
+			</var>
+			<var id="margin" type="text">
+				<name xml:lang="ko">위젯 마진</name>
+				<description xml:lang="ko">예) 0 0 10px 0 (위 오른쪽 아래 왼쪽)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">정렬</title>
+			<var id="order_target" type="select">
+				<name xml:lang="ko">정렬 대상</name>
+				<description xml:lang="ko">등록된 순서 또는 변경된 순서로 정렬을 할 수 있습니다.</description>
+				<options>
+					<value>list_order</value>
+					<name xml:lang="ko">최신 등록순</name>
+				</options>
+				<options>
+					<value>regdate</value>
+					<name xml:lang="ko">등록 일자순</name>
+				</options>
+				<options>
+					<value>update_order</value>
+					<name xml:lang="ko">최근 변경순</name>
+				</options>
+				<options>
+					<value>voted_count</value>
+					<name xml:lang="ko">추천수</name>
+				</options>
+				<options>
+					<value>readed_count</value>
+					<name xml:lang="ko">조회수</name>
+				</options>
+				<options>
+					<value>rand()</value>
+					<name xml:lang="ko">랜덤순</name>
+				</options>
+			</var>
+			<var id="order_type" type="select">
+				<name xml:lang="ko">정렬 방법</name>
+				<options>
+					<value>desc</value>
+					<name xml:lang="ko">내림차순</name>
+				</options>
+				<options>
+					<value>asc</value>
+					<name xml:lang="ko">올림차순</name>
+				</options>
+			</var>
+			<title xml:lang="ko">목록 상세 설정</title>
+			<var id="option_view" type="select-multi-order">
+				<name xml:lang="ko">표시항목</name>
+				<options init="true">
+					<value>thumbnail</value>
+					<name xml:lang="ko">섬네일</name>
+				</options>
+				<options init="true">
+					<value>title</value>
+					<name xml:lang="ko">제목</name>
+				</options>
+				<options init="true">
+					<value>content</value>
+					<name xml:lang="ko">내용</name>
+				</options>
+				<options init="true">
+					<value>regdate</value>
+					<name xml:lang="ko">등록일</name>
+				</options>
+				<options init="true">
+					<value>nickname</value>
+					<name xml:lang="ko">글쓴이</name>
+				</options>
+				<options init="true">
+					<value>category</value>
+					<name xml:lang="ko">카테고리</name>
+				</options>
+				<options init="true">
+					<value>button</value>
+					<name xml:lang="ko">버튼</name>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">내용 설정</title>
+			<var id="subject_cut_size" type="text">
+				<name xml:lang="ko">제목 글자수</name>
+			</var>
+			<var id="content_cut_size" type="text">
+				<name xml:lang="ko">내용 글자수</name>
+			</var>
+			<var id="nickname_cut_size" type="text">
+				<name xml:lang="ko">닉네임 글자수</name>
+			</var>
+			<var id="extravar_title" type="text">
+				<name xml:lang="ko">제목 대체 확장변수 eid</name>
+			</var>
+			<var id="extravar_content" type="text">
+				<name xml:lang="ko">내용 대체 확장변수 eid</name>
+			</var>
+			<var id="extravar_regdate" type="text">
+				<name xml:lang="ko">등록일 대체 확장변수 eid</name>
+			</var>
+			<var id="extravar_nickname" type="text">
+				<name xml:lang="ko">글쓴이 대체 확장변수 eid</name>
+			</var>
+			<var id="extravar_1" type="text">
+				<name xml:lang="ko">확장변수 1 eid</name>
+			</var>
+			<var id="extravar_2" type="text">
+				<name xml:lang="ko">확장변수 2 eid</name>
+			</var>
+			<var id="extravar_3" type="text">
+				<name xml:lang="ko">확장변수 3 eid</name>
+			</var>
+			<var id="extravar_4" type="text">
+				<name xml:lang="ko">확장변수 4 eid</name>
+			</var>
+			<var id="extravar_5" type="text">
+				<name xml:lang="ko">확장변수 5 eid</name>
+			</var>
+			<var id="view_secret" type="select">
+				<name xml:lang="ko">비밀글 표시</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">비밀글 제외</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">비밀글 표시</name>
+				</options>
+			</var>
+			<var id="view_notice" type="select">
+				<name xml:lang="ko">공지사항 표시</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">모두 표시</name>
+				</options>
+				<options>
+					<value>N</value>
+					<name xml:lang="ko">공지사항 제외</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">공지사항만</name>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">페이지 설정</title>
+			<var id="page_count" type="select">
+				<name xml:lang="ko">페이지 수</name>
+				<options>
+					<value>1</value>
+					<name xml:lang="ko">1</name>
+				</options>
+				<options>
+					<value>2</value>
+					<name xml:lang="ko">2</name>
+				</options>
+				<options>
+					<value>3</value>
+					<name xml:lang="ko">3</name>
+				</options>
+				<options>
+					<value>4</value>
+					<name xml:lang="ko">4</name>
+				</options>
+				<options>
+					<value>5</value>
+					<name xml:lang="ko">5</name>
+				</options>
+			</var>
+			<var id="page_type" type="select">
+				<name xml:lang="ko">페이지 형태</name>
+				<options>
+					<value>add</value>
+					<name xml:lang="ko">더보기</name>
+				</options>
+				<options>
+					<value>refresh</value>
+					<name xml:lang="ko">새로보기</name>
+				</options>
+				<options>
+					<value>pagination</value>
+					<name xml:lang="ko">페이지네이션</name>
+				</options>
+				<options>
+					<value>pagination_simple</value>
+					<name xml:lang="ko">심플 페이지네이션</name>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">링크 설정</title>
+			<var id="use_link" type="select">
+				<name xml:lang="ko">링크 사용</name>
+				<description xml:lang="ko">링크주소를 변경합니다.</description>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+				<options>
+					<value>e</value>
+					<name xml:lang="ko">확장변수(변수명url)</name>
+				</options>
+				<options>
+					<value>p</value>
+					<name xml:lang="ko">팝업</name>
+				</options>
+				<options>
+					<value>l</value>
+					<name xml:lang="ko">링크직접작성</name>
+				</options>
+			</var>
+			<var id="widget_link" type="text">
+				<name xml:lang="ko">링크 주소</name>
+				<description xml:lang="ko">예) http://</description>
+			</var>
+			<var id="new_window" type="select">
+				<name xml:lang="ko">링크 새창</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">현재창에서 열기</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">새창에서 열기</name>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">탭 형태 설정</title>
+			<var id="tab_type">
+				<type>select</type>
+				<name xml:lang="ko">탭형태</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+				<options>
+					<value>tab_top</value>
+					<name xml:lang="ko">상단 탭형</name>
+				</options>
+				<options>
+					<value>tab_left</value>
+					<name xml:lang="ko">왼쪽 탭형</name>
+				</options>
+				<options>
+					<value>tab_list</value>
+					<name xml:lang="ko">리스트형</name>
+				</options>
+				<options>
+					<value>tab_name</value>
+					<name xml:lang="ko">탭 이름만</name>
+				</options>
+			</var>
+			<var id="tab_target">
+				<type>select</type>
+				<name xml:lang="ko">탭대상</name>
+				<options>
+					<value></value>
+					<name xml:lang="ko">모듈</name>
+				</options>
+				<options>
+					<value>category</value>
+					<name xml:lang="ko">카테고리</name>
+				</options>
+			</var>
+			<var id="category_specific">
+				<type>text</type>
+				<name xml:lang="ko">대상 분류 srl값</name>
+				<description xml:lang="ko">표시하고 싶은 분류만 나타나도록 할 경우 해당 분류 srl값을 입력해 주세요. (콤마(,)로 구분, 비워두시면 모든 분류 대상, 예:1234,1558)</description>
+			</var>
+			<var id="category_range">
+				<type>select</type>
+				<name xml:lang="ko">대상 분류 범위</name>
+				<description xml:lang="ko">전체 분류를 표시할 것인지, 최상위 단계의 분류만 표시할 것인지 설정할 수 있습니다.</description>
+				<options>
+					<value>all</value>
+					<name xml:lang="ko">모든 분류 단계</name>
+				</options>
+				<options>
+					<value>first</value>
+					<name xml:lang="ko">최상위 단계(1단계)</name>
+				</options>
+			</var>
+			<var id="tab_all">
+				<type>select</type>
+				<name xml:lang="ko">전체 탭 추가</name>
+				<description xml:lang="ko">탭 맨 앞에 전체를 추가합니다.</description>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용함</name>
+				</options>
+				<options>
+					<value>N</value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+			</var>
+			<var id="tab_name" type="text">
+				<name xml:lang="ko">탭 타이틀</name>
+				<description xml:lang="ko">탭 형태 (탭 이름만) 지정 시, 이름만 표시됩니다.</description>
+			</var>
+			<var id="tab_link" type="text">
+				<name xml:lang="ko">탭 타이틀 링크 주소</name>
+				<description xml:lang="ko">예) http://</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">슬라이드 설정</title>
+			<var id="use_slider" type="select">
+				<name xml:lang="ko">슬라이드 사용</name>
+				<description xml:lang="ko">슬라이드로 표시됩니다.</description>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">사용함</name>
+				</options>
+			</var>
+			<var id="slider_height" type="text">
+				<name xml:lang="ko">슬라이드 높이</name>
+				<description xml:lang="ko">예) 200 (기본값 자동)</description>
+			</var>
+			<var id="slider_height_popup" type="text">
+				<name xml:lang="ko">팝업 슬라이드 높이</name>
+				<description xml:lang="ko">예) 500 (기본값 500)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">썸네일</title>
+			<var id="thumbnail_type" type="select">
+				<name xml:lang="ko">썸네일 생성 방법</name>
+				<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+				<options>
+					<value>fill</value>
+					<name xml:lang="ko">비율 유지하며 가득 채움 (Fill)</name>
+				</options>
+				<options>
+					<value>crop</value>
+					<name xml:lang="ko">비율 유지하며 잘라내기 (Crop)</name>
+				</options>
+				<options>
+					<value>ratio</value>
+					<name xml:lang="ko">비율 유지하며 잘리지 않도록 함 (Ratio)</name>
+				</options>
+				<options>
+					<value>original</value>
+					<name xml:lang="ko">Original (원본이미지)</name>
+				</options>
+			</var>
+			<var id="thumbnail_width" type="text">
+				<name xml:lang="ko">이미지 가로크기</name>
+			</var>
+			<var id="thumbnail_height" type="text">
+				<name xml:lang="ko">이미지 세로크기</name>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">검색 설정</title>
+			<var id="use_search" type="select">
+				<name xml:lang="ko">검색 사용</name>
+				<description xml:lang="ko">검색 기능 사용시 캐시 설정을 권장합니다.</description>
+				<options>
+					<value></value>
+					<name xml:lang="ko">사용안함</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">사용함</name>
+				</options>
+			</var>
+			<var id="search_keyword" type="text">
+				<name xml:lang="ko">검색어</name>
+				<description xml:lang="ko">제목 + 내용이 검색됩니다.</description>
+			</var>
+			<var id="search_keyword_extra" type="text">
+				<name xml:lang="ko">확장변수 검색어</name>
+				<description xml:lang="ko">모든 확장변수 값이 포함 검색됩니다.</description>
+			</var>
+		</group>
+	</extra_vars>
+</widget>

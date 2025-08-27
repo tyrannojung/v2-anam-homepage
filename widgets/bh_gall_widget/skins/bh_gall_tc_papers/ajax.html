@@ -1,0 +1,59 @@
+@version(2)
+
+<div id="bh_modal_slider">
+	<div class="swiper-popup swiper-default swiper-{{ $document_item->get('document_srl') }}" style="height: {{ $slider_height_popup }}px;"|cond="$slider_height_popup">
+		<div class="swiper-wrapper">
+		@foreach ($document_item->getUploadedFiles() as $key => $file)
+			@php
+				$ext = substr($file->source_filename, -4);
+				$ext = strtolower($ext);
+				$extImg = in_array($ext, array('.jpg', 'jpeg', '.gif', '.png'));
+			@endphp
+			<div class="item item{{ $loop->iteration }}" style="background-image: url('{{ $file->uploaded_filename }}');"|cond="!Mobile::isMobileCheckByAgent()">
+				@if (Mobile::isMobileCheckByAgent())
+					<img src="{{ $file->uploaded_filename }}" alt="image">
+				@end
+				@if (0)
+				<div class="slider_content_wrap">
+					<div class="bh_wrap slider_content">
+						<div class="bh bh_row ai-c h-100">
+							<div class="bh col-12">
+
+							</div>
+						</div>
+					</div>
+				</div>
+				@end
+			</div>
+		@endforeach
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	</div>
+	<script>
+		new Swiper('.swiper-{{ $document_item->get("document_srl") }}', {
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			pagination: {
+				enabled: false,
+				el: '.swiper-pagination',
+				clickable: true,
+				bulletActiveClass: 'swiper-pagination-bullet-active bh_bg_color_main',
+				progressbarFillClass: 'swiper-pagination-progressbar-fill bh_bg_color_main',
+			},
+			autoplay: {
+				delay: 3000,
+			},
+			speed: 500,
+			loop: true,
+			loop: true,
+			spaceBetween: 30,
+		});
+	</script>
+</div>
+
+<div id="bh_modal_body">{{-- $document_item->getExtraEidValue('a1') --}}{{ $document_item->getContent(false)|noescape }}</div>

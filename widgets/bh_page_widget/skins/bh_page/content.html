@@ -1,0 +1,13 @@
+<load target="./css/widget.css" />
+<load target="./js/widget.js" />
+
+<div class="bh bh_page_widget_wrap" style="margin: {$widget_info->margin};"|cond="isset($widget_info->margin)">
+	<div class="bh bh_page_widget_inner">
+		{$page_content}
+		<div class="bh_setting_btn" cond="$logged_info && $logged_info->is_admin === 'Y' && 0">
+			<a href="{getUrl('', 'mid', $mid, 'page_name', $page_name, 'edit', 'Y')}" class="bh_bd_btn outline" onclick="popopen(this.href,'page_{$page_name}'); return false;">
+				<span><i class="xi-cog"></i>코드수정</span>
+			</a>
+		</div>
+	</div>
+</div>

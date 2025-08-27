@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants />
+	<actions>
+		<action name="dispAdvanced_mailerAdminConfig" type="view" admin_index="true" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminExceptions" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminSpfDkim" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminMailTest" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminMailLog" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminSMSTest" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminSMSLog" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminPushTest" type="view" menu_name="advanced_mailer" />
+		<action name="dispAdvanced_mailerAdminPushLog" type="view" menu_name="advanced_mailer" />
+
+		<action name="procAdvanced_mailerAdminInsertConfig" type="controller" />
+		<action name="procAdvanced_mailerAdminInsertExceptions" type="controller" />
+		<action name="procAdvanced_mailerAdminCheckDNSRecord" type="controller" />
+		<action name="procAdvanced_mailerAdminClearSentMail" type="controller" />
+		<action name="procAdvanced_mailerAdminClearSentSMS" type="controller" />
+		<action name="procAdvanced_mailerAdminClearSentPush" type="controller" />
+		<action name="procAdvanced_mailerAdminTestSendMail" type="controller" />
+		<action name="procAdvanced_mailerAdminTestSendSMS" type="controller" />
+		<action name="procAdvanced_mailerAdminTestSendPush" type="controller" />
+	</actions>
+	<eventHandlers>
+		<eventHandler before="mail.send" class="controller" method="triggerBeforeMailSend" />
+		<eventHandler after="mail.send" class="controller" method="triggerAfterMailSend" />
+		<eventHandler after="sms.send" class="controller" method="triggerAfterSMSSend" />
+		<eventHandler after="push.send" class="controller" method="triggerAfterPushSend" />
+	</eventHandlers>
+	<menus>
+		<menu name="advanced_mailer" type="all">
+			<title xml:lang="ko">메일, SMS 및 푸시 알림 관리</title>
+			<title xml:lang="en">Mail, SMS and Push Notification Manager</title>
+		</menu>
+	</menus>
+</module>

@@ -1,0 +1,57 @@
+<!--@if($logged_info->is_admin !== 'Y')-->
+{Context::addHtmlHeader('<meta name="viewport" content="width=device-width, user-scalable=yes">')}
+<load target="../css/default.css" />
+<div class="isis_login_bg" style="<!--@if($addon_info->is_z_index)-->z-index:{$addon_info->is_z_index};<!--@end-->	<!--@if($addon_info->is_bg)-->background-color:{$addon_info->is_bg};<!--@end--> <!--@if($addon_info->is_bg_t)-->filter: alpha(opacity={$addon_info->is_bg_t}0);opacity: 0.{$addon_info->is_bg_t};<!--@end-->"></div>
+<div class="isis_login_box" style="z-index:{$addon_info->is_z_index};"|cond="$addon_info->is_z_index">
+	<!--@if($act != 'dispMemberLoginForm' && $module != 'admin')-->
+	<div class="isis_login">
+		<div class="s_login">
+			<!--@if(!$addon_info->is_info)-->
+				<p class="aaa_info_title">홈페이지 제작 및 수정 작업중 입니다.</p>
+				<p class="aaa_info">문의사항이 있으실 경우 아래 플러스친구를 통해 연락 부탁드립니다.</p>
+				<div class="aaa_plus_wrap">
+					<a target="_blank" href="https://wposition.com">
+						<div class="aaa_plus_icon"><img src="../img/icon_wp_new.png" alt="플러스친구"></div>
+					</a>
+					<div class="aaa_plus_info_wrap">
+						<p class="plus_name">@더블유포지션</p>
+						<a target="_blank" href="https://wposition.com" class="plus_info">https://wposition.com</a>
+						<p class="plus_info">업무시간 : 월-금 오전 10시 ~ 오후 6시</p>
+					</div>
+				</div>
+				<div class="aaa_btn_wrap">
+					<a target="_blank" href="http://pf.kakao.com/_xlwQuK/chat" class="btn_go">카카오톡 문의하기</a>
+				</div>
+			<!--@else-->
+				<p class="info">{$addon_info->is_info}</p>
+			<!--@end-->
+		</div>
+	</div>
+	<!--@end-->
+	<!--@if(!$logged_info && ($act == 'dispMemberLoginForm' || $module == 'admin'))-->
+	<div class="isis_login style2">
+		<div class="s_login">
+			<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+				<p>{$XE_VALIDATOR_MESSAGE}</p>
+			</div>
+			<form id="account-signup" action="{getUrl('', 'act', 'procMemberLogin')}" method="post" ruleset="@login" >
+				<input type="hidden" name="module" value="member">
+				<fieldset>
+					<input type="hidden" name="act" value="procMemberLogin" />
+					<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+					<input name="user_id" class="s_text" type="text" title="<!--@if($member_config->identifier != 'email_address')-->{$lang->user_id}<!--@else-->{$lang->email_address}<!--@end-->" placeholder="<!--@if($member_config->identifier != 'email_address')-->user id<!--@else-->email address<!--@end-->" />
+					<input name="password" class="s_text" type="password" title="{$lang->password}" placeholder="password"/>
+					<input type="checkbox" name="keep_signed" id="keep_signed" value="Y" />
+					<label for="keep_signed">{$lang->keep_signed}</label>
+					<input type="submit" class="s_btn" value="{$lang->cmd_login}" style="background-color: {$addon_info->is_btn};"|cond="$addon_info->is_btn"/>
+					<div cond="0" class="help">
+						<a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a>
+						<a href="{getUrl('act','dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<!--@end-->
+</div>
+<!--@end-->

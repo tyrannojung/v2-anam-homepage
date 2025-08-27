@@ -1,0 +1,220 @@
+<include target="header.html" />
+
+<!--// datepicker javascript plugin load -->
+<!--%load_js_plugin("ui")-->
+<!--%load_js_plugin("ui.datepicker")-->
+
+<style type="text/css">
+	.require {color:red; font-size:10px; font-family:tahoma; font-weight:bold; margin-left:5px;}
+</style>
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<!--// <div class="x_clearfix">
+	<div class="x_pull-right">
+		<a href="{getUrl('','module','admin','act','dispPopupAdminContentList','page',$page)}" type="button" class="x_btn">{$lang->cmd_list}</a>
+	</div>
+</div> -->
+<script>
+	current_mid = 'popup';
+	//current_mid = 'popup2';
+</script>
+
+<form ruleset="insert_popup_ruleset" action="./" method="post">
+	<input type="hidden" name="module" value="popup" />
+	<input type="hidden" name="act" value="procPopupAdminInsert" />
+	<input cond="$popup_srl" type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+
+	<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<input type="hidden" name="popup_srl" value="{$popup_srl}" />
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+
+	<div class="table">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th scope="row" style="min-width:90px;">{$lang->popup_title}<span class="require">*</span></th><!-- 팝업 제목 -->
+				<td>
+					<input type="text" name="popup_title" value="{htmlspecialchars($popup_info->popup_title?$popup_info->popup_title:'')}" size="50" />
+					<p>{$lang->popup_title_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->target_type}<span class="require">*</span></th><!-- 대상 형태 선택 -->
+				<td>
+					<select name="target_type" onchange="togglePopupTargetType()">
+						<option value="module" <!--@if($popup_info->target_type=="module")-->selected="selected"<!--@end-->>{$lang->select_target_type_module}</option>
+						<option value="action" <!--@if($popup_info->target_type=="action")-->selected="selected"<!--@end-->>{$lang->select_target_type_action}</option>
+					</select>
+					<p>{$lang->select_target_type_explanation}</p>
+				</td>
+			</tr>
+			<tr alt="popup_target_type" <!--@if($popup_info->target_type == "action")-->style="display:none;" <!--@end-->>
+				<th scope="row">{$lang->select_target_module}<span class="require">*</span></th><!-- 대상모듈선택 -->
+				<td>
+					<select name="target_srl">
+						<option value="">{$lang->select}</option>
+						<!--@foreach($target_modules as $key => $val)-->
+						<option value="{$val->module_srl}" <!--@if($popup_info->target_srl==$val->module_srl)-->selected="selected"<!--@end-->>
+							<span cond="$key != 'popup'">({$key}) {$val->browser_title}</span>
+							<span cond="$key == 'popup'">(All modules) {$lang->select_all_module}</span>
+						</option>
+						<!--@end-->
+					</select>
+					<p>{$lang->select_target_module_explanation}</p>
+				</td>
+			</tr>
+			<tr alt="popup_target_type" <!--@if($popup_info->target_type != "action")-->style="display:none;" <!--@end-->>
+				<th scope="row">{$lang->target_action_name}<span class="require">*</span></th><!-- 액션 입력 -->
+				<td>
+					<input type="text" name="target_actions" value="{htmlspecialchars($popup_info->target_actions?$popup_info->target_actions:'')}" size="50" />
+					<p>{$lang->action_name_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->open_type}</th><!-- 내부 레이어로 띄우기 -->
+				<td>
+					<select name="open_type">
+						<option value="inner" <!--@if($popup_info->open_type=="inner")-->selected="selected"<!--@end-->>{$lang->inner_layout}</option>
+					</select>
+					<p>{$lang->open_type_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->data_type}</th><!-- 팝업 내용 입력 방법 -->
+				<td>
+					<select name="popup_type" onchange="togglePopupDataType()">
+						<option value="content" <!--@if($popup_info->popup_type=="content")-->selected="selected"<!--@end-->>{$lang->input_content}</option>
+						<option value="url" <!--@if($popup_info->popup_type=="url")-->selected="selected"<!--@end-->>{$lang->input_url}</option>
+					</select>
+					<p>{$lang->data_type_explanation}</p>
+				</td>
+			</tr>
+			<tr alt="popup_data_type" <!--@if($popup_info->popup_type != "content")-->style="display:none;" <!--@end-->>
+				<th scope="row">{$lang->input_content}</th><!-- 내용 직접 입력 // 에디터 -->
+				<td>{$oDocument->getEditor()}</td>
+			</tr>
+			<tr alt="popup_data_type" <!--@if($popup_info->popup_type != "url")-->style="display:none;" <!--@end-->>
+				<th scope="row">{$lang->input_url}</th><!-- 팝업(html)파일 URL 입력 -->
+				<td>
+					<input type="text" name="popup_url" value="{$popup_info->popup_url?$popup_info->popup_url:''}" size="70" />
+					<p>{$lang->url_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->link}</th><!-- 배너 클릭시 이동 위치 -->
+				<td>
+					<input type="text" name="popup_link" value="{$popup_info->popup_link?$popup_info->popup_link:''}" size="70" />
+					<p>{$lang->link_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->popup_link_type}</th><!-- link 새창으로 열기 -->
+				<td>
+					<input type="checkbox" name="popup_link_type" value="true" <!--@if($popup_info->popup_link_type=="true")-->checked="true"<!--@end-->/>
+					<p>{$lang->popup_link_type_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->popup_style}</th><!-- 팝업 스타일 선택 -->
+				<td>
+					<select name="popup_style" onchange="togglePopupStyle()">
+						<option value="border" <!--@if($popup_info->popup_style=="border")-->selected="selected"<!--@end-->>{$lang->select_border_style}</option>
+						<option value="borderless" <!--@if($popup_info->popup_style=="borderless")-->selected="selected"<!--@end-->>{$lang->select_borderless_style}</option>
+					</select>
+					<p>{$lang->select_border_style_explanation}</p>
+				</td>
+			</tr>
+			<tr alt="popup_border_style" <!--@if($popup_info->popup_style != "borderless")-->style="display:none;" <!--@end-->>
+				<th scope="row">{$lang->popup_checkbox}</th><!-- 체크박스 표시 여부 -->
+				<td>
+					<select name="popup_checkbox">
+						<option value="Y" <!--@if($popup_info->popup_checkbox=="Y")-->selected="selected"<!--@end-->>{$lang->select_checkbox_display}</option>
+						<option value="N" <!--@if($popup_info->popup_checkbox=="N")-->selected="selected"<!--@end-->>{$lang->select_checkbox_not_display}</option>
+					</select>
+					<p>{$lang->select_popup_checkbox_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->start_date}<span class="require">*</span></th><!-- 시작일 -->
+				<td>
+					<input type="hidden" name="start_date" id="date_startdate" value="{$popup_info->start_date}" />
+					<input type="text" class="inputDate" value="{zdate($popup_info->start_date,'Y-m-d')}" readonly="readonly" placeholder="YYYY-MM-DD" />
+					<input type="button" value="{$lang->cmd_delete}" class="x_btn dateRemover" />
+					<p>{$lang->start_date_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->end_date}<span class="require">*</span></th><!-- 종료일 -->
+				<td>
+					<input type="hidden" name="end_date" id="date_enddate" value="{$popup_info->end_date}" />
+					<input type="text" class="inputDate" value="{zdate($popup_info->end_date,'Y-m-d')}" readonly="readonly" placeholder="YYYY-MM-DD" />
+					<input type="button" value="{$lang->cmd_delete}" class="x_btn dateRemover" />
+					<p>{$lang->end_date_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->width_size}<span class="require">*</span></th><!-- 가로 크기 -->
+				<td>
+					<input type="text" name="width" value="{$popup_info->width}" maxlength="4" />
+					<p>{$lang->width_size_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->height_size}<span class="require">*</span></th><!-- 세로 크기 -->
+				<td>
+					<input type="text" name="height" value="{$popup_info->height}" maxlength="4" />
+					<p>{$lang->height_size_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->top}<span class="require">*</span></th><!-- 상단 위치 -->
+				<td>
+					<input type="text" name="top" value="{$popup_info->top}" maxlength="4" />
+					<p>{$lang->top_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->left}<span class="require">*</span></th><!-- 측면 위치 -->
+				<td>
+					<input type="text" name="left" value="{$popup_info->left}" maxlength="4" />
+					<p>{$lang->left_explanation}</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->disable_period}</th><!-- 팝업 비활성 기간 -->
+				<td>
+					<input type="text" name="exp_days" value="{$popup_info->exp_days?$popup_info->exp_days:''}" maxlength="3" />
+					<p>{$lang->disable_period_explanation}</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('','module','admin','act','dispPopupAdminContentList','page',$page)}" type="button" class="x_btn">{$lang->cmd_list}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+(function($){
+	$(function(){
+		var option = { changeMonth: true, changeYear: true, gotoCurrent: false,yearRange:'-100:+10', dateFormat:'yy-mm-dd', onSelect:function(){
+			$(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))}
+		};
+		$.extend(option,$.datepicker.regional['{$lang_type}']);
+		$(".inputDate").datepicker(option);
+		$(".dateRemover").click(function() {
+			$(this).prevAll('input').val('');
+			return false;});
+	});
+})(jQuery);
+</script>

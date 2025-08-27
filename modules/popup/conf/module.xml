@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants />
+	<permissions>
+		<permission action="dispPopupAdminContentList" target="manager" />
+		<permission action="dispPopupAdminInsertPopup" target="manager" />
+		<permission action="dispPopupAdminDeletePopup" target="manager" />
+		<permission action="procPopupAdminInsert" target="manager" />
+		<permission action="procPopupAdminDelete" target="manager"  />
+	</permissions>
+	<actions>
+		<action name="dispPopupAdminContentList" type="view" standalone="true" admin_index="true" menu_name="popup" menu_index="true" />
+		<action name="dispPopupAdminInsertPopup" type="view" standalone="true" menu_name="popup" />
+		<action name="dispPopupAdminDeletePopup" type="view" standalone="true" menu_name="popup" />
+
+		<action name="procPopupAdminInsert" type="controller" standalone="true" ruleset="insert_popup_ruleset" />
+		<action name="procPopupAdminDelete" type="controller" standalone="true" ruleset="delete_popup_ruleset" />
+
+		<action name="dispPopupContent" type="view" standalone="true" index="true" />
+	</actions>
+	<menus>
+		<menu name="popup">
+			<title xml:lang="en">Popup Manager</title>
+			<title xml:lang="ko">팝업 관리</title>
+		</menu>
+	</menus>
+</module>

@@ -1,0 +1,226 @@
+@charset "utf-8";
+/* NAVER (developers@xpressengine.com) */
+
+html, body { margin: 0; min-height: 100%; background-color: #f0f0f0; }
+img, form, fieldset { border: 0; margin:0; padding: 0; }
+.x a { color: #1976d2; text-decoration: none; }
+.x a:hover, .x a:active, .x a:focus { text-decoration: underline; }
+
+/* Font */
+.x, .x input, .x textarea, .x select, .x table, .x button, .x label {
+	font: normal 13px/100% NanumGothic, "Malgun Gothic", Gulim, sans-serif;
+}
+.enfont, .enfont input, .enfont textarea, .enfont select, .enfont table, .enfont button, .enfont label {
+	font: normal 13px/100% Arial, NanumGothic, "Malgun Gothic", sans-serif;
+}
+.x input[type=password] {
+	font-family: Arial, sans-serif;
+}
+
+/* Layout */
+.x {
+	width: 90%; max-width: 800px;
+	margin: 80px auto 0 auto;
+	background-color: transparent;
+}
+@media screen and (max-width: 640px) {
+	.x { margin-top: 48px; }
+}
+@media screen and (max-width: 480px) {
+	.x { margin-top: 32px; }
+}
+.x #header {
+	clear: both;
+	margin: 0;
+}
+.x #header h1 {
+	color: #444;
+	text-align: center;
+	text-shadow: 2px 2px 3px rgba(128, 128, 128, 0.4);
+	margin: 0 0 24px 0;
+}
+.x #header img {
+	width: 180px;
+}
+.x #header h2 {
+	font: normal 16px/110% Arial, sans-serif;
+	color: #666;
+	text-align: center;
+	text-shadow: 1px 1px 1.5px rgba(128, 128, 128, 0.2);
+	margin: 0 0 32px 0;
+}
+.x #header h2 strong {
+	font-weight: bold;
+	color: #444;
+}
+
+.x #body {
+	clear: both;
+	position: relative;
+	background-color: #fff;
+	border-radius: 2px;
+	margin-bottom: 32px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.x #progress {
+	clear: both; padding: 16px 16px 4px 16px; border-bottom: 1px solid #ddd;
+	border-top-left-radius: 2px; border-top-right-radius: 2px;
+	background-color: #fbfbfb;
+}
+.x #progress ul { clear: both; margin: 0; padding: 0; }
+.x #progress li { list-style:none; display: inline-block; color: #888; margin: 0 4px 12px 0; padding: 0; }
+.x #progress li.done { color: #444; }
+.x #progress li.active { color: #444; font-weight: bold; }
+.x #progress li:after { content: ">"; color: #aaa; font-weight: normal; margin-left: 8px; }
+.x #progress li:last-child { margin-right: 0; }
+.x #progress li:last-child:after { content: ""; margin-left: 0; }
+
+.x #footer {
+	text-align: center;
+	margin-bottom: 32px;
+	font: 11px/160% Arial, sans-serif;
+	color: #aaa;
+}
+
+/* Table */
+table {
+	clear: both;
+	width: 100%;
+	box-sizing: border-box;
+	border-collapse: collapse;
+	margin: 0 0 16px 0;
+}
+table tr td {
+	padding: 4px 8px; border: 1px solid #ddd;
+	border-spacing: 0;
+	line-height: 160%;
+}
+table tr td.check_env_status { text-align: center; }
+table tr td.check_env_status span.ok { color: #4caf50; font-weight: bold; }
+table tr td.check_env_status span.error { color: #f44336; font-weight: bold; }
+table tr td.check_env_status span.warn { color: #fb8c00; font-weight: bold; }
+table tr td.error_description { text-align: center; color: #666; }
+
+/* Button Area */
+.x #buttons {
+	clear: both; padding: 16px;
+	border-top: 1px solid #ddd;
+	height: 34px;
+	border-bottom-left-radius: 2px; border-bottom-right-radius: 2px;
+	background-color: #fbfbfb;
+}
+.x #buttons .align-left {
+	float: left;
+}
+.x #buttons .align-right {
+	float: right;
+}
+button, a.button {
+    display: inline-block;
+    margin: 0 4px;
+    padding: 9px 18px 9px 18px;
+    font-weight: bold !important;
+    line-height: 15px;
+    text-align: center;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #1976d2;
+	border-radius: 2px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+}
+button.grey, a.button.grey {
+	background-color: #aaa;
+}
+button:hover, a.button:hover {
+	text-decoration: none;
+	background-color: #303f9f;
+}
+button.grey:hover, a.button.grey:hover {
+	background-color: #888;
+}
+
+/* Content */
+.x #content { clear: both; padding: 16px 16px 4px 16px; }
+
+.x #content h2 {
+	font-size: 20px;
+	line-height: 140%;
+	margin: 0 0 16px 0;
+}
+.x #content p {
+	line-height: 160%;
+	margin: 0 0 12px 0;
+}
+.x #content p.install_help {
+	margin: -6px 0 16px 16px;
+	color: #888;
+}
+.x #content ul {
+	margin: 0 0 12px 0;
+}
+.x #content ul li {
+	line-height: 160%;
+}
+.x #content label.x_inline {
+	display: inline-block; margin-right: 12px;
+}
+.x #content label input[type=checkbox], .x #content label input[type=radio] {
+	position: relative;
+	top: 2px;
+}
+.x #language {
+	clear: both;
+	margin: 0 0 24px 0;
+	padding: 0;
+	text-align: center;
+	line-height: 140%;
+}
+.x #language li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 12px;
+	font-size: 12px;
+}
+.x #language li:last-child {
+	margin-right: 0;
+}
+.x #language li a {
+	color: #666;
+}
+
+.x .x_control-group { clear: both; margin-bottom: 16px; }
+.x .x_control-group .x_control-label { display: inline-block; line-height: 17px; width: 130px; }
+.x .x_control-group .x_controls { display: inline-block; }
+.x .x_control-group .x_controls input {
+	line-height: 17px; padding: 3px 5px;
+	width: 260px; box-sizing: border-box;
+}
+.x .x_control-group .x_controls input[type=checkbox], .x .x_control-group .x_controls input[type=radio] {
+	padding: 0; width: auto;
+}
+.x .x_control-group .x_controls select {
+	line-height: 17px; padding: 3px 7px 3px 3px;
+	width: 260px; box-sizing: border-box;
+}
+@media screen and (max-width: 480px) {
+	.x .x_control-group .x_control-label { display: block; clear: both; margin-bottom: 6px; }
+	.x .x_control-group .x_controls { display: block; clear: both; }
+}
+
+/* Waiting for server response */
+.wfsr {
+	display: none;
+	position: absolute;
+	position: fixed;
+	left: 0; top: 0; right: 0; bottom: 0; z-index: 100;
+	color: #fff;
+	background: #333 url(../../common/img/msg.loading.gif) no-repeat center 90px;
+	text-align: center;
+	margin: 0;
+	padding: 120px 0 0 0;
+	opacity: 0.8; filter:alpha(opacity=80);
+	font-size: 16px; font-weight: bold;
+}

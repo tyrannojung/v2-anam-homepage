@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants>
+		<grant name="view" default="guest">
+			<title xml:lang="ko">열람</title>
+			<title xml:lang="en">View</title>
+		</grant>
+	</grants>
+	<actions>
+		<action name="dispTestView" type="view" permission="view" standalone="false" index="true" session="false" cache-control="off">
+			<route route="$document_srl:int" priority="100" />
+			<route route="$document_srl:int/comment/$comment_srl:int" priority="70" />
+			<route route="$document_srl:int/tag/$tag:word" priority="50" />
+		</action>
+		<action name="dispTestWrite" type="view" permission="view" method="GET" standalone="false" meta-noindex="true" route="write" global_route="true" />
+		<action name="procTestSubmitData" type="controller" standalone="false" check-csrf="false" ruleset="submitData" />
+		<action name="dispTestAdminIndex" type="view" admin_index="true" menu_name="test" menu_index="true" />
+		<action name="procTestAdminSubmitData" type="controller" permission="manager" check_var="module_srl" check_type="thisisatest" method="GET|POST" />
+		<action name="dispTestStandalone1" class="Namespace\ClassName" route="test/standalone1" method="GET" />
+		<action name="dispTestStandalone2" class="Namespace\ClassName" route="test/standalone2" method="GET" standalone="false" />
+		<action name="dispTestStandalone3" type="view" route="test/standalone3" method="GET" global-route="true" />
+		<action name="dispTestErrorHandler" type="view" standalone="true" error-handlers="404" />
+	</actions>
+	<menus>
+		<menu name="test" type="all">
+			<title xml:lang="ko">테스트 메뉴</title>
+			<title xml:lang="en">Test Menu</title>
+		</menu>
+	</menus>
+	<permissions>
+		<permission action="procTestSubmitData" target="view" />
+	</permissions>
+	<errorHandlers>
+		<errorHandler code="405" class="Controllers\Errors" method="dispErrorMethod" />
+	</errorHandlers>
+	<eventHandlers>
+		<eventHandler after="document.insertDocument" class="Controllers\Triggers" method="triggerAfterInsertDocument" />
+		<eventHandler beforeAction="document.procDocumentVoteUp" class="controller" method="triggerBeforeDocumentVoteUp" />
+	</eventHandlers>
+	<classes>
+		<class type="default" name="Custom\DefaultClass" />
+		<class type="install" name="Custom\InstallClass" />
+	</classes>
+	<namespaces>
+		<namespace name="VendorName\Hello\World" />
+	</namespaces>
+	<prefixes>
+		<prefix name="foobar" />
+	</prefixes>
+</module>

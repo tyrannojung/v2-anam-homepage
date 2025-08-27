@@ -1,0 +1,270 @@
+{@
+	$sns_link = $oDocument->getPermanentUrl().'?l='.$lang_type;
+	$sns_title = $oDocument->getTitleText();
+}
+{@
+	$cover_image = null;
+	$document_image_list = [];
+	foreach ($oDocument->getUploadedFiles() as $key => $file):
+		if ($file->direct_download !== 'Y' || !preg_match('/\.(jpe?g|png|gif|webp|bmp)$/i', $file->uploaded_filename)) continue;
+		if ($file->width && $file->height && ($file->width * 1.8 < $file->height)) continue;
+		$document_image_list[] = $file;
+		if ($file->cover_image === 'Y') $cover_image = $file;
+		if (!$cover_image) $cover_image = $file;
+	endforeach;
+	if ($cover_image && isset($cover_image->file_srl)) $document_image_list[array_search($cover_image->file_srl, array_column($document_image_list, 'file_srl'))]->cover_image = 'Y';
+}
+<!--@if($print === 'Y')-->
+	<div class="print_header_wrap">
+		인쇄하기 <a href="#" class="btn_print printDocument"><i class="ri-printer-line"></i> 인쇄</a>
+	</div>
+<!--@end-->
+<div class="content_header_wrap">
+	<!--@if(!$module_info->content_header_style)-->
+		<include target="_content_header.html" />
+	<!--@elseif($module_info->content_header_style === "item")-->
+		<include target="_content_header_item.html" />
+	<!--@elseif($module_info->content_header_style === "item2")-->
+		<include target="_content_header_item_2.html" />
+	<!--@end-->
+</div>
+<div class="content_body clearfix">
+	<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+	<div class="form_box_wrap mt-30">
+		<div class="bh bh_title mb-30">{$lang->msg_is_secret}</div>
+		<!--@if($oDocument->get('password'))-->
+		<div class="bh bh_desc">{$lang->msg_input_password}</div>
+		<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretForm">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="page" value="{$page}" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<div class="bh pb-5 mb-10">
+				<input type="password" name="password" id="cpw" required placeholder="{$lang->msg_input_password}" title="{$lang->msg_input_password}" />
+			</div>
+			<div class="form_btn_wrap ta-c mt-30">
+				<a cond="0" href="#" class="bh bh_write_btn gray" onclick="history.go(-1);return false;" alt="뒤로가기">{$lang->cmd_cancel}</a>
+				<input type="submit" value="{$lang->cmd_input}" class="bh bh_write_btn hover" />
+			</div>
+		</form>
+		<!--@else-->
+			<!--@if(!$is_logged)-->
+				<div class="bh bh_desc">{$lang->msg_not_logged}</div>
+				<div class="form_btn_wrap ta-c mt-30">
+					<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLoginForm')}" class="bh bh_write_btn hover">{$lang->cmd_login}</a>
+				</div>
+			<!--@else-->
+				<div class="bh bh_desc">{$lang->msg_not_permitted}</div>
+			<!--@end-->
+		<!--@end-->
+	</div>
+	<!--@else-->
+		<!--@if(!is_array($module_info->content_detail) || !in_array('content',$module_info->content_detail))-->
+			<div class="content_header_html" cond="$module_info->content_header_html">
+				{$module_info->content_header_html}
+			</div>
+			<div class="bh ta-c">
+				<img cond="$layout_info->content_top_img_1" alt="상품 상단 이미지" src="{$layout_info->content_top_img_1}">
+				<img cond="$layout_info->content_top_img_2" alt="상품 상단 이미지" src="{$layout_info->content_top_img_2}">
+			</div>
+			{$oDocument->getContent(false)}
+			<div class="bh ta-c">
+				<img cond="$layout_info->content_bottom_img_1" alt="상품 하단 이미지" src="{$layout_info->content_bottom_img_1}">
+			</div>
+			<div class="content_footer_html" cond="$module_info->content_footer_html">
+				{$module_info->content_footer_html}
+			</div>
+		<!--@end-->
+	<!--@end-->
+</div>
+<div cond="0" class="col-12 pd-0" style="margin:0 auto;">
+	<include target="slider/swiper.html" />
+</div>
+<div class="content_footer">
+	<div class="sns" cond="$module_info->content_sns_link === 'Y'">
+		<ul>
+		<li cond="$module_info->kakao_key">
+			<a class="kakao" href="javascript:;" id="kakao-link-btn" ><b class="ico_sns kakao">Kakao</b></a>
+		</li>
+		<li>
+			<a class="facebook bubble" href="#" title="To Facebook"><b class="ico_sns facebook">Facebook</b></a>
+		</li>
+		<li>
+			<a class="twitter bubble" href="#" title="To Twitter"><b class="ico_sns twitter">Twitter</b></a>
+		</li>
+		<li>
+			<a class="line" href="http://line.me/R/msg/text/?{$sns_title}%0D%0A{$sns_link}"><b class="ico_sns line">Line</b></a>
+		</li>
+		<!--@if(Mobile::isMobileCheckByAgent())-->
+		<li>
+			<a class="band" href="bandapp://create/post?text={$sns_title}%0A{$sns_link}"><b class="ico_sns band">Band</b></a>
+		</li>
+		<!--@else-->
+		<li>
+			<a class="band bubble" href="#" title="To Band"><b class="ico_sns band">Band</b></a>
+		</li>
+		<!--@end-->
+		</ul>
+		<script>
+			var sTitle = {json_encode($oDocument->getTitleText())};
+			jQuery(function($){
+				$('.facebook').snspost({
+					type : 'facebook',
+					content : sTitle
+				});
+				$('.twitter').snspost({
+					type : 'twitter',
+					content : sTitle + ' {$oDocument->getPermanentUrl()}'
+				});
+				$('.band').snspost({
+					type : 'band',
+					content : sTitle
+				});
+			});
+		</script>
+	</div>
+	<div class="bh_act_btn_warp" cond="is_array($module_info->content_act_btn)">
+		<ul>
+			<li class="act_vote" cond="in_array('vote',$module_info->content_act_btn) && $board_features->document->vote_up">
+				<!--@if($oDocument->getMyVote() === false || $oDocument->getMyVote() < 0)-->
+				<a href="#" title="{$lang->cmd_vote}" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;" class="bh"> <i class="xi-thumbs-up"></i><br>{$lang->cmd_vote} {$oDocument->get('voted_count')}</a>
+				<!--@elseif($oDocument->getMyVote() > 0)-->
+				<a href="#" title="{$lang->cmd_cancel_vote}" onclick="doCallModuleAction('document','procDocumentVoteUpCancel','{$oDocument->document_srl}');return false;" class="bh active"> <i class="xi-thumbs-up"></i><br>{$lang->cmd_vote} {$oDocument->get('voted_count')}</a>
+				<!--@end-->
+			</li>
+			<li class="act_vote_down" cond="in_array('vote_down',$module_info->content_act_btn) && $board_features->document->vote_down">
+				<!--@if($oDocument->getMyVote() === false || $oDocument->getMyVote() > 0)-->
+				<a href="#" title="{$lang->cmd_vote_down}" onclick="doCallModuleAction('document','procDocumentVoteDown','{$oDocument->document_srl}');return false;" class="bh"> <i class="xi-thumbs-down"></i><br>{$lang->cmd_vote_down} {$oDocument->get('blamed_count')}</a>
+				<!--@elseif($oDocument->getMyVote() < 0)-->
+				<a href="#" title="{$lang->cmd_cancel_vote_down}" onclick="doCallModuleAction('document','procDocumentVoteDownCancel','{$oDocument->document_srl}');return false;" class="bh active"> <i class="xi-thumbs-down"></i><br>{$lang->cmd_vote_down} {$oDocument->get('blamed_count')}</a>
+				<!--@end-->
+			</li>
+		</ul>
+		<div class="act_report" cond="in_array('report',$module_info->content_act_btn)">
+			<!--@if(!$oDocument->getDeclared())-->
+			<a href="{getUrl('', 'mid', $oDocument->getDocumentMid(), 'act', 'dispDocumentDeclare', 'target_srl', $document_srl)}" onclick="popopen(this.href, 'popup'); return false;" class="bh"><i class="xi-info-circle"></i> {$lang->cmd_declare}</a>
+			<!--@else-->
+			<a href="{getUrl('', 'mid', $oDocument->getDocumentMid(), 'act', 'dispDocumentDeclare', 'target_srl', $document_srl, 'type', 'cancel')}" onclick="popopen(this.href, 'popup'); return false;" class="bh active"><i class="xi-info-circle"></i> {$lang->cmd_cancel_declare}</a>
+			<!--@end-->
+		</div>
+	</div>
+	<!--@if($module_info->content_file_list === 'Y' && $oDocument->get('uploaded_count') > 0)-->
+	<div class="bh_file_list_wrap">
+		{@
+			$file_list = $oDocument->getUploadedFiles();
+			$uploaded_count = $oDocument->get('uploaded_count');
+		}
+		<div class="bh bh_title_wrap">
+			<div class="bh bh_sub_title"><i class="xi-file-text mr-10"></i>{$lang->uploaded_file}{$lang->file} <small>({$uploaded_count})</small></div>
+		</div>
+		<!--@foreach($file_list as $key => $file)-->
+		<div class="bh bh_file_list">
+			<div class="bh bh_file_item">
+				<div class="bh bh_row">
+					<div class="col">
+						<div class="bh fs-16"><i class="xi-file-download mr-10"></i>{$file->source_filename} <span class="bh file_size">[{FileHandler::filesize($file->file_size)}]</span></div>
+					</div>
+					<div class="col-auto">
+						<div class="bh fs-16 ta-c"><a href="{getUrl('')}{$file->download_url}"><span class="bh ds-n lg:ds-ib">Download </span><i class="xi-download"></i></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--@endforeach-->
+	</div>
+	<!--@end-->
+	<div class="sign" cond="$module_info->content_signature=='Y' && ($oDocument->getProfileImage()||$oDocument->getSignature())">
+		<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="ProfileImage" />
+		<div cond="$oDocument->getSignature()">{$oDocument->getSignature()}</div>
+	</div>
+	<div class="tool_wrap clearfix">
+		<div class="bd_btn_wrap">
+			<a cond="$oDocument->isEditable()" class="bh_bd_btn outline" href="{getUrl('', 'mid', $mid, 'act', 'dispBoardWrite', 'document_srl', $oDocument->document_srl)}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+			<a cond="$oDocument->isEditable()" class="bh_bd_btn outline<!--@if($oDocument->get('member_srl') || $logged_info->is_admin === 'Y')--> _documentDelete<!--@end-->" data-document-srl="{$oDocument->document_srl}" href="{getUrl('', 'mid', $mid, 'act', 'dispBoardDelete', 'document_srl', $oDocument->document_srl)}"><i class="xi-trash"></i>{$lang->cmd_delete}</a>
+			<span class="etc">
+				<a href="{getUrl('document_srl', '', 'comment_srl', '')}" class="bh_bd_btn"><i class="xi-list-ul-l"></i>{$lang->cmd_list}</a>
+			</span>
+		</div>
+	</div>
+	<ul class="document_nav" cond="$module_info->content_document_nav!='N'">
+		{@
+			foreach($document_list as $key => $val):if($document_srl == $val->document_srl) $no = $key;endforeach;
+			if($document_list[$no+1]->document_srl) $document_prev = $document_list[$no+1];
+			if($document_list[$no-1]->document_srl) $document_next = $document_list[$no-1];
+			if((!$document_prev && $page != 1) || (!$document_next && $page != $total_page)) :
+				$args = new stdClass();
+				$args->module_srl = $module_info->module_srl;
+				if($category) $args->category_srl = $category;
+				$args->list_count = $module_info->list_count;
+				if($sort_index) $args->sort_index ? $sort_index : $module_info->order_target;
+				if($sort_index) $args->order_type ? $order_type : $module_info->order_type;
+				if($module_info->except_notice === 'Y') $prevnext_except_notice = 1;
+				$oDocumentModel = getModel('document');
+			endif;
+			if(!$document_prev && $page != 1) :
+				$args->page = $page-1;
+				$document_list_prev = executeQueryArray('document.getDocumentList',$args)->data;
+				$document_prev = $oDocumentModel->getDocument(reset(array_reverse($document_list_prev))->document_srl);
+			elseif(!$document_next && $page != $total_page) :
+				$args->page = $page+1;
+				$document_list_next = executeQueryArray('document.getDocumentList',$args)->data;
+				$document_next = $oDocumentModel->getDocument(reset($document_list_next)->document_srl);
+			endif;
+		}
+		<li class="document_nav_prev">
+			<span class="document_nav_title">{$lang_type === 'ko' ? '이전글' : $lang->cmd_prev}</span>
+			<a cond="$document_prev" href="{getUrl('document_srl',$document_prev->document_srl)}" class="document_nav_content">{$document_prev->getTitle()|noescape}</a>
+		</li>
+		<li class="document_nav_next">
+			<span class="document_nav_title">{$lang_type === 'ko' ? '다음글' : $lang->cmd_next}</span>
+			<a cond="$document_next" href="{getUrl('document_srl',$document_next->document_srl)}" class="document_nav_content">{$document_next->getTitle()|noescape}</a>
+		</li>
+	</ul>
+</div>
+<!--@if($module_info->content_sns_link === 'Y' && $module_info->kakao_key)-->
+<load target="//developers.kakao.com/sdk/js/kakao.min.js" />
+<script>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('{$module_info->kakao_key}');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: '{$sns_title}',
+        description: '{$oDocument->getSummary()}',
+        imageUrl: '{$oDocument->getThumbnail(300, 300, 'crop')}',
+        link: {
+          mobileWebUrl: '{$sns_link}',
+          webUrl: '{$sns_link}'
+        }
+      },
+      social: {
+        likeCount: {$oDocument->get('voted_count')},
+        commentCount: {$oDocument->getCommentcount()}
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: '{$sns_link}',
+            webUrl: '{$sns_link}'
+          }
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: '{$sns_link}',
+            webUrl: '{$sns_link}'
+          }
+        }
+      ]
+    });
+  //]]>
+</script>
+<!--@end-->
+<!--@if($module_info->use_comment === 'Y')-->
+<div class="bh bh_comment_wrap">
+	<include target="_comment.html" />
+</div>
+<!--@end-->

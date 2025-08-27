@@ -1,0 +1,48 @@
+<load target="faq.scss" />
+<ul class="bh list_wrap">
+	<li cond="($document_list || $notice_list) && $grant->manager && $grant->can('moderate:document')">
+		<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" class="iCheck" title="Check All" />
+	</li>
+	<!--@if(!$module_info->write_check_notice_name)-->
+	<!--@foreach($notice_list as $no => $document)-->
+	<li class="notice">
+		<span class="label">{$lang->notice}</span>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+			{$document->getTitle()|noescape}
+		</a>
+		<a cond="$module_info->use_comment === 'Y' && $document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#comment" class="replyNum" title="Replies">
+			[{$document->getCommentCount()}]
+		</a>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}"></a>
+		<span class="check" cond="$grant->manager && $grant->can('moderate:document')">
+			<input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" />
+		</span>
+	</li>
+	<!--@endforeach-->
+	<!--@end-->
+</ul>
+<div class="bh faq_wrap bh_toggle_list_wrap">
+	{@$_idx=1}
+	<!--@foreach($document_list as $no => $document)-->
+		<div class="bh bh_item item item{$_idx}">
+			<div class="bh bh_item_inner bh_toggle_list">
+				<span cond="$grant->manager && $grant->can('moderate:document')" class="check"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></span>
+				<div class="bh_toggle_title bh_toggle bh_color_hover">{$document->getTitle($module_info->list_faq_title_cut_size)|noescape}</div>
+				<div class="bh_toggle_content" style="display: none;">
+					<p class="bh">
+						{$document->getContent(false)}
+					</p>
+					<!--@if($document->isEditable())-->
+					<div class="tool_wrap clearfix">
+						<div class="bd_btn_wrap">
+							<a class="for_modify" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+							<a class="for_delete _documentDelete" data-document-srl="{$document->document_srl}" href="{getUrl('act','dispBoardDelete','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-trash"></i>{$lang->cmd_delete}</a>
+						</div>
+					</div>
+					<!--@end-->
+				</div>
+			</div>
+		</div>
+	{@$_idx++}
+	<!--@endforeach-->
+</div>

@@ -1,0 +1,22 @@
+<style>
+	body, html {
+		height:100%;
+		margin:0px !important;
+	}
+</style>
+<div style="height:100%; width: 100%; position:relative;">
+	<h1 style="position: absolute; top:0px; left: 10px;">
+		팝업 미리보기
+	</h1>
+	<div style="position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); background-color:#fff; border:1px solid #ddd;">
+		<div style="position:relative;">
+			<span style="position: absolute; top:0px; left:50%; transform: translate(-50%, -50%); background-color:#fff; border:1px solid #ddd; padding:3px;">{$popup_config->data[0]->width}px</span>
+			<span style="position: absolute; top:50%; left:0; transform: translate(-50%, -50%); background-color:#fff; border:1px solid #ddd; padding:3px;">{$popup_config->data[0]->height}px</span>
+			<div style="width:{$popup_config->data[0]->width}px; height:{$popup_config->data[0]->height}px; overflow: hidden;">
+
+				{$oDocument->getContent(false)}
+			</div>
+		</div>
+	</div>
+
+</div>

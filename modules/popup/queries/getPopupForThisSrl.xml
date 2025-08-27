@@ -1,0 +1,18 @@
+<query id="getPopupForThisSrl" action="select">
+	<tables>
+		<table name="popup" />
+		<table name="documents" type="left join" />
+	</tables>
+	<columns>
+		<column name="popup.*" />
+		<column name="documents.content" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="target_srl" var="module_srl" />
+		<condition operation="equal" column="documents.document_srl" default="popup.document_srl" pipe="and" />
+		<condition operation="equal" column="target_type" default="module" pipe="and" />
+
+		<condition operation="less" column="popup.start_date" var="curdate" pipe="and" />
+		<condition operation="more" column="popup.end_date" var="curdate" pipe="and" />
+	</conditions>
+</query>

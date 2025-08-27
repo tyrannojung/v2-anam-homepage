@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR,wght@0,400;0,700&display=swap");
+/* Original file: tests/_data/formatter/concat.source1.css */
+
+@media screen and (max-width: 640px) {
+
+.rhymix {
+	background: url("../_data/formatter/foo/bar.jpg");
+}
+
+}
+
+/* Original file: tests/_data/formatter/concat.source2.css */
+
+.imported {
+	background-image: url("../_data/_data/formatter/test.jpg");
+	font-family: sans-serif;
+}
+
+
+.wordpress {
+	border-radius: 4px;
+}
+.xpressengine {
+	margin: 320px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">팝업 관리</title>
+	<title xml:lang="en">Popup Manage</title>
+	<description xml:lang="ko">사이트에서 팝업 출력을 위한 내용을 생성/관리하는 모듈입니다.</description>
+	<description xml:lang="en">Output from the pop-up information for the site creation / management is a module.</description>
+	<version>1.7.3.4</version>
+	<date>2013-05-23</date>
+	<category>service</category>
+
+	<author email_address="#" link="#">
+		<name xml:lang="ko">bh</name>
+		<name xml:lang="en">bh</name>
+	</author>
+</module>

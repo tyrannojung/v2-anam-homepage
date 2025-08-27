@@ -1,0 +1,114 @@
+<load target="login.scss" />
+
+{@
+	$login_type = '';
+}
+<!--@if(!$is_logged)-->
+	{@
+		$oModuleModel = getModel('module');
+		$identifier = $oModuleModel->getModuleConfig('member')->identifier;
+	}
+	<div class="bh bh_login_form_mini">
+		<div class="bh bh_title"><i class="icon-user"></i> {$lang->cmd_login}</div>
+		<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/member/skins'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+			<p>{$XE_VALIDATOR_MESSAGE}</p>
+		</div>
+		<form ruleset="@login" action="./" method="post" id="fo_member_login">
+			<input type="hidden" name="success_return_url" value="{$referer_url}" />
+			<input type="hidden" name="act" value="procMemberLogin" />
+			<input type="hidden" name="xe_validator_id" value="modules/member/skins" />
+			<div class="bh bh_row no-gutters mb-10">
+				<div class="bh col">
+					<div class="bh">
+						<input type="text" cond="$identifier == 'user_id'" name="user_id" id="uid" required placeholder="{$lang->user_id}" title="{$lang->user_id}" />
+						<input type="email" cond="$identifier != 'user_id'" name="user_id" id="uid" required placeholder="{$lang->email_address}" title="{$lang->email_address}" />
+					</div>
+					<div class="bh">
+						<input type="password" name="password" id="upw" required placeholder="{$lang->password}" title="{$lang->password}" />
+					</div>
+				</div>
+				<div class="bh col-auto">
+					<input type="submit" value="{$lang->cmd_login}" class="submit bh_write_btn hover w-100 h-100 bh_bg_color_main bh_bd_color_main" />
+				</div>
+			</div>
+			<div class="bh form_act clearfix">
+				<div class="act_left">
+					<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" />
+					<label for="keepid_opt" class="bh bh_after_bg_color_main">{$lang->keep_signed}</label>
+				</div>
+				<div class="act_right">
+					<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}">{$lang->cmd_find_member_account} <i class="xi-angle-right"></i></a>
+				</div>
+			</div>
+			<div class="form_notice" id="warning">
+				<p>{$lang->about_keep_warning}</p>
+			</div>
+		</form>
+		<!--@if(0)-->
+		<div class="separator">
+			<span>또는</span>
+		</div>
+		<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberSignUpForm')}" class="bh_write_btn gray round w-100"><!--@if($layout_info->logo_text)-->{$layout_info->logo_text}<!--@elseif(!$layout_info->logo_text && Context::getSiteTitle())-->{Context::getSiteTitle()} <!--@end-->{$lang->cmd_signup}</a>
+		<!--@end-->
+	</div>
+	<script>
+	jQuery(function($){
+		var keep_msg = $('#warning');
+		keep_msg.hide();
+		$('#keepid_opt').change(function(){
+			if($(this).is(':checked')){
+				keep_msg.slideDown(200);
+			} else {
+				keep_msg.slideUp(200);
+			}
+		});
+	});
+	</script>
+<!--@else-->
+	<div class="bh bh_login_info_mini">
+		<div class="bh bh_profile_wrap clearfix">
+			<div class="bh bh_profile_img">
+				<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}" title="회원정보보기">
+					{@ $profile_src = $logged_info->profile_image->src ?? null; }
+					<!--@if($profile_src)-->
+						<img alt="profile" src="{$profile_src}">
+					<!--@else-->
+						<img alt="noprofile" src="../img/noprofile.png">
+					<!--@end-->
+				</a>
+			</div>
+			<div class="bh bh_profile_info">
+				<div>
+					<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}" title="회원정보보기" class="bh_name">
+						{$logged_info->nick_name}님
+					</a>
+				</div>
+				<div class="bh bh_info">
+					{@
+						$oPointModel = getModel('point');
+						$point_config = getModel('module')->getModuleConfig('point');
+						$current_point = $oPointModel->getPoint($logged_info->member_srl);
+						$current_level = $oPointModel->getLevel($current_point, $point_config->level_step);
+						$next_point = $point_config->level_step[$current_level+1];
+						$prepoint = $point_config->level_step[$current_level] ?? 0;
+						$percent = round(($current_point-$prepoint)/($next_point-$prepoint)*100, 2);
+					}
+					<span>포인트 : <span>{$current_point}</span></span><span>레벨 : <span>{$current_level}</span></span>
+				</div>
+			</div>
+			<!--@if($logged_info && $logged_info->is_admin === 'Y')-->
+				<a class="for_admin" href="{getUrl('', 'module', 'admin')}" title="{$lang->admin}"><i class="xi-cog"></i>{$lang->cmd_management}</a>
+			<!--@end-->
+		</div>
+		<div class="bh info_btn_wrap">
+			<ul class="bh bh_row">
+				<li class="bh col">
+					<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}" class="bh info_btn">회원정보</a>
+				</li>
+				<li class="bh col">
+					<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLogout')}" class="bh info_btn">로그아웃</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+<!--@end-->

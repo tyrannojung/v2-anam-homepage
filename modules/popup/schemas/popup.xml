@@ -1,0 +1,23 @@
+<table name="popup">
+	<column name="popup_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
+	<column name="document_srl" type="number" size="11" default="0" notnull="notnull" index="idx_document_srl" />
+	<column name="popup_title" type="varchar" size="250" default="" notnull="notnull" />
+	<column name="target_type" type="varchar" size="20" />
+	<column name="target_srl" type="number" size="11" />
+	<column name="popup_type" type="varchar" size="20" default="content" notnull="notnull" />
+	<column name="popup_url" type="varchar" size="200" />
+	<column name="popup_link" type="varchar" size="200" />
+	<column name="popup_link_type" type="varchar" size="10" default="N" notnull="notnull" />
+	<column name="start_date" type="date" />
+	<column name="end_date" type="date" />
+	<column name="width" type="number" size="4" />
+	<column name="height" type="number" size="4" />
+	<column name="top" type="number" size="4" />
+	<column name="left" type="number" size="4" />
+	<column name="exp_days" type="number" size="3" />
+	<column name="regdate" type="date" />
+	<column name="open_type" type="varchar" size="10" default="inner" />
+	<column name="target_actions" type="varchar" size="250" />
+	<column name="popup_style" type="varchar" size="20" />
+	<column name="popup_checkbox" type="varchar" size="10" default="Y" notnull="notnull" />
+</table>

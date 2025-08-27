@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">bh</title>
+	<version>1.2</version>
+	<date>2020-01-10</date>
+	<author email_address="9haging@gmail.com" link="">
+		<name xml:lang="ko">bh</name>
+	</author>
+	<license>bh</license>
+	<extra_vars>
+		<group>
+		<title xml:lang="ko">기본 설정</title>
+			<var name="list_style" type="radio">
+				<title xml:lang="ko">목록 스타일</title>
+				<options value="list">
+					<title xml:lang="ko">목록형</title>
+				</options>
+				<options value="webzine">
+					<title xml:lang="ko">웹진형</title>
+				</options>
+				<options value="gallery">
+					<title xml:lang="ko">갤러리형</title>
+				</options>
+				<options value="faq">
+					<title xml:lang="ko">FAQ형</title>
+				</options>
+				<description xml:lang="ko">썸네일, 요약 등이 포함된 경우 게시판 기본 설정에서 항목을 추가해주세요.</description>
+			</var>
+			<var name="tags" type="radio">
+				<title xml:lang="ko">태그 기능 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="round" type="radio">
+				<title xml:lang="ko">버튼 둥글게</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">목록 설정</title>
+			<var name="list_notice_view_level" type="radio">
+				<title xml:lang="ko">공지 표시</title>
+				<options value="">
+					<title xml:lang="ko">모든 공지 표시(기본)</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">현재 게시판 공지만</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="list_write_btn" type="radio">
+				<title xml:lang="ko">쓰기 버튼 사용</title>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="G">
+					<title xml:lang="ko">권한자에게만(기본)</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="list_search" type="radio">
+				<title xml:lang="ko">검색 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="list_category_add" type="radio">
+				<title xml:lang="ko">카테고리 추가</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용(글자색)</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">사용(배경색)</title>
+				</options>
+			</var>
+			<var name="use_link" type="select">
+				<title xml:lang="ko">링크 사용</title>
+				<description xml:lang="ko">링크주소를 변경합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="e">
+					<title xml:lang="ko">확장변수(변수명url)</title>
+				</options>
+			</var>
+			<var name="new_window" type="select">
+				<title xml:lang="ko">링크 새창</title>
+				<options value="">
+					<title xml:lang="ko">현재창에서 열기</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">새창에서 열기</title>
+				</options>
+			</var>
+			<var name="list_file_add" type="radio">
+				<title xml:lang="ko">파일 추가</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="list_contact" type="radio">
+				<title xml:lang="ko">문의용으로 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<description xml:lang="ko">관리자가 아니면 글목록 대신에 글쓰기를 표시합니다.</description>
+			</var>
+			<var name="list_contact_redirect" type="radio">
+				<title xml:lang="ko">페이지 이동 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="M">
+					<title xml:lang="ko">메인화면</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">현재화면</title>
+				</options>
+			</var>
+			<var name="list_contact_redirect_url" type="text">
+				<title xml:lang="ko">페이지 이동 링크 주소</title>
+				<description xml:lang="ko">미설정시 위 설정에 따름</description>
+			</var>
+			<var name="list_header_html" type="textarea">
+				<title xml:lang="ko">상단 내용</title>
+			</var>
+			<var name="list_footer_html" type="textarea">
+				<title xml:lang="ko">하단 내용</title>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">목록(웹진) 설정</title>
+			<var name="list_webzine_title_cut_size" type="text">
+				<title xml:lang="ko">제목 글자수</title>
+			</var>
+			<var name="list_webzine_content_cut_size" type="text">
+				<title xml:lang="ko">내용 글자수</title>
+			</var>
+			<var name="list_webzine_thumbnail_width" type="text">
+				<title xml:lang="ko">썸네일 넓이</title>
+			</var>
+			<var name="list_webzine_thumbnail_height" type="text">
+				<title xml:lang="ko">썸네일 높이</title>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">목록(갤러리) 설정</title>
+			<var name="list_gallery_title_cut_size" type="text">
+				<title xml:lang="ko">제목 글자수</title>
+			</var>
+			<var name="list_gallery_content_cut_size" type="text">
+				<title xml:lang="ko">내용 글자수</title>
+			</var>
+			<var name="list_gallery_thumbnail_width" type="text">
+				<title xml:lang="ko">썸네일 넓이</title>
+			</var>
+			<var name="list_gallery_thumbnail_height" type="text">
+				<title xml:lang="ko">썸네일 높이</title>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">본문 설정</title>
+			<var name="content_header_style" type="radio">
+				<title xml:lang="ko">본문 헤더 스타일</title>
+				<options value="">
+					<title xml:lang="ko">기본형</title>
+				</options>
+				<options value="item">
+					<title xml:lang="ko">상품</title>
+				</options>
+				<options value="item2">
+					<title xml:lang="ko">상품2</title>
+				</options>
+			</var>
+			<var name="content_detail" type="checkbox">
+				<title xml:lang="ko">글 상세정보에서 제거</title>
+				<options value="nick_name">
+					<title xml:lang="ko">닉네임 제거</title>
+				</options>
+				<options value="regdate">
+					<title xml:lang="ko">등록일 제거</title>
+				</options>
+				<options value="readed_count">
+					<title xml:lang="ko">조회수 제거</title>
+				</options>
+				<options value="voted_count">
+					<title xml:lang="ko">추천수 제거</title>
+				</options>
+				<options value="comment_count">
+					<title xml:lang="ko">댓글수 제거</title>
+				</options>
+				<options value="content">
+					<title xml:lang="ko">내용 제거</title>
+				</options>
+			</var>
+			<var name="content_act_btn" type="checkbox">
+				<title xml:lang="ko">추천/비추천/신고 사용</title>
+				<options value="vote">
+					<title xml:lang="ko">추천 사용</title>
+				</options>
+				<options value="vote_down">
+					<title xml:lang="ko">비추천 사용</title>
+				</options>
+				<options value="report">
+					<title xml:lang="ko">신고 사용</title>
+				</options>
+			</var>
+			<var name="content_sns_link" type="radio">
+				<title xml:lang="ko">SNS 공유 링크 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="content_file_list" type="radio">
+				<title xml:lang="ko">첨부파일 목록 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="content_document_nav" type="radio">
+				<title xml:lang="ko">본문 하단 이전글, 다음글 링크 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="content_list_view" type="radio">
+				<title xml:lang="ko">본문 하단 목록 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="content_header_html" type="textarea">
+				<title xml:lang="ko">상단 내용</title>
+			</var>
+			<var name="content_footer_html" type="textarea">
+				<title xml:lang="ko">하단 내용</title>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">댓글 설정</title>
+			<var name="use_comment" type="radio">
+				<title xml:lang="ko">댓글 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="comment_use_editor" type="radio">
+				<title xml:lang="ko">댓글 에디터 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="modify_only">
+					<title xml:lang="ko">댓글 수정에만 사용</title>
+				</options>
+				<description xml:lang="ko">댓글 에디터를 사용하여 운영한 경우 최소한 댓글 수정에는 에디터를 계속 사용해야 태그 노출을 방지 할 수 있습니다.</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">글쓰기 설정</title>
+			<var name="write_agreement_view" type="radio">
+				<title xml:lang="ko">이용약관 사용</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="write_agreement_link" type="textarea">
+				<title xml:lang="ko">이용약관 링크</title>
+			</var>
+
+			<var name="write_category_first" type="radio">
+				<title xml:lang="ko">첫번째 카테고리 기본 선택</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="write_title_message" type="text">
+				<title xml:lang="ko">기본값 고정 (제목)</title>
+			</var>
+			<var name="write_writer_message" type="text">
+				<title xml:lang="ko">(글쓴이)</title>
+			</var>
+			<var name="write_email_message" type="text">
+				<title xml:lang="ko">(이메일주소)</title>
+			</var>
+			<var name="write_content_message" type="textarea">
+				<title xml:lang="ko">(내용)</title>
+			</var>
+			<var name="write_content_message_view" type="radio">
+				<title xml:lang="ko">내용입력칸 보이기</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="file_only">
+					<title xml:lang="ko">파일만 사용</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<description xml:lang="ko">위 (내용)기본값이 있을때만 작동합니다.</description>
+			</var>
+			<var name="write_title_name" type="text">
+				<title xml:lang="ko">기존 이름 변경 (제목)</title>
+			</var>
+			<var name="write_writer_name" type="text">
+				<title xml:lang="ko">(글쓴이)</title>
+			</var>
+			<var name="write_email_name" type="text">
+				<title xml:lang="ko">(이메일주소)</title>
+			</var>
+			<var name="write_category_name" type="text">
+				<title xml:lang="ko">(분류)</title>
+			</var>
+			<var name="write_submit_name" type="text">
+				<title xml:lang="ko">(등록버튼)</title>
+			</var>
+			<var name="write_check_bold_name" type="text">
+				<title xml:lang="ko">(굵게체크)</title>
+				<description xml:lang="ko">커스텀을 위한 기능입니다.</description>
+			</var>
+			<var name="write_check_notice_name" type="text">
+				<title xml:lang="ko">(공지체크)</title>
+				<description xml:lang="ko">이름변경시 목록 상단 공지사항이 노출되지 않습니다.</description>
+			</var>
+			<var name="write_checked_secret" type="radio">
+				<title xml:lang="ko">비밀글 기본체크</title>
+				<options value="">
+					<title xml:lang="ko">사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="F">
+					<title xml:lang="ko">사용(무조건)</title>
+				</options>
+			</var>
+			<var name="write_check_notice_view" type="radio">
+				<title xml:lang="ko">공지사항 체크 사용</title>
+				<options value="">
+					<title xml:lang="ko">셀렉트형(전체공지 포함)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">체크형(기본)</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">API Key</title>
+			<var name="kakao_key" type="text">
+				<title xml:lang="ko">*카카오톡 앱키 입력</title>
+				<description xml:lang="ko">카카오톡 링크를 사용하려면 'https://developers.kakao.com/'에서 발급한 API 앱키(Javascript 키)를 입력하셔야 합니다. 자세한 사항은 카카오 개발자 사이트를 참조하세요. 'https://developers.kakao.com/docs/js#카카오톡-링크-예제:-동적으로-바뀌는-내용의-카카오톡-링크-보내기'</description>
+			</var>
+		</group>
+	</extra_vars>
+</skin>

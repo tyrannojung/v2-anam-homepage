@@ -1,0 +1,589 @@
+<load target="swiper.default.scss" />
+<load target="swiper.main.scss" />
+<!--@if($layout_info->main_slider_type == 'fade')-->
+	<load target="animate.min.css" />
+<!--@end-->
+<!--@if($layout_info->main_slider_video_url)-->
+	<load target="jquery.player.min.js" />
+<!--@end-->
+
+<style cond="$layout_info->main_slider_height">
+<!--@if($layout_info->main_slider_height)-->
+.slider_wrap, .swiper-main {height: {$layout_info->main_slider_height}<!--@if(!preg_match("/vh|auto/", $layout_info->main_slider_height))-->px<!--@end-->;}
+<!--@end-->
+@media (max-width: 992px) {
+	<!--@if($layout_info->m_main_slider_height)-->
+	.slider_wrap, .swiper-main {height: {$layout_info->m_main_slider_height}<!--@if(!preg_match("/vh|auto/", $layout_info->m_main_slider_height))-->px<!--@end-->;}
+	<!--@end-->
+}
+</style>
+<!--@if($layout_info->main_slider_video_url)-->
+<script>
+	jQuery(function(){
+		jQuery("#player > div").youtube_background();
+	});
+</script>
+<div class="player_wrap" style="position:absolute;width:100%;height:100%;">
+	<div id="player" class="player">
+		<div data-vbg="{$layout_info->main_slider_video_url}" data-vbg-offset="0"|cond="!preg_match('/(youtu?be|vimeo)/', $layout_info->main_slider_video_url)" data-ytbg-mute-button="false" data-ytbg-play-button="false"></div>
+	</div>
+</div>
+<!--@end-->
+{@
+	$slider_h_auto = $layout_info->main_slider_height && strpos($layout_info->main_slider_height, 'auto') !== false ? true : false;
+	$m_slider_h_auto = $layout_info->m_main_slider_height && strpos($layout_info->m_main_slider_height, 'auto') !== false ? true : false;
+}
+<div class="swiper-main swiper-default">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide item item1" style="background-image:url('{$layout_info->main_slider_1_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_1_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_1_m_img}');"|cond="$is_mobile && $layout_info->main_slider_1_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_1_img">
+			<div class="bh_wrap h-100">
+				<div class="slider_content_inner">
+					<div class="slider_con">
+						<div class="slider_con_title animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
+							<p class="title1">
+								<!--@if(!$layout_info->main_slider_1_text_1_img)-->
+									{$layout_info->main_slider_1_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_1_text_1_img}" alt="{$layout_info->main_slider_1_text_1}" />
+								<!--@end-->
+							</p>
+							<p class="title2 ff_ws">
+								<!--@if(!$layout_info->main_slider_1_text_2_img)-->
+									{$layout_info->main_slider_1_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_1_text_2_img}" alt="{$layout_info->main_slider_1_text_2}" />
+								<!--@end-->
+							</p>
+						</div>
+						<div class="common_btn_wrap animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
+							<a href="#" class="common_btn" target="_blank"><span class="icon"><img src="/assets/images/icon/icon_store.svg" alt=""></span> Download Now</a>
+							<a href="#" class="common_btn" target="_blank"><span class="icon"><img src="/assets/images/icon/icon_youtube.svg" alt=""></span> YouTube Channel</a>
+						</div>
+					</div>
+					<div class="slider_phone_wrap">
+						<div class="slider_phone">
+							<img src="/assets/images/main/main_slide_stuff1.png" alt="">
+							<div class="phone_icon icon1"><img src="/assets/images/icon/main_slide_icon1.png" alt=""></div>
+							<div class="phone_icon icon2"><img src="/assets/images/icon/main_slide_icon2.png" alt=""></div>
+							<div class="phone_icon icon3"><img src="/assets/images/icon/main_slide_icon3.png" alt=""></div>
+							<div class="phone_icon icon4"><img src="/assets/images/icon/main_slide_icon4.png" alt=""></div>
+							<div class="phone_icon icon5"><img src="/assets/images/icon/main_slide_icon5.png" alt=""></div>
+							<div class="phone_icon icon6"><img src="/assets/images/icon/main_slide_icon6.png" alt=""></div>
+						</div>
+					</div>
+					<script>
+						let sliderIcons = document.querySelectorAll('.slider_phone > .phone_icon');
+						let iconsTl = gsap.timeline({
+							repeat: -1,
+							repeatDelay: 1,
+							yoyo: true,
+							defaults:{
+								duration: 1,
+								ease: "expo.in",
+							}
+						})
+						iconsTl
+							.addLabel('setIcon')
+							.from(sliderIcons[0], {transform: 'translate(-200%, -200%)',}, 'setIcon')
+							.from(sliderIcons[1], {transform: 'translate(-400%, -300%)',}, 'setIcon')
+							.from(sliderIcons[2], {transform: 'translate(-200%, -100%)',}, 'setIcon')
+							.from(sliderIcons[3], {transform: 'translate(400%, -200%)',}, 'setIcon')
+							.from(sliderIcons[4], {transform: 'translate(0%, -400%)',}, 'setIcon')
+							.from(sliderIcons[5], {transform: 'translate(200%, -150%)',}, 'setIcon')
+							.to(sliderIcons, {transform: 'translate(0%, 0%)', opacity: 0, duration: 1 })
+					</script>
+				</div>
+			</div>
+			<div cond="0" class="slider_content_wrap" style="background-color:{$layout_info->main_slider_1_background_color};"|cond="$layout_info->main_slider_1_background_color" cond="$layout_info->main_slider_1_text_1 || $layout_info->main_slider_1_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_1_text_1_align)--> ta-{$layout_info->main_slider_1_text_1_align}<!--@end--> ts-1 animated fadeInDown delay-1s">
+								<!--@if(!$layout_info->main_slider_1_text_1_img)-->
+									{$layout_info->main_slider_1_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_1_text_1_img}" alt="{$layout_info->main_slider_1_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_1_text_2_align)--> ta-{$layout_info->main_slider_1_text_2_align}<!--@end--> ts-1 animated fadeInUp delay-2s">
+								<!--@if(!$layout_info->main_slider_1_text_2_img)-->
+									{$layout_info->main_slider_1_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_1_text_2_img}" alt="{$layout_info->main_slider_1_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_1_btn_align)--> ta-{$layout_info->main_slider_1_btn_align}<!--@end--> ts-1 animated fadeInUp delay-3s">
+								<!--@if($layout_info->main_slider_1_btn_text)-->
+									<a href="{$layout_info->main_slider_1_btn_url}" target="_blank"|cond="$layout_info->main_slider_1_btn_new_window && in_array('Y', $layout_info->main_slider_1_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_1_btn_img">
+										<!--@if(!$layout_info->main_slider_1_btn_img)-->
+											{$layout_info->main_slider_1_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_1_btn_img}" alt="{$layout_info->main_slider_1_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_1_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_1_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_1_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_1_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_1_url}" target="_blank"|cond="$layout_info->main_slider_1_new_window && in_array('Y', $layout_info->main_slider_1_new_window)" cond="$layout_info->main_slider_1_url"></a>
+		</div>
+		<div class="swiper-slide item item2" style="background-image:url('{$layout_info->main_slider_2_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_2_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_2_m_img}');"|cond="$is_mobile && $layout_info->main_slider_2_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_2_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_2_background_color};"|cond="$layout_info->main_slider_2_background_color" cond="$layout_info->main_slider_2_text_1 || $layout_info->main_slider_2_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_2_text_1_align)--> ta-{$layout_info->main_slider_2_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_2_text_1_img)-->
+									{$layout_info->main_slider_2_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_2_text_1_img}" alt="{$layout_info->main_slider_2_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_2_text_2_align)--> ta-{$layout_info->main_slider_2_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_2_text_2_img)-->
+									{$layout_info->main_slider_2_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_2_text_2_img}" alt="{$layout_info->main_slider_2_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_2_btn_align)--> ta-{$layout_info->main_slider_2_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_2_btn_text)-->
+									<a href="{$layout_info->main_slider_2_btn_url}" target="_blank"|cond="$layout_info->main_slider_2_btn_new_window && in_array('Y', $layout_info->main_slider_2_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_2_btn_img">
+										<!--@if(!$layout_info->main_slider_2_btn_img)-->
+											{$layout_info->main_slider_2_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_2_btn_img}" alt="{$layout_info->main_slider_2_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_2_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_2_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_2_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_2_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_2_url}" target="_blank"|cond="$layout_info->main_slider_2_new_window && in_array('Y', $layout_info->main_slider_2_new_window)" cond="$layout_info->main_slider_2_url"></a>
+		</div>
+		<div class="swiper-slide item item3" style="background-image:url('{$layout_info->main_slider_3_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_3_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_3_m_img}');"|cond="$is_mobile && $layout_info->main_slider_3_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_3_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_3_background_color};"|cond="$layout_info->main_slider_3_background_color" cond="$layout_info->main_slider_3_text_1 || $layout_info->main_slider_3_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_3_text_1_align)--> ta-{$layout_info->main_slider_3_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_3_text_1_img)-->
+									{$layout_info->main_slider_3_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_3_text_1_img}" alt="{$layout_info->main_slider_3_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_3_text_2_align)--> ta-{$layout_info->main_slider_3_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_3_text_2_img)-->
+									{$layout_info->main_slider_3_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_3_text_2_img}" alt="{$layout_info->main_slider_3_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_3_btn_align)--> ta-{$layout_info->main_slider_3_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_3_btn_text)-->
+									<a href="{$layout_info->main_slider_3_btn_url}" target="_blank"|cond="$layout_info->main_slider_3_btn_new_window && in_array('Y', $layout_info->main_slider_3_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_3_btn_img">
+										<!--@if(!$layout_info->main_slider_3_btn_img)-->
+											{$layout_info->main_slider_3_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_3_btn_img}" alt="{$layout_info->main_slider_3_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_3_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_3_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_3_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_3_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_3_url}" target="_blank"|cond="$layout_info->main_slider_3_new_window && in_array('Y', $layout_info->main_slider_3_new_window)" cond="$layout_info->main_slider_3_url"></a>
+		</div>
+		<div class="swiper-slide item item4" style="background-image:url('{$layout_info->main_slider_4_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_4_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_4_m_img}');"|cond="$is_mobile && $layout_info->main_slider_4_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_4_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_4_background_color};"|cond="$layout_info->main_slider_4_background_color" cond="$layout_info->main_slider_4_text_1 || $layout_info->main_slider_4_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_4_text_1_align)--> ta-{$layout_info->main_slider_4_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_4_text_1_img)-->
+									{$layout_info->main_slider_4_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_4_text_1_img}" alt="{$layout_info->main_slider_4_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_4_text_2_align)--> ta-{$layout_info->main_slider_4_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_4_text_2_img)-->
+									{$layout_info->main_slider_4_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_4_text_2_img}" alt="{$layout_info->main_slider_4_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_4_btn_align)--> ta-{$layout_info->main_slider_4_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_4_btn_text)-->
+									<a href="{$layout_info->main_slider_4_btn_url}" target="_blank"|cond="$layout_info->main_slider_4_btn_new_window && in_array('Y', $layout_info->main_slider_4_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_4_btn_img">
+										<!--@if(!$layout_info->main_slider_4_btn_img)-->
+											{$layout_info->main_slider_4_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_4_btn_img}" alt="{$layout_info->main_slider_4_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_4_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_4_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_4_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_4_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_4_url}" target="_blank"|cond="$layout_info->main_slider_4_new_window && in_array('Y', $layout_info->main_slider_4_new_window)" cond="$layout_info->main_slider_4_url"></a>
+		</div>
+		<div class="swiper-slide item item5" style="background-image:url('{$layout_info->main_slider_5_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_5_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_5_m_img}');"|cond="$is_mobile && $layout_info->main_slider_5_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_5_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_5_background_color};"|cond="$layout_info->main_slider_5_background_color" cond="$layout_info->main_slider_5_text_1 || $layout_info->main_slider_5_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_5_text_1_align)--> ta-{$layout_info->main_slider_5_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_5_text_1_img)-->
+									{$layout_info->main_slider_5_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_5_text_1_img}" alt="{$layout_info->main_slider_5_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_5_text_2_align)--> ta-{$layout_info->main_slider_5_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_5_text_2_img)-->
+									{$layout_info->main_slider_5_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_5_text_2_img}" alt="{$layout_info->main_slider_5_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_5_btn_align)--> ta-{$layout_info->main_slider_5_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_5_btn_text)-->
+									<a href="{$layout_info->main_slider_5_btn_url}" target="_blank"|cond="$layout_info->main_slider_5_btn_new_window && in_array('Y', $layout_info->main_slider_5_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_5_btn_img">
+										<!--@if(!$layout_info->main_slider_5_btn_img)-->
+											{$layout_info->main_slider_5_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_5_btn_img}" alt="{$layout_info->main_slider_5_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_5_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_5_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_5_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_5_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_5_url}" target="_blank"|cond="$layout_info->main_slider_5_new_window && in_array('Y', $layout_info->main_slider_5_new_window)" cond="$layout_info->main_slider_5_url"></a>
+		</div>
+		<div class="swiper-slide item item6" style="background-image:url('{$layout_info->main_slider_6_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_6_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_6_m_img}');"|cond="$is_mobile && $layout_info->main_slider_6_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_6_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_6_background_color};"|cond="$layout_info->main_slider_6_background_color" cond="$layout_info->main_slider_6_text_1 || $layout_info->main_slider_6_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_6_text_1_align)--> ta-{$layout_info->main_slider_6_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_6_text_1_img)-->
+									{$layout_info->main_slider_6_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_6_text_1_img}" alt="{$layout_info->main_slider_6_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_6_text_2_align)--> ta-{$layout_info->main_slider_6_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_6_text_2_img)-->
+									{$layout_info->main_slider_6_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_6_text_2_img}" alt="{$layout_info->main_slider_6_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_6_btn_align)--> ta-{$layout_info->main_slider_6_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_6_btn_text)-->
+									<a href="{$layout_info->main_slider_6_btn_url}" target="_blank"|cond="$layout_info->main_slider_6_btn_new_window && in_array('Y', $layout_info->main_slider_6_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_6_btn_img">
+										<!--@if(!$layout_info->main_slider_6_btn_img)-->
+											{$layout_info->main_slider_6_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_6_btn_img}" alt="{$layout_info->main_slider_6_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_6_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_6_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_6_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_6_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_6_url}" target="_blank"|cond="$layout_info->main_slider_6_new_window && in_array('Y', $layout_info->main_slider_6_new_window)" cond="$layout_info->main_slider_6_url"></a>
+		</div>
+		<div class="swiper-slide item item7" style="background-image:url('{$layout_info->main_slider_7_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_7_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_7_m_img}');"|cond="$is_mobile && $layout_info->main_slider_7_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_7_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_7_background_color};"|cond="$layout_info->main_slider_7_background_color" cond="$layout_info->main_slider_7_text_1 || $layout_info->main_slider_7_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_7_text_1_align)--> ta-{$layout_info->main_slider_7_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_7_text_1_img)-->
+									{$layout_info->main_slider_7_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_7_text_1_img}" alt="{$layout_info->main_slider_7_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_7_text_2_align)--> ta-{$layout_info->main_slider_7_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_7_text_2_img)-->
+									{$layout_info->main_slider_7_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_7_text_2_img}" alt="{$layout_info->main_slider_7_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_7_btn_align)--> ta-{$layout_info->main_slider_7_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_7_btn_text)-->
+									<a href="{$layout_info->main_slider_7_btn_url}" target="_blank"|cond="$layout_info->main_slider_7_btn_new_window && in_array('Y', $layout_info->main_slider_7_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_7_btn_img">
+										<!--@if(!$layout_info->main_slider_7_btn_img)-->
+											{$layout_info->main_slider_7_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_7_btn_img}" alt="{$layout_info->main_slider_7_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_7_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_7_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_7_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_7_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_7_url}" target="_blank"|cond="$layout_info->main_slider_7_new_window && in_array('Y', $layout_info->main_slider_7_new_window)" cond="$layout_info->main_slider_7_url"></a>
+		</div>
+		<div class="swiper-slide item item8" style="background-image:url('{$layout_info->main_slider_8_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_8_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_8_m_img}');"|cond="$is_mobile && $layout_info->main_slider_8_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_8_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_8_background_color};"|cond="$layout_info->main_slider_8_background_color" cond="$layout_info->main_slider_8_text_1 || $layout_info->main_slider_8_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_8_text_1_align)--> ta-{$layout_info->main_slider_8_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_8_text_1_img)-->
+									{$layout_info->main_slider_8_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_8_text_1_img}" alt="{$layout_info->main_slider_8_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_8_text_2_align)--> ta-{$layout_info->main_slider_8_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_8_text_2_img)-->
+									{$layout_info->main_slider_8_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_8_text_2_img}" alt="{$layout_info->main_slider_8_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_8_btn_align)--> ta-{$layout_info->main_slider_8_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_8_btn_text)-->
+									<a href="{$layout_info->main_slider_8_btn_url}" target="_blank"|cond="$layout_info->main_slider_8_btn_new_window && in_array('Y', $layout_info->main_slider_8_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_8_btn_img">
+										<!--@if(!$layout_info->main_slider_8_btn_img)-->
+											{$layout_info->main_slider_8_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_8_btn_img}" alt="{$layout_info->main_slider_8_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_8_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_8_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_8_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_8_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_8_url}" target="_blank"|cond="$layout_info->main_slider_8_new_window && in_array('Y', $layout_info->main_slider_8_new_window)" cond="$layout_info->main_slider_8_url"></a>
+		</div>
+		<div class="swiper-slide item item9" style="background-image:url('{$layout_info->main_slider_9_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_9_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_9_m_img}');"|cond="$is_mobile && $layout_info->main_slider_9_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_9_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_9_background_color};"|cond="$layout_info->main_slider_9_background_color" cond="$layout_info->main_slider_9_text_1 || $layout_info->main_slider_9_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_9_text_1_align)--> ta-{$layout_info->main_slider_9_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_9_text_1_img)-->
+									{$layout_info->main_slider_9_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_9_text_1_img}" alt="{$layout_info->main_slider_9_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_9_text_2_align)--> ta-{$layout_info->main_slider_9_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_9_text_2_img)-->
+									{$layout_info->main_slider_9_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_9_text_2_img}" alt="{$layout_info->main_slider_9_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_9_btn_align)--> ta-{$layout_info->main_slider_9_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_9_btn_text)-->
+									<a href="{$layout_info->main_slider_9_btn_url}" target="_blank"|cond="$layout_info->main_slider_9_btn_new_window && in_array('Y', $layout_info->main_slider_9_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_9_btn_img">
+										<!--@if(!$layout_info->main_slider_9_btn_img)-->
+											{$layout_info->main_slider_9_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_9_btn_img}" alt="{$layout_info->main_slider_9_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_9_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_9_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_9_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_9_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_9_url}" target="_blank"|cond="$layout_info->main_slider_9_new_window && in_array('Y', $layout_info->main_slider_9_new_window)" cond="$layout_info->main_slider_9_url"></a>
+		</div>
+		<div class="swiper-slide item item10" style="background-image:url('{$layout_info->main_slider_10_img}');"|cond="(!$is_mobile || ($is_mobile && !$layout_info->main_slider_10_m_img)) && !$slider_h_auto" style="background-image:url('{$layout_info->main_slider_10_m_img}');"|cond="$is_mobile && $layout_info->main_slider_10_m_img && !$m_slider_h_auto" cond="$layout_info->main_slider_10_img">
+			<div class="slider_content_wrap" style="background-color:{$layout_info->main_slider_10_background_color};"|cond="$layout_info->main_slider_10_background_color" cond="$layout_info->main_slider_10_text_1 || $layout_info->main_slider_10_text_2">
+				<div class="bh_wrap slider_content">
+					<div class="bh bh_row ai-c h-100">
+						<div class="bh col-12">
+							<span class="slider_content_text_1<!--@if($layout_info->main_slider_10_text_1_align)--> ta-{$layout_info->main_slider_10_text_1_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_10_text_1_img)-->
+									{$layout_info->main_slider_10_text_1}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_10_text_1_img}" alt="{$layout_info->main_slider_10_text_1}" />
+								<!--@end-->
+							</span>
+							<span class="slider_content_text_2<!--@if($layout_info->main_slider_10_text_2_align)--> ta-{$layout_info->main_slider_10_text_2_align}<!--@end--> ts-1">
+								<!--@if(!$layout_info->main_slider_10_text_2_img)-->
+									{$layout_info->main_slider_10_text_2}
+								<!--@else-->
+									<img src="{$layout_info->main_slider_10_text_2_img}" alt="{$layout_info->main_slider_10_text_2}" />
+								<!--@end-->
+							</span>
+							<div class="slider_content_btn_wrap<!--@if($layout_info->main_slider_10_btn_align)--> ta-{$layout_info->main_slider_10_btn_align}<!--@end--> ts-1">
+								<!--@if($layout_info->main_slider_10_btn_text)-->
+									<a href="{$layout_info->main_slider_10_btn_url}" target="_blank"|cond="$layout_info->main_slider_10_btn_new_window && in_array('Y', $layout_info->main_slider_10_btn_new_window)" class="bh slider_content_btn bh_btn hover:bh_color_main bh_bg_color_main bh_btn_effect1 before:bh_bd_color_main after:bh_bd_color_main"|cond="!$layout_info->main_slider_10_btn_img">
+										<!--@if(!$layout_info->main_slider_10_btn_img)-->
+											{$layout_info->main_slider_10_btn_text}
+										<!--@else-->
+											<img src="{$layout_info->main_slider_10_btn_img}" alt="{$layout_info->main_slider_10_btn_text}" />
+										<!--@end-->
+									</a>
+								<!--@end-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--@if((!$is_mobile || ($is_mobile && !$layout_info->main_slider_10_m_img)) && $slider_h_auto)-->
+				<img src="{$layout_info->main_slider_10_img}" alt="slider_img" />
+			<!--@end-->
+			<!--@if($is_mobile && $layout_info->main_slider_10_m_img && $m_slider_h_auto)-->
+				<img src="{$layout_info->main_slider_10_m_img}" alt="slider_img" />
+			<!--@end-->
+			<a href="{$layout_info->main_slider_10_url}" target="_blank"|cond="$layout_info->main_slider_10_new_window && in_array('Y', $layout_info->main_slider_10_new_window)" cond="$layout_info->main_slider_10_url"></a>
+		</div>
+	</div>
+	<!--@if($layout_info->main_slider_dots != 'N')-->
+		<div class="bh bh_wrap">
+			<div class="bh po-r">
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	<!--@end-->
+	<!--@if($layout_info->main_slider_nav != 'N')-->
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	<!--@end-->
+	<!--@if($layout_info->main_slider_scrollbar == 'Y')-->
+		<div class="swiper-scrollbar"></div>
+	<!--@end-->
+</div>
+
+<script>
+$(document).ready(function(){
+	const swiperMain = new Swiper('.swiper-main', {
+		<!--@if($layout_info->main_slider_type == 'fade')-->
+		effect: "fade",
+		<!--@end-->
+		<!--@if($layout_info->main_slider_drag == 'N')-->
+		allowTouchMove: false,
+		<!--@end-->
+		<!--@if($layout_info->main_slider_nav != 'N')-->
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		<!--@end-->
+		<!--@if($layout_info->main_slider_dots != 'N')-->
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+			bulletActiveClass: "swiper-pagination-bullet-active bh_bg_color_main",
+			progressbarFillClass: "swiper-pagination-progressbar-fill bh_bg_color_main",
+		},
+		<!--@end-->
+		<!--@if($layout_info->main_slider_scrollbar == 'Y')-->
+		scrollbar: {
+			el: '.swiper-scrollbar',
+			draggable: true,
+		},
+		<!--@end-->
+		<!--@if($layout_info->main_slider_autoplay!= 'N')-->
+		autoplay: {
+			delay: <!--@if($layout_info->main_slider_autoplaytime)-->{$layout_info->main_slider_autoplaytime}<!--@else-->5<!--@end-->000,
+		},
+		<!--@end-->
+		speed: 500,
+		loop: true,
+		spaceBetween: 0,
+		breakpoints: {
+			0: {
+				navigation: { enabled: false },
+			},
+			992: {
+				navigation: { enabled: true },
+			},
+		},
+	});
+	swiperMain.on('slideChange', function () {
+		$('span.slider_content_text_1').removeClass('animated fadeInDown delay-1s');
+		$('span.slider_content_text_2').removeClass('animated fadeInUp delay-2s');
+		$('.slider_content_btn_wrap').removeClass('animated fadeInUp delay-3s');
+		var activeSlide = $(swiperMain.slides[swiperMain.activeIndex]);
+		activeSlide.find('span.slider_content_text_1').addClass('animated fadeInDown delay-1s');
+		activeSlide.find('span.slider_content_text_2').addClass('animated fadeInUp delay-2s');
+		activeSlide.find('.slider_content_btn_wrap').addClass('animated fadeInUp delay-3s');
+	});
+});
+</script>

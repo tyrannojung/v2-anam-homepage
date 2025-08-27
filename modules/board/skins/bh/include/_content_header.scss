@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/* content_header */
+.content_header {
+	background-color: var(--bh_color_gray_50);
+	border-top: 2px solid var(--bh_color_gray_700);
+	border-bottom: 1px solid var(--bh_color_gray_300);
+	padding: 25px 31px;
+	margin: 10px 0;
+	h1 {
+		color: var(--bh_color_gray_800);
+		font-size: 22px;
+		font-weight: 600;
+		line-height: 1.3;
+		margin-bottom: 8px;
+	}
+	.detail {
+		li {
+			display: inline-block;
+			color: var(--bh_color_gray_800);
+			font-size: 14px;
+			line-height: 20px;
+			background: url('../img/division_line.gif') no-repeat right 8px center;
+			padding-right: 19px;
+			overflow: hidden;
+			&:last-child {
+				background: none;
+			}
+			.detail_title {
+				color: var(--bh_color_gray_700);
+				> a {
+					color: var(--bh_color_gray_700);
+				}
+			}
+			.detail_content {
+				color: var(--bh_color_gray_800);
+				> a {
+					color: var(--bh_color_gray_800);
+				}
+			}
+			span {
+				> i {
+					font-size: 0.9em;
+					line-height: 1;
+					margin-right: 3px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 992px) {
+	.content_header {
+		padding: 18px 13px;
+		h1 {
+			font-size: 17px;
+		}
+		.detail {
+			li {
+				font-size: 13px;
+				line-height: 17px;
+				background: none;
+			}
+		}
+	}
+}
+.extra_wrap {
+	position: relative;
+	border-bottom: 1px solid var(--bh_color_gray_300);
+	margin-top: -10px;
+	.extra {
+		width: 100%;
+		> caption {
+			display: none;
+		}
+		th, td {
+			font-size: 14px;
+			font-weight: 400;
+			border-bottom: 1px solid var(--bh_color_gray_300);
+			padding: 15px 15px 15px 30px;
+			text-align: left;
+			word-break: break-all;
+			word-wrap: break-word;
+		}
+		th {
+			min-width: 130px;
+			color: var(--bh_color_gray_black);
+			background-color: var(--bh_color_gray_50);
+			white-space: nowrap;
+		}
+		td {
+			color: var(--bh_color_gray_700);
+		}
+	}
+}
+@media (max-width: 992px) {
+	.extra_wrap {
+		.extra {
+			th, td {
+				font-size: 14px;
+				font-weight: 400;
+				border-bottom: 1px solid var(--bh_color_gray_300);
+				padding: 7px 13px;
+				text-align: left;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			th {
+				min-width: auto;
+			}
+		}
+	}
+}

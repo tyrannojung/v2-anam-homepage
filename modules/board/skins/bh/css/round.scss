@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* bh (9haging@gmail.com) */
+
+.bh_bd_btn,
+.bh_board_tab li,
+.board_list .list_wrap .label,
+.board_list .gallery_wrap .bh_item .bh_item_inner,
+.board_list .faq_wrap .bh_toggle_list,
+.bh_comment .comment_write_wrap,
+.bh_act_btn_warp > ul > li > a,
+.bh_act_btn_warp > ul > li > a:before,
+.bh_act_btn_warp > ul > li > a:after {
+	border-radius: 3px !important;
+}
+.list_footer .pagination .direction:first-child {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.list_footer .pagination .direction:last-child {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}

@@ -1,0 +1,81 @@
+<link href="{$layout_info->path}slider/swiper.min.css" rel="stylesheet" type="text/css">
+<load target="swiper.card.scss" />
+<script src="{$layout_info->path}slider/swiper.min.js" type="text/javascript"></script>
+<!--@if($layout_info->main_slider_type == 'fade')-->
+	<link href="{$layout_info->path}/slider/animate.min.css" rel="stylesheet" type="text/css">
+<!--@end-->
+
+<div id="sync1" class="swiper-card swiper-thumbnail">
+	<div class="swiper-wrapper">
+		<!--@foreach($document_image_list as $key => $file)-->
+		<div class="swiper-slide item item{$key}" style="background-image:url('{$file->uploaded_filename}');"></div>
+		<!--@endforeach-->
+	</div>
+	<div class="bh bh_wrap">
+		<div class="bh po-r">
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+</div>
+
+<div id="sync2" class="swiper-card swiper-thumbnail">
+	<div class="swiper-wrapper">
+		<!--@foreach($document_image_list as $key => $file)-->
+		<div class="swiper-slide item item{$key}" style="background-image:url('{$file->uploaded_filename}');"></div>
+		<!--@endforeach-->
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	const swiperSync2 = new Swiper('#sync2', {
+		spaceBetween: 0,
+		breakpoints: {
+			0: {
+				slidesPerView: 3,
+				spaceBetween: 0,
+			},
+			992: {
+				slidesPerView: 6,
+				spaceBetween: 0,
+			},
+		},
+		rewind: true,
+		watchSlidesProgress: true,
+	});
+	const swiperSync1 = new Swiper('#sync1', {
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+			bulletActiveClass: "swiper-pagination-bullet-active bh_bg_color_main",
+			progressbarFillClass: "swiper-pagination-progressbar-fill bh_bg_color_main",
+		},
+		autoplay: {
+			delay: 5000,
+			pauseOnMouseEnter: true,
+			disableOnInteraction: false,
+		},
+		speed: 500,
+		loop: true,
+		spaceBetween: 0,
+		breakpoints: {
+			0: {
+				navigation: { enabled: false },
+			},
+			992: {
+				navigation: { enabled: true },
+			},
+		},
+		thumbs: {
+			swiper: swiperSync2
+		},
+		rewind: true,
+	});
+});
+</script>

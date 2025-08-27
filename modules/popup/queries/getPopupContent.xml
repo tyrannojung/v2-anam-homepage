@@ -1,0 +1,11 @@
+<query id="getPopupContent" action="select">
+	<tables>
+		<table name="popup" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="popup_srl" var="popup_srl" />
+	</conditions>
+</query>

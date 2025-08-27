@@ -1,0 +1,189 @@
+@version(2)
+@load ('css/widget.scss')
+
+<div class="bh_insert_widget" data-skin="{{ $widget_info->skin }}"|cond="$is_logged && $logged_info->is_admin === 'Y'">
+<form id="form_write_document" action="./" method="post" enctype="multipart/form-data" class="bh" >
+	<input type="hidden" name="mid" value="{{ $mid }}">
+	<input type="hidden" name="success_return_url" value="{{ getUrl(['mid' => $mid]) }}">
+	<input type="hidden" name="insert_content" value="{{ htmlspecialchars($widget_info->content_default) }}">
+	@if (!$insert_module_srls)
+	<input type="hidden" name="insert_module_srl" value="{{ $widget_info->module_srls }}">
+	@end
+	<input type="hidden" name="insert_mode" value="">
+	<input type="hidden" name="password" value="{{ date('hndisy').rand() }}">
+	@if (!$widget_info->use_secret || $widget_info->use_secret === 'Y')
+	<input type="hidden" name="status" value="SECRET">
+	@elseif ($widget_info->use_secret === 'N')
+	<input type="hidden" name="status" value="PUBLIC">
+	@end
+	<input type="hidden" name="comment_status" value="ALLOW">
+	@if (0)
+	<h5 class="bh mt-20 mb-10">게시물 등록</h5>
+	@end
+	<div class="bh bh_write_form_wrap">
+		<div class="bh bh_write_form">
+			<div class="bh bh_row">
+				@if ($insert_module_srls)
+				<div class="form_item lg:col-12">
+					<div class="item_title"><span class="name">분류 <em>*</em></span></div>
+					<div class="item_input">
+						<select class="select" name="insert_module_srl" id="sel1">
+							<option value="">분류 선택</option>
+							@foreach ($insert_module_srls as $key => $val)
+								<option value="{{ $key }}">{{ $val->browser_title }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				@end
+				@if ($widget_info->use_category === 'Y')
+				<div class="form_item lg:col-12">
+					<div class="item_title"><span class="name">{{ $lang->category }}</span></div>
+					<div class="item_input">
+						<select name="category_srl" class="category">
+							@foreach ($category_list as $val)
+							<option value="{$val->category_srl}" selected="selected"|cond="$val->grant && $val->selected" disabled="disabled"|cond="!$val->grant">
+								{{ str_repeat('&nbsp;&nbsp;', $val->depth) }} {{ $val->title }}
+							</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				@end
+				@if (!$widget_info->title_message)
+					<div class="form_item lg:col-12">
+						<div class="item_title"><span class="name">{{ $widget_info->title_name ?? $lang->title }} <em>*</em></span></div>
+						<div class="item_input">
+							<input type="text" name="title" value="" title="{{ $lang->title }}" onfocus="if (this.value == this.title) this.value = '';">
+						</div>
+					</div>
+				@else
+					<input type="hidden" name="title" value="{{ $widget_info->title_message }} ({{ date('Ymd-His') }})">
+				@end
+				@if (!$is_logged)
+					{{-- 비회원 정보 --}}
+					@if (!$widget_info->writer_message)
+						<div class="form_item lg:col-12">
+							<div class="item_title"><span class="name">{{ $widget_info->writer_name ?? $lang->writer }} <em>*</em></span></div>
+							<div class="item_input">
+								<input type="text" name="nick_name" value="" title="{{ $lang->writer }}" onfocus="if (this.value == this.title) this.value = '';">
+							</div>
+						</div>
+					@else
+						<input type="hidden" name="nick_name" value="{{ $widget_info->writer_message }}">
+					@end
+					@if (!$widget_info->email_message)
+						<div class="form_item lg:col-12">
+							<div class="item_title"><span class="name">{{ $widget_info->email_name ?? $lang->email_address }} <em>*</em></span></div>
+							<div class="item_input">
+								<input type="text" name="email_address" value="" title="{{ $lang->email_address }}"  onfocus="if (this.value == this.title) this.value = '';">
+							</div>
+						</div>
+					@else
+						<input type="hidden" name="email_address" value="{{ $widget_info->email_message }}">
+					@end
+				@end
+				@foreach ($extra_keys as $key => $val)
+					<div class="form_item lg:col-6">
+						<div class="item_title"><span class="name">{{ $val->name }} @if ($val->is_required=='Y')<em>*</em>@end</span></div>
+						<div class="item_input">
+							{{ $val->getFormHTML()|noescape }}
+							@if ($val->type == 'textarea')
+								<script>$('.bh_insert_widget textarea[name=extra_vars{{ $val->idx }}]').attr('placeholder', '{{ $val->name }}');</script>
+							@end
+						</div>
+					</div>
+				@endforeach
+				@if ($widget_info->use_content !== 'N')
+					<div class="form_item lg:col-12">
+						<div class="item_title"><span class="name">문의 내용 <em>*</em></span></div>
+						<div class="item_input">
+							<div class="write_editor@if ($widget_info->content_default && $widget_info->use_content == 'file_only') editor_file_only@end">
+								{{ $editor|noescape }}
+								<input type="hidden" name="insert_srl" value="">
+							</div>
+						</div>
+					</div>
+				@end
+			</div>
+		</div>
+		<div class="agreement">
+			<input type="checkbox" name="accept_agreement" value="Y" id="accept_agreement">
+			<label for="accept_agreement">
+				<div class="checkbox"><i class="ri-check-line"></i></div>
+				<p>개인정보처리방침에 동의합니다. <a href="/privacy">[자세히보기]</a></p>
+			</label>
+		</div>
+		<div class="common_btn_wrap submit_btn_wrap">
+			<button class="common_btn" id="btn_insert_document" onclick="if (insertdocument()==false) return false;">{{ $widget_info->submit_name ?? $lang->cmd_submit }}</button>
+		</div>
+	</div>
+</form>
+</div>
+@verbatim
+<script>
+	document.querySelector('[name="extra_vars1"]').setAttribute('placeholder', '이름을 입력해 주세요.')
+	document.querySelector('[name^="extra_vars2"]').setAttribute('placeholder', '연락처를 입력해 주세요.')
+
+	let content = document.querySelector('.rx_simpleeditor');
+	let contentVal = document.querySelector('[name="insert_content"]');
+	content.classList.add('has_placeholder');
+	content.addEventListener('focus', () => {
+		if(event.currentTarget.classList.contains('has_placeholder')){
+			content.textContent = '';
+			event.currentTarget.classList.remove('has_placeholder')
+		}
+	})
+	content.addEventListener('blur', () => {
+		let val = contentVal.value.replace(/<[^>]*>?/g, '');
+		if(val == ''){
+			content.textContent = '문의 내용을 입력해 주세요.';
+			event.currentTarget.classList.add('has_placeholder')
+		}
+	})
+
+	let is_submit = false;
+	function insertdocument() {
+		if (is_submit) {
+			return false;
+		}
+
+		if (jQuery('input[name="password"]').val() == '') {
+			alert('비밀번호를 입력해 주세요');
+			jQuery('input[name="password"]').focus();
+			return false;
+		}
+		if (!jQuery('input[name="accept_agreement"]').is(':checked')) {
+			alert('개인정보수집 및 이용약관에 동의해 주세요');
+			jQuery('input[name="accept_agreement"]').focus();
+			return false;
+		}
+		if (jQuery('input[name="extra_vars1"]').val() == '') {
+			alert('이름을 입력해 주세요');
+			jQuery('input[name="extra_vars1"]').focus();
+			return false;
+		}
+		if (jQuery('input[name^="extra_vars2"]').val() == '') {
+			alert('연락처를 입력해 주세요');
+			jQuery('input[name^="extra_vars2"]').focus();
+			return false;
+		}
+		const phoneRegex = new RegExp(/^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/); // 휴대폰
+
+		if(!phoneRegex.test(jQuery('input[name^="extra_vars2"]').val())){
+			alert('연락처를 형식에 맞게 입력해 주세요');
+			jQuery('input[name^="extra_vars2"]').focus();
+			return false;
+		}
+		let ctVal = contentVal.value.replace(/<[^>]*>?/g, '');
+		if(ctVal == '' || ctVal == '문의 내용을 입력해 주세요.'){
+			alert('문의 내용을 입력해 주세요.');
+			content.focus();
+			return false;
+		}
+		jQuery('input[name="insert_mode"]').val('Y');
+		is_submit = true;
+		return true;
+	}
+</script>
+@endverbatim

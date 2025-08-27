@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/* bh (9haging@gmail.com) */
+/* mobile_header_nav */
+.bh .mobile_header_nav {
+	position: relative;
+	background-color: var(--bh_color_bg_main);
+	border-bottom: 1px solid var(--bh_color_gray_300);
+	padding: 16px 15px 15px 15px;
+	margin: 0;
+	-webkit-transition: all 400ms;
+	-moz-transition: all 400ms;
+	-o-transition: all 400ms;
+	-ms-transition: all 400ms;
+	transition: all 400ms;
+	.act_btn_back {
+		position: absolute;
+		top: 10px;
+		font-size: 16px;
+		border: 1px solid var(--bh_color_gray_300);
+		border-radius: 3px;
+		padding: 2px 7px;
+	}
+	.bh_title {
+		display: block;
+		color: var(--bh_color_text);
+		font-size: 1.8rem;
+		font-weight: 500;
+		line-height: 18px;
+		text-align: center;
+		letter-spacing: 2px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		margin: 0 47px;
+		overflow: hidden;
+	}
+	&.style-t {
+		background-color: transparent;
+		border-color: transparent;
+		.act_btn_back {
+			color: var(--bh_color_white);
+			border-color: transparent;
+			text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.17);
+		}
+		.bh_title {
+			color: var(--bh_color_white);
+			text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.17);
+		}
+	}
+}
+
+@media (max-width: 992px) {
+
+}
+/* -mobile_header_nav */

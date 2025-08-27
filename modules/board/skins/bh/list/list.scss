@@ -1,0 +1,130 @@
+@charset "UTF-8";
+/* 리스트 */
+.board_list {
+	.list_wrap {
+		position: relative;
+		width: 100%;
+		border-collapse: collapse;
+		margin: 2px 0 8px;
+		> caption {
+			display: none;
+		}
+		thead {
+			tr {
+				&:first-child {
+					th {
+						border-top: 2px solid #222;
+					}
+				}
+			}
+		}
+		th, td {
+			color: var(--bh_color_gray_900);
+			font-weight: 400;
+			text-align: center;
+			vertical-align: middle;
+			white-space: nowrap;
+			border-bottom: 1px solid var(--bh_color_gray_300);
+			padding: 13px 11px;
+		}
+		th {
+			&.title {
+				width: 100%;
+			}
+		}
+		td {
+			color: var(--bh_color_gray_800);
+			padding: 11px;
+			&.title {
+				text-align: left;
+				white-space: normal;
+				word-break: break-all;
+				.info {
+					color: var(--bh_color_gray_500);
+					font-size: 14px;
+					line-height: 1;
+					> span {
+						display: inline-block;
+						border-right: 1px solid var(--bh_color_gray_300);
+						padding-right: 9px;
+						margin: 7px 7px 0 0;
+						&:last-child {
+							border-right: 0;
+							margin-right: 0;
+						}
+						> span {
+							color: var(--bh_color_gray_600);
+						}
+					}
+				}
+			}
+		}
+		tr {
+			-webkit-transition: .2s;
+			-moz-transition: .2s;
+			-o-transition: .2s;
+			transition: .2s;
+			&.notice {
+				background: var(--bh_color_gray_50);
+			}
+			&:hover {
+				background: var(--bh_color_gray_50);
+			}
+		}
+		a {
+			&:hover {
+				color: var(--bh_color_black);
+				text-decoration: underline;
+			}
+		}
+		.cate {
+			span {
+				display: block;
+				max-width: 90px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				word-wrap: normal;
+			}
+			&.bg {
+				span {
+					color: #ffffff;
+					border-radius: 3px;
+					padding: 3px 4px;
+				}
+			}
+		}
+		.label {
+			display: inline-block;
+			color: #ffffff;
+			line-height: 18px;
+			background-color: #343a40;
+			padding: 4px 9px 3px 9px;
+			margin: 0 1px;
+		}
+		.label1 {
+			background-color: #7cc576;
+		}
+		.label2 {
+			background-color: #f63440;
+		}
+		.label3 {
+			background-color: #3F51B5;
+		}
+		.label4 {
+			color: #3F51B5;
+			border: 1px solid #3F51B5;
+		}
+	}
+}
+@media (max-width: 992px) {
+	.board_list {
+		.list_wrap {
+			.label {
+				padding: 3px 3px 3px 3px!important;
+				margin: 0!important;
+				font-size: 11px!important;
+				line-height: 11px!important;
+			}
+		}
+	}
+}

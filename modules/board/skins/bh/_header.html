@@ -1,0 +1,52 @@
+<load target="css/board.scss" />
+<load target="js/board.js" type="body" />
+<load target="../../../../common/xeicon/xeicon.min.css" />
+<!--@if($module_info->round == 'Y')-->
+<load target="css/round.scss" />
+<!--@end-->
+<load target="css/print.scss" media="print" />
+<script>
+	xe.lang.confirm_delete = '{$lang->confirm_delete}';
+</script>
+
+<!--@// 기본값 세팅 -->
+{@
+	if(!$module_info->list_webzine_content_cut_size) $module_info->list_webzine_content_cut_size = 100;
+	if(!$module_info->list_webzine_thumbnail_width) $module_info->list_webzine_thumbnail_width = 120;
+	if(!$module_info->list_webzine_thumbnail_height) $module_info->list_webzine_thumbnail_height = 120;
+	if(!$module_info->list_gallery_content_cut_size) $module_info->list_gallery_content_cut_size = 100;
+
+	$module_info->content_detail = unserialize($module_info->content_detail);
+	$module_info->content_act_btn = unserialize($module_info->content_act_btn);
+}
+
+{@
+	if (isset($order_type) && $order_type == 'desc'):
+		$order_type = 'asc';
+	else:
+		$order_type = 'desc';
+	endif;
+
+	$module_info->duration_new = intval($module_info->duration_new ?? 0);
+	if (!$module_info->duration_new):
+		$module_info->duration_new = 12;
+	endif;
+
+	$cate_list = [];
+	$current_key = null;
+	$category_list = $category_list ?? [];
+	foreach ($category_list as $key => $val):
+		if (!$val->depth):
+			$cate_list[$key] = $val;
+			$cate_list[$key]->children = array();
+			$current_key = $key;
+		elseif ($current_key):
+			$cate_list[$current_key]->children[] = $val;
+		endif;
+	endforeach;
+}
+
+<div class="bh board">
+	{$module_info->header_text}
+	<div class="bh board_header">
+	</div>

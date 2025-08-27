@@ -1,0 +1,28 @@
+<include target="_header.html" />
+<div class="content_body">
+	<div cond="$oComment->isExists()" class="context_data">
+		<h3 class="author">
+			<a cond="$oComment->homepage" href="{$oComment->homepage}">{$oComment->getNickName()}</a>
+			<strong cond="!$oComment->homepage">{$oComment->getNickName()}</strong>
+		</h3>
+		{$oComment->getContent(false)}
+	</div>
+	<div class="form_box_wrap mt-30">
+		<div class="bh bh_title mb-30">{$lang->cmd_comment_do} {$lang->confirm_delete}</div>
+		<div class="bh bh_desc"></div>
+		<form action="./" method="get" onsubmit="return procFilter(this, delete_comment)" class="context_message">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="page" value="{$page}" />
+			<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
+			<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
+			<div class="bh pb-5 mb-10">
+				<input type="password" name="password" id="cpw" required placeholder="{$lang->msg_input_password}" title="{$lang->msg_input_password}" />
+			</div>
+			<div class="form_btn_wrap ta-c mt-30">
+				<a href="#" class="bh bh_write_btn gray" onclick="history.go(-1);return false;" alt="뒤로가기">{$lang->cmd_cancel}</a>
+				<input type="submit" value="{$lang->cmd_delete}" class="bh bh_write_btn hover" />
+			</div>
+		</form>
+	</div>
+</div>
+<include target="_footer.html" />

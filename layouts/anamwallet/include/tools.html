@@ -1,0 +1,18 @@
+<load target="tools.scss" />
+
+<include target="tools/_header.html" />
+<!--@if($act == 'dispMemberLoginForm')-->
+	<include target="tools/dispMemberLoginForm.html" />
+<!--@elseif($act == 'dispMemberInfo')-->
+	<include target="tools/dispMemberInfo.html" />
+<!--@elseif($act == 'dispMemberModifyInfo')-->
+	<?php $__Context->_SESSION['rechecked_password_step'] = $_SESSION['rechecked_password_step']; ?>
+	<!--@if($_SESSION['rechecked_password_step'] != 'VALIDATE_PASSWORD' && $_SESSION['rechecked_password_step'] != 'INPUT_DATA')-->
+	<include target="tools/dispMemberRecheckedPassword.html" />
+	<!--@else-->
+	<include target="tools/dispMemberModifyInfo.html" />
+	<!--@end-->
+<!--@elseif($act == 'dispMemberfollowUserConfig' && !$tp)-->
+	<include target="tools/dispMemberfollowUserConfig.html" />
+<!--@end-->
+<include target="tools/_footer.html" />

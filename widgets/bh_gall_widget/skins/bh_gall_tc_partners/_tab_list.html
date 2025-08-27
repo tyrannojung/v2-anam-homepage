@@ -1,0 +1,11 @@
+@version(2)
+
+@foreach ($widget_info->tab as $module_srl => $tab)
+	<div class="bh tab_list mb-30">
+		<h4 class="bh tab{{ $loop->iteration }} bh_title_sub3 before:bh_bg_color_main mb-20" id="section{{ $loop->iteration }}">{{ $tab->title }}</h4>
+		@php
+			$widget_info->content_items = $tab->content_items; $widget_info->page_navigation = $tab->page_navigation ?? null;
+		@endphp
+		@include ('_tab_none.html')
+	</div>
+@end

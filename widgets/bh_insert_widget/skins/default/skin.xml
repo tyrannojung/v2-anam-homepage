@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">문서 등록 위젯 Skin</title>
+	<title xml:lang="en">문서 등록 위젯 Skin</title>
+	<version>1.0</version>
+	<date>2019-04-17</date>
+	<link></link>
+	<author email_address="9haging@gmail.com" link="">
+		 <name xml:lang="ko">bh</name>
+		 <name xml:lang="en">bh</name>
+	</author>
+</skin>

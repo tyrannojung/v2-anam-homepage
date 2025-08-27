@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<!-- List -->
+	<item name="popup">
+		<value xml:lang="ko"><![CDATA[팝업]]></value>
+		<value xml:lang="en"><![CDATA[POP-UP]]></value>
+	</item>
+	<item name="popup_management">
+		<value xml:lang="ko"><![CDATA[팝업 관리]]></value>
+		<value xml:lang="en"><![CDATA[POP-UP Management]]></value>
+	</item>
+	<item name="management">
+		<value xml:lang="ko"><![CDATA[관리]]></value>
+		<value xml:lang="en"><![CDATA[Management]]></value>
+	</item>
+	<item name="popup_explanation">
+		<value xml:lang="ko"><![CDATA[사이트에서 팝업 출력을 위한 내용을 생성/관리하는 모듈입니다.]]></value>
+		<value xml:lang="en"><![CDATA[For output from the pop-up site creation / management module.]]></value>
+	</item>
+	<item name="open_target">
+		<value xml:lang="ko"><![CDATA[오픈 대상]]></value>
+		<value xml:lang="en"><![CDATA[Open target]]></value>
+	</item>
+	<item name="target_type">
+		<value xml:lang="ko"><![CDATA[대상 형태]]></value>
+		<value xml:lang="en"><![CDATA[Target type]]></value>
+	</item>
+	<item name="target_mid">
+		<value xml:lang="ko"><![CDATA[대상 모듈]]></value>
+		<value xml:lang="en"><![CDATA[Target mid]]></value>
+	</item>
+	<item name="popup_type">
+		<value xml:lang="ko"><![CDATA[팝업 타입]]></value>
+		<value xml:lang="en"><![CDATA[POP-UP type]]></value>
+	</item>
+	<item name="popup_border_style">
+		<value xml:lang="ko"><![CDATA[스타일]]></value>
+		<value xml:lang="en"><![CDATA[Style]]></value>
+	</item>
+	<item name="popup_title">
+		<value xml:lang="ko"><![CDATA[팝업 제목]]></value>
+		<value xml:lang="en"><![CDATA[POP-UP title]]></value>
+	</item>
+	<item name="start_date">
+		<value xml:lang="ko"><![CDATA[시작일]]></value>
+		<value xml:lang="en"><![CDATA[Start date]]></value>
+	</item>
+	<item name="end_date">
+		<value xml:lang="ko"><![CDATA[종료일]]></value>
+		<value xml:lang="en"><![CDATA[End date]]></value>
+	</item>
+	<item name="regdate">
+		<value xml:lang="ko"><![CDATA[등록일]]></value>
+		<value xml:lang="en"><![CDATA[Regdate]]></value>
+	</item>
+
+	<!-- Insert -->
+	<item name="popup_title_explanation">
+		<value xml:lang="ko"><![CDATA[팝업의 제목을 입력합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Enter the title of the pop-up.]]></value>
+	</item>
+	<item name="select_target_type_module">
+		<value xml:lang="ko"><![CDATA[모듈에서 실행]]></value>
+		<value xml:lang="en"><![CDATA[Execution in module]]></value>
+	</item>
+	<item name="select_target_type_action">
+		<value xml:lang="ko"><![CDATA[액션에서 실행]]></value>
+		<value xml:lang="en"><![CDATA[Execution in action]]></value>
+	</item>
+	<item name="target_action_name">
+		<value xml:lang="ko"><![CDATA[액션 이름 입력]]></value>
+		<value xml:lang="en"><![CDATA[Enter the name of action]]></value>
+	</item>
+	<item name="select_target_module">
+		<value xml:lang="ko"><![CDATA[대상 모듈 선택]]></value>
+		<value xml:lang="en"><![CDATA[Select target module]]></value>
+	</item>
+	<item name="select_all_module">
+		<value xml:lang="ko"><![CDATA[항상 열기]]></value>
+		<value xml:lang="en"><![CDATA[Always Open]]></value>
+	</item>
+	<item name="select_target_type_explanation">
+		<value xml:lang="ko"><![CDATA[모듈 또는 액션을 선택합니다. 액션을 선택하는 경우 지정된 액션에서 팝업을 실행합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Select the module or action. If you select the action, to run the pop-up in the specified action.]]></value>
+	</item>
+	<item name="action_name_explanation">
+		<value xml:lang="ko"><![CDATA[팝업을 실행할 액션의 이름을 입력합니다. 액션의 이름은 1개만 허용하며 회원가입은 dispMemberSignUpForm 입니다.]]></value>
+		<value xml:lang="en"><![CDATA[Eenter the name of the action. The name of the action is the only one allowed.]]></value>
+	</item>
+	<item name="select_target_module_explanation">
+		<value xml:lang="ko"><![CDATA[팝업이 띄워질 대상을 선택합니다. 모듈 단위로 설정합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Pop-up will be floated to select the destination. It is set in each module.]]></value>
+	</item>
+	<item name="open_type">
+		<value xml:lang="ko"><![CDATA[내부 레이어로 띄우기]]></value>
+		<value xml:lang="en"><![CDATA[Open type]]></value>
+	</item>
+	<item name="open_type_explanation">
+		<value xml:lang="ko"><![CDATA[팝업창을 새창으로 띄우거나 페이지 내부에 레이어로 보여줄 수 있습니다. 현재는 내부만 지원됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Float or pop-up a new window, you can show the page as a layer on the inside. The internal current is supported.]]></value>
+	</item>
+	<item name="inner_layout">
+		<value xml:lang="ko"><![CDATA[내부 레이어로 띄우기]]></value>
+		<value xml:lang="en"><![CDATA[Inner layout]]></value>
+	</item>
+	<item name="data_type">
+		<value xml:lang="ko"><![CDATA[팝업 내용 입력 방법]]></value>
+		<value xml:lang="en"><![CDATA[Data type]]></value>
+	</item>
+	<item name="data_type_explanation">
+		<value xml:lang="ko"><![CDATA[데이터의 형태를 지정 할 수 있습니다. URL이나 직접 입력한 페이지를 선택하실 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can specify the type of data. You can select the page or manually entered the URL.]]></value>
+	</item>
+	<item name="input_content">
+		<value xml:lang="ko"><![CDATA[내용 직접 입력]]></value>
+		<value xml:lang="en"><![CDATA[Input content]]></value>
+	</item>
+	<item name="input_url">
+		<value xml:lang="ko"><![CDATA[팝업(html)파일 URL 입력]]></value>
+		<value xml:lang="en"><![CDATA[Enter the URL pop-up(html) file]]></value>
+	</item>
+	<item name="url_explanation">
+		<value xml:lang="ko"><![CDATA[내용이 있는 html 파일의 URL을 입력합니다. ('기간동안 보여주지 않기' 기능은 자동으로 생성됩니다.)]]></value>
+		<value xml:lang="en"><![CDATA[To enter the URL of the content in the html file. (During the period does not show 'function is generated automatically.)]]></value>
+	</item>
+	<item name="link">
+		<value xml:lang="ko"><![CDATA[배너 클릭시 이동 위치]]></value>
+		<value xml:lang="en"><![CDATA[Click banner to move location.]]></value>
+	</item>
+	<item name="link_explanation">
+		<value xml:lang="ko"><![CDATA[예) http://www.xpressengine.com 팝업창 내용 부분을 클릭시 입력한 위치로 이동합니다. 내용에서 링크 이동 처리를 한 경우 비워두면 됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Part of the pop-up content at the click of a position. If you leave it blank, if you move one link in the content. (http://www.xpressengine.com)]]></value>
+	</item>
+	<item name="popup_link_type">
+		<value xml:lang="ko"><![CDATA[link 새창으로 열기]]></value>
+		<value xml:lang="en"><![CDATA[Open link to a new window.]]></value>
+	</item>
+	<item name="popup_link_type_explanation">
+		<value xml:lang="ko"><![CDATA[팝업창 내용을 클릭시 새창으로 링크를 엽니다. 팝업 link 값이 있는 경우에만 적용됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Link to open a new window when you click the pop-It applies only if the value in the pop-up link.]]></value>
+	</item>
+	<item name="popup_style">
+		<value xml:lang="ko"><![CDATA[팝업 스타일]]></value>
+		<value xml:lang="en"><![CDATA[Pop-up style]]></value>
+	</item>
+	<item name="select_border_style">
+		<value xml:lang="ko"><![CDATA[보더]]></value>
+		<value xml:lang="en"><![CDATA[border]]></value>
+	</item>
+	<item name="select_borderless_style">
+		<value xml:lang="ko"><![CDATA[투명 배경]]></value>
+		<value xml:lang="en"><![CDATA[borderless]]></value>
+	</item>
+	<item name="popup_checkbox">
+		<value xml:lang="ko"><![CDATA[체크박스 표시]]></value>
+		<value xml:lang="en"><![CDATA[Pop-up checkbox display]]></value>
+	</item>
+	<item name="select_checkbox_display">
+		<value xml:lang="ko"><![CDATA[출력]]></value>
+		<value xml:lang="en"><![CDATA[display]]></value>
+	</item>
+	<item name="select_checkbox_not_display">
+		<value xml:lang="ko"><![CDATA[미출력]]></value>
+		<value xml:lang="en"><![CDATA[not display]]></value>
+	</item>
+	<item name="select_border_style_explanation">
+		<value xml:lang="ko"><![CDATA[팝업창의 스타일을 선택합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Select the pop-up style.]]></value>
+	</item>
+	<item name="select_popup_checkbox_explanation">
+		<value xml:lang="ko"><![CDATA[투명 배경 스타일은 팝업 비활성을 위한 체크박스의 출력을 선택할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Transparent background style the output of the check box can be selected.]]></value>
+	</item>
+	<item name="start_date_explanation">
+		<value xml:lang="ko"><![CDATA[팝업 시작일을 입력합니다]]></value>
+		<value xml:lang="en"><![CDATA[Enter the start date.]]></value>
+	</item>
+	<item name="end_date_explanation">
+		<value xml:lang="ko"><![CDATA[팝업 종료일을 입력합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Enter the end date.]]></value>
+	</item>
+	<item name="width">
+		<value xml:lang="ko"><![CDATA[가로 크기]]></value>
+		<value xml:lang="en"><![CDATA[width]]></value>
+	</item>
+	<item name="width_size">
+		<value xml:lang="ko"><![CDATA[가로 크기]]></value>
+		<value xml:lang="en"><![CDATA[Width size]]></value>
+	</item>
+	<item name="width_size_explanation">
+		<value xml:lang="ko"><![CDATA[가로 크기를 입력합니다. (단위 px)]]></value>
+		<value xml:lang="en"><![CDATA[Enter the horizontal size. (In px)]]></value>
+	</item>
+	<item name="height">
+		<value xml:lang="ko"><![CDATA[세로 크기]]></value>
+		<value xml:lang="en"><![CDATA[height]]></value>
+	</item>
+	<item name="height_size">
+		<value xml:lang="ko"><![CDATA[세로 크기]]></value>
+		<value xml:lang="en"><![CDATA[Height size]]></value>
+	</item>
+	<item name="height_size_explanation">
+		<value xml:lang="ko"><![CDATA[세로 크기를 입력합니다. (단위 px)]]></value>
+		<value xml:lang="en"><![CDATA[Enter the vertical size. (In px)]]></value>
+	</item>
+	<item name="top">
+		<value xml:lang="ko"><![CDATA[상단 위치]]></value>
+		<value xml:lang="en"><![CDATA[Top position]]></value>
+	</item>
+	<item name="top_explanation">
+		<value xml:lang="ko"><![CDATA[상단 위치를 입력합니다. (단위 px)]]></value>
+		<value xml:lang="en"><![CDATA[Enter the location of the upper. (In px)]]></value>
+	</item>
+	<item name="left">
+		<value xml:lang="ko"><![CDATA[측면 위치]]></value>
+		<value xml:lang="en"><![CDATA[Left position]]></value>
+	</item>
+	<item name="left_explanation">
+		<value xml:lang="ko"><![CDATA[측면 위치를 입력합니다. (단위 px)]]></value>
+		<value xml:lang="en"><![CDATA[Enter the location of the side. (In px)]]></value>
+	</item>
+	<item name="disable_period">
+		<value xml:lang="ko"><![CDATA[팝업 비활성 기간]]></value>
+		<value xml:lang="en"><![CDATA[Pop-up period of inactivity]]></value>
+	</item>
+	<item name="disable_period_explanation">
+		<value xml:lang="ko"><![CDATA[사용자가 하단에 생성되는 체크박스를 클릭 시 입력 값의 기간동안 이 팝업을 보이지 않습니다. (단위: 일)]]></value>
+		<value xml:lang="en"><![CDATA[During the period of the input value when you click the check box the user that is created at the bottom does not seem to pop up. (In days)]]></value>
+	</item>
+	<item name="msg_popup_do_not_display">
+		<value xml:lang="ko"><![CDATA[%d일 동안 보지 않기]]></value>
+		<value xml:lang="en"><![CDATA[Do not open for %d day%s.]]></value>
+		<value xml:lang="jp"><![CDATA[3日間また見ない]]></value>
+	</item>
+	<item name="msg_popup_closed">
+		<value xml:lang="ko"><![CDATA[닫기]]></value>
+		<value xml:lang="en"><![CDATA[Closed]]></value>
+		<value xml:lang="jp"><![CDATA[閉じる]]></value>
+	</item>
+</lang>

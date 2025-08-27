@@ -1,0 +1,23 @@
+@version(2)
+
+<div class="history_item_inner">
+	<p class="item_year">
+		<span class="dot"></span>
+		<span class="year">{{ $tab->title }}</span>
+	</p>
+	<div class="item_con_list">
+	@foreach ($widget_info->content_items as $key => $item)
+		<div class="item_con">
+			<p class="month">{{ $item->getTitle($widget_info->subject_cut_size)|noescape }}</p>
+			<div class="content">
+				@php
+					$history_con_arr = explode("<br />", $item->getExtraVar_1());
+				@endphp
+				@foreach($history_con_arr as $key => $val)
+				<p>{{ str_replace("|", "<br>", $val)|noescape }}</p>
+				@endforeach
+			</div>
+		</div>
+	@endforeach
+	</div>
+</div>

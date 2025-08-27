@@ -1,0 +1,508 @@
+<load target="_header.scss" />
+
+<style>
+<!--@if($layout_info->logo_margin)-->
+.bh .logo {margin: {$layout_info->logo_margin};}
+<!--@end-->
+<!--@if($layout_info->m_logo_height)-->
+.bh .mobile_logo {height: {$layout_info->m_logo_height}px; line-height: {$layout_info->m_logo_height}px;}
+<!--@end-->
+<!--@if($layout_info->m_logo_margin)-->
+.bh .mobile_logo > a {margin: {$layout_info->m_logo_margin};}
+<!--@end-->
+</style>
+
+<header class="header_wrap<!--@if($layout_info->main_menu_ab)--> ab<!--@end-->">
+	<div class="header_top clearfix bh_bg_color_main style-black" cond="$layout_info->use_header_top">
+		<div class="bh_wrap clearfix">
+			<div class="top_menu" id="top_menu">
+				<ul>
+					<li cond="0">
+						<a href="#" onclick="doDarkThemeToggle()"><span class="ds-ib dark:ds-n"><i class="ri-moon-fill va-m"></i> 다크모드</span><span class="ds-n dark:ds-ib"><i class="ri-sun-fill va-m"></i> 밝은모드</span></a>
+					</li>
+					<!--@if($is_logged)-->
+						<li>
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLogout')}"><span>{$lang->cmd_logout}</span></a>
+						</li>
+						<li>
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}"><span>{$lang->cmd_view_member_info}</span></a>
+						</li>
+						<li cond="$logged_info->is_admin=='Y'">
+							<a href="{getUrl('', 'module', 'admin')}"><span>{$lang->cmd_management}</span></a>
+						</li>
+					<!--@else-->
+						<li>
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLoginForm')}"><span>{$lang->cmd_login}</span></a>
+						</li>
+						<li>
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberSignUpForm')}"><span>{$lang->cmd_signup}</span></a>
+						</li>
+						<li cond="0">
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}"><span>{$lang->cmd_find_member_account}</span></a>
+						</li>
+					<!--@end-->
+					<!--@foreach($top_menu->list as $key => $val)-->
+					<li cond="$val['link']">
+						<a href="{$val['href']}" target="_blank"|cond="$val['open_window']=='Y'"><span>{$val['link']}</span></a>
+					</li>
+					<!--@endforeach-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="header bh_wrap clearfix">
+		<div class="bh_row ai-c">
+			<h1 class="logo col">
+				<a href="<!--@if($layout_info->logo_url)-->{$layout_info->logo_url}<!--@else-->/<!--@end-->" class="bh_color_gray_50"|cond="!$layout_info->logo_img && $layout_info->main_menu_text_color">
+					<!--@if($layout_info->logo_img)-->
+						<img src="{$layout_info->logo_img}" alt="{$layout_info->logo_text}" class="logo_img dark:ds-n" cond="$layout_info->logo_img">
+						<img src="{$layout_info->logo_img_dark}" alt="{$layout_info->logo_text}" class="logo_img_dark ds-n dark:ds-ib" cond="$layout_info->logo_img_dark">
+					<!--@else-->
+						<!--@if($layout_info->logo_text)-->
+							{$layout_info->logo_text}
+						<!--@else-->
+							{Context::getSiteTitle() ?: 'LOGO'}
+						<!--@end-->
+					<!--@end-->
+				</a>
+			</h1>
+			<nav class="main_menu menu_wrap col-auto" id="main_menu">
+				<ul class="bh_wrap">
+					<!--@foreach($main_menu->list as $key1 => $val1)-->
+					<li class="<!--@if($val1['selected'])-->active<!--@end--><!--@if($val1['list'])--> menu_dropdown<!--@end--><!--@if($layout_info->use_category_menu)--> menu_dropdown<!--@end-->">
+						<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{str_replace('/#','#',$val1['href'])}" target="_blank"|cond="$val1['open_window']=='Y'"><i class="{$val1['icon']}" cond="$val1['icon']"></i><span>{$val1['link']}</span></a>
+						<!--@if($layout_info->use_category_menu)-->
+						{@
+							$oDocumentModel = getModel('document');
+							$category_list = array();
+							$category_list = $oDocumentModel->getCategoryList($val1['node_srl']-1);
+							$category = Context::get('category');
+						}
+						<ul cond="$category_list" class="menu_dropdown-content">
+							<li loop="$category_list=>$key2,$val2" class="<!--@if($val2->category_srl===$category)-->active<!--@end--><!--@if($val2->children)--> menu_dropdown<!--@end-->">
+								<a class="uphover:bh_bg_color_main" href="{getUrl('','mid', $val2->mid,'category', $val2->category_srl)}">{$val2->text}</a>
+								<ul cond="$val2->children" class="menu_dropdown-content">
+									<li loop="$val2->children=>$key3,$val3" class="active"|cond="$val3->category_srl===$category"><a class="uphover:bh_bg_color_main" href="{getUrl('','mid', $val3->mid,'category', $val3->category_srl)}">{$val3->text}</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!--@else-->
+						<ul cond="$val1['list']" class="menu_dropdown-content">
+							<li loop="$val1['list']=>$key2,$val2" class="<!--@if($val2['selected'])-->active<!--@end--><!--@if($val2['list'])--> menu_dropdown<!--@end-->">
+								<a class="uphover:bh_bg_color_main" href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+								<ul cond="$val2['list']" class="menu_dropdown-content">
+									<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']"><a class="uphover:bh_bg_color_main" href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!--@end-->
+					</li>
+					<!--@endforeach-->
+					<!--@foreach($main_right_menu->list as $key1 => $val1)-->
+					<li class="fl-r<!--@if($val1['selected'])--> active<!--@end--><!--@if($val1['list'])--> menu_dropdown<!--@end-->">
+						<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'"><span>{$val1['link']}</span></a>
+						<ul cond="$val1['list']" class="menu_dropdown-content">
+							<li loop="$val1['list']=>$key2,$val2" class="<!--@if($val2['selected'])-->active<!--@end--><!--@if($val2['list'])--> menu_dropdown<!--@end-->">
+								<a class="uphover:bh_bg_color_main" href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+								<ul cond="$val2['list']" class="menu_dropdown-content">
+									<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']"><a class="uphover:bh_bg_color_main" href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<!--@endforeach-->
+					<!--@if($layout_info->use_menu_login && $is_logged)-->
+						<li>
+							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLogout')}"><span>{$lang->cmd_logout}</span></a>
+						</li>
+						<li>
+							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}"><span>{$lang->cmd_view_member_info}</span></a>
+						</li>
+					<!--@end-->
+					<!--@if($layout_info->use_menu_login && !$is_logged)-->
+						<li>
+							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLoginForm')}"><span>{$lang->cmd_login}</span></a>
+						</li>
+						<li>
+							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberSignUpForm')}"><span>{$lang->cmd_signup}</span></a>
+						</li>
+						<li cond="0">
+							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}"><span>{$lang->cmd_find_member_account}</span></a>
+						</li>
+					<!--@end-->
+					<div class="select_lang" cond="$layout_info->use_select_lang">
+						<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="icon langToggle" title="Select Language">EN <img src="img/lang_EN.png" alt="EN" /></a>
+						<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="icon langToggle" title="Select Language">KO <img src="img/lang_KO.png" alt="KO" /></a>
+					</div>
+					<div class="select_lang_dropdown" cond="$layout_info->use_select_lang2">
+						<a class="bh_color_333 hover:bh_color_main active:bh_color_main after:bh_bg_color_main" href="#"><span>Language</span><i class="xi-angle-down"></i></a>
+						<div class="triangle"></div>
+						<ul class="select_lang_dropdown-content">
+							<li>
+								<a href="#" onclick="doChangeLangType('ko');return false;" class="icon langToggle" title="Select Language">KO <img src="img/lang_KO.png" alt="KO" /></a>
+							</li>
+							<li>
+								<a href="#" onclick="doChangeLangType('en');return false;" class="icon langToggle" title="Select Language">EN <img src="img/lang_EN.png" alt="EN" /></a>
+							</li>
+						</ul>
+					</div>
+					<div class="menu_search_wrap" cond="0">
+						<a href="#" class="menu_search menu_search_w"><img src="img/header_search_w.png" alt="search" /></a>
+						<a href="#" class="menu_search menu_search_b"><img src="img/header_search.png" alt="search" /></a>
+					</div>
+				</ul>
+			</nav>
+			<div class="col-auto app_download_link_wrap">
+				<a href="#" target="_blank" class="app_download_link">App Download</a>
+			</div>
+			<div cond="0" class="bh bh_search col">
+				<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="Search" />
+					<button type="submit" class="btn btn-search">
+						<i class="xi-magnifier"></i>
+					</button>
+				</form>
+				<!-- /SEARCH -->
+			</div>
+			<div cond="0" class="bh bh_search2">
+				<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input class="bh_bd_color_main" type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="{$lang->cmd_search}" />
+					<button class="bh_bg_color_main bh_bd_color_main" type="submit" class="btn btn-search">
+						<img src="./img/header_search_w.png" alt="{$lang->cmd_search}">
+					</button>
+				</form>
+				<!-- /SEARCH -->
+			</div>
+			<div cond="0" class="bh col bh_search4">
+				<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="원하시는 상품을 검색하세요" />
+					<button type="submit" class="btn-search bh_color_main">
+						<i class="xi-magnifier"></i>
+					</button>
+				</form>
+				<!-- /SEARCH -->
+				<div class="search_keyword_wrap">
+					<span cond="$layout_info->search_hotkeyword">인기검색어</span>
+					<!--@foreach(explode(',',$layout_info->search_hotkeyword) as $key => $val)-->
+					<a href="{getUrl('','mid',$mid,'act','IS','is_keyword',$val)}" class="search_keyword">{$val}</a>
+					<!--@endforeach-->
+				</div>
+			</div>
+			<div class="bh col-auto header_banner fl-r" cond="$layout_info->use_header_banner_right">
+				<a href="{$layout_info->header_banner_right_url}" target="_blank"|cond="$layout_info->header_banner_right_blank">
+					<img src="{$layout_info->header_banner_right_img}" alt="{$layout_info->header_banner_right_alt}" cond="$layout_info->header_banner_right_img">
+				</a>
+			</div>
+			<div cond="0" class="bh right_icon_menu col-auto fl-r">
+				<ul>
+					<li>
+						<!--@if($is_logged)-->
+							<a href="{getUrl('','mid',$logged_info->user_id,'act','dispMemberLoginForm')}" class="btn_bg">글쓰기</a>
+						<!--@else-->
+							<a href="{getUrl('act','dispMemberLoginForm')}" class="btn_bg"><span>{$lang->cmd_login}</span></a>
+						<!--@end-->
+					</li>
+					<li>
+						<a href="{getUrl('','mid',$logged_info->user_id)}"><i class="xi-user"></i></a>
+					</li>
+					<li>
+						<a href="#"><i class="xi-chat"></i></a>
+					</li>
+					<li>
+						<a href="#"><i class="xi-bell"></i></a>
+					</li>
+				</ul>
+			</div>
+			<div cond="0" class="right_menu">
+				<ul class="right_menu_ul">
+					<li class="first_li first_li_relative first_li_search">
+					<a class="first_ab ViweAll offAll" href="#"><i class="xi-magnifier"></i></a>
+					<div class="right_menu_div right_menu_div1 right_menu_off">
+						<div class="dw_search" cond="$layout_info->use_search!=='N'">
+							<form action="{getUrl()}" method="post" id="isSearch">
+								<input type="hidden" name="vid" value="{$vid}" cond="$vid" />
+								<input type="hidden" name="mid" value="{$layout_info->DWmember_info}" />
+								<input type="hidden" name="act" value="IS" />
+								<input type="hidden" name="search_target" value="title_content" />
+								<input name="is_keyword" type="text" class="HBinputText bh_bd_color_main" title="keyword" value=" {$lang->cmd_search}..." onfocus="if(this.value==' {$lang->cmd_search}...')this.value='';" onblur="if(this.value=='')this.value=' {$lang->cmd_search}...';" />
+								<input type="image" src="img/header_search.png" alt="submit" title="submit" class="HBsearch" />
+							</form>
+						</div>
+					</div>
+					</li>
+					<li cond="0" class="first_li first_li_relative first_li_relative2">
+						<a class="first_ab ViweAll offAll" href="#"><i class="xi-user-circle"></i></a>
+						<div class="right_menu_div right_menu_div2 right_menu_off">
+							<ul class="right_login wrap_login">
+								<!--@if($is_logged)-->
+								<li class="first_login"|cond="$layout_info->use_language!=='Y'"><a class="login_A" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+								<li><a class="login_A" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}">{$lang->cmd_view_member_info}</a></li>
+								<li cond="$logged_info->is_admin=='Y' && !$site_module_info->site_srl"><a class="login_A" href="{getUrl('', 'module', 'admin')}">{$lang->cmd_management}</a></li>
+								<!--@else-->
+								<li class="first_login"|cond="$layout_info->use_language!=='Y'"><a class="act_login login_A" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+								<li><a class="login_A" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+								<li><a class="login_A" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a></li>
+								<!--@end-->
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+<header class="bh mobile_header_wrap">
+	<!--@if(1 || $is_index)-->
+		<div class="bh mobile_header_top bh_bg_color_white">
+			<div class="bh mobile_logo">
+				<a href="<!--@if($layout_info->logo_url)-->{$layout_info->logo_url}<!--@else-->/<!--@end-->">
+					{@
+						$layout_info->m_logo_img = $layout_info->m_logo_img ?? $layout_info->logo_img;
+						$layout_info->m_logo_img_dark = $layout_info->m_logo_img_dark ?? $layout_info->logo_img_dark;
+					}
+					<!--@if($layout_info->m_logo_img)-->
+						<img src="{$layout_info->m_logo_img}" alt="{$layout_info->logo_text}" class="m_logo_img dark:ds-n" cond="$layout_info->m_logo_img">
+						<img src="{$layout_info->m_logo_img_dark}" alt="{$layout_info->logo_text}" class="m_logo_img_dark ds-n dark:ds-ib" cond="$layout_info->m_logo_img_dark">
+					<!--@else-->
+						<!--@if($layout_info->logo_text)-->
+							{$layout_info->logo_text}
+						<!--@else-->
+							{Context::getSiteTitle() ?: 'LOGO'}
+						<!--@end-->
+					<!--@end-->
+				</a>
+			</div>
+			<a href="#" class="mobile_menu_btn mobile_menu mobile_menu_act bh_layer_toggle" data-target="bh_layer_m_menu"><i class="ri-menu-fill"></i></a>
+			<!--@if($layout_info->use_select_lang && !$layout_info->m_phone_number)-->
+			<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_EN.png" alt="EN" /></a>
+			<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_KO.png" alt="KO" /></a>
+			<!--@end-->
+			<a cond="$layout_info->m_phone_number" href="tel:{$layout_info->m_phone_number}" class="mobile_act_btn mobile_menu mobile_menu_phone"><i class="ri-phone-fill"></i></a>
+			<a cond="$layout_info->m_search" href="#" class="mobile_act_btn mobile_menu mobile_menu_search"><i class="ri-search-line"></i></a>
+			<a cond="0" href="#" onclick="doDarkThemeToggle()" class="mobile_act_btn mobile_menu mobile_menu_dark"><i class="ri-moon-fill ds-ib dark:ds-n"></i><i class="ri-sun-fill ds-n dark:ds-ib"></i></a>
+		</div>
+	<!--@end-->
+	<!--@if(0 && !$is_index)-->
+		<include target="include/mobile_header_nav.html" />
+	<!--@end-->
+	<div cond="$layout_info->m_search" class="bh bh_m_search_wrap dark:bh_bd_color_t">
+		<!-- SEARCH -->
+		<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+			<input type="hidden" name="vid" value="{$vid}" />
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="act" value="IS" />
+			<input type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="" />
+			<button type="button" class="btn-delete">삭제</button>
+		</form>
+		<button type="button" class="btn-close" id="m_search_cancel">닫기</button>
+		<!-- /SEARCH -->
+		<div cond="$layout_info->search_hotkeyword" class="search_keyword_wrap">
+			<div class="bh_search_tab">
+				<ul class="bh bh_row no-gutters clearfix">
+					<li class="bh col"><a class="active" data-li="bh_li1"><span>인기 검색어</span></a></li>
+					<li class="bh col"><a data-li="bh_li2"><span> </span></a></li>
+				</ul>
+			</div>
+			<div class="bh bh_li bh_li1 search_keyword search_hotkeyword" id="bh_li1" style="display: block;">
+				<ul>
+					<!--@foreach(explode(',',$layout_info->search_hotkeyword) as $key => $val)-->
+					<li><a href="{getUrl('','mid',$mid,'act','IS','is_keyword',$val)}" class="search_keyword">{$val}</a></li>
+					<!--@endforeach-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="dimmed"></div>
+	<!--@if($layout_info->use_m_header_menu)-->
+	<load target="slider/swiper.min.css" />
+	<load target="slider/swiper.default.scss" />
+	<load target="slider/swiper.min.js" />
+	<nav class="bh mobile_header_menu" id="mobile_header_menu">
+		<ul class="swiper-menu swiper-default">
+			<div class="swiper-wrapper">
+				{@$idx=1}
+				<!--@foreach($m_main_menu->list as $key1 => $val1)-->
+				<li class="swiper-slide<!--@if($val1['selected'])--> on<!--@end-->">
+					<a class="bh on:bh_color_main" href="#" data-href="{str_replace('/#','#',$val1['href'])}" target="_blank"|cond="$val1['open_window']=='Y'"><span class="after:bh_bg_color_main">{$val1['link']}</span></a>
+					{@if($val1['selected']) : $mobile_header_menu_on=$idx; $val1_node_srl = $val1['node_srl']; $val1_list = $val1['list']; endif;}
+				</li>
+				{@$idx++}
+				<!--@endforeach-->
+			</div>
+			<div class="menu-button-next"></div>
+			<div class="menu-button-prev"></div>
+		</ul>
+	</nav>
+	<script>
+	$(document).ready(function(){
+		var slidermenu = new Swiper('.swiper-menu', {
+			slidesPerView: 'auto',
+			<!--@if(isset($mobile_header_menu_on))-->
+			centeredSlides: false,
+			<!--@end-->
+			navigation: {
+				nextEl: ".menu-button-next",
+				prevEl: ".menu-button-prev",
+			},
+			speed: 500,
+		});
+		$('.swiper-menu').children().find('a').each( function( index ) {
+			$(this).attr( 'data-position', index );
+		});
+		<!--@if(isset($mobile_header_menu_on))-->
+		slidermenu.slideTo({$mobile_header_menu_on-1}, 500, true);
+		<!--@end-->
+		$(document).on('click', '.swiper-menu li.swiper-slide > a', function() {
+			slidermenu.slideTo($(this).data( 'position' ), 500, true);
+			window.location.href = $(this).data( 'href' );
+		});
+	});
+	</script>
+	<!--@if(isset($mobile_header_menu_on) && $layout_info->use_m_header_menu==2)-->
+	<!--@if($layout_info->use_category_menu)-->
+		{@
+			$oDocumentModel = getModel('document');
+			$category_list = array();
+			$category_list = $oDocumentModel->getCategoryList($val1_node_srl-1);
+			$category = Context::get('category');
+		}
+		<nav cond="$category_list" class="bh mobile_header_menu_sub" id="mobile_header_menu_sub">
+			<ul class="swiper-menu-sub swiper-default">
+				<div class="swiper-wrapper">
+					{@$idx=1}
+					<!--@foreach($category_list as $key2 => $val2)-->
+					<li class="swiper-slide<!--@if($val2->category_srl===$category)--> on<!--@end-->">
+						<a class="bh on:bh_color_main" href="#" data-href="{getUrl('','mid', $val2->mid,'category', $val2->category_srl)}"><span class="on:bh_color_main">{$val2->text}</span></a>
+						{@if($val2->category_srl===$category)$mobile_header_menu_sub_on=$idx;}
+					</li>
+					{@$idx++}
+					<!--@endforeach-->
+				</div>
+				<div class="menu-button-next"></div>
+				<div class="menu-button-prev"></div>
+			</ul>
+		</nav>
+	<!--@else-->
+		<nav cond="$val1_list" class="bh mobile_header_menu_sub" id="mobile_header_menu_sub">
+			<ul class="swiper-menu-sub swiper-default">
+				<div class="swiper-wrapper">
+					{@$idx=1}
+					<!--@foreach($val1_list as $key2 => $val2)-->
+					<li class="swiper-slide<!--@if($val2['selected'])--> on<!--@end-->">
+						<a class="bh on:bh_color_main" href="#" data-href="{str_replace('/#','#',$val2['href'])}" target="_blank"|cond="$val2['open_window']=='Y'"><span class="on:bh_color_main">{$val2['link']}</span></a>
+						{@if($val2['selected'])$mobile_header_menu_sub_on=$idx;}
+					</li>
+					{@$idx++}
+					<!--@endforeach-->
+				</div>
+				<div class="menu-button-next"></div>
+				<div class="menu-button-prev"></div>
+			</ul>
+		</nav>
+	<!--@end-->
+	<script>
+	$(document).ready(function(){
+		var slidermenusub = new Swiper('.swiper-menu-sub', {
+			slidesPerView: 'auto',
+			<!--@if($mobile_header_menu_sub_on)-->
+			centeredSlides: false,
+			<!--@end-->
+			navigation: {
+				nextEl: ".menu-button-next",
+				prevEl: ".menu-button-prev",
+			},
+			speed: 500,
+		});
+		$('.swiper-menu-sub').children().find('a').each( function( index ) {
+			$(this).attr( 'data-position', index );
+		});
+		<!--@if($mobile_header_menu_sub_on)-->
+		slidermenusub.slideTo({$mobile_header_menu_sub_on-1}, 500, true);
+		<!--@end-->
+		$(document).on('click', '.swiper-menu-sub li.swiper-slide > a', function() {
+			slidermenusub.slideTo($(this).data( 'position' ), 500, true);
+			window.location.href = $(this).data( 'href' );
+		});
+	});
+	</script>
+	<!--@end-->
+	<!--@end-->
+</header>
+
+<div class="bh bh_layer_m_menu bh_layer bh_layer_left">
+	<div class="bh bh_layer_content">
+		<div class="bh bh_layer_header bh_bd_color_t">
+			<span class="bh_title"></span>
+			<div class="bh bh_layer_close">
+				<span><i class="xi-close"></i></span>
+			</div>
+		</div>
+		<div class="bh bh_layer_body pd-0">
+			<div class="bh mobile_top_menu" cond="$layout_info->use_m_menu_login">
+				<ul class="bh bh_row gutters-5">
+					<!--@if($is_logged)-->
+						<li class="col">
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberInfo')}"><span><i class="xi-user"></i>{explode(' ', $lang->cmd_view_member_info)[0]}</span></a>
+						</li>
+						<li class="col">
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLogout')}"><span><i class="xi-external-link"></i>{$lang->cmd_logout}</span></a>
+						</li>
+						<li class="col-auto" cond="$logged_info->is_admin=='Y'">
+							<a href="{getUrl('', 'module', 'admin')}"><span><i class="xi-cog mg-0"></i></span></a>
+						</li>
+					<!--@else-->
+						<li class="col">
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberLoginForm')}"><span><i class="xi-lock"></i>{$lang->cmd_login}</span></a>
+						</li>
+						<li class="col">
+							<a href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberSignUpForm')}"><span><i class="xi-user-add"></i>{$lang->cmd_signup}</span></a>
+						</li>
+					<!--@end-->
+				</ul>
+			</div>
+			<nav class="bh mobile_main_menu" cond="$m_main_menu">
+				<ul>
+					{@$idx=1}
+					<!--@foreach($m_main_menu->list as $key1 => $val1)-->
+					<li class="active"|cond="$val1['selected']">
+						<a class="bh" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'"><i class="{$val1['icon']}" cond="$val1['icon']"></i> {$val1['link']}</a>
+						<ul class="bh_toggle_content" cond="$val1['list']">
+							<!--@foreach($val1['list'] as $key2 => $val2)-->
+							<li class="active"|cond="$val2['selected']">
+								<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">- {$val2['link']}</a>
+								<ul cond="$val2['list']">
+									<!--@foreach($val2['list'] as $key3 => $val3)-->
+									<li class="active"|cond="$val3['selected']">
+										<a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a>
+									</li>
+									<!--@endforeach-->
+								</ul>
+							</li>
+							<!--@endforeach-->
+						</ul>
+						<div class="bh_toggle" cond="$val1['list']">
+							<i class="bh_toggle_down xi-angle-down"></i>
+							<i class="bh_toggle_up xi-angle-up"></i>
+						</div>
+					{@$idx++}
+					</li>
+					<!--@endforeach-->
+				</ul>
+			</nav>
+
+		</div>
+	</div>
+	<div class="bh bh_layer_dimmed"></div>
+</div>

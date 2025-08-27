@@ -1,0 +1,58 @@
+<include target="header.html" />
+<include target="sub_tab.html" />
+
+<table class="x_table x_table-striped x_table-hover dsTg">
+	<caption>
+		<div class="x_pull-right x_btn-group">
+			<button class="x_btn x_active __simple">{$lang->simple_view}</button>
+			<button class="x_btn __detail">{$lang->detail_view}</button>
+		</div>
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" class="nowr">{$lang->layout_name}</th>
+			<th scope="col" class="nowr">{$lang->version}</th>
+			<th scope="col" class="nowr">{$lang->author}</th>
+			<th scope="col" class="nowr rx_detail_marks">{$lang->path}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr loop="$layout_list => $key, $layout">
+			<block cond="$layout->title">
+				<td class="title">
+					<p><a href="{getUrl('act', 'dispLayoutAdminInstanceList', 'type', $type, 'layout', $layout->layout)}">{$layout->title}</a></p>
+					<p>{$layout->description}</p>
+					<p cond="$layout->need_update == 'Y'" class="update">
+						{$lang->msg_avail_easy_update} <a href="{$layout->update_url}&amp;return_url={urlencode(getRequestUriByServerEnviroment())}">{$lang->msg_do_you_like_update}</a>
+					</p>
+				</td>
+				<td>
+					<!--@if(Context::isDefaultPlugin($layout->layout, 'layout'))-->
+						<img src="{\RX_BASEURL}common/img/icon.png" class="core_symbol" alt="Rhymix Core" title="Rhymix Core" />
+					<!--@else-->
+						{$layout->version}
+					<!--@endif-->
+				</td>
+				<td>
+					<block loop="$layout->author => $author">
+						<a cond="$author->homepage" href="{$author->homepage}" target="_blank">{$author->name}</a>
+						<block cond="!$author->homepage">{$author->name}</block>
+					</block>
+				</td>
+				<td class="rx_detail_marks">{$layout->path}</td>
+				<td class="nowr rx_detail_marks"><a cond="$layout->remove_url" class="x_btn x_btn-link" href="{$layout->remove_url}&amp;return_url={urlencode(getRequestUriByServerEnviroment())}">{$lang->cmd_delete}</a></td>
+			</block>
+			<block cond="!$layout->title">
+				<td class="title">
+					<p><a href="{getUrl('act', 'dispLayoutAdminInstanceList', 'type', $type, 'layout', $layout->layout)}">{$layout->layout}</a></p>
+					<p cond="$layout->need_update == 'Y'" class="update">
+						{$lang->msg_avail_easy_update} <a href="{$layout->update_url}&amp;return_url={urlencode(getRequestUriByServerEnviroment())}">{$lang->msg_do_you_like_update}</a>
+					</p>
+				</td>
+				<td>-</td>
+				<td>-</td>
+				<td class="rx_detail_marks">{$layout->path}</td>
+			</block>
+		</tr>
+	</tbody>
+</table>

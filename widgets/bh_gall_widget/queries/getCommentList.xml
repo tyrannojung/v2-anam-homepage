@@ -1,0 +1,22 @@
+<query id="getCommentList" action="select">
+	<tables>
+		<table name="comments" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="status" var="status" pipe="and" />
+		<condition operation="in" column="module_srl" var="module_srl" filter="number" pipe="and" />
+		<condition operation="equal" column="document_srl" var="document_srl" filter="number" pipe="and" />
+		<group pipe="and">
+			<condition operation="more" column="regdate" var="start_regdate" pipe="and" />
+			<condition operation="less" column="regdate" var="end_regdate" pipe="and" />
+		</group>
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="list_order" order="asc" if="is_index_default" />
+		<index default="rand()" if="is_index_rand" />
+		<list_count var="list_count" default="20" />
+	</navigation>
+</query>

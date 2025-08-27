@@ -1,0 +1,13 @@
+	<ul id="language" class="enfont">
+		<li loop="$lang_supported=>$key,$val">
+			<i cond="$lang_type==$key" class="x_icon-ok-sign x_icon-white" title="Selected Language"></i>
+			<a href="{getUrl('l', $key)}" cond="$lang_type!=$key">{$val}</a>
+			<strong cond="$lang_type==$key">{$val}</strong>
+		</li>
+	</ul>
+	<div id="footer">
+		Rhymix is based on the XpressEngine CMS owned by XEHub,<br />
+		but it has been an independent project since 2015.
+	</div>
+
+</div>

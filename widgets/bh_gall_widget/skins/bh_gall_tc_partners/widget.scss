@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.#{$skin} {
+	.partner_list{
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 30px;
+		row-gap: 20px;
+		.partner_item{
+			flex: 0 0 calc(33.3333% - (60px / 3));
+			width: 1000%;
+			height: 94px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 15px;
+			background-color: #f7f8fc;
+			padding: 15px;
+		}
+		@media (max-width:992px) {
+			column-gap: 10px;
+			row-gap: 10px;
+			.partner_item{
+				flex: 0 0 calc(50% - 5px);
+				height: 50px;
+				border-radius: 10px;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+
+}

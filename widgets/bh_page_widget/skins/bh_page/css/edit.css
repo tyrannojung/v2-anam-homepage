@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* bh (9haging@gmail.com) */
+
+.bh_page_widget_edit_wrap {
+	display: block;
+}
+.bh_page_widget_edit_wrap .bh_page_widget_edit_inner .page_editor {
+	height: calc(100vh - 62px);
+	margin: 0;
+}
+.bh_page_widget_edit_wrap .bd_btn_wrap {
+	max-height: 62px;
+	text-align: right;
+	padding: 10px;
+}
+.bh_page_widget_edit_wrap .bd_btn_wrap .bh_btn {
+	display: inline-block;
+	color: #fff;
+	text-align: center;
+	background-color: #343a40;
+	border: 1px solid transparent;
+	border-color: #343a40;
+	padding: 8px 22px;
+	cursor: pointer;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.bh_page_widget_edit_wrap .bd_btn_wrap .bh_btn:hover {
+	color: #fff;
+	background-color: #23272b;
+	border-color: #1d2124;
+}
+
+*:not(html):not(body):not(body > .bh):not(body > .bh > .body):not(body > .bh > .body > .content_wrap):not(body > .bh > .body > .content_wrap *),
+.bh .content_breadcrumb_wrap {
+	display: none !important;
+}
+html {
+	overflow-y: auto;
+}
+body > .bh,
+.bh .body,
+.bh .body #content {
+	padding: 0 !important;
+}
+.bh .body > .content_wrap > .bh_wrap {
+	max-width: none;
+	padding-right: 0;
+	padding-left: 0;
+}
+#content .content_inner > .btnArea {
+	display: none !important;
+}
+
+@media (max-width: 992px) {
+
+}

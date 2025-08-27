@@ -1,0 +1,11 @@
+@version(2)
+
+@if (!empty($widget_info->page_navigation) && $widget_info->page_navigation->page_count > 1)
+	@include ('_page.html')
+@else
+	@if ($widget_info->list_type == "gallery")
+		@include ('gallery.html')
+	@else
+		@include ('gallery.html')
+	@end
+@end

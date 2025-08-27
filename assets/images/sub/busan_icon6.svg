@@ -1,0 +1,17 @@
+<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="65" cy="65" r="63.5" fill="#4DA2FE" stroke="url(#dryrk9wdna)" stroke-width="3"/>
+    <g clip-path="url(#ununostuub)" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M78.39 83.166c.733.958 2.024 1.592 3.494 1.592 2.284 0 4.134-1.531 4.134-3.422 0-1.79-1.665-3.201-3.776-3.41h.003c-1.919-.139-3.426-1.47-3.426-3.094 0-1.716 1.68-3.107 3.754-3.107 1.317 0 2.476.562 3.146 1.41M82.206 84.904v2.42M82.206 68.988v2.523"/>
+        <path d="M90.57 86.778c4.77-4.762 4.77-12.481 0-17.243-4.769-4.76-12.5-4.76-17.27 0-4.769 4.762-4.769 12.481 0 17.243 4.77 4.76 12.501 4.76 17.27 0zM46.399 56.595h-6.374a4.172 4.172 0 0 1-4.175-4.169V51.11a4.172 4.172 0 0 1 4.175-4.169h6.374M62.222 63.617l-15.823-7.022v-9.652l15.823-7.02v23.694z"/>
+        <path d="M46.38 61.29v3.76a.934.934 0 0 1-.936.934h-2.7a.934.934 0 0 1-.934-.933v-8.456M83.917 59.159l-3.705-3.765M83.918 59.159l3.708-3.765M67.183 48.389h16.735v10.77M49.72 70.607l3.708 3.765M49.72 70.607l-3.706 3.765M63.743 81.377H49.72v-10.77"/>
+    </g>
+    <defs>
+        <linearGradient id="dryrk9wdna" x1="0" y1="0" x2="130" y2="130" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".75"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+        </linearGradient>
+        <clipPath id="ununostuub">
+            <path fill="#fff" transform="translate(35 35)" d="M0 0h60v60H0z"/>
+        </clipPath>
+    </defs>
+</svg>

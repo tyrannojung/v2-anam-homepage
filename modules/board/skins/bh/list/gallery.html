@@ -1,0 +1,247 @@
+<load target="gallery.scss" />
+
+<!--@if($mid == 'news')-->
+<style>
+	.bh .list_header .category{ margin: 0; }
+</style>
+<div class="news_list_wrap">
+	<div class="news_notice_wrap">
+		<div class="sub_page_title ta-c animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
+			<p class="title1">News</p>
+			<p class="title2">AnamWallet의 각종 소식</p>
+		</div>
+		<div class="news_notice">
+			<!--@if(!$module_info->write_check_notice_name)-->
+			{@ $notice_num = 0 }
+			<!--@foreach($notice_list as $no => $document)-->
+			<div class="notice_item animate-in" data-anim-delay="0" data-anim-type="fade-in-up" cond="$notice_num == 0">
+				<div class="item_inner">
+					<div class="item_img">
+						<!--@if($document->thumbnailExists())-->
+						<img src="{$document->getThumbnail(570, 354, 'fill')}" alt="image" />
+						<!--@else-->
+						<div class="thumbnail_lazy" style="padding-bottom:{$module_info->list_gallery_thumbnail_height/$module_info->list_gallery_thumbnail_width*100}%;"|cond="$module_info->list_gallery_thumbnail_width"></div>
+						<!--@end-->
+						<a cond="$document->isEditable()" class="for_modify" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+					</div>
+					<div class="item_content">
+						<p class="title">
+							{$document->getTitle()|noescape}
+						</p>
+						<p class="summary">
+							{$document->getSummary('')|noescape}
+						</p>
+						<p class="regdate">
+							{$document->getRegdate('Y.m.d')}
+						</p>
+					</div>
+				</div>
+				<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'"></a>
+			</div>
+			{@ $notice_num++ }
+			<!--@endforeach-->
+			<!--@end-->
+		</div>
+	</div>
+	<ul class="bh list_wrap">
+		<li cond="($document_list || $notice_list) && $grant->manager && $grant->can('moderate:document')">
+			<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" class="iCheck" title="Check All" />
+		</li>
+	</ul>
+	<div class="bh gallery_wrap bh_row gutters-5 lg:gutters-15">
+		{@$_idx=1}
+		<!--@foreach($document_list as $no => $document)-->
+			<div class="bh bh_item item item{$_idx} col-6 md:col-4 lg:col-4 mb-20 lg:mb-50">
+				<div class="bh bh_item_inner">
+				<!--@foreach($list_config as $key => $val)-->
+					<!--@if($val->type=='thumbnail' && $val->idx==-1)-->
+						<div class="bh_img_content clearfix">
+							<span class="bh_category" cond="$module_info->list_category_add && $module_info->use_category=='Y' && $document->get('category_srl')" style="background-color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span>
+							<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'">
+								<!--@if($document->thumbnailExists())-->
+									<img src="{$document->getThumbnail($module_info->list_gallery_thumbnail_width, $module_info->list_gallery_thumbnail_height, 'crop')}" alt="image" />
+								<!--@else-->
+									<div class="thumbnail_lazy" style="padding-bottom:{$module_info->list_gallery_thumbnail_height/$module_info->list_gallery_thumbnail_width*100}%;"|cond="$module_info->list_gallery_thumbnail_width"></div>
+								<!--@end-->
+								<span cond="$grant->manager && $grant->can('moderate:document')" class="check"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></span>
+								<div class="bh_hover_content">
+									<span class="hover_title"></span>
+									<span class="hover_content"></span>
+								</div>
+							</a>
+							<a cond="$document->isEditable()" class="for_modify" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+						</div>
+					<!--@end-->
+				<!--@endforeach-->
+					<div class="bh_content_wrap ff-nskr" cond="$list_config['title'] || $list_config['summary'] || $list_config['nick_name'] || $list_config['nick_name']">
+						<!--@foreach($list_config as $key => $val)-->
+							<div class="bh_title" cond="$val->type=='title' && $val->idx==-1">
+								<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'">
+									<span class="bh">
+										{$document->getTitle($module_info->list_gallery_title_cut_size)|noescape}
+									</span>
+								</a>
+							</div>
+							<div class="bh_content" cond="$val->type=='summary' && $val->idx==-1">
+								{$document->getSummary($module_info->list_gallery_content_cut_size)}
+							</div>
+							<div class="bh bh_profile_wrap" cond="$val->type=='nick_name' && $val->idx==-1">
+								<div class="bh bh_profile_img">
+									<a href="#">
+										{@ $profile_src = $document->getProfileImage(); }
+										<img cond="$profile_src" alt="profile" src="{$profile_src}">
+										<img cond="!$profile_src" alt="noprofile" src="../img/noprofile.png">
+									</a>
+								</div>
+								<div class="bh bh_profile_info">
+									<p class="bh fs-15 fw-m">
+										{$document->getNickName()}
+									</p>
+									<p class="bh bh_color_888 fs-13 fw-l">
+										{getTimeGap($document->getRegdate('YmdHis'), "Y.m.d")}
+									</p>
+								</div>
+							</div>
+							<div class="bh bh_date" cond="$val->type=='regdate' && $val->idx==-1">
+								<span>
+									{$document->getRegdate('Y.m.d')}
+								</span>
+							</div>
+						<!--@endforeach-->
+							<div class="label_wrap">
+								{@ $label = $document->getExtraEidValue('label'); }
+								<!--@if($label && is_array($label))-->
+								<span class="label label1" cond="in_array('NEW', $label)">NEW</span>
+								<span class="label label2" cond="in_array('BEST', $label)">BEST</span>
+								<span class="label label3" cond="in_array('HOT', $label)">HOT</span>
+								<span class="label label4" cond="in_array('1', $label)">1</span>
+								<!--@end-->
+							</div>
+							<div class="bh_price mt-10 mb-10" cond="$document->getExtraEidValue('price')">
+								<p class="price clearfix">
+									<span class="fl-l">정가</span>
+									<span class="fl-r">{number_format($document->getExtraEidValue('price'))}원</span>
+								</p>
+								<p class="price_card bh_color_main fw-b clearfix">
+									<span class="fl-l">할인가</span>
+									<span class="fl-r">{number_format($document->getExtraEidValue('price')-$layout_info->price_card)}원</span>
+								</p>
+							</div>
+					</div>
+				</div>
+				<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'"></a>
+			</div>
+		{@$_idx++}
+		<!--@end-->
+	</div>
+</div>
+<!--@else-->
+<ul class="bh list_wrap">
+	<li cond="($document_list || $notice_list) && $grant->manager && $grant->can('moderate:document')">
+		<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" class="iCheck" title="Check All" />
+	</li>
+	<!--@if(!$module_info->write_check_notice_name)-->
+	<!--@foreach($notice_list as $no => $document)-->
+	<li class="notice">
+		<span class="label">{$lang->notice}</span>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+			{$document->getTitle()|noescape}
+		</a>
+		<a cond="$module_info->use_comment === 'Y' && $document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#comment" class="replyNum" title="Replies">
+			[{$document->getCommentCount()}]
+		</a>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}"></a>
+		<span class="check" cond="$grant->manager && $grant->can('moderate:document')">
+			<input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" />
+		</span>
+	</li>
+	<!--@endforeach-->
+	<!--@end-->
+</ul>
+<div class="bh gallery_wrap bh_row gutters-5 lg:gutters-15">
+	{@$_idx=1}
+	<!--@foreach($document_list as $no => $document)-->
+		<div class="bh bh_item item item{$_idx} col-6 md:col-4 lg:col-4 mb-20 lg:mb-50">
+			<div class="bh bh_item_inner">
+			<!--@foreach($list_config as $key => $val)-->
+				<!--@if($val->type=='thumbnail' && $val->idx==-1)-->
+					<div class="bh_img_content clearfix">
+						<span class="bh_category" cond="$module_info->list_category_add && $module_info->use_category=='Y' && $document->get('category_srl')" style="background-color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span>
+						<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'">
+							<!--@if($document->thumbnailExists())-->
+								<img src="{$document->getThumbnail($module_info->list_gallery_thumbnail_width, $module_info->list_gallery_thumbnail_height, 'crop')}" alt="image" />
+							<!--@else-->
+								<div class="thumbnail_lazy" style="padding-bottom:{$module_info->list_gallery_thumbnail_height/$module_info->list_gallery_thumbnail_width*100}%;"|cond="$module_info->list_gallery_thumbnail_width"></div>
+							<!--@end-->
+							<span cond="$grant->manager && $grant->can('moderate:document')" class="check"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></span>
+							<div class="bh_hover_content">
+								<span class="hover_title"></span>
+								<span class="hover_content"></span>
+							</div>
+						</a>
+						<a cond="$document->isEditable()" class="for_modify" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+					</div>
+				<!--@end-->
+			<!--@endforeach-->
+				<div class="bh_content_wrap ff-nskr" cond="$list_config['title'] || $list_config['summary'] || $list_config['nick_name'] || $list_config['nick_name']">
+					<!--@foreach($list_config as $key => $val)-->
+						<div class="bh_title" cond="$val->type=='title' && $val->idx==-1">
+							<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'">
+								<span class="bh">
+									{$document->getTitle($module_info->list_gallery_title_cut_size)|noescape}
+								</span>
+							</a>
+						</div>
+						<div class="bh_content" cond="$val->type=='summary' && $val->idx==-1">
+							{$document->getSummary($module_info->list_gallery_content_cut_size)}
+						</div>
+						<div class="bh bh_profile_wrap" cond="$val->type=='nick_name' && $val->idx==-1">
+							<div class="bh bh_profile_img">
+								<a href="#">
+									{@ $profile_src = $document->getProfileImage(); }
+									<img cond="$profile_src" alt="profile" src="{$profile_src}">
+									<img cond="!$profile_src" alt="noprofile" src="../img/noprofile.png">
+								</a>
+							</div>
+							<div class="bh bh_profile_info">
+								<p class="bh fs-15 fw-m">
+									{$document->getNickName()}
+								</p>
+								<p class="bh bh_color_888 fs-13 fw-l">
+									{getTimeGap($document->getRegdate('YmdHis'), "Y.m.d")}
+								</p>
+							</div>
+						</div>
+						<div class="bh bh_date" cond="$val->type=='regdate' && $val->idx==-1">
+							<span>
+								{$document->getRegdate('Y.m.d')}
+							</span>
+						</div>
+					<!--@endforeach-->
+						<div class="label_wrap">
+							{@ $label = $document->getExtraEidValue('label'); }
+							<!--@if($label && is_array($label))-->
+							<span class="label label1" cond="in_array('NEW', $label)">NEW</span>
+							<span class="label label2" cond="in_array('BEST', $label)">BEST</span>
+							<span class="label label3" cond="in_array('HOT', $label)">HOT</span>
+							<span class="label label4" cond="in_array('1', $label)">1</span>
+							<!--@end-->
+						</div>
+						<div class="bh_price mt-10 mb-10" cond="$document->getExtraEidValue('price')">
+							<p class="price clearfix">
+								<span class="fl-l">정가</span>
+								<span class="fl-r">{number_format($document->getExtraEidValue('price'))}원</span>
+							</p>
+							<p class="price_card bh_color_main fw-b clearfix">
+								<span class="fl-l">할인가</span>
+								<span class="fl-r">{number_format($document->getExtraEidValue('price')-$layout_info->price_card)}원</span>
+							</p>
+						</div>
+				</div>
+			</div>
+			<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'"></a>
+		</div>
+	{@$_idx++}
+	<!--@end-->
+</div>
+<!--@end-->

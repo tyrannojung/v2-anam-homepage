@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">페이지 출력 위젯</title>
+	<description xml:lang="ko">페이지 출력 위젯입니다.</description>
+	<version>1.06</version>
+	<date>2021-07-21</date>
+	<author email_address="9haging@gmail.com" link="">
+		<name xml:lang="ko">bh</name>
+	</author>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">설정</title>
+			<var id="page_name" type="text">
+				<name xml:lang="ko">파일이름</name>
+			</var>
+			<var id="margin" type="text">
+				<name xml:lang="ko">위젯 마진</name>
+				<description xml:lang="ko">예) 0 0 10px 0 (위 오른쪽 아래 왼쪽)</description>
+			</var>
+		</group>
+	</extra_vars>
+</widget>

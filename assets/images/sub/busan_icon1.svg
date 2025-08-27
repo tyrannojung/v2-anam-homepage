@@ -1,0 +1,21 @@
+<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="phph4g4gkb" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="130">
+        <g clip-path="url(#cx7b352cra)" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30.074 99.911H1.636v28.435h28.438V99.911zM79.219 99.911H50.78v28.435H79.22V99.911zM128.364 99.911H99.926v28.435h28.438V99.911zM121.543 83.297l-7.398 7.415-7.398-7.415M72.398 83.297 65 90.712l-7.398-7.415M23.271 83.297l-7.398 7.415-7.416-7.415"/>
+            <path d="M114.127 90.712V68.559H15.874v22.153M65 51.647v39.065M96.97 19.997V6.821c0-2.881-2.398-5.185-5.353-5.185H37.918M31.543 7.843v38.6c0 2.88 2.416 5.185 5.372 5.185h54.72c2.956 0 5.354-2.323 5.354-5.185V33.285"/>
+            <path d="M101.059 22.209v8.865c0 1.226-1.022 2.211-2.305 2.211H79.238c-3.792 0-6.86-2.973-6.86-6.653 0-1.84.782-3.475 2.008-4.702a7.004 7.004 0 0 1 4.852-1.933h19.516c1.283 0 2.305 1.004 2.305 2.212zM80 26.632h.743M41.45 1.635h-2.807c-3.922 0-7.119 3.086-7.119 6.895v3.996"/>
+        </g>
+    </mask>
+    <g mask="url(#phph4g4gkb)">
+        <path fill="url(#colz6jbq9c)" d="M0 0h130v130H0z"/>
+    </g>
+    <defs>
+        <linearGradient id="colz6jbq9c" x1="65" y1="-5.5" x2="65" y2="130" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4DA2FE"/>
+            <stop offset="1" stop-color="#005FC5"/>
+        </linearGradient>
+        <clipPath id="cx7b352cra">
+            <path fill="#fff" d="M0 0h130v130H0z"/>
+        </clipPath>
+    </defs>
+</svg>

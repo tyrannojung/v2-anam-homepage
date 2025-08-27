@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon version="0.2">
+	<title xml:lang="ko">팝업 </title>
+	<title xml:lang="en">Popup </title>
+	<description xml:lang="ko">팝업 관리 모듈에 등록된 팝업창을 선택된 모듈에서 오픈시키는 애드온입니다.</description>
+	<description xml:lang="en">Let the popup windows opened.</description>
+	<version>1.5.4.3</version>
+	<date>2013-05-23</date>
+
+	<author email_address="#" link="#">
+		<name xml:lang="ko">bh</name>
+		<name xml:lang="en">bh</name>
+	</author>
+	<extra_vars>
+		<var name="element_id">
+			<title xml:lang="ko">팝업 위치 기준 element ID</title>
+			<title xml:lang="en">Pop-up elements open position</title>
+			<description xml:lang="ko">팝업의 위치를 설정할 수 있는 유일한 엘리먼트의 ID를 입력합니다. 기본값은 body 입니다.</description>
+			<description xml:lang="en">You can set the location of the pop-up, the only element of the ID. The default is the body.</description>
+		</var>
+	</extra_vars>
+</addon>

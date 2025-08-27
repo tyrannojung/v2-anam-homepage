@@ -1,0 +1,29 @@
+<load target="mobile_header_nav.scss" />
+
+{@
+	$nav_title = Context::getBrowserTitle() ?? $module_info->browser_title;
+	if(!empty($oDocument)) $nav_title = $oDocument->getTitleText() ?: $nav_title;
+	if (!empty($act)) :
+		if($act == 'dispMemberLoginForm') $nav_title = 'cmd_login';
+		if($act == 'dispMemberInfo') $nav_title = '마이페이지';
+		if($act == 'dispMemberModifyInfo') $nav_title = 'cmd_modify_member_info';
+		if($act == 'dispMemberModifyPassword') $nav_title = 'cmd_modify_member_password';
+		if($act == 'dispMemberFindAccount') $nav_title = 'cmd_find_member_account';
+		if($act == 'dispMemberSignUpForm') $nav_title = 'cmd_signup';
+		if($act == 'dispMemberLeave') $nav_title = 'cmd_leave';
+		if($act == 'dispMemberScrappedDocument') $nav_title = 'cmd_view_scrapped_document';
+		if($act == 'dispMemberSavedDocument') $nav_title = 'cmd_view_saved_document';
+		if($act == 'dispMemberOwnDocument') $nav_title = 'cmd_view_own_document';
+		if($act == 'dispMemberOwnComment') $nav_title = 'cmd_view_own_comment';
+		if($act == 'dispMemberActiveLogins') $nav_title = 'cmd_view_active_logins';
+		if($act == 'dispCommunicationMessages') $nav_title = 'cmd_view_message_box';
+		if($act == 'dispCommunicationFriend') $nav_title = 'cmd_view_friend';
+		if($act == 'dispMemberfollowUserConfig') $nav_title = '팔로우 설정';
+		if($act == 'dispNcenterliteNotifyList') $nav_title = 'ncenterlite_my_list';
+		if($act == 'dispCommunicationMessages') $nav_title = '메시지함';
+	endif;
+}
+<div class="bh mobile_header_nav">
+	<a href="#" class="act_btn_back" onclick="document.referrer ? history.go(-1) : location.href = default_url;return false;" alt="뒤로가기"><span><i class="ri-arrow-left-s-line"></i></span></a>
+	<span class="bh_title">{Context::getLang($nav_title)}</span>
+</div>

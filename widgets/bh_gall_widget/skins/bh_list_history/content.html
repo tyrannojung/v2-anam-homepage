@@ -1,0 +1,30 @@
+@version(2)
+@load ('widget.scss', ['skin' => $widget_info->skin])
+@load ('js/widget.js')
+
+@php
+	if ($widget_info->cols_list_count == '1') $widget_info->col_lg = '12';
+	if ($widget_info->cols_list_count == '2') $widget_info->col_lg = '6';
+	if ($widget_info->cols_list_count == '3') $widget_info->col_lg = '4';
+	if ($widget_info->cols_list_count == '4') $widget_info->col_lg = '3';
+	if ($widget_info->cols_list_count == '5') $widget_info->col_lg = '2_5';
+	if ($widget_info->cols_list_count == '6') $widget_info->col_lg = '2';
+	if ($widget_info->m_cols_list_count == '1') $widget_info->col = '12';
+	if ($widget_info->m_cols_list_count == '2') $widget_info->col = '6';
+	if ($widget_info->m_cols_list_count == '3') $widget_info->col = '4';
+	if ($widget_info->m_cols_list_count == '4') $widget_info->col = '3';
+	if ($widget_info->m_cols_list_count == '5') $widget_info->col = '2_5';
+	if ($widget_info->m_cols_list_count == '6') $widget_info->col = '2';
+@endphp
+
+<div class="bh {{ $widget_info->skin }} bh_widget_wrap style2" data-skin="{{ $widget_info->skin }}" style="margin: {{ $widget_info->margin }};"|cond="!empty($widget_info->margin)">
+	@if ($widget_info->tab_type == 'tab_top' || $widget_info->tab_type == 'tab_name')
+		@include ('_tab_top.html')
+	@elseif ($widget_info->tab_type == 'tab_left')
+		@include ('_tab_left.html')
+	@elseif ($widget_info->tab_type == 'tab_list')
+		@include ('_tab_list.html')
+	@else
+		@include ('_tab_none.html')
+	@end
+</div>

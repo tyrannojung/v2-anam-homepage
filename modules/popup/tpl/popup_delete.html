@@ -1,0 +1,67 @@
+<include target="header.html" />
+
+<h1>{$lang->confirm_delete}</h1>
+
+<form ruleset="delete_popup_ruleset" action="./" method="post">
+	<input type="hidden" name="module" value="popup" />
+	<input type="hidden" name="act" value="procPopupAdminDelete" />
+	<input type="hidden" name="success_return_url" value="{getUrl('act','dispPopupAdminContentList')}" />
+
+	<input type="hidden" name="mid" value="{$module_info->mid}" />
+	<input type="hidden" name="popup_srl" value="{$popup_module->popup_srl}" />
+	<input type="hidden" name="page" value="{$page}" />
+
+	<div class="table">
+		<table width="100%" border="1" cellspacing="0">
+			<tr>
+				<th scope="row">{$lang->popup_title}</th>
+				<td>{htmlspecialchars($popup_module->popup_title)}</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->popup_type}</th>
+				<td>{$popup_module->popup_type}</td>
+			</tr>
+			<tr cond="$popup_module->target_type">
+				<th scope="row">{$lang->target_type}</th>
+				<td>{$popup_module->target_type}</td>
+			</tr>
+			<tr cond="$popup_module->target_srl && $popup_module->target_type == 'module'">
+				<th scope="row">{$lang->open_target}</th>
+				<td>{$popup_module->target_mid} <span cond="$popup_module->target_browser_title">({$popup_module->target_browser_title})</span></td>
+			</tr>
+			<tr cond="$popup_module->target_actions && $popup_module->target_type == 'action'">
+				<th scope="row">{$lang->open_target}</th>
+				<td>{$popup_module->target_actions}</td>
+			</tr>
+			<tr cond="$popup_module->popup_url">
+				<th scope="row">{$lang->url}</th>
+				<td>{$popup_module->popup_url}</td>
+			</tr>
+			<tr cond="$popup_module->popup_link">
+				<th scope="row">{$lang->link}</th>
+				<td>{$popup_module->popup_link}</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->start_date}</th>
+				<td>{zdate($popup_module->start_date,"Y-m-d")}</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->end_date}</th>
+				<td>{zdate($popup_module->end_date,"Y-m-d")}</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->regdate}</th>
+				<td>{zdate($popup_module->regdate,"Y-m-d")}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('','module','admin','act','dispPopupAdminContentList','page',$page)}" type="button" class="x_btn">{$lang->cmd_back}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-danger" type="submit">{$lang->cmd_delete}</button>
+		</div>
+	</div>
+</form>

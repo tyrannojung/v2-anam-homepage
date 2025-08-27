@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="cmd_sitemaplite">
+		<value xml:lang="ko"><![CDATA[사이트맵 Lite]]></value>
+		<value xml:lang="en"><![CDATA[Sitemap Lite]]></value>
+	</item>
+	<item name="cmd_sitemaplite_path">
+		<value xml:lang="ko"><![CDATA[사이트맵 파일 경로]]></value>
+		<value xml:lang="en"><![CDATA[Sitemap File Path]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_path">
+		<value xml:lang="ko"><![CDATA[사이트맵 파일은 루트 디렉토리에 생성하는 것이 가장 좋습니다. 퍼미션 문제나 다른 CMS와의 충돌 등의 이유로 루트 디렉토리를 사용할 수 없는 경우에는 심볼릭 링크나 mod_rewrite 규칙을 사용하여 루트 디렉토리를 통해 접근할 수 있도록 해 주어야 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[It is recommended that you place the sitemap file in the root directory of your website. If you cannot do so due to missing permissions or conflict with another CMS, please use a symbolic link or mod_rewrite rules to allow access via the root directory.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_files_path">
+		<value xml:lang="ko"><![CDATA[사이트맵 파일을 files 폴더 내에 생성하는 경우, 반드시 심볼릭 링크나 mod_rewrite 규칙을 사용하여 루트 디렉토리를 통해 접근할 수 있도록 해 주어야 합니다. 이를 따르지 않을 경우 검색 엔진에서 사이트맵 파일을 인식하지 못할 수도 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[If you place the sitemap file in the 'files' directory, you MUST use a symbolic link or mod_rewrite rules to allow access via the root directory. Failure to follow this advice may cause search engines to disregard your sitemap file.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_rewrite_rule">
+		<value xml:lang="ko"><![CDATA[권장 mod_rewrite 규칙 (.htaccess에 추가): <code>RewriteRule ^sitemap\.xml$ ./files/sitemaplite/sitemap.xml [L]</code>]]></value>
+		<value xml:lang="en"><![CDATA[Recommended mod_rewrite rule (add to .htaccess file): <code>RewriteRule ^sitemap\.xml$ ./files/sitemaplite/sitemap.xml [L]</code>]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_symbolic_link">
+		<value xml:lang="ko"><![CDATA[심볼릭 링크 생성을 위한 쉘 (SSH) 명령: <code>ln -s files/sitemaplite/sitemap.xml sitemap.xml</code>]]></value>
+		<value xml:lang="en"><![CDATA[Shell (SSH) command to create symbolic link: <code>ln -s files/sitemaplite/sitemap.xml sitemap.xml</code>]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_domains_path">
+		<value xml:lang="ko"><![CDATA[사이트맵 파일을 도메인마다 따로 생성하는 경우, 반드시 mod_rewrite 규칙을 사용하여 루트 디렉토리를 통해 접근할 수 있도록 해 주어야 합니다. 이를 따르지 않을 경우 검색 엔진에서 사이트맵 파일을 인식하지 못할 수도 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[If you create a sitemap file for each domain in a multi-domain site, you MUST use mod_rewrite rules to allow access via the root directory. Failure to follow this advice may cause search engines to disregard your sitemap file.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_domains_rewrite_rule">
+		<value xml:lang="ko"><![CDATA[권장 mod_rewrite 규칙 (.htaccess에 추가): <code>RewriteRule ^sitemap\.xml$ ./files/sitemaplite/%{HTTP_HOST}/sitemap.xml [L]</code>]]></value>
+		<value xml:lang="en"><![CDATA[Recommended mod_rewrite rule (add to .htaccess file): <code>RewriteRule ^sitemap\.xml$ ./files/sitemaplite/%{HTTP_HOST}/sitemap.xml [L]</code>]]></value>
+	</item>
+	<item name="cmd_sitemaplite_domain">
+		<value xml:lang="ko"><![CDATA[<span class="domains">&lt;도메인&gt;</span>]]></value>
+		<value xml:lang="en"><![CDATA[<span class="domains">&lt;domain&gt;</span>]]></value>
+	</item>
+	<item name="cmd_sitemaplite_open_url">
+		<value xml:lang="ko"><![CDATA[열기]]></value>
+		<value xml:lang="en"><![CDATA[Open]]></value>
+	</item>
+	<item name="cmd_sitemaplite_not_writable">
+		<value xml:lang="ko"><![CDATA[쓰기 권한 없음]]></value>
+		<value xml:lang="en"><![CDATA[Not Writable]]></value>
+	</item>
+	<item name="msg_sitemaplite_path_not_writable">
+		<value xml:lang="ko"><![CDATA[사이트맵 파일 경로에 쓰기 권한이 없습니다. sitemap.xml 파일의 퍼미션을 666 또는 777로 변경해 주십시오.<br>sitemap.xml 파일이 존재하지 않거나 퍼미션 변경 후에도 오류가 계속되는 경우, 상위 폴더의 퍼미션을 777로 변경하시면 됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[The sitemap file path is not writable. Please change the permissions on sitemap.xml to 666 or 777.<br>If the sitemap.xml file does not exist, or if you keep getting errors after changing its permissions, please change the permissions on its parent directory to 777.]]></value>
+	</item>
+	<item name="msg_sitemaplite_failed_to_write_xml_file">
+		<value xml:lang="ko"><![CDATA[sitemap.xml 파일을 기록할 수 없습니다. 퍼미션을 확인해 주십시오.]]></value>
+		<value xml:lang="en"><![CDATA[Cannot update sitemap.xml file. Please check permissions.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_menus">
+		<value xml:lang="ko"><![CDATA[메뉴 포함]]></value>
+		<value xml:lang="en"><![CDATA[Include Menus]]></value>
+	</item>
+	<item name="cmd_sitemaplite_menu_srls">
+		<value xml:lang="ko"><![CDATA[메뉴 선택]]></value>
+		<value xml:lang="en"><![CDATA[Select Menus]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_menu_srls">
+		<value xml:lang="ko"><![CDATA[선택한 메뉴의 내용이 사이트맵에 포함됩니다. 외부 링크는 제외됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[The selected menus will be included in the sitemap. External links will be excluded.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_ping_search_engines">
+		<value xml:lang="ko"><![CDATA[검색엔진 자동 제출]]></value>
+		<value xml:lang="en"><![CDATA[Ping Search Engines]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_ping_search_engines">
+		<value xml:lang="ko"><![CDATA[선택한 검색 엔진에 사이트맵을 자동 제출합니다. 네이버는 직접 제출하셔야 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[The selected search engines will be automatically notified whenever the sitemap changes.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_only_public_menus">
+		<value xml:lang="ko"><![CDATA[비공개 메뉴 제외]]></value>
+		<value xml:lang="en"><![CDATA[Exclude Private Menus]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_only_public_menus">
+		<value xml:lang="ko"><![CDATA[로그인한 사용자만 접근할 수 있는 메뉴는 사이트맵에서 제외합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Menus that are only accessible to members will be excluded from the sitemap.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_additional_urls">
+		<value xml:lang="ko"><![CDATA[메뉴에 포함된 주소 외에 추가로 등록할 주소가 있다면 한 줄에 하나씩 입력하여 주십시오.<br>다른 도메인의 주소는 등록할 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[If you have any other addresses to add, please write them one in each line.<br>Please note that addresses belonging to other domains will not be accepted.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_documents">
+		<value xml:lang="ko"><![CDATA[문서 포함]]></value>
+		<value xml:lang="en"><![CDATA[Include Documents]]></value>
+	</item>
+	<item name="cmd_sitemaplite_document_count">
+		<value xml:lang="ko"><![CDATA[포함 갯수]]></value>
+		<value xml:lang="en"><![CDATA[Document Count]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_document_count">
+		<value xml:lang="ko"><![CDATA[원하시는 경우 게시물 링크도 사이트맵에 포함시킬 수 있습니다. 비밀글은 포함되지 않습니다.<br>지나치게 많이 넣으면 서버에 무리가 되니, 갱신 주기를 고려하여 적절한 갯수의 새 글이 색인되도록 조절해 주십시오.]]></value>
+		<value xml:lang="en"><![CDATA[You can include document links in the sitemap if you want. Secret documents are not included. Too many documents will be a burden on the server, so please include an appropriate number, taking the refresh interval into account.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_document_source_modules">
+		<value xml:lang="ko"><![CDATA[게시판 선택]]></value>
+		<value xml:lang="en"><![CDATA[Source Modules]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_document_source_modules">
+		<value xml:lang="ko"><![CDATA[게시물을 가져올 모듈 목록입니다. 비공개 게시판은 제외하여 주십시오.]]></value>
+		<value xml:lang="en"><![CDATA[You can select modules from which to extract documents. Please don't include private boards.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_document_order">
+		<value xml:lang="ko"><![CDATA[문서 추출 기준]]></value>
+		<value xml:lang="en"><![CDATA[Sort Documents By]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_document_order">
+		<value xml:lang="ko"><![CDATA[사이트맵에 포함시킬 게시물을 선택하는 기준입니다. 사이트 특성에 따라 적절히 변경하시기 바랍니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can customize the criterion for selecting which documents to include in the sitemap.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_document_interval">
+		<value xml:lang="ko"><![CDATA[갱신 주기]]></value>
+		<value xml:lang="en"><![CDATA[Refresh Interval]]></value>
+	</item>
+	<item name="cmd_sitemaplite_about_document_interval">
+		<value xml:lang="ko"><![CDATA[게시물 목록을 갱신할 주기입니다. 너무 자주 갱신하면 서버에 무리가 됩니다.<br>수동 선택시 관리자가 모듈 설정을 저장할 때만 갱신됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can customize the interval for refreshing the list of documents in the sitemap.]]></value>
+	</item>
+	<item name="cmd_sitemaplite_count">
+		<value xml:lang="ko"><![CDATA[건 (최대 48000건)]]></value>
+		<value xml:lang="en"><![CDATA[documents (maximum 48000)]]></value>
+	</item>
+	<item name="cmd_sitemaplite_order_recent">
+		<value xml:lang="ko"><![CDATA[최근 게시물]]></value>
+		<value xml:lang="en"><![CDATA[Recent documents]]></value>
+	</item>
+	<item name="cmd_sitemaplite_order_view">
+		<value xml:lang="ko"><![CDATA[조회수 상위]]></value>
+		<value xml:lang="en"><![CDATA[Most viewed]]></value>
+	</item>
+	<item name="cmd_sitemaplite_order_vote">
+		<value xml:lang="ko"><![CDATA[추천수 상위]]></value>
+		<value xml:lang="en"><![CDATA[Most upvoted]]></value>
+	</item>
+	<item name="cmd_sitemaplite_additional_urls">
+		<value xml:lang="ko"><![CDATA[추가 등록할 주소]]></value>
+		<value xml:lang="en"><![CDATA[Additional URLs]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_always">
+		<value xml:lang="ko"><![CDATA[글 작성시]]></value>
+		<value xml:lang="en"><![CDATA[Always]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_hourly">
+		<value xml:lang="ko"><![CDATA[매시간]]></value>
+		<value xml:lang="en"><![CDATA[Hourly]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_daily">
+		<value xml:lang="ko"><![CDATA[매일]]></value>
+		<value xml:lang="en"><![CDATA[Daily]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_weekly">
+		<value xml:lang="ko"><![CDATA[매주]]></value>
+		<value xml:lang="en"><![CDATA[Weekly]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_monthly">
+		<value xml:lang="ko"><![CDATA[매달]]></value>
+		<value xml:lang="en"><![CDATA[Monthly]]></value>
+	</item>
+	<item name="cmd_sitemaplite_interval_manual">
+		<value xml:lang="ko"><![CDATA[수동]]></value>
+		<value xml:lang="en"><![CDATA[Manual Only]]></value>
+	</item>
+</lang>

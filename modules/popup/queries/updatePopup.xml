@@ -1,0 +1,30 @@
+<query id="updatePopup" action="update">
+	<tables>
+		<table name="popup" />
+	</tables>
+	<columns>
+		<column name="popup_title" var="popup_title" default="" notnull="notnull" minlength="1" maxlength="250" />
+		<column name="target_type" var="target_type" notnull="notnull" default="module" />
+		<column name="target_srl" var="target_srl" notnull="notnull" default="0" />
+		<column name="popup_type" var="popup_type" notnull="notnull" default="data" />
+		<column name="popup_url" var="popup_url" notnull="notnull" default="" />
+		<column name="popup_link" var="popup_link" default="" />
+		<column name="popup_link_type" var="popup_link_type" notnull="notnull"  default="N" />
+
+		<column name="start_date" var="start_date" default="curdate()" notnull="notnull" />
+		<column name="end_date" var="end_date" default="curdate()" notnull="notnull" />
+		<column name="width" var="width" default="" />
+		<column name="height" var="height" default="" />
+		<column name="top" var="top" default="" />
+		<column name="left" var="left" default="" />
+		<column name="exp_days" var="exp_days" default="1" />
+		<column name="regdate" var="regdate" default="curdate()" notnull="notnull" />
+		<column name="open_type" var="open_type" default="inner" />
+		<column name="target_actions" var="target_actions" filter="alpha" default="" />
+		<column name="popup_style" var="popup_style" default="border" />
+		<column name="popup_checkbox" var="popup_checkbox" default="Y" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="popup_srl" var="popup_srl" default="0" filter="number" notnull="notnull" />
+	</conditions>
+</query>

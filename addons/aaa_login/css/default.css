@@ -1,0 +1,194 @@
+@charset "utf-8";
+.s_login fieldset,.s_login legend,.s_login input,.s_login textarea {margin:0; padding:0; border: 0;}
+/*로그인 배경*/
+.isis_login_bg {
+	position:fixed;
+	top:0;
+	left:0;
+	background-color: #222;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+/*로그인*/
+.isis_login_box {
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+.isis_login {
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	width: 450px;
+	height: auto;
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+	background: #fff;
+	border-radius: 15px;
+	padding: 20px 25px 25px;
+	box-sizing: border-box;
+}
+.isis_login.style2 {
+	top: 40%;
+	width: 320px;
+	color: #333;
+	border-radius: 0;
+	padding: 30px;
+}
+.s_corner { -webkit-border-radius: 6px; -moz-border-radius: 6px; -o-border-radius: 6px;	border-radius: 6px;}
+.s_login h1 {padding: 0; padding-bottom:0; margin:0;font-weight: 600;font-size: 35px;}
+.s_login {color:#54564b;}
+.s_login .info {padding: 15px 0; margin:0;}
+.s_login .s_text {width: 94%;height: 42px;font-weight: normal;	padding: 0 3%; margin: 0 0 10px 0;line-height: 32px;font-size: 15px; border: 1px solid #f0f0f0; border-bottom:1px solid #ddd; background: #f8f8f8;	color: #aaa;}
+.s_login .s_btn {background: #5cb6e7;color: #fff;height: 45px;padding:0 15px; margin: 15px 0 0;font-weight: 800;font-size: 14px;display: inline-block; width:100%; cursor: pointer; }
+.s_login .help {display:block; margin:0; margin-top:15px; padding:0;}
+.s_login .help a {color:#54564b;font:.9em;white-space:nowrap;text-decoration:none; padding: 15px 10px;}
+.s_login .help a:hover {text-decoration:underline}
+.s_login .aaa_info_title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #272f3e;
+	margin-bottom: 5px;
+	letter-spacing: -0.72px;
+}
+.s_login .aaa_info {
+	font-size: 16px;
+	color: #8a8e99;
+}
+.s_login .aaa_plus_wrap {
+	display: flex;
+	align-items: center;
+	background-color: #f6f7f8;
+	border-radius: 4px;
+	padding: 10px;
+	gap: 10px;
+	margin-top: 25px;
+}
+.s_login .aaa_plus_wrap .aaa_plus_icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100%;
+	transition: 0.3s;
+}
+.s_login .aaa_plus_wrap .aaa_plus_icon:hover {
+	box-shadow: 0px 4px 12px 0 rgba(0,0,0,0.1);
+}
+.s_login .aaa_plus_wrap .aaa_plus_info_wrap .plus_name {
+	font-size: 14px;
+	color: #272f3e;
+	font-weight: 700;
+}
+.s_login .aaa_plus_wrap .aaa_plus_info_wrap .plus_info {
+	font-size: 12px;
+	color: #8a8e99;
+	transition: all 0.3s;
+	position: relative;
+}
+.s_login .aaa_plus_wrap .aaa_plus_info_wrap a.plus_info::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	transform: scaleX(0);
+	width: 100%;
+	height: 1px;
+	background-color: #1765ff;
+	transform-origin: 0% 50%;
+	transition: 0.3s;
+}
+.s_login .aaa_plus_wrap .aaa_plus_info_wrap a.plus_info:hover {
+	color: #1765ff;
+}
+.s_login .aaa_plus_wrap .aaa_plus_info_wrap a.plus_info:hover::after {
+	transform: scaleX(1);
+}
+.s_login .aaa_btn_wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 35px;
+}
+.s_login .aaa_btn_wrap .btn_go {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	padding: 6px 20px 9px;
+	border-radius: 8px;
+	background-color: #1765ff;
+	text-align: center;
+	color: #fff;
+	font-weight: 700;
+	font-size: 17px;
+	transition: 0.5s;
+}
+.s_login .aaa_btn_wrap .btn_go:hover {
+	background-color: #1b4dff;
+	box-shadow: 4px 4px 20px 0 rgba(0,0,0,0.25);
+}
+@media (max-width:520px) {
+	.isis_login{
+		box-sizing: border-box;
+		width: 95%;
+		padding: 10px 15px 15px;
+	}
+	.s_login .aaa_btn_wrap{
+		flex-wrap: wrap;
+	}
+	.s_login .aaa_btn_wrap .btn_go {
+		display: block;
+		width: 100%;
+	}
+	.s_login .aaa_btn_wrap > a + a {
+		margin-top: 10px;
+	}
+}
+
+.allow_ip {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background-color: #E91E63;
+	padding: 9px 7px;
+	cursor: pointer;
+}
+.allow_ip > span {
+	display: block;
+	color: #fff;
+	font-size: 13px;
+	line-height: 1;
+}
+
+.allow_admin {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background-color: rgba(221, 221, 221, 0.5);
+	padding: 9px 7px;
+	cursor: pointer;
+}
+.allow_admin > span {
+	display: block;
+	color: #666;
+	font-size: 13px;
+	line-height: 1;
+}
+
+.admin_btn {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 999;
+	background-color: rgba(221, 221, 221, 0.5);
+	padding: 9px 7px;
+	cursor: pointer;
+}
+.admin_btn > span {
+	display: block;
+	color: #333;
+	font-size: 20px;
+	line-height: 1;
+}

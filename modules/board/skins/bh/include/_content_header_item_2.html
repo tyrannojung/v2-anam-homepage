@@ -1,0 +1,137 @@
+<load target="_content_header_item_2.scss" />
+<div class="content_header_shop_2 bh bh_row gutters-20">
+	<div class="bh col-12 lg:col-6" cond="$oDocument->thumbnailExists() && (!$oDocument->isSecret() || $oDocument->isGranted())">
+		<include target="slider/swiper.thumbnail.html" />
+	</div>
+	<div class="bh col-12 lg:col-6 mt-30 lg:mt-0">
+		<div class="bh mb-20">
+			<div class="label_wrap">
+				{@ $label = $oDocument->getExtraEidValue('label'); }
+				<!--@if($label && is_array($label))-->
+				<span class="label label1" cond="in_array('NEW', $label)">NEW</span>
+				<span class="label label2" cond="in_array('BEST', $label)">BEST</span>
+				<span class="label label3" cond="in_array('HOT', $label)">HOT</span>
+				<span class="label label4" cond="in_array('1', $label)">1</span>
+				<!--@end-->
+			</div>
+			<h1 class="bh lh-1 mb-5">
+				<a href="{$oDocument->getUrl()}" class="bh fs-26 fw-b lh-1">{$oDocument->getTitle()|noescape}</a>
+			</h1>
+			<p class="bh fs-16 fw-l ls-0 bh_color_888">{$oDocument->getExtraEidValueHTML('model_rnone')}</p>
+		</div>
+		<div class="extra_wrap mt-0" cond="$oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted())">
+			<table class="extra" border="0" cellpadding="0" cellspacing="0" summary="Extra Form Output">
+				<caption>Extra Form Output</caption>
+				<colgroup>
+					<col width="1%" />
+					<col width="40%" />
+					<col width="auto" />
+					<col width="40%" />
+				</colgroup>
+				<tbody>
+					<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+					<!--@if(!(strpos($val->eid, 'option') !== false && !$val->getValueHTML()) && strpos($val->eid, '_none') === false && strpos($val->eid, '_rnone') === false && $val->eid !== 'url' && $val->eid !== 'label')-->
+					{@
+						$check_right = strpos($val->eid, '_right') === false;
+						$check_left = strpos($val->eid, '_left') === false;
+					}
+					<!--@if($check_right)-->
+					<tr>
+					<!--@end-->
+						<th scope="row">
+							<!--@if($val->eid == 'price_card_wnone')-->
+								<span class="bh bh_color_main fs-16 fw-m">{$val->name}</span>
+							<!--@elseif(strpos($val->eid, 'price') !== false)-->
+								<span class="bh fs-16 fw-m">{$val->name}</span>
+							<!--@else-->
+								{$val->name}
+							<!--@end-->
+						</th>
+						<td colspan="3"|cond="$check_right && $check_left">
+							<!--@if($val->eid == 'price_card_wnone')-->
+								<span class="bh bh_color_main fs-17 fw-b">{number_format($oDocument->getExtraEidValueHTML('price')-$layout_info->price_card)}원</span>
+							<!--@elseif(strpos($val->eid, 'price') !== false)-->
+								<span class="bh fs-17 fw-b">{number_format($val->getValueHTML())}원</span>
+							<!--@elseif(strpos($val->eid, '_star1') !== false && $logged_info->is_admin !== 'Y')-->
+								{@
+									$star = $val->getValueHTML();
+									$len = mb_strlen($star);
+									$star = $len>1?mb_substr($star,0,1).str_repeat('*',$len-1):str_repeat('*',$len);
+								}
+								{$star}
+							<!--@elseif(strpos($val->eid, '_star2') !== false && $logged_info->is_admin !== 'Y')-->
+								{@
+									$star = $val->getValueHTML();
+									$len = mb_strlen($star);
+									$star = $len>2?mb_substr($star,0,1).str_repeat('*',$len-2).mb_substr($star,-1,1):str_repeat('*',$len);
+								}
+								{$star}
+							<!--@elseif($val->eid == 'month')-->
+								{$val->getValueHTML()|noescape}개월 (이후 소유권이전)
+							<!--@elseif($val->eid == 'option')-->
+								<select name="option">
+									{@
+										if($val->getValue()) $option_list = explode("\n",str_replace("\r","",$val->getValue()));
+									}
+									<option value="">- [필수] 옵션을 선택해 주세요 -</option>
+									<!--@foreach($option_list as $key => $val)-->
+									{@
+										$val = explode(",",$val);
+									}
+									<option value="{$key}" data-price="{$val[1]}">
+										{$val[0]} <span cond="$val[1]">(+{number_format($val[1])}원)</span>
+									</option>
+									<!--@endforeach-->
+								</select>
+							<!--@elseif($val->eid == 'option_2')-->
+								<select name="option_2">
+									{@
+										if($val->getValue()) $option_list = explode("\n",str_replace("\r","",$val->getValue()));
+									}
+									<option value="">- [필수] 색상을 선택해 주세요 -</option>
+									<!--@foreach($option_list as $key => $val)-->
+									<option value="{$key}">
+										{$val}
+									</option>
+									<!--@endforeach-->
+								</select>
+							<!--@else-->
+								{$val->getValueHTML()|noescape}&nbsp;
+							<!--@end-->
+						</td>
+					<!--@if($check_left)-->
+					</tr>
+					<!--@end-->
+					<!--@end-->
+					<!--@endforeach-->
+				</tbody>
+				<tfoot>
+					<tr>
+						{@
+							$item_price = 0;
+							if(!$oDocument->getExtraEidValue('option')) $item_price = $oDocument->getExtraEidValue('price') ?: 0;
+						}
+						<td class="bh bh_color_gray_900 fs-18 ta-r" colspan="4">
+							<span class="bh fw-m">총 상품금액</span> : <span id="sum_price" class="bh fs-20 fw-b">{number_format($item_price)}</span><span class="currency_code">원</span>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+			<form action="{getUrl('','mid','order','act','dispBoardWrite','target_srl',$oDocument->document_srl)}" method="post" class="search" no-error-return-url="true">
+				<input type="hidden" name="mid" value="order" />
+				<input type="hidden" name="act" value="dispBoardWrite" />
+				<input type="hidden" name="target_srl" value="{$oDocument->document_srl}" />
+				<div class="bd_btn_wrap ta-r mt-10">
+					<span class="ds-n itemprice">{$oDocument->getExtraEidValue('price')}</span>
+					<input type="hidden" name="target_option" value="" class="option" />
+					<span class="ds-n option_price itemprice"></span>
+					<input type="hidden" name="target_option_2" value="" class="option_2" />
+					<button type="submit" class="bh_bd_btn col-md-6" style="padding:16px 5px;">신청하기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="content_title">
+	<p class="bh mg-0"><i class="xi-information-circle"></i> 상품상세정보</p>
+</div>

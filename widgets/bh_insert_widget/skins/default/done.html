@@ -1,0 +1,33 @@
+@version(2)
+@load ('css/widget.scss')
+
+<div class="bh_insert_widget">
+	<div class="insert_done_wrap">
+		<div class="bh_title mb-30">
+			{{ $widget_info->done_message }}
+		</div>
+
+		@if (0)
+		<div class="bh bh_info_wrap">
+			<table class="bh bh_info_tbl">
+				<tbody>
+					<tr>
+						<th>{{ $lang->title }}</th>
+						<td>{{ $oDocument->getTitle() }}</td>
+					</tr>
+					@foreach ($oDocument->getExtraVars() as $key => $val)
+					<tr>
+						<th>{{ $val->name }}</th>
+						<td>{{ $val->getValueHTML() }}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+		@end
+
+		<div class="insert_btn_wrap">
+			<a href="#" class="bh bh_write_btn gray" onclick="history.go(-1);return false;" alt="뒤로가기">돌아가기</a>
+		</div>
+	</div>
+</div>

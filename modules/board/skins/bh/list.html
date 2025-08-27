@@ -1,0 +1,57 @@
+<include target="_header.html" />
+
+<!--@if($module_info->list_contact && !$grant->manager)-->
+	<!--@if($document_srl && $module_info->list_contact_redirect)-->
+		<script>
+			redirect_msg = '신청이 완료 되었습니다.';
+			<!--@if($module_info->list_contact_redirect_url)-->
+			redirect_url = '{$module_info->list_contact_redirect_url}';
+			<!--@elseif($module_info->list_contact_redirect == 'M')-->
+			redirect_url = default_url;
+			<!--@elseif($module_info->list_contact_redirect)-->
+			redirect_url = current_url.setQuery('document_srl','');
+			<!--@end-->
+			if(redirect_msg) alert(redirect_msg);
+			if(redirect_url) location.href = redirect_url;
+		</script>
+	<!--@else-->
+	<include cond="$oDocument->isExists()" target="include/content.html" />
+	<!--@end-->
+
+	<!--@if(!$document_srl)-->
+	<load target="../../tpl/filter/insert.xml" />
+	<include target="write_form.html"/>
+	<!--@end-->
+<!--@else-->
+	<include cond="$oDocument->isExists()" target="include/content.html" />
+
+	<!--@if(!$oDocument->isExists() || ($oDocument->isExists() && $module_info->content_list_view == "Y"))-->
+	<include target="list/_header.html" />
+
+	<div class="bh board_list" id="board_list">
+		{@
+			if ($module_info->list_notice_view_level === 'N'):
+				$notice_list = [];
+			elseif ($module_info->list_notice_view_level === 'B'):
+				foreach($notice_list as $no => $document):
+					if ($document->get('is_notice') === 'A' && $module_info->module_srl !== $document->get('module_srl')) unset($notice_list[$no]);
+				endforeach;
+			endif;
+		}
+		<!--@ // 목록 스타일 -->
+		<!--@if($module_info->list_style == "webzine")-->
+			<include target="list/webzine.html" />
+		<!--@elseif($module_info->list_style == "gallery")-->
+			<include target="list/gallery.html" />
+		<!--@elseif($module_info->list_style == "faq")-->
+			<include target="list/faq.html" />
+		<!--@else-->
+			<include target="list/list.html" />
+		<!--@end-->
+	</div>
+
+	<include target="list/_footer.html" />
+	<!--@end-->
+<!--@end-->
+
+<include target="_footer.html" />

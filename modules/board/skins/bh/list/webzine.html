@@ -1,0 +1,93 @@
+<load target="webzine.scss" />
+<ul class="bh list_wrap">
+	<li cond="($document_list || $notice_list) && $grant->manager && $grant->can('moderate:document')">
+		<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" class="iCheck" title="Check All" />
+	</li>
+	<!--@if(!$module_info->write_check_notice_name)-->
+	<!--@foreach($notice_list as $no => $document)-->
+	<li class="notice">
+		<span class="label">{$lang->notice}</span>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+			{$document->getTitle()|noescape}
+		</a>
+		<a cond="$module_info->use_comment === 'Y' && $document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#comment" class="replyNum" title="Replies">
+			[{$document->getCommentCount()}]
+		</a>
+		<a href="{getUrl('document_srl', $document->document_srl, 'listStyle', $listStyle, 'cpage','')}"></a>
+		<span class="check" cond="$grant->manager && $grant->can('moderate:document')">
+			<input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" />
+		</span>
+	</li>
+	<!--@endforeach-->
+	<!--@end-->
+</ul>
+<div class="bh webzine_wrap">
+	{@$_idx=1}
+	<!--@foreach($document_list as $no => $document)-->
+		<div class="bh bh_item item item{$_idx}">
+			<div class="bh bh_item_inner">
+			<!--@foreach($list_config as $key => $val)-->
+				<!--@if($val->type=='thumbnail' && $val->idx==-1)-->
+					<div class="bh bh_img_content">
+						<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'">
+							<!--@if($document->thumbnailExists())-->
+								<img src="{$document->getThumbnail($module_info->list_webzine_thumbnail_width, $module_info->list_webzine_thumbnail_height, 'crop')}" alt="image" />
+							<!--@else-->
+								<div class="thumbnail_lazy" style="width:{$module_info->list_webzine_thumbnail_width}px;padding-bottom:{$module_info->list_webzine_thumbnail_height/$module_info->list_webzine_thumbnail_width*100}%;"|cond="$module_info->list_webzine_thumbnail_width"></div>
+							<!--@end-->
+							<span cond="$grant->manager && $grant->can('moderate:document')" class="check"><input type="checkbox" name="cart" value="{$document->document_srl}" class="iCheck" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></span>
+						</a>
+						<a cond="$document->isEditable()" class="for_modify" href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}"><i class="xi-eraser"></i>{$lang->cmd_modify}</a>
+					</div>
+				<!--@end-->
+				<!--@if($val->type=='title' && $val->idx==-1)-->
+					<div class="bh bh_content_wrap">
+						<div class="label_wrap">
+							<span cond="$module_info->list_category_add && $module_info->use_category=='Y' && $document->get('category_srl')" class="bh_category label" style="background-color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span>
+							{@ $label = $document->getExtraEidValue('label'); }
+							<!--@if($label && is_array($label))-->
+							<span class="label label1" cond="in_array('NEW', $label)">NEW</span>
+							<span class="label label2" cond="in_array('BEST', $label)">BEST</span>
+							<span class="label label3" cond="in_array('HOT', $label)">HOT</span>
+							<span class="label label4" cond="in_array('1', $label)">1</span>
+							<!--@end-->
+						</div>
+						<div class="bh_title">
+							<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'" class="title">
+								<span>{$document->getTitle($module_info->list_webzine_title_cut_size)|noescape}</span>
+							</a>
+						</div>
+						<div class="bh_content">
+							<p class="summary" cond="$list_config['summary']">{$document->getSummary($module_info->list_webzine_content_cut_size)}</p>
+							<p class="info">
+								<span cond="0 && $module_info->list_category_add && $module_info->use_category=='Y' && $document->get('category_srl')">Category <span class="bh_category" style="color:{$category_list[$document->get('category_srl')]->color}"|cond="$category_list[$document->get('category_srl')]->color!='transparent'">{$category_list[$document->get('category_srl')]->title}</span></span>
+								<!--@foreach($list_config as $key => $val)-->
+								<span cond="$val->type=='nick_name' && $val->idx==-1">By <span>{$document->getNickName()}</span></span>
+								<span cond="$val->type=='regdate' && $val->idx==-1">Date <span>{$document->getRegdate('Y.m.d')}</span></span>
+								<span cond="$val->type=='readed_count' && $val->idx==-1">Views <span>{$document->get('readed_count')}</span></span>
+								<span cond="$val->type=='voted_count' && $val->idx==-1 && $document->get('voted_count') > 0">Votes <span>{$document->get('voted_count')}</span></span>
+								<!--@endforeach-->
+								<span cond="$document->getCommentcount() > 0">Reply <span>{$document->getCommentCount()}</span></span>
+								<!--@foreach($list_config as $key => $val)-->
+								<span cond="$val->idx!=-1 && $document->getExtraValueHTML($val->idx) && $val->eid !== 'url'">{$val->name} <span>{$document->getExtraValueHTML($val->idx)|noescape}</span></span>
+								<!--@endforeach-->
+							</p>
+						</div>
+					</div>
+					<div class="bh bh_price_wrap">
+						<p class="price" cond="$document->getExtraEidValue('price')">
+							<span>{number_format(intval($document->getExtraEidValue('price'))-intval($document->getExtraEidValue('discount')))}원</span>
+						</p>
+						<p class="price_org" cond="$document->getExtraEidValue('discount')">
+							<span>{number_format(intval($document->getExtraEidValue('price')))}</span>원
+						</p>
+						<span class="discount_percent" cond="$document->getExtraEidValue('discount')">{round(intval($document->getExtraEidValue('discount'))/intval($document->getExtraEidValue('price'))*100*-1)}%</span>
+					</div>
+				<!--@end-->
+			<!--@endforeach-->
+			</div>
+			<a href="{$module_info->use_link !== 'e'?getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',''):$document->getExtraEidValue('url')}" target="_blank"|cond="$module_info->new_window === 'Y'"></a>
+		</div>
+	{@$_idx++}
+	<!--@endforeach-->
+</div>

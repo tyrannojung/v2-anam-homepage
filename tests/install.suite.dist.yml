@@ -1,0 +1,17 @@
+class_name: InstallTester
+modules:
+    enabled: [Db, PhpBrowser, DbDropTablesHelper, InstallHelper, Filesystem]
+    config:
+        PhpBrowser:
+            url: 'http://localhost:8000/'
+            curl:
+                CURLOPT_TIMEOUT: 180
+        DbDropTablesHelper:
+            dsn: 'mysql:host=localhost;dbname=rhymix'
+            user: 'rhymix'
+            password: 'rhymix'
+        Db:
+            dsn: 'mysql:host=localhost;dbname=rhymix'
+            user: 'rhymix'
+            password: 'rhymix'
+            cleanup: true

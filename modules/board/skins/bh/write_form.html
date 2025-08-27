@@ -1,0 +1,291 @@
+<!--@if($act)-->
+<include target="_header.html" />
+<!--@end-->
+<load target="../../tpl/filter/insert.xml" />
+<form action="./" method="post" onsubmit="return procFilter(this, window.insert)" class="board_write">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<!--@if(!$oDocument->getContentText() && $module_info->write_content_message)-->
+	<input type="hidden" name="content" value="{escape($module_info->write_content_message, false)}" />
+	<!--@else-->
+	<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+	<!--@end-->
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<!--@if(Context::get('target_srl'))-->
+	{@ $oDocumentModel = getModel('document');$target_doc = $oDocumentModel->getDocument(Context::get('target_srl'));}
+	{@
+		$option = $target_doc->getExtraEidValue('option');
+		if($option):
+			$target_option = explode(",",explode("\n",str_replace("\r","",$option))[$target_option]);
+		endif;
+		$option2 = $target_doc->getExtraEidValue('option_2');
+		if($option2):
+			$target_option_2 = explode("\n",str_replace("\r","",$option2))[$target_option_2];
+		endif;
+		$item_price = $target_doc->getExtraEidValue('price')+$target_option[1];
+		$module_info->write_title_message = $target_doc->getTitleText();
+	}
+	<!--@if(!$oDocument->isExists())-->
+	<input type="hidden" name="extra_vars3" value="{$target_option[0]}<!--@if($target_option[1])--> (+{number_format($target_option[1])}원)<!--@end-->" />
+	<input type="hidden" name="extra_vars4" value="{$target_option_2}" />
+	<input type="hidden" name="extra_vars5" value="{$item_price}" />
+	<!--@end-->
+	<div class="row_group" cond="$target_doc->isExists()">
+		<div class="title_wrap clearfix">
+			<div class="title">
+				선택 상품
+			</div>
+		</div>
+		<div class="bh_write_tbl_wrap">
+			<table class="bh_tbl mt-0" border="0" cellpadding="0" cellspacing="0" summary="Item Infomation" style="border:2px solid;border-image:linear-gradient(to right,#b911b3 0%,#2d3bd6 100%);border-image-slice:1;">
+				<caption>Item Infomation</caption>
+				<colgroup>
+					<col width="20%" />
+					<col width="60%" />
+					<col width="20%" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<td scope="row" cond="$target_doc->thumbnailExists()"><img src="{$target_doc->getThumbnail(100,100,'crop')}" alt="{$target_doc->getTitleText()}" /></td>
+						<td>
+							<p class="bh bh_color_111 fs-17 fw-m mb-5"><a href="{$target_doc->getUrl()}">{$target_doc->getTitleText()|noescape}</a></p>
+							<p cond="$target_option" class="bh fs-14 fw-l">[옵션: {$target_option[0]} <span cond="$target_option[1]" class="bh ds-ib mg-0">(+{number_format($target_option[1])}원)</span>]</p>
+							<p cond="$target_option_2" class="bh fs-14 fw-l">[색상: {$target_option_2}]</p>
+						</td>
+						<td>
+							<p class="bh bh_color_main fs-17 fw-b">{number_format($item_price)}원</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--@end-->
+	<!--@if($module_info->write_agreement_view=='Y' && !$document_srl)-->
+	{@
+		$member_config = getModel('module')->getModuleConfig('member');
+		$agreement_link = str_replace("\r","",$module_info->write_agreement_link);
+		$agreement_link = explode("\n",$agreement_link);
+	}
+	<!--@foreach($member_config->agreements as $i => $agreement)-->
+	<div class="agreement row_group" cond="$agreement->type !== 'disabled'">
+		<div class="title_wrap clearfix">
+			<div class="title">
+				{$agreement->title}
+				<span class="required" cond="$agreement->type === 'required'">[{$lang->cmd_required}]</span>
+				<span class="optional" cond="$agreement->type === 'optional'">[{$lang->cmd_optional}]</span>
+			</div>
+			<a cond="$agreement_link[$i-1]" class="agreement_link" href="{$agreement_link[$i-1]}" target="_blank" title="새창 열림">전체보기<i class="xi-angle-right"></i></a>
+		</div>
+		<div class="text">
+			{$agreement->content}
+		</div>
+		<div class="confirm">
+			<label for="accept_agreement_{$i}">
+				<input type="checkbox" name="accept_agreement[{$i}]" value="Y" id="accept_agreement_{$i}" />
+				{$lang->about_accept_agreement}
+			</label>
+		</div>
+	</div>
+	<!--@endforeach-->
+	<!--@end-->
+	<div class="row_group">
+		<div class="title_wrap clearfix">
+			<div class="title">
+				{$module_info->browser_title}
+			</div>
+			<div class="desc"><span class="required">*</span>는 필수입력 사항입니다.</div>
+		</div>
+		<div class="bh_write_tbl_wrap">
+			<table class="bh_write_tbl" border="0" cellpadding="0" cellspacing="0" summary="Insert Infomation">
+				<caption>Insert Infomation</caption>
+				<colgroup>
+					<col width="auto" />
+					<col width="40%" />
+					<col width="auto" />
+					<col width="40%" />
+				</colgroup>
+				<tbody>
+					<tr cond="$module_info->use_category=='Y'" style="display:none;"|cond="!$grant->manager && $module_info->write_category_first">
+						<th scope="row"><!--@if(!$module_info->write_category_name)-->{$lang->category}<!--@else-->{$module_info->write_category_name}<!--@end--><span class="required">*</span></th>
+						<td colspan="3">
+							<select name="category_srl">
+								<option value="" cond="!$module_info->write_category_first"><!--@if(!$module_info->write_category_name)-->{$lang->category}<!--@else-->{$module_info->write_category_name}<!--@end--></option>
+								<!--@foreach($category_list as $val)-->
+								<option disabled="disabled"|cond="!$val->grant" value="{$val->category_srl}" selected="selected"|cond="$val->grant && (($val->selected && !$document_srl) || $val->category_srl == $oDocument->get('category_srl'))">
+									{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
+								</option>
+								<!--@endforeach-->
+							</select>
+						</td>
+					</tr>
+					<!--@if(!$module_info->write_title_message)-->
+					<tr>
+						<th scope="row" cond="!$module_info->write_title_name">{$lang->title}<span class="required">*</span></th>
+						<th scope="row" cond="$module_info->write_title_name">{$module_info->write_title_name}<span class="required">*</span></th>
+						<td colspan="3">
+							<input type="text" name="title" class="input_wide" title="{$lang->title}" value="{escape($oDocument->getTitleText(), false)}"|cond="$oDocument->getTitleText()" />
+						</td>
+					</tr>
+					<!--@else-->
+					<input type="hidden" name="title" value="{$module_info->write_title_message}" title="{$lang->title}" />
+					<!--@end-->
+					<!--@if(count($extra_keys))-->
+					<!--@foreach($extra_keys as $key => $val)-->
+					<!--@if((strpos($val->eid, '_none') === false && strpos($val->eid, '_wnone') === false) || $document_srl)-->
+					{@
+						$check_right = strpos($val->eid, '_right') === false;
+						$check_left = strpos($val->eid, '_left') === false;
+					}
+					<!--@if($check_right)-->
+					<tr>
+					<!--@end-->
+						<th scope="row">{$val->name}<span cond="$val->is_required=='Y'" class="required">*</span></th>
+						<td colspan="3"|cond="$check_right && $check_left">{$val->getFormHTML()}</td>
+					<!--@if($check_left)-->
+					</tr>
+					<!--@end-->
+					<!--@end-->
+					<!--@endforeach-->
+					<!--@end-->
+					<tr cond="$module_info->write_agreement_link && $module_info->write_agreement_view !== 'Y'">
+						<th scope="row" style="border-bottom:0;">개인정보 수집/이용 동의<span class="required">*</span></th>
+						<td colspan="3" style="border-bottom:0;">
+							<span>개인정보 수집 및 이용에 동의하십니까? </span>
+							<a class="bh pr-15" href="{$module_info->write_agreement_link}" target="_blank" title="새창 열림">[자세히보기]</a>
+							<ul class="bh ds-ib mt-5 lg:mt-0">
+								<li><input type="radio" name="agreement" id="agreement-1" value="동의함" class="radio"><label for="agreement-1">동의함</label></li>
+								<li><input type="radio" name="agreement" id="agreement-2" value="동의안함" class="radio"><label for="agreement-2">동의안함</label></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="write_editor<!--@if($module_info->write_content_message && $module_info->write_content_message_view == 'file_only')--> editor_file_only<!--@end-->">
+		<!--@if(!$module_info->write_content_message || ($module_info->write_content_message && $module_info->write_content_message_view))-->
+		{$oDocument->getEditor()}
+		<!--@end-->
+	</div>
+	<div class="row_group" cond="!$is_logged && (!$module_info->write_writer_message || !$module_info->write_email_message)">
+		<div class="title_wrap clearfix">
+			<div class="title">
+				개인정보 {$lang->cmd_input}
+			</div>
+		</div>
+		<div class="bh_write_tbl_wrap">
+			<table class="bh_write_tbl" border="0" cellpadding="0" cellspacing="0" summary="Insert Infomation">
+				<caption>Insert Infomation</caption>
+				<colgroup>
+					<col width="auto" />
+					<col width="40%" />
+					<col width="auto" />
+					<col width="40%" />
+				</colgroup>
+				<tbody>
+					<!--@if(!$module_info->write_writer_message)-->
+					<tr>
+						<th scope="row" cond="!$module_info->write_writer_name">{$lang->writer}<span class="required">*</span></th>
+						<th scope="row" cond="$module_info->write_writer_name">{$module_info->write_writer_name}<span class="required">*</span></th>
+						<td>
+							<input type="text" name="nick_name" id="userName" class="input_wide" value="{escape($oDocument->get('nick_name'), false)}" />
+						</td>
+						<th scope="row">{$lang->password}<span class="required">*</span></th>
+						<td>
+							<input type="password" name="password" id="userPw" class="input_wide" />
+						</td>
+					</tr>
+					<!--@end-->
+					<!--@if(!$module_info->write_email_message)-->
+					<tr>
+						<th scope="row" cond="!$module_info->write_email_name">{$lang->email_address}</th>
+						<th scope="row" cond="$module_info->write_email_name">{$module_info->write_email_name}</th>
+						<td colspan="3">
+							<input type="text" name="email_address" id="email_address" class="input_wide" value="{escape($oDocument->get('email_address'), false)}" />
+						</td>
+					</tr>
+					<!--@end-->
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--@if($module_info->write_writer_message)-->
+	<input type="hidden" name="nick_name" value="{$module_info->write_writer_message}" />
+	<!--@end-->
+	<!--@if($module_info->write_email_message)-->
+	<input type="hidden" name="email_address" value="{$module_info->write_email_message}" />
+	<!--@end-->
+	<!--@if(!$module_info->write_agreement_link && $module_info->write_agreement_view !== 'Y')-->
+	<div class="row_group" cond="($module_info->tags === 'Y' || ($module_info->secret === 'Y' && $module_info->write_checked_secret !== 'F')) || $grant->manager">
+		<div class="title_wrap clearfix">
+			<div class="title">
+				{$lang->cmd_addition_setup}
+			</div>
+		</div>
+		<div class="bh_write_tbl_wrap">
+			<table class="bh_write_tbl" border="0" cellpadding="0" cellspacing="0" summary="Insert Infomation">
+				<caption>Insert Infomation</caption>
+				<colgroup>
+					<col width="auto" />
+					<col width="88%" />
+				</colgroup>
+				<tbody>
+					<tr cond="($module_info->secret === 'Y' && $module_info->write_checked_secret !== 'F') || $grant->manager">
+						<th scope="row">{$lang->cmd_option}</th>
+						<td>
+							<ul>
+								<!--@if($grant->manager)-->
+								<!--%load_js_plugin("ui.colorpicker")-->
+								<li><input type="text" name="title_color" id="title_color" class="color-indicator" value="{$oDocument->get('title_color')}"|cond="$oDocument->get('title_color')!='N'" /><label for="title_color" class="title_color">{$lang->title_color}</label></li>
+								<li><input type="checkbox" name="title_bold" id="title_bold" value="Y" checked="checked"|cond="$oDocument->get('title_bold')=='Y'" /><label for="title_bold"><!--@if($module_info->write_check_bold_name)-->{$module_info->write_check_bold_name}<!--@else-->{$lang->title_bold}<!--@end--></label></li>
+								<!--@end-->
+								<li cond="$module_info->secret === 'Y' && $module_info->write_checked_secret !== 'F'"><input type="checkbox" name="is_secret" value="Y" checked="checked"|cond="$oDocument->isSecret() || $module_info->write_checked_secret" id="is_secret" /><label for="is_secret">{$lang->secret}</label></li>
+								<!--@if($grant->manager)-->
+								<li>
+									<!--@if($module_info->write_check_notice_name)-->
+									<input type="checkbox" name="is_notice" value="Y" checked="checked"|cond="$oDocument->isNotice()" id="is_notice" /><label for="is_notice">{$module_info->write_check_notice_name}</label>
+									<!--@else-->
+										<!--@if(!$module_info->write_check_notice_view)-->
+											<select name="is_notice">
+												<option value="N" selected="selected"|cond="$oDocument->get('is_notice') === 'N'">{$lang->not_notice}</option>
+												<option value="Y" selected="selected"|cond="$oDocument->get('is_notice') === 'Y'">{$lang->notice}</option>
+												<option value="A" selected="selected"|cond="$oDocument->get('is_notice') === 'A'">{$lang->notice_all}</option>
+											</select>
+										<!--@elseif($module_info->write_check_notice_view === 'Y')-->
+											<input type="checkbox" name="is_notice" value="Y" checked="checked"|cond="$oDocument->isNotice()" id="is_notice" /><label for="is_notice">{$lang->notice}</label>
+										<!--@end-->
+									<!--@end-->
+								</li>
+								<!--@end-->
+							</ul>
+						</td>
+					</tr>
+					<tr cond="$module_info->tags === 'Y'">
+						<th scope="row">{$lang->tag}</th>
+						<td>
+							<input type="text" name="tags" id="tags" class="input_wide" value="{escape($oDocument->get('tags') ?? '', false)}" placeholder="{$lang->about_tag}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--@end-->
+	<input type="hidden" name="status" value="SECRET" cond="$module_info->write_checked_secret === 'F'">
+	<input type="hidden" name="comment_status" value="ALLOW" id="comment_status" />
+	<div class="tool_wrap clearfix">
+		<div class="write_captcha" cond="isset($captcha) && $captcha && $captcha->isTargetAction('document')">
+			{$captcha}
+		</div>
+		<div class="bd_btn_wrap">
+			<!--@if((!$oDocument->isExists() || $oDocument->get('status') == 'TEMP') && $is_logged)-->
+			<button type="button" class="bh_bd_btn outline" onclick="doDocumentSave(this);">{$lang->cmd_temp_save}</button>
+			<button type="button" class="bh_bd_btn outline" onclick="doDocumentLoad(this);">{$lang->cmd_load}</button>
+			<!--@end-->
+			<button type="submit" class="bh_bd_btn"><!--@if(!$module_info->write_submit_name)--><i class="xi-pen"></i> {$lang->cmd_registration}<!--@else-->{$module_info->write_submit_name}<!--@end--></button>
+		</div>
+	</div>
+</form>
+<!--@if($act)-->
+<include target="_footer.html" />
+<!--@end-->

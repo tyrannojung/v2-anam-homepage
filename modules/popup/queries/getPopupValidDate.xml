@@ -1,0 +1,12 @@
+<query id="getPopupValidDate" action="select">
+	<tables>
+		<table name="popup" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<condition operation="less" column="start_date" var="curdate" />
+		<condition operation="more" column="end_date" var="curdate" pipe="and" />
+	</conditions>
+</query>

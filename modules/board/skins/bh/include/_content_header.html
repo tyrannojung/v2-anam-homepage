@@ -1,0 +1,79 @@
+<load target="_content_header.scss" />
+<div class="content_header">
+	<span>
+		<a href="{getUrl('', 'mid', $mid, 'category', $oDocument->get('category_srl'))}" class="category" cond="$module_info->use_category=='Y' && $oDocument->get('category_srl')">{$category_list[$oDocument->get('category_srl')]->title}</a>
+	</span>
+	<h1>
+		<a href="{$oDocument->getUrl()}">{$oDocument->getTitle()|noescape}</a>
+	</h1>
+	<ul class="detail">
+		<li cond="!is_array($module_info->content_detail) || !in_array('nick_name',$module_info->content_detail)">
+			<span class="detail_title"><i class="xi-user"></i>{$lang->writer} : </span>
+			<span class="detail_content"><a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a></span>
+		</li>
+		<li cond="!is_array($module_info->content_detail) || !in_array('regdate',$module_info->content_detail)">
+			<span class="detail_title"><i class="xi-time"></i>{$lang->date} : </span><span class="detail_content">{$oDocument->getRegdate('Y.m.d H:i')}</span>
+		</li>
+		<li cond="!is_array($module_info->content_detail) || !in_array('readed_count',$module_info->content_detail)">
+			<span class="detail_title"><i class="xi-eye"></i>{$lang->readed_count} : </span><span class="detail_content">{$oDocument->get('readed_count')}</span>
+		</li>
+		<li cond="is_array($module_info->content_act_btn) && in_array('vote',$module_info->content_act_btn) && (!is_array($module_info->content_detail) || !in_array('voted_count',$module_info->content_detail) && $oDocument->get('voted_count') > 0)">
+			<span class="detail_title"><i class="xi-thumbs-up"></i>{$lang->voted_count} : </span><span class="detail_content">{$oDocument->get('voted_count')}</span>
+		</li>
+		<li cond="$module_info->use_comment === 'Y' && (!is_array($module_info->content_detail) || !in_array('comment_count',$module_info->content_detail) && $oDocument->getCommentcount() > 0)">
+			<span class="detail_title"><i class="xi-comment"></i>{$lang->comment} : </span><span class="detail_content">{$oDocument->getCommentcount()}</span>
+		</li>
+		<li cond="0">
+			<div class="detail_title"><a class="printDocument ds-n lg:ds-ib" href="{getUrl('content_only', 'Y', 'print', 'Y')}" title="{$lang->cmd_print}"><i class="xi-print"></i> {$lang->cmd_print}</a></div>
+		</li>
+	</ul>
+</div>
+<div class="extra_wrap" cond="$oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted())">
+	<table class="extra" border="0" cellpadding="0" cellspacing="0" summary="Extra Form Output">
+		<caption>Extra Form Output</caption>
+		<colgroup>
+			<col width="auto" />
+			<col width="40%" />
+			<col width="auto" />
+			<col width="40%" />
+		</colgroup>
+		<tbody>
+			<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+			<!--@if(strpos($val->eid, '_none') === false && strpos($val->eid, '_rnone') === false && $val->eid !== 'url' && $val->eid !== 'label')-->
+			{@
+				$check_right = strpos($val->eid, '_right') === false;
+				$check_left = strpos($val->eid, '_left') === false;
+			}
+			<!--@if($check_right)-->
+			<tr>
+			<!--@end-->
+				<th scope="row">{$val->name}</th>
+				<td colspan="3"|cond="$check_right && $check_left">
+					<!--@if(strpos($val->eid, 'price') !== false)-->
+						<span class="bh fs-17 fw-b">{number_format($val->getValueHTML())}원</span>
+					<!--@elseif(strpos($val->eid, '_star1') !== false && $logged_info->is_admin !== 'Y')-->
+						{@
+							$star = $val->getValueHTML();
+							$len = mb_strlen($star);
+							$star = $len>1?mb_substr($star,0,1).str_repeat('*',$len-1):str_repeat('*',$len);
+						}
+						{$star}
+					<!--@elseif(strpos($val->eid, '_star2') !== false && $logged_info->is_admin !== 'Y')-->
+						{@
+							$star = $val->getValueHTML();
+							$len = mb_strlen($star);
+							$star = $len>2?mb_substr($star,0,1).str_repeat('*',$len-2).mb_substr($star,-1,1):str_repeat('*',$len);
+						}
+						{$star}
+					<!--@else-->
+						{$val->getValueHTML()|noescape}&nbsp;
+					<!--@end-->
+				</td>
+			<!--@if($check_left)-->
+			</tr>
+			<!--@end-->
+			<!--@end-->
+			<!--@endforeach-->
+		</tbody>
+	</table>
+</div>

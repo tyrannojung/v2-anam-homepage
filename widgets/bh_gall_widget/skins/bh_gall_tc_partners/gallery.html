@@ -1,0 +1,15 @@
+@version(2)
+
+<div class="partner_list">
+	@foreach ($widget_info->content_items as $key => $item)
+	<div class="partner_item">
+		<div class="item_img">
+			@php
+				$file_srl = $item->getExtraEidValue('partner_logo');
+				$file_info = FileModel::getFile($file_srl);
+			@endphp
+			<img src="{{ $file_info->uploaded_filename }}" alt="">
+		</div>
+	</div>
+	@endforeach
+</div>

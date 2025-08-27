@@ -1,0 +1,35 @@
+<load target="../css/default.css" />
+
+<!--@if(!Context::get('is_logged'))-->
+<div class="allow_ip">
+	<span>제작안내 작동중 (ip허용상태)</span>
+</div>
+<script>
+jQuery(function($){
+	$(".allow_ip").click(function () {
+		$(this).slideUp("slow");
+		$(".admin_btn").slideUp("slow");
+	});
+});
+</script>
+<!--@else-->
+<div class="allow_admin">
+	<span>제작안내 작동중 (관리자상태)</span>
+</div>
+<script>
+jQuery(function($){
+	$(".allow_admin").click(function () {
+		$(this).slideUp("slow");
+		$(".admin_btn").slideUp("slow");
+		$(".layout_admin_btn").slideUp("slow");
+		$(".content_admin_btn").slideUp("slow");
+	});
+});
+</script>
+<!--@end-->
+
+<!--@if(!isset($module) || $module !== 'admin')-->
+<a class="admin_btn" href="{getUrl('','module','admin')}">
+	<span><i class="xi-cog"></i></span>
+</a>
+<!--@end-->

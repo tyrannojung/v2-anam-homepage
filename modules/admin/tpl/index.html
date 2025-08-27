@@ -1,0 +1,122 @@
+<config autoescape="on" />
+
+<include target="./_header.html" />
+
+<load target="./js/excanvas.min.js" targetie="lt IE 9" />
+<load target="./js/jquery.jqplot.min.js" />
+<load target="./js/jqplot.barRenderer.min.js" />
+<load target="./js/jqplot.categoryAxisRenderer.min.js" />
+<load target="./js/jqplot.pointLabels.min.js" />
+<load target="./css/jquery.jqplot.min.css" />
+
+<div class="content" id="content">
+
+	<!--// Page Title -->
+	<div class="x_page-header">
+		<h1>{$lang->control_panel}</h1>
+	</div>
+
+	<!--// Any message from previous POST action -->
+	<div cond="isset($XE_VALIDATOR_MESSAGE) && ($XE_VALIDATOR_ID ?? '') == 'modules/admin/tpl/index/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+		<p>{$XE_VALIDATOR_MESSAGE}</p>
+	</div>
+
+	<!--// Warning about the minimum PHP version -->
+	<div class="message error" cond="version_compare(PHP_VERSION, '7.4', '<')">
+		<p>{$lang->unsupported_php_version_notice}</p>
+		<ul>
+			<li>{$lang->unsupported_php_version_required}</li>
+			<li>{sprintf($lang->unsupported_php_version_current, PHP_VERSION)}</li>
+		</ul>
+	</div>
+
+	<!--// Warning about site lock status -->
+	<div class="message error" cond="config('lock.locked')">
+		<h2>{$lang->sitelock_in_use}</h2>
+		<p>{$lang->about_sitelock_in_use} <a href="{getUrl(['module' => 'admin', 'act' => 'dispAdminConfigSitelock'])}">{$lang->cmd_configure}</a></p>
+	</div>
+
+	<!--// Warning about modules installed in the wrong path, e.g. xe-example-master -->
+	<div class="message error" cond="$wrongPaths">
+		<h2>{$lang->module_exists_in_wrong_path}</h2>
+		<p>{$lang->about_module_exists_in_wrong_path}</p>
+		<ul>
+			<block loop="$wrongPaths => $value">
+				<li>{$value}</li>
+			</block>
+		</ul>
+	</div>
+
+	<!--// Notice about new Rhymix core release -->
+	<div class="message update core_update" data-current-version="{\RX_VERSION}">
+		<h2>{$lang->update_available}</h2>
+		<p>{$lang->core_update_available} <a href="https://rhymix.org/" target="_blank">{$lang->core_update_link}</a></p>
+	</div>
+
+	<!--// Notice about cleaning up unnecessary core files -->
+	<div class="message update cleanup_list" cond="$cleanup_list">
+		<h2>{$lang->msg_cleanup_notice_title}</h2>
+		<p>{sprintf($lang->msg_cleanup_notice_content, number_format(count($cleanup_list)), getUrl('', 'module', 'admin', 'act', 'dispAdminCleanupList'))|noescape}</p>
+	</div>
+
+	<!--// Notice about modules that need configuration -->
+	<div class="message update" cond="$addTables || $needUpdate">
+		<h2>{$lang->need_complete_configuration}</h2>
+		<p>{$lang->need_complete_configuration_details}</p>
+		<ul>
+			<block loop="$module_list => $key,$value">
+				<li style="margin:0 0 4px 0" cond="$value->need_install && !in_array($value->module, $wrongPaths)">
+					{$value->title} ({$value->module})
+					&nbsp; <button type="button" onclick="doInstallModule('{$value->module}')" class="x_btn x_btn-small">{$lang->need_table}</button>
+				</li>
+				<li style="margin:0 0 4px 0" cond="$value->need_update && !in_array($value->module, $wrongPaths)">
+					{$value->title} ({$value->module})
+					&nbsp; <button type="button" onclick="doUpdateModule('{$value->module}')" class="x_btn x_btn-small">{$lang->need_update}</button>
+				</li>
+			</block>
+		</ul>
+	</div>
+
+	<!--// Notice about modules that can be updated -->
+	<div class="message update" cond="count($newVersionList)">
+		<h2>{$lang->available_new_version}</h2>
+		<p>{$lang->available_new_version_details}</p>
+		<ul>
+			<li loop="$newVersionList => $key, $package" style="margin:0 0 4px 0">
+				[{$lang->typename[$package->type]}] {$package->title} ver. {$package->currentVersion} → {$package->version}
+				&nbsp; <a href="{$package->url}&amp;return_url={urlencode(getRequestUriByServerEnviroment())}">{$lang->update}</a>
+			</li>
+		</ul>
+	</div>
+
+	<!--// Real dashboard begins here -->
+	<div class="dashboard">
+		{@
+			$dashboard_stack = new stdClass;
+			$dashboard_stack->left = [];
+			$dashboard_stack->right = [];
+		}
+
+		<!--@if($counterAddonActivated)-->
+			<include target="./_dashboard_counter.html" />
+		<!--@else-->
+			<include target="./_dashboard_default.html" />
+		<!--@endif-->
+
+		<!--// Call event handler -->
+		{@ ModuleHandler::triggerCall('admin.dashboard', 'before', $dashboard_stack)}
+
+		<!--// Left stack -->
+		<div>
+			{implode("\n", $dashboard_stack->left)|noescape}
+		</div>
+
+		<!--// Right stack -->
+		<div>
+			{implode("\n", $dashboard_stack->right)|noescape}
+		</div>
+	</div>
+</div>
+
+<include target="./_footer.html" />
+

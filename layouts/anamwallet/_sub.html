@@ -1,0 +1,60 @@
+<load target="_sub.scss" />
+
+<!--@if($sub_position == 'right')-->
+{@
+	$layout_info->sub_left_login = $layout_info->sub_right_login;
+	$layout_info->sub_left_menu = $layout_info->sub_right_menu;
+	$layout_info->sub_left_widget_1 = $layout_info->sub_right_widget_1;
+	$layout_info->sub_left_widget_1_html = $layout_info->sub_right_widget_1_html;
+	$layout_info->sub_left_widget_2 = $layout_info->sub_right_widget_2;
+	$layout_info->sub_left_widget_2_html = $layout_info->sub_right_widget_2_html;
+	$layout_info->sub_left_widget_3 = $layout_info->sub_right_widget_3;
+	$layout_info->sub_left_widget_3_html = $layout_info->sub_right_widget_3_html;
+	$layout_info->sub_left_widget_4 = $layout_info->sub_right_widget_4;
+	$layout_info->sub_left_widget_4_html = $layout_info->sub_right_widget_4_html;
+	$layout_info->sub_left_widget_5 = $layout_info->sub_right_widget_5;
+	$layout_info->sub_left_widget_5_html = $layout_info->sub_right_widget_5_html;
+}
+<!--@end-->
+
+<div cond="$layout_info->sub_left_login" class="bh mb-30">
+	<include target="include/login.html" />
+</div>
+<div cond="$layout_info->sub_left_menu">
+	<div class="sub_menu" loop="$main_menu->list=>$key1,$val1" cond="$val1['selected'] && $val1['list']">
+		<div class="sub_menu_header">
+			<h4 class="bh mg-0">{$val1['link']}</h4>
+		</div>
+		<ul class="">
+			{@$idx=1}
+			<li loop="$val1['list']=>$key2,$val2" id="li{$idx}" class="active"|cond="$val2['selected']">
+				<a class="active:bh_bg_color_main" href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+				<ul class="bh_toggle_content" cond="$val2['list']">
+					<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']">
+						<a class="bh_active_color_main" href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">- {$val3['link']}</a>
+					</li>
+				</ul>
+				<div class="bh_toggle" cond="$val2['list']">
+					<i class="bh_toggle_down xi-angle-down"></i>
+					<i class="bh_toggle_up xi-angle-up"></i>
+				</div>
+			{@$idx++}
+			</li>
+		</ul>
+	</div>
+</div>
+<div cond="$layout_info->sub_left_widget_1">
+	{$layout_info->sub_left_widget_1_html}
+</div>
+<div cond="$layout_info->sub_left_widget_2">
+	{$layout_info->sub_left_widget_2_html}
+</div>
+<div cond="$layout_info->sub_left_widget_3">
+	{$layout_info->sub_left_widget_3_html}
+</div>
+<div cond="$layout_info->sub_left_widget_4">
+	{$layout_info->sub_left_widget_4_html}
+</div>
+<div cond="$layout_info->sub_left_widget_5">
+	{$layout_info->sub_left_widget_5_html}
+</div>

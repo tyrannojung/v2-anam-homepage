@@ -1,0 +1,4711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+	<title>anamwallet 레이아웃</title>
+	<description>anamwallet 전용 맞춤 레이아웃입니다.</description>
+	<version>0.61</version>
+	<date>2018-11-06</date>
+	<update>2025-06-11</update>
+	<author email_address="9haging@gmail.com" link="">
+		<name>bh</name>
+	</author>
+	<menus>
+		<menu name="main_menu" maxdepth="3" default="true">
+			<title xml:lang="ko">메인 메뉴</title>
+			<title xml:lang="en">Main Menu</title>
+		</menu>
+		<menu name="main_right_menu" maxdepth="3">
+			<title xml:lang="ko">메인 오른쪽 메뉴</title>
+			<title xml:lang="en">Main Right Menu</title>
+		</menu>
+		<menu name="top_menu" maxdepth="1">
+			<title xml:lang="ko">최상단 메뉴</title>
+			<title xml:lang="en">Top Menu</title>
+		</menu>
+		<menu name="footer_menu" maxdepth="1">
+			<title xml:lang="ko">하단 메뉴</title>
+			<title xml:lang="en">Footer Menu</title>
+		</menu>
+		<menu name="m_main_menu" maxdepth="3" default="true">
+			<title>모바일 메인 메뉴</title>
+			<title xml:lang="en">Mobile Main Menu</title>
+		</menu>
+	</menus>
+	<extra_vars>
+		<group>
+			<title>일반</title>
+			<var name="custom_header_script" type="textarea">
+				<title>◆ 헤더 스크립트 ◆</title>
+				<description>&lt;head&gt; 내부 하단에 추가 됩니다. 예) &lt;script&gt;...&lt;/script&gt;</description>
+			</var>
+			<var name="custom_header_script_target" type="text">
+				<title>추가 대상 mid</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_body_script" type="textarea">
+				<title>◆ 바디 스크립트 ◆</title>
+				<description>&lt;body&gt; 내부 상단에 추가 됩니다. 예) &lt;script&gt;...&lt;/script&gt;</description>
+			</var>
+			<var name="custom_body_script_target" type="text">
+				<title>추가 대상 mid</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_footer_script" type="textarea">
+				<title>◆ 푸터 스크립트 ◆</title>
+				<description>&lt;body&gt; 내부 하단에 추가 됩니다. 예) &lt;script&gt;...&lt;/script&gt;</description>
+			</var>
+			<var name="custom_footer_script_target" type="text">
+				<title>추가 대상 mid</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_channeltalk" type="select">
+				<title>◆ 채널톡 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="channeltalk_key" type="text">
+				<title>Plugin Key</title>
+			</var>
+			<var name="channeltalk_member_secret_key" type="text">
+				<title>Secret Key</title>
+				<description>"보안 -&gt; 고객 정보 암호화" 사용</description>
+			</var>
+			<var name="channeltalk_target" type="text">
+				<title>추가 대상 mid</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>헤더</title>
+			<var name="logo_img" type="image">
+				<title xml:lang="ko">◆ 사이트 로고 이미지 ◆</title>
+				<title xml:lang="en">Site logo image</title>
+				<description>권장 - 세로 80px 이상</description>
+			</var>
+			<var name="logo_img_dark" type="image">
+				<title xml:lang="ko">◆ 사이트 로고 이미지　(어두운 배경용) ◆</title>
+				<description>권장 - 기본 이미지와 동일 사이즈</description>
+			</var>
+			<var name="logo_text" type="text">
+				<title xml:lang="ko">사이트 로고 문자</title>
+				<title xml:lang="en">Site logo text</title>
+			</var>
+			<var name="logo_url" type="text">
+				<title xml:lang="ko">사이트 로고 링크 주소</title>
+				<title xml:lang="en">Site logo link URL</title>
+			</var>
+			<var name="logo_margin" type="text">
+				<title xml:lang="ko">사이트 로고 마진</title>
+				<title xml:lang="en">Site logo Margin</title>
+				<description>예) 20px 0 15px 0 (위 오른쪽 아래 왼쪽)</description>
+			</var>
+			<var name="m_logo_img" type="image">
+				<title xml:lang="ko">◆ 모바일 로고 이미지 ◆</title>
+				<title xml:lang="en">Mobile logo image</title>
+				<description>권장 - 세로 30px 이상</description>
+			</var>
+			<var name="m_logo_height" type="text">
+				<title xml:lang="ko">모바일 로고 높이</title>
+				<title xml:lang="en">Site logo Height</title>
+				<description>예) 25 (기본값 25px)</description>
+			</var>
+			<var name="m_logo_margin" type="text">
+				<title xml:lang="ko">모바일 로고 마진</title>
+				<title xml:lang="en">Mobile logo Margin</title>
+				<description>예) 20px 0 15px 0 (위 오른쪽 아래 왼쪽)　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="m_phone_number" type="text">
+				<title>모바일 전화 버튼</title>
+				<description>예) 010-0000-0000</description>
+			</var>
+			<var name="m_search" type="select">
+				<title xml:lang="ko">모바일 검색 버튼</title>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="search_hotkeyword" type="text">
+				<title>인기 검색어</title>
+				<description>검색어는 5개 이하 권장. 단어는 , (콤마)로 연결 하세요</description>
+			</var>
+			<var name="use_header_banner_right" type="select">
+				<title xml:lang="ko">◆ 헤더 오른쪽 배너 사용 ◆</title>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="header_banner_right_img" type="image">
+				<title xml:lang="ko">배너 이미지</title>
+				<description xml:lang="ko">권장 - 로고와 같은 세로 크기</description>
+			</var>
+			<var name="header_banner_right_blank" type="select">
+				<title xml:lang="ko">새 창으로 열기</title>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="header_banner_right_alt" type="text">
+				<title xml:lang="ko">이미지 alt</title>
+			</var>
+			<var name="header_banner_right_url" type="text">
+				<title xml:lang="ko">이미지 URL</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_menu_ab" type="select">
+				<title>◆ 메인메뉴 중첩 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_menu_text_color" type="select">
+				<title>메인메뉴 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_category_menu" type="select">
+				<title>◆ 분류를 2차메뉴로 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>게시판을 메인메뉴 1차메뉴로 구성하고 "사용함"으로 선택합니다.　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_header_top" type="select">
+				<title>◆ 상단 메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>상단 로그인 회원정보 등 메뉴　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_menu_login" type="select">
+				<title>◆ 메뉴 로그인 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>메인메뉴 오른쪽 로그인　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_m_menu_login" type="select">
+				<title>◆ 모바일 메뉴 로그인 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>메뉴 상단 로그인　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_select_lang" type="select">
+				<title>◆ 2개국어 선택 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>영어, 한국어　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_m_header_menu" type="select">
+				<title>◆ 모바일 헤더 메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="1">
+					<title>1차까지</title>
+				</options>
+				<options value="2">
+					<title>모두표시</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>푸터</title>
+			<var name="footer_logo_img" type="image">
+				<title xml:lang="ko">◆ 푸터 로고 이미지 ◆</title>
+				<title xml:lang="en">Footer logo image</title>
+				<description>권장 - 세로 80px 이상</description>
+			</var>
+			<var name="footer_logo_margin" type="text">
+				<title xml:lang="ko">푸터 로고 마진</title>
+				<title xml:lang="en">Footer logo Margin</title>
+				<description>예) 0 30px 0 0 (위 오른쪽 아래 왼쪽)</description>
+			</var>
+			<var name="footer_background_color" type="colorpicker">
+				<title>배경 색상</title>
+			</var>
+			<var name="footer_background_image" type="image">
+				<title>배경 이미지</title>
+			</var>
+			<var name="footer_text_color" type="select">
+				<title>글자 색상</title>
+				<options value="">
+					<title>하얀색</title>
+				</options>
+				<options value="B">
+					<title>검은색</title>
+				</options>
+			</var>
+			<var name="footer_height" type="text">
+				<title>PC 높이</title>
+				<description>예) 300 (기본값 자동)</description>
+			</var>
+			<var name="m_footer_height" type="text">
+				<title>모바일 높이</title>
+				<description>예) 200 (기본값 자동)</description>
+			</var>
+			<var name="footer_padding" type="text">
+				<title>여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="footer_m_padding" type="text">
+				<title>모바일 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="footer_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+			</var>
+		</group>
+		<group>
+			<title>메인슬라이더</title>
+			<var name="use_main_slider" type="select">
+				<title>◆ 메인슬라이더 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_slider_type" type="select">
+				<title>슬라이드 전환 방법</title>
+				<options value="">
+					<title>슬라이드</title>
+				</options>
+				<options value="fade">
+					<title>페이드</title>
+				</options>
+			</var>
+			<var name="main_slider_drag" type="select">
+				<title>마우스드래그 사용</title>
+				<options value="">
+					<title>사용함</title>
+				</options>
+				<options value="N">
+					<title>사용안함</title>
+				</options>
+			</var>
+			<var name="main_slider_nav" type="select">
+				<title>화살표 사용</title>
+				<options value="">
+					<title>사용함</title>
+				</options>
+				<options value="N">
+					<title>사용안함</title>
+				</options>
+			</var>
+			<var name="main_slider_dots" type="select">
+				<title>점 사용</title>
+				<options value="">
+					<title>사용함</title>
+				</options>
+				<options value="N">
+					<title>사용안함</title>
+				</options>
+			</var>
+			<var name="main_slider_scrollbar" type="select">
+				<title>스크롤바 사용</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_slider_autoplay" type="select">
+				<title>자동전환 사용</title>
+				<options value="">
+					<title>사용함</title>
+				</options>
+				<options value="N">
+					<title>사용안함</title>
+				</options>
+			</var>
+			<var name="main_slider_autoplaytime" type="text">
+				<title>자동전환 시간</title>
+				<description>예) 5 (기본값 5초)</description>
+			</var>
+			<var name="main_slider_wide" type="select">
+				<title>전체폭으로 사용</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_slider_height" type="text">
+				<title>PC 높이</title>
+				<description>예) 500 (기본값 500px)</description>
+			</var>
+			<var name="m_main_slider_height" type="text">
+				<title>모바일 높이</title>
+				<description>예) 300 (기본값 300px)　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_1_img" type="image">
+				<title>◆ 메인슬라이더 이미지 1 ◆</title>
+			</var>
+			<var name="main_slider_1_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_1_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_1_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_1_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_1_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_1_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_1_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_1_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_1_btn_text" type="text">
+				<title>◇ 버튼 ◇</title>
+			</var>
+			<var name="main_slider_1_btn_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_1_btn_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_1_btn_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+			<var name="main_slider_1_btn_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_1_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_1_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_2_img" type="image">
+				<title>◆ 메인슬라이더 이미지 2 ◆</title>
+			</var>
+			<var name="main_slider_2_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_2_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_2_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_2_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_2_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_2_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_2_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_2_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_2_btn_text" type="text">
+				<title>◇ 버튼 ◇</title>
+			</var>
+			<var name="main_slider_2_btn_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_2_btn_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_2_btn_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+			<var name="main_slider_2_btn_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_2_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_2_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_3_img" type="image">
+				<title>◆ 메인슬라이더 이미지 3 ◆</title>
+			</var>
+			<var name="main_slider_3_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_3_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_3_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_3_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_3_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_3_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_3_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_3_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_3_btn_text" type="text">
+				<title>◇ 버튼 ◇</title>
+			</var>
+			<var name="main_slider_3_btn_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_3_btn_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_3_btn_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+			<var name="main_slider_3_btn_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_3_url" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="main_slider_3_new_window" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_4_img" type="image">
+				<title>◆ 메인슬라이더 이미지 4 ◆</title>
+			</var>
+			<var name="main_slider_4_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_4_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_4_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_4_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_4_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_4_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_4_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_4_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_4_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_5_img" type="image">
+				<title>◆ 메인슬라이더 이미지 5 ◆</title>
+			</var>
+			<var name="main_slider_5_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_5_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_5_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_5_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_5_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_5_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_5_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_5_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_5_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_6_img" type="image">
+				<title>◆ 메인슬라이더 이미지 6 ◆</title>
+			</var>
+			<var name="main_slider_6_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_6_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_6_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_6_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_6_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_6_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_6_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_6_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_6_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_7_img" type="image">
+				<title>◆ 메인슬라이더 이미지 7 ◆</title>
+			</var>
+			<var name="main_slider_7_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_7_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_7_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_7_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_7_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_7_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_7_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_7_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_7_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_8_img" type="image">
+				<title>◆ 메인슬라이더 이미지 8 ◆</title>
+			</var>
+			<var name="main_slider_8_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_8_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_8_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_8_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_8_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_8_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_8_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_8_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_8_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_9_img" type="image">
+				<title>◆ 메인슬라이더 이미지 9 ◆</title>
+			</var>
+			<var name="main_slider_9_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_9_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_9_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_9_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_9_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_9_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_9_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_9_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_9_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_10_img" type="image">
+				<title>◆ 메인슬라이더 이미지 10 ◆</title>
+			</var>
+			<var name="main_slider_10_m_img" type="image">
+				<title>모바일 이미지</title>
+			</var>
+			<var name="main_slider_10_background_color" type="text">
+				<title>배경 색상</title>
+				<description>예) rgba(0, 0, 0, 0.2) (기본값 rgba(0, 0, 0, 0.2))</description>
+			</var>
+			<var name="main_slider_10_text_1" type="text">
+				<title>◇ 텍스트 1 ◇</title>
+			</var>
+			<var name="main_slider_10_text_1_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_10_text_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_10_text_2" type="text">
+				<title>◇ 텍스트 2 ◇</title>
+			</var>
+			<var name="main_slider_10_text_2_img" type="image">
+				<title>대체 이미지</title>
+			</var>
+			<var name="main_slider_10_text_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_10_url" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_slider_video_url" type="text">
+				<title>◆ 유튜브 주소 ◆</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션1</title>
+			<var name="use_main_section_1" type="select">
+				<title>◆ 메인 섹션 1 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_1_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_1_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_1_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_1_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_1_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_1_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_1_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_1_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_1_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_1_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_1_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_1_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_1_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_1_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_1_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_1_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_1_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_1_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_1_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_1_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_1_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_1_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_1_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_1_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션2</title>
+			<var name="use_main_section_2" type="select">
+				<title>◆ 메인 섹션 2 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_2_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_2_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_2_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_2_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_2_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_2_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_2_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_2_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_2_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_2_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_2_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_2_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_2_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_2_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_2_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_2_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_2_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_2_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_2_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_2_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_2_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_2_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_2_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_2_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션3</title>
+			<var name="use_main_section_3" type="select">
+				<title>◆ 메인 섹션 3 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_3_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_3_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_3_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_3_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_3_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_3_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_3_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_3_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_3_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_3_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_3_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_3_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_3_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_3_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_3_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_3_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_3_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_3_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_3_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_3_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_3_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_3_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_3_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_3_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션4</title>
+			<var name="use_main_section_4" type="select">
+				<title>◆ 메인 섹션 4 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_4_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_4_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_4_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_4_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_4_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_4_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_4_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_4_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_4_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_4_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_4_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_4_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_4_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_4_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_4_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_4_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_4_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_4_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_4_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_4_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_4_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_4_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_4_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_4_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션5</title>
+			<var name="use_main_section_5" type="select">
+				<title>◆ 메인 섹션 5 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_5_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_5_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_5_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_5_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_5_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_5_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_5_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_5_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_5_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_5_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_5_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_5_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_5_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_5_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_5_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_5_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_5_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_5_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_5_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_5_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_5_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_5_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_5_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_5_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션6</title>
+			<var name="use_main_section_6" type="select">
+				<title>◆ 메인 섹션 6 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_6_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_6_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_6_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_6_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_6_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_6_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_6_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_6_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_6_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_6_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_6_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_6_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_6_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_6_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_6_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_6_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_6_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_6_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_6_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_6_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_6_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_6_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_6_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_6_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션7</title>
+			<var name="use_main_section_7" type="select">
+				<title>◆ 메인 섹션 7 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_7_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_7_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_7_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_7_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_7_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_7_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_7_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_7_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_7_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_7_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_7_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_7_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_7_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_7_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_7_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_7_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_7_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_7_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_7_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_7_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_7_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_7_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_7_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_7_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션8</title>
+			<var name="use_main_section_8" type="select">
+				<title>◆ 메인 섹션 8 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_8_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_8_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_8_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_8_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_8_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_8_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_8_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_8_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_8_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_8_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_8_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_8_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_8_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_8_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_8_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_8_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_8_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_8_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_8_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_8_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_8_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_8_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_8_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_8_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션9</title>
+			<var name="use_main_section_9" type="select">
+				<title>◆ 메인 섹션 9 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_9_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_9_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_9_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_9_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_9_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_9_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_9_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_9_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_9_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_9_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_9_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_9_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_9_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_9_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_9_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_9_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_9_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_9_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_9_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_9_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_9_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_9_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_9_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_9_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>섹션10</title>
+			<var name="use_main_section_10" type="select">
+				<title>◆ 메인 섹션 10 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_10_display" type="select">
+				<title>섹션 표시기기</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="p">
+					<title>PC</title>
+				</options>
+				<options value="m">
+					<title>모바일</title>
+				</options>
+			</var>
+			<var name="main_section_10_id" type="text">
+				<title>섹션 id 교체</title>
+			</var>
+			<var name="main_section_10_title" type="text">
+				<title>섹션 타이틀</title>
+			</var>
+			<var name="main_section_10_sub_title" type="text">
+				<title>섹션 서브 타이틀</title>
+			</var>
+			<var name="main_section_10_background_color" type="colorpicker">
+				<title>섹션 배경 색상</title>
+			</var>
+			<var name="main_section_10_background_image" type="image">
+				<title>섹션 배경 이미지</title>
+			</var>
+			<var name="main_section_10_background_fixed" type="select">
+				<title>섹션 배경 고정</title>
+				<options value="">
+					<title>고정안함</title>
+				</options>
+				<options value="Y">
+					<title>고정</title>
+				</options>
+			</var>
+			<var name="main_section_10_text_color" type="select">
+				<title>섹션 글자 색상</title>
+				<options value="">
+					<title>검은색</title>
+				</options>
+				<options value="W">
+					<title>하얀색</title>
+				</options>
+			</var>
+			<var name="main_section_10_padding" type="text">
+				<title>섹션 여백</title>
+				<description>예) 20px 0 20px 0</description>
+			</var>
+			<var name="main_section_10_m_padding" type="text">
+				<title>섹션 모바일 여백</title>
+				<description>예) 20px 0 20px 0　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_page_widget" type="select">
+				<title>◆ 페이지 위젯 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="main_section_10_widget_1_type" type="select">
+				<title>◆ 위젯 1 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_10_widget_1_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_1_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_10_widget_1_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_10_widget_1_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_1_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_2_type" type="select">
+				<title>◆ 위젯 2 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_10_widget_2_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_2_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_10_widget_2_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_10_widget_2_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_2_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_3_type" type="select">
+				<title>◆ 위젯 3 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_10_widget_3_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_3_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_10_widget_3_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_10_widget_3_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_3_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_4_type" type="select">
+				<title>◆ 위젯 4 크기 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="lg-12">
+					<title>100%</title>
+				</options>
+				<options value="lg-8">
+					<title>66%</title>
+				</options>
+				<options value="lg-6">
+					<title>50%</title>
+				</options>
+				<options value="lg-4">
+					<title>33%</title>
+				</options>
+				<options value="lg-3">
+					<title>25%</title>
+				</options>
+				<options value="lg">
+					<title>자동</title>
+				</options>
+			</var>
+			<var name="main_section_10_widget_4_align" type="select">
+				<title>정렬</title>
+				<options value="">
+					<title>왼쪽</title>
+				</options>
+				<options value="c">
+					<title>가운데</title>
+				</options>
+				<options value="r">
+					<title>오른쪽</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_4_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+			</var>
+			<var name="main_section_10_widget_4_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="main_section_10_widget_4_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="main_section_10_widget_4_html_1" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>서브 설정</title>
+			<var name="use_sub_top_banner" type="select">
+				<title>◆ 서브 상단 배너 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="sub_top_banner_text_color" type="select">
+				<title>글자 색상</title>
+				<options value="">
+					<title>하얀색</title>
+				</options>
+				<options value="B">
+					<title>검은색</title>
+				</options>
+			</var>
+			<var name="sub_top_banner_height" type="text">
+				<title>PC 높이</title>
+				<description>예) 300 (기본값 300px)</description>
+			</var>
+			<var name="m_sub_top_banner_height" type="text">
+				<title>모바일 높이</title>
+				<description>예) 200 (기본값 200px)</description>
+			</var>
+			<var name="sub_top_banner_text_level" type="select">
+				<title>텍스트 표시</title>
+				<options value="">
+					<title>1차메뉴 타이틀로 표시</title>
+				</options>
+				<options value="C">
+					<title>현재페이지 타이틀로 표시</title>
+				</options>
+				<options value="N">
+					<title>사용안함</title>
+				</options>
+			</var>
+			<var name="sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_sub_top_banner_breadcrumb" type="select">
+				<title>◆ 빵조각 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="l">
+					<title>사용 (왼쪽정렬)</title>
+				</options>
+				<options value="r">
+					<title>사용 (오른쪽정렬)</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="middle_sub_menu" type="select">
+				<title>◆ 중간 2차메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="middle_breadcrumb_menu" type="select">
+				<title>◆ 중간 빵조각 메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_1_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 1 ◆</title>
+			</var>
+			<var name="custom_1_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_1_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_2_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 2 ◆</title>
+			</var>
+			<var name="custom_2_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_2_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_3_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 3 ◆</title>
+			</var>
+			<var name="custom_3_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_3_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_4_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 4 ◆</title>
+			</var>
+			<var name="custom_4_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_4_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_5_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 5 ◆</title>
+			</var>
+			<var name="custom_5_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_5_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_6_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 6 ◆</title>
+			</var>
+			<var name="custom_6_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_6_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_7_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 7 ◆</title>
+			</var>
+			<var name="custom_7_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_7_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_8_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 8 ◆</title>
+			</var>
+			<var name="custom_8_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_8_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_9_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 9 ◆</title>
+			</var>
+			<var name="custom_9_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_9_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="custom_10_sub_top_banner_name" type="text">
+				<title>◆ 커스텀 대상 mid 10 ◆</title>
+			</var>
+			<var name="custom_10_sub_top_banner_img" type="image">
+				<title>배너 이미지</title>
+			</var>
+			<var name="custom_10_sub_top_banner_text_img" type="image">
+				<title>텍스트 대체 이미지</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>본문 설정</title>
+			<var name="content_width_type" type="select">
+				<title>본문 넓이 타입</title>
+				<options value="">
+					<title>자동</title>
+				</options>
+				<options value="wide">
+					<title>전체폭</title>
+				</options>
+			</var>
+			<var name="content_padding" type="text">
+				<title>본문 여백</title>
+				<description>예) 30px 0 30px 0 (위 오른쪽 아래 왼쪽)</description>
+			</var>
+			<var name="content_sub_menu" type="select">
+				<title>본문 2차메뉴 사용</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="content_breadcrumb" type="select">
+				<title>본문 빵조각 사용</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="l">
+					<title>사용 (왼쪽정렬)</title>
+				</options>
+				<options value="r">
+					<title>사용 (오른쪽정렬)</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="content_header_html" type="textarea">
+				<title>상단 내용</title>
+			</var>
+			<var name="content_header_html_position" type="select">
+				<title>위치</title>
+				<options value="">
+					<title>본문</title>
+				</options>
+				<options value="wide">
+					<title>전체폭</title>
+				</options>
+			</var>
+			<var name="content_footer_html" type="textarea">
+				<title>하단 내용</title>
+			</var>
+			<var name="content_footer_html_position" type="select">
+				<title>위치</title>
+				<options value="">
+					<title>본문</title>
+				</options>
+				<options value="wide">
+					<title>전체폭</title>
+				</options>
+			</var>
+			<var name="content_replace_act" type="text">
+				<title>특정 act 대체</title>
+				<description>콤마(,)로 구분</description>
+			</var>
+		</group>
+		<group>
+			<title>좌측 서브</title>
+			<var name="use_sub_left" type="select">
+				<title>◆ 본문 좌측 공간 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_width" type="text">
+				<title>넓이</title>
+				<description>예) 250 (기본값 250px)</description>
+			</var>
+			<var name="sub_left_login" type="select">
+				<title>◆ 서브 로그인 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_menu" type="select">
+				<title>◆ 서브 메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_widget_1" type="select">
+				<title>◆ 위젯 1 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_widget_1_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_widget_2" type="select">
+				<title>◆ 위젯 2 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_widget_2_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_widget_3" type="select">
+				<title>◆ 위젯 3 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_widget_3_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_widget_4" type="select">
+				<title>◆ 위젯 4 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_widget_4_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_left_widget_5" type="select">
+				<title>◆ 위젯 5 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_left_widget_5_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>우측 서브</title>
+			<var name="use_sub_right" type="select">
+				<title>◆ 본문 우측 공간 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_width" type="text">
+				<title>넓이</title>
+				<description>예) 250 (기본값 250px)</description>
+			</var>
+			<var name="sub_right_login" type="select">
+				<title>◆ 서브 로그인 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_menu" type="select">
+				<title>◆ 서브 메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_widget_1" type="select">
+				<title>◆ 위젯 1 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_widget_1_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_widget_2" type="select">
+				<title>◆ 위젯 2 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_widget_2_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_widget_3" type="select">
+				<title>◆ 위젯 3 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_widget_3_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_widget_4" type="select">
+				<title>◆ 위젯 4 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_widget_4_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="sub_right_widget_5" type="select">
+				<title>◆ 위젯 5 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="sub_right_widget_5_html" type="textarea">
+				<title>위젯코드 또는 html</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+		</group>
+		<group>
+			<title>플로팅 배너</title>
+			<var name="use_float_banner_top" type="select">
+				<title>◆ 상단 배너 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="float_banner_top_display" type="select">
+				<title>배너 표시위치</title>
+				<options value="">
+					<title>모두</title>
+				</options>
+				<options value="m">
+					<title>메인</title>
+				</options>
+				<options value="s">
+					<title>서브</title>
+				</options>
+			</var>
+			<var name="float_banner_top_img_1" type="image">
+				<title>◇ 이미지 ◇</title>
+				<description>권장 - 가로 1920px - 세로 90px</description>
+			</var>
+			<var name="float_banner_top_text_1" type="text">
+				<title>문자</title>
+			</var>
+			<var name="float_banner_top_url_1" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="float_banner_top_new_window_1" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_float_banner_bottom" type="select">
+				<title>◆ 하단 배너 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="use_float_banner_left" type="select">
+				<title>◆ 왼쪽 플로팅배너 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="float_banner_left_img_1" type="image">
+				<title>◆ 왼쪽 이미지 1 ◆</title>
+			</var>
+			<var name="float_banner_left_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="float_banner_left_img_2" type="image">
+				<title>◆ 왼쪽 이미지 2 ◆</title>
+			</var>
+			<var name="float_banner_left_url_2" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_float_banner_right" type="select">
+				<title>◆ 오른쪽 플로팅배너 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="float_banner_right_img_1" type="image">
+				<title>◆ 오른쪽 이미지 1 ◆</title>
+			</var>
+			<var name="float_banner_right_url_1" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="float_banner_right_img_2" type="image">
+				<title>◆ 오른쪽 이미지 2 ◆</title>
+			</var>
+			<var name="float_banner_right_url_2" type="text">
+				<title>링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_quick_menu" type="select">
+				<title>◆ 퀵메뉴 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="quick_menu_img_1" type="image">
+				<title>◆ 아이콘 이미지 1 ◆</title>
+			</var>
+			<var name="quick_menu_img_hover_1" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_menu_icon_1" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_menu_text_1" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_menu_url_1" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_menu_new_window_1" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="quick_menu_img_2" type="image">
+				<title>◆ 아이콘 이미지 2 ◆</title>
+			</var>
+			<var name="quick_menu_img_hover_2" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_menu_icon_2" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_menu_text_2" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_menu_url_2" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_menu_new_window_2" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="quick_menu_img_3" type="image">
+				<title>◆ 아이콘 이미지 3 ◆</title>
+			</var>
+			<var name="quick_menu_img_hover_3" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_menu_icon_3" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_menu_text_3" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_menu_url_3" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_menu_new_window_3" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="quick_menu_img_4" type="image">
+				<title>◆ 아이콘 이미지 4 ◆</title>
+			</var>
+			<var name="quick_menu_img_hover_4" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_menu_icon_4" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_menu_text_4" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_menu_url_4" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_menu_new_window_4" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="quick_menu_img_5" type="image">
+				<title>◆ 아이콘 이미지 5 ◆</title>
+			</var>
+			<var name="quick_menu_img_hover_5" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_menu_icon_5" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_menu_text_5" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_menu_url_5" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_menu_new_window_5" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_quick_icon" type="select">
+				<title>◆ 퀵아이콘 사용 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="quick_icon_img_1" type="image">
+				<title>◆ 아이콘 이미지 ◆</title>
+			</var>
+			<var name="quick_icon_img_hover_1" type="image">
+				<title>hover 이미지</title>
+			</var>
+			<var name="quick_icon_icon_1" type="text">
+				<title>이미지 대체 아이콘</title>
+			</var>
+			<var name="quick_icon_text_1" type="text">
+				<title>텍스트</title>
+			</var>
+			<var name="quick_icon_text_desc_1" type="text">
+				<title>설명글</title>
+			</var>
+			<var name="quick_icon_url_1" type="text">
+				<title>링크 주소</title>
+			</var>
+			<var name="quick_icon_new_window_1" type="checkbox">
+				<title>새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="use_scrolltop" type="select">
+				<title>◆ 맨 위로 버튼 ◆</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title>설정</title>
+			<var name="color_main" type="select">
+				<title xml:lang="ko">레이아웃 색상</title>
+				<title xml:lang="en">Layout color</title>
+				<options value="customized">
+					<title xml:lang="ko">커스텀</title>
+					<title xml:lang="en">Customized</title>
+				</options>
+				<options value="red">
+					<title xml:lang="ko">붉은 색</title>
+					<title xml:lang="en">Red</title>
+				</options>
+				<options value="crimson">
+					<title xml:lang="ko">크림슨</title>
+					<title xml:lang="en">Crimson</title>
+				</options>
+				<options value="pink">
+					<title xml:lang="ko">분홍</title>
+					<title xml:lang="en">Pink</title>
+				</options>
+				<options value="purple">
+					<title xml:lang="ko">보라</title>
+					<title xml:lang="en">Purple</title>
+				</options>
+				<options value="deep-purple">
+					<title xml:lang="ko">진보라</title>
+					<title xml:lang="en">Deep Purple</title>
+				</options>
+				<options value="indigo">
+					<title xml:lang="ko">인디고</title>
+					<title xml:lang="en">Indigo</title>
+				</options>
+				<options value="deep-blue">
+					<title xml:lang="ko">짙은 파랑</title>
+					<title xml:lang="en">Deep Blue</title>
+				</options>
+				<options value="blue">
+					<title xml:lang="ko">파랑</title>
+					<title xml:lang="en">Blue</title>
+				</options>
+				<options value="light-blue">
+					<title xml:lang="ko">밝은 파랑</title>
+					<title xml:lang="en">Light Blue</title>
+				</options>
+				<options value="cyan">
+					<title xml:lang="ko">시안</title>
+					<title xml:lang="en">Cyan</title>
+				</options>
+				<options value="teal">
+					<title xml:lang="ko">틸</title>
+					<title xml:lang="en">Teal</title>
+				</options>
+				<options value="green">
+					<title xml:lang="ko">초록</title>
+					<title xml:lang="en">Green</title>
+				</options>
+				<options value="light-green">
+					<title xml:lang="ko">연한 초록</title>
+					<title xml:lang="en">Light Green</title>
+				</options>
+				<options value="lime">
+					<title xml:lang="ko">라임</title>
+					<title xml:lang="en">Lime</title>
+				</options>
+				<options value="yellow">
+					<title xml:lang="ko">노랑</title>
+					<title xml:lang="en">Yellow</title>
+				</options>
+				<options value="amber">
+					<title xml:lang="ko">앰버</title>
+					<title xml:lang="en">Amber</title>
+				</options>
+				<options value="orange">
+					<title xml:lang="ko">주황</title>
+					<title xml:lang="en">Orange</title>
+				</options>
+				<options value="deep-orange">
+					<title xml:lang="ko">진한 주황</title>
+					<title xml:lang="en">Deep Orange</title>
+				</options>
+				<options value="brown">
+					<title xml:lang="ko">갈색</title>
+					<title xml:lang="en">Brown</title>
+				</options>
+				<options value="grey">
+					<title xml:lang="ko">회색</title>
+					<title xml:lang="en">Grey</title>
+				</options>
+				<options value="blue-grey">
+					<title xml:lang="ko">푸른 회색</title>
+					<title xml:lang="en">Blue Grey</title>
+				</options>
+			</var>
+			<var name="color_main_customized" type="colorpicker">
+				<title>커스텀 레이아웃 색상</title>
+				<description>위 항목에서 '커스텀' 항목을 선택하면 적용됩니다.</description>
+			</var>
+			<var name="color_sub_customized" type="colorpicker">
+				<title>커스텀 서브 색상</title>
+			</var>
+			<var name="color_point_customized" type="colorpicker">
+				<title>커스텀 포인트 색상</title>
+			</var>
+			<var name="fonts" type="checkbox">
+				<title>폰트</title>
+				<options value="Montserrat">
+					<title>몬세라트</title>
+				</options>
+				<options value="GmarketSans">
+					<title>지마켓 산스</title>
+				</options>
+				<options value="Pretendard">
+					<title>프리텐다드</title>
+				</options>
+				<options value="SCoreDream">
+					<title>에스코어드림</title>
+				</options>
+				<options value="NanumGothic">
+					<title>나눔고딕</title>
+				</options>
+				<options value="NanumSquare">
+					<title>나눔스퀘어</title>
+				</options>
+			</var>
+			<var name="layout_type" type="select">
+				<title>레이아웃 타입</title>
+				<options value="">
+					<title>자동</title>
+				</options>
+				<options value="main">
+					<title>메인페이지</title>
+				</options>
+			</var>
+			<var name="layout_admin_btn" type="select">
+				<title>레이아웃 관리 링크</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="A">
+					<title>사용 (관리자페이지)</title>
+				</options>
+				<options value="L">
+					<title>사용 (레이아웃목록)</title>
+				</options>
+				<options value="LM">
+					<title>사용 (레이아웃수정)</title>
+				</options>
+			</var>
+			<var name="content_admin_btn" type="select">
+				<title>내용 관리 버튼</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+			</var>
+			<var name="layout_loader" type="select">
+				<title>로딩 화면 사용</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+			<var name="custom_css" type="textarea">
+				<title>커스텀 css</title>
+				<description>예) .bh { color:#fff }</description>
+			</var>
+			<var name="use_custom" type="select">
+				<title>테스트모드</title>
+				<options value="">
+					<title>사용안함</title>
+				</options>
+				<options value="Y">
+					<title>사용함</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title>부산일보</title>
+			<var name="busan_link1" type="text">
+				<title>기자 후원 링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="busan_link1_blank" type="checkbox">
+				<title xml:lang="ko">새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+			<var name="busan_link2" type="text">
+				<title>부산일보 후원 링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="busan_link2_blank" type="checkbox">
+				<title xml:lang="ko">새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+			<var name="busan_link3" type="text">
+				<title>광고 서비스 링크 주소</title>
+				<description>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</description>
+			</var>
+			<var name="busan_link3_blank" type="checkbox">
+				<title xml:lang="ko">새 창으로 열기</title>
+				<options value="Y">
+					<title>　</title>
+				</options>
+			</var>
+		</group>
+	</extra_vars>
+</layout>

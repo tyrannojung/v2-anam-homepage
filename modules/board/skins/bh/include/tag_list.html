@@ -1,0 +1,10 @@
+<include target="_header.html" />
+<div class="tagList">
+	<!--@foreach($tag_list as $tag)-->
+		<a href="{getUrl('', 'mid', $mid, 'search_target', 'tag', 'search_keyword', $tag)}" class="tag" rel="tag">{escape($tag, false)}</a>
+	<!--@end-->
+</div>
+<div class="tagFooter">
+	<a href="{getUrl('act', '')}" class="btn">{$lang->cmd_back}</a>
+</div>
+<include target="_footer.html" />

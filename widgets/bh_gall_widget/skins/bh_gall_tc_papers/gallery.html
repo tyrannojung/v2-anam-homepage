@@ -1,0 +1,28 @@
+@version(2)
+
+@if ($widget_info->use_link === 'p' || $widget_info->use_slider === 'Y')
+	@load ('^' . $layout_info->path . 'slider/swiper.min.js')
+	@load ('^' . $layout_info->path . 'slider/swiper.min.css')
+	@load ('^' . $layout_info->path . 'slider/swiper.default.scss')
+	@load ('css/swiper.card.scss', ['skin' => $widget_info->skin])
+	@load ('css/swiper.popup.scss', ['skin' => $widget_info->skin])
+@end
+
+@php
+	if ($widget_info->use_slider === 'Y')
+	{
+		$widget_srl = rand();
+	}
+@endphp
+
+<div class="paper_items">
+	@foreach ($widget_info->content_items as $key => $item)
+	<div class="paper_item">
+		<div class="item_inner">
+			<p class="item_title">{{ $item->getTitle($widget_info->subject_cut_size)|noescape }}</p>
+			<div class="item_summary">{{ $item->get('original_content')|noescape }}</div>
+		</div>
+		<a href="{{ $item->getLink() }}" target="_blank"|cond="$widget_info->new_window === 'Y' && $widget_info->use_link !== 'p'" class="bh_modal_toggle2"|cond="$widget_info->use_link === 'p'" data-srl="{{ $item->get('document_srl') }}"></a>
+	</div>
+	@endforeach
+</div>

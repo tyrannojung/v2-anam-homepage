@@ -1,0 +1,39 @@
+.DS_Store
+Thumbs.db
+
+/config/config.user.inc.php
+/config/install.config.php
+/files/
+# But track the config template
+!/files/config/config.php.template
+/build/
+/libs/
+
+codeception.yml
+/tests/_output/
+/tests/*.suite.yml
+/tests/_support/InstallTester.php
+/tests/_support/UnitTester.php
+/tests/_support/_generated/
+
+/node_modules/
+/bower_components/
+composer.phar
+codecept.phar
+
+.idea
+*.sublime-workspace
+*.sublime-project
+.codeintel
+.vscode
+error_log
+
+# Backup files
+*.sql
+*.sql.gz
+*.tar.gz
+*.backup
+*.bak
+
+# Router file (local development only)
+router.php
