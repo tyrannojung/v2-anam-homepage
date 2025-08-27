@@ -1,145 +1,238 @@
-[![Rhymix](./common/img/logo.png)](https://rhymix.org)
+# Anam145 Homepage
 
-![PHP Lint & Codeception](https://github.com/rhymix/rhymix/workflows/PHP%20Lint%20&%20Codeception/badge.svg)
+안암145 공식 홈페이지 소스코드입니다.
 
-# 한국어
+## 시스템 요구사항
 
-Rhymix(라이믹스)는 누구든지 쉽고 자유롭게 독립적인 홈페이지를 만들어
-자신을 표현하고 커뮤니티를 키워나갈 수 있도록 돕기 위한 CMS(content management system)입니다.
+### 필수 요구사항
+- **PHP**: 7.4 ~ 8.2
+- **Database**: MySQL 5.7+ 또는 MariaDB 10.1+
+- **웹서버**: Apache 2.4+ (mod_rewrite 필요) 또는 Nginx
+- **메모리**: 최소 128MB
 
-[XpressEngine](https://xe1.xpressengine.com) 1.8 버전을 fork(가지치기)하여 진행하는 프로젝트로,
-누구나 무료로 사용할 수 있고 개발에 참여할 수도 있는 자유 소프트웨어(free software)입니다.
+### PHP 필수 확장 모듈
+```bash
+# 필수
+- curl
+- gd
+- iconv 또는 mbstring
+- json
+- openssl
+- mysqli
+- PDO_MySQL
+- SimpleXML
+- Zend OPcache
 
-Rhymix는 "시를 짓다, 운을 맞추다"라는 의미의 "rhyme"과
-"조합하다, 변주하다"라는 의미의 "remix"를 합친 이름입니다.
-라이믹스는 인터넷 공간에서 자유롭게 창작 활동을 하고
-다양한 소프트웨어와 콘텐츠를 조합하여 새로운 것을 만들어내는 모든 사용자들을 응원합니다.
+# 권장
+- apcu (캐시 성능 향상)
+- exif (이미지 자동 회전)
+- fileinfo (첨부파일 보안 검사)
+- zip
+```
 
-### 개발 방향
+## 로컬 환경 설정 (macOS)
 
-Rhymix는 개발자와 사용자가 서로의 권리와 책임을 존중하는 인터넷 생태계,
-중앙집중형 SNS 플랫폼에 의존하지 않고도 누구나 내 목소리를 낼 수 있는 세상,
-벤처기업이나 스타트업의 개발자들뿐 아니라 평범한 블로거, 동호회, 학생, 장애인 등도
-사이버 공간에 당당하게 집을 짓고 서로 소통할 수 있는 미래를 만들어가길 원합니다.
+### 1. 필수 프로그램 설치
 
-개발자 위주, 서비스 제공자 위주로 나아가는 현대의 IT 동향을 무차별적으로 받아들이기보다는
-사용자의 주권과 열린 인터넷 환경을 보호하는 기술을 집중적으로 발굴하며,
-우리나라 인터넷 커뮤니티의 성장을 이끌었던 90년대 제로보드와 2000년대 XE의 정신을 이어받아
-2020년대 현재 위기에 처한 오픈 웹을 지키고 회복시키는 일에 앞장서고자 합니다.
+#### PHP 설치
+```bash
+# Homebrew 설치 (없는 경우)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-그러기 위해서는 다른 어떤 CMS보다도 일반 사용자를 위한 편리성이 가장 뛰어나야 합니다.
+# PHP 8.2 설치
+brew install php@8.2
+brew link --force --overwrite php@8.2
 
-- 초보자도 쉽게 클릭 몇 번으로 웹사이트를 완성할 수 있을 만큼 편리한 CMS
-- 최신 기술을 적극적으로 사용하고 속도가 빠르며 보안이 우수한 CMS
-- 커뮤니티를 통해 사용자와 개발자의 건전한 의사소통을 돕는 CMS
-- 애드온, 모듈, 위젯 등 기존 XE 서드파티 자료들과의 호환성을 최대한 보장하려고 노력합니다.
+# PATH 설정
+echo 'export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
 
-### 설치 환경
+# 설치 확인
+php -v
+```
 
-Rhymix를 사용하려면 PHP 7.4 이상, MySQL 또는 MariaDB가 필요합니다.
-자세한 설치 환경은 [매뉴얼](https://rhymix.org/manual/introduction/requirements)을 참고하십시오.
+#### 데이터베이스 설치
+```bash
+# MariaDB 설치 (권장)
+brew install mariadb
+brew services start mariadb
 
-### 개발 참여
+# 또는 MySQL 설치
+brew install mysql
+brew services start mysql
+```
 
-Rhymix는 개발자, 디자이너, 번역가 등의 도움과 일반 사용자들의 버그 신고를 환영합니다.
-참여를 원하시는 분은 질서있고 효율적인 프로젝트 운영을 위해
-[이슈 및 PR 작성 방법](https://rhymix.org/manual/contrib/github)과
-[코딩 규칙](https://rhymix.org/manual/contrib/coding-standards)을 먼저 읽어 주시기 바랍니다.
+### 2. 프로젝트 설정
 
-보안 취약점을 발견하셨다면 해커들에게 알려지기 전에 먼저 패치를 작성할 수 있도록
-devops@rhymix.org로 알려 주시면 감사하겠습니다.
+#### 데이터베이스 설정
+```bash
+# 데이터베이스 생성
+mysql -e "CREATE DATABASE IF NOT EXISTS anam_homepage CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
 
-### 공식 홈페이지
+# 사용자 생성 (macOS는 root 접근 제한이 있어 별도 사용자 필요)
+mysql -e "CREATE USER IF NOT EXISTS 'anam'@'localhost' IDENTIFIED BY 'your_password';"
+mysql -e "GRANT ALL PRIVILEGES ON anam_homepage.* TO 'anam'@'localhost';"
+mysql -e "FLUSH PRIVILEGES;"
+```
 
-- Rhymix : https://rhymix.org
+#### 설정 파일 복사 및 수정
+```bash
+# config 파일 복사
+cp files/config/config.php.template files/config/config.php
 
-### 커뮤니티
+# files/config/config.php 수정
+# 다음 항목들을 수정하세요:
+# - DB 접속 정보 (10-12번 줄)
+#   'user' => 'anam',
+#   'pass' => 'your_password',
+#   'database' => 'anam_homepage',
+#
+# - URL 설정 (49번 줄)
+#   'default' => 'http://localhost:8000/',
+#
+# - Rewrite 설정 (54, 161번 줄)
+#   'rewrite' => 0,
+#   'use_rewrite' => false,
+#
+# - 암호화 키 생성 (35-37번 줄)
+#   각 키에 64자 이상의 랜덤 문자열 입력
+```
 
-- XETOWN : https://xetown.com
+#### 파일 권한 설정
+```bash
+# files 폴더 쓰기 권한
+chmod -R 777 files/
+```
 
-### 저작권 및 라이선스
+#### Router 파일 생성 (PHP 내장 서버용)
+```bash
+cat > router.php << 'EOF'
+<?php
+// PHP Built-in Server Router
+$_SERVER['HTTP_HOST'] = 'localhost:8000';
+$_SERVER['SERVER_NAME'] = 'localhost';
+$_SERVER['SERVER_PORT'] = '8000';
+$_SERVER['HTTPS'] = '';
 
-Rhymix는 [GNU GPL v2](http://korea.gnu.org/documents/copyleft/gpl.ko.html)
-또는 그 이후 버전 라이선스의 적용을 받는 자유 소프트웨어(free software)입니다.
-자유 소프트웨어는 "오픈소스" 또는 "개방형"이라는 명칭으로도 알려져 있으며,
-개발자와 사용자의 자유와 권리, 참여와 책임을 강조하는 프로그램으로
-누구나 무료로 사용할 수 있고 개발에 참여할 수도 있습니다.
+if (file_exists(__DIR__ . $_SERVER['REQUEST_URI']) && is_file(__DIR__ . $_SERVER['REQUEST_URI'])) {
+    return false;
+}
 
-Rhymix는 [NAVER](https://www.navercorp.com/)가 일부 저작권을 가진
-[XpressEngine](https://xe1.xpressengine.com)의 소스코드에 바탕을 두고 있습니다.
-Rhymix 개발자들이 추가 및 변경한 부분의 저작권은 해당 개발자들에게 있습니다.
+require_once __DIR__ . '/index.php';
+EOF
+```
 
-XpressEngine은 초창기에 GPL을 사용하다가 버전 1.4.0부터 LGPL로 전환했지만,
-Rhymix는 사용자의 권리를 더욱 보호하고 자유 소프트웨어 본연의 정신에 충실하기 위해 라이선스를 GPL로 되돌렸습니다.
-(라이선스 전환은 [LGPL v2.1 제3조](http://korea.gnu.org/documents/copyleft/lgpl.ko.html#term3)에서 허용하고 있습니다.)
+### 3. 데이터베이스 초기화
 
-GPL은 WordPress, Drupal, Joomla 등 세계적인 CMS들이 공통으로 채택하고 있는 라이선스이므로
-사용자 및 개발자의 권리와 의무도 이러한 CMS들의 경우와 동일합니다.
+#### 새로운 설치
+```bash
+# 브라우저에서 접속
+http://localhost:8000/
 
-홈페이지에 Rhymix를 사용하는 것만으로 소스코드를 공개할 의무가 발생하지는 않으며,
-Rhymix의 소스코드를 수정하거나 확장 기능을 직접 개발하여 사용하더라도 마찬가지입니다.
-그러나 직접 개발한 확장 기능을 제3자에게 배포 또는 판매할 경우에는 반드시 소스코드를 제공해야 하며,
-이러한 소스코드는 모두 GPL 라이선스의 적용을 받습니다.
+# 설치 마법사를 따라 진행
+```
 
-# English
+#### 기존 데이터 복원 (백업 파일이 있는 경우)
+```bash
+# SQL 백업 파일 복원
+mysql anam_homepage < backup.sql
 
-Rhymix is a content management system (CMS) for everyone who wants to create independent homepages to express themselves and build their communities easily and freely.
+# 도메인 정보 업데이트
+mysql anam_homepage -e "UPDATE wp_domains SET domain='localhost:8000' WHERE domain IS NOT NULL;"
 
-Rhymix is a fork of [XpressEngine](https://xe1.xpressengine.com) version 1.8 and is free software that anyone can use for free and participate.
+# 메뉴 URL 업데이트
+mysql anam_homepage -e "
+UPDATE wp_menu_item SET url=CONCAT('/', url) 
+WHERE url NOT LIKE '/%' 
+AND url NOT LIKE 'http%' 
+AND url != '';
+"
+```
 
-Rhymix is a combination of "rhyme" in the sense of "making a poem, adjusting the sound", and "remix" in the sense of "combining, changing".
-Rhymix cheers everyone who freely creates and/or assembles new things in the Internet space by combining various software and contents.
+### 4. 서버 실행
 
-### Development Direction
+```bash
+# 개발 서버 실행 (router.php 필수!)
+php -S localhost:8000 router.php
 
-Rhymix developers want an Internet ecosystem where developers and users respect each other's rights and responsibilities, 
-a world where everyone can speak their voice without relying on a centralized SNS platform, 
-a future where ordinary bloggers, students, the disabled and others as well as developers of startups can build a home in cyberspace and communicate with each other.
+# 브라우저에서 접속
+http://localhost:8000
+```
 
-Rather than indiscriminately accepting modern IT trends that are centered on developers and service providers, 
-we focused on technologies that protect users' sovereignty and open Internet environment. Taking the spirit of ZeroBoard and XpressEngine, which led the growth of the Korean Internet communities in the 1990s and 2000s respectively, Rhymix wants to take the lead in recovering and restoring the open web in the crisis of the 2020s.
+## 관리자 접속
 
-This requires the most convenience for the average user over any other CMS.
+- **URL**: http://localhost:8000/index.php?module=admin
+- **초기 계정**: 설치 시 생성
+- **비밀번호 변경**: 관리자 로그인 후 회원정보 메뉴에서 변경
 
-- CMS that is convenient enough to create the website easily, even for beginners, with a few clicks
-- CMS that is actively using the latest technology, fast and secure
-- CMS to help users and developers communicate well through community
-- We try to ensure maximum compatibility with existing XpressEngine third-party materials such as add-ons, modules and widgets.
+## 디렉토리 구조
 
-### Installation Environment
+```
+.
+├── addons/              # 애드온 모듈
+├── assets/              # 정적 자원 (이미지, 비디오)
+├── classes/             # PHP 클래스
+├── common/              # 공통 라이브러리
+├── files/               # 사용자 파일 (캐시, 업로드 등)
+├── layouts/             # 레이아웃 테마
+│   └── anamwallet/      # 메인 테마
+├── modules/             # 기능 모듈
+├── pages/               # 정적 페이지
+└── widgets/             # 위젯 컴포넌트
+```
 
-Rhymix requires PHP 7.4 or higher, and MySQL or MariaDB.
-Please see the [online manual](https://rhymix.org/manual/introduction/requirements) for more information on server requirements.
+## 페이지 수정
 
-### Participation in Development
+### HTML 페이지
+- 위치: `layouts/anamwallet/pages/`
+- 주요 페이지: about.html, security.html, contact.html, busan_wallet.html
 
-Rhymix welcomes developers, designers, translators, and bugs to the public.
-If you would like to participate, please read [Issue and PR Submission Guide](https://rhymix.org/manual/contrib/github)
-and [Coding Standards](https://rhymix.org/manual/contrib/coding-standards) first to ensure efficient and orderly project management.
+### 스타일시트
+- SCSS: `layouts/anamwallet/page.scss`
+- 컴파일 후 자동 적용
 
-If you have found a security vulnerability, please let us know at devops@rhymix.org so that we can make a patch before it is exploited.
+### 레이아웃
+- 헤더: `layouts/anamwallet/_header.html`
+- 푸터: `layouts/anamwallet/layout.html` (하단 부분)
+- 메인: `layouts/anamwallet/_main.html`
 
-### Official Website
+## 문제 해결
 
-- Rhymix : https://rhymix.org
+### 캐시 초기화
+```bash
+rm -rf files/cache/*
+```
 
-### Community
+### 로그인 리다이렉션 문제
+- router.php 파일이 있는지 확인
+- 서버 실행 시 router.php 포함 여부 확인
+- 브라우저 쿠키 삭제
 
-- XETOWN (Korean) : https://xetown.com
+### 데이터베이스 접속 오류
+- MariaDB/MySQL 서비스 실행 확인
+- 사용자 권한 확인
+- config.php의 DB 정보 확인
 
-### Copyright and License
+### 파일 업로드 오류
+```bash
+chmod -R 777 files/
+```
 
-Rhymix is a free software licensed under the [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) or later.
-Free software is a program that emphasizes the rights and responsibilities of developers and users to participate or use in freedom.
+## 라이선스
 
-Rhymix is based on the source code of [XpressEngine](https://xe1.xpressengine.com) ([Github](https://github.com/xpressengine/xe-core/)), which is free software partly owned by [NAVER](https://www.navercorp.com/).
-Rhymix developers have copyrights on the added and modified code.
+GNU General Public License v2.0
 
-XpressEngine has been licensed under the GPL in its early days and switched to LGPL from version 1.4.0, but Rhymix has reverted its licenses to the GPL for further protection of the rights and spirit of free software.
-(License conversion is allowed in [LGPL v2.1 Section 3](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).)
+## 기술 스택
 
-The GPL is commonly adopted by global CMSes such as WordPress, Drupal, and Joomla. The rights and obligations of users and developers of Rhymix are the same as those CMSes.
+- **CMS**: Rhymix (XpressEngine 기반)
+- **언어**: PHP 7.4+
+- **데이터베이스**: MariaDB/MySQL
+- **프론트엔드**: HTML5, SCSS, JavaScript
+- **라이브러리**: jQuery, Swiper, GSAP, AOS
 
-The use of Rhymix on homepage does not impose a duty on you to release the source code, even if you modify the source code or develop the extension yourself.
-However, distributing and/or selling the source code or extension according to the GPL license, you have to provide the source code.
+## 문의
 
+- 회사: 안암145
+- 이메일: tyrannojung@anam145.com
+- 주소: 서울특별시 성북구 안암로 145, 고려대학교 로봇융합관 308호
