@@ -30,6 +30,54 @@ jQuery(function($){
 	{
 		$('.selectLang').toggle();
 	});
+	
+	// Improved language switching
+	window.doChangeLangType = function(lang) {
+		// Set language cookie
+		document.cookie = 'rx_lang=' + lang + ';path=/;max-age=31536000';
+		// Reload page to apply language change
+		location.reload();
+	};
+	
+	// Toggle language function
+	window.toggleLanguage = function() {
+		var currentLang = 'en'; // default
+		var cookies = document.cookie.split(';');
+		for(var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i].trim();
+			if (cookie.indexOf('rx_lang=') === 0) {
+				currentLang = cookie.substring(8);
+				break;
+			}
+		}
+		// Toggle between en and ko
+		var newLang = (currentLang === 'en') ? 'ko' : 'en';
+		doChangeLangType(newLang);
+	};
+	
+	// Update button display based on current language
+	$(document).ready(function() {
+		var currentLang = 'en'; // default
+		var cookies = document.cookie.split(';');
+		for(var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i].trim();
+			if (cookie.indexOf('rx_lang=') === 0) {
+				currentLang = cookie.substring(8);
+				break;
+			}
+		}
+		
+		// Show opposite language button
+		// If current is ko, show EN button to switch to English
+		// If current is en, show KO button to switch to Korean
+		if (currentLang === 'ko') {
+			$('.lang-en').show();  // Show EN button
+			$('.lang-ko').hide();  // Hide KO button
+		} else {
+			$('.lang-ko').show();  // Show KO button
+			$('.lang-en').hide();  // Hide EN button
+		}
+	});
 
 	$(document).ready(function() {
 

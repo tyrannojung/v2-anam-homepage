@@ -34,12 +34,39 @@ $lang->footer_copyright = 'Copyright © 안암145. All rights reserved.';
 
 // About page
 $lang->about_title = '회사 소개';
+$lang->about_subtitle = 'AnamWallet을 소개합니다';
+$lang->about_main_title = '모듈형 지갑으로 <br> 무한한 가능성을 열다';
+$lang->about_main_desc1 = '현재 대부분의 가상자산 지갑은 불편하고 구조적 문제점을 가진';
+$lang->about_main_desc2 = '모놀리식(일체형) 구조를 가지고 있습니다.';
+$lang->about_main_desc3 = '우리는 이러한 문제점을 해결하기 위해 동적 확장, 격리된 보안,';
+$lang->about_main_desc4 = '사용자 편의 등을 고려한 세계 최초의 보안 중심';
+$lang->about_main_desc5 = '모듈형 가상자산 지갑을 제안합니다.';
+$lang->about_papers_title = '주요 논문';
 $lang->about_mission = '우리의 미션';
 $lang->about_vision = '우리의 비전';
 $lang->about_values = '핵심 가치';
 
 // Security page  
 $lang->security_title = '보안';
+$lang->security_subtitle = 'AnamWallet의 아키텍처';
+$lang->security_scenario_title = '악성 모듈 시나리오';
+$lang->security_zero_trust = 'Zero Trust 아키텍처';
+$lang->security_zero_trust_desc1 = '모든 모듈은 잠재적 위협으로 간주';
+$lang->security_zero_trust_desc2 = '악성 모듈 존재 가정한 설계';
+$lang->security_e2e_title = '종간단 암호화 통신';
+$lang->security_e2e_desc1 = 'IPC Binder + 추가 암호화 레이어';
+$lang->security_e2e_desc2 = '비대칭키 교환 대칭키 통신';
+$lang->security_e2e_desc3 = '도청/ 변조 원천 차단';
+$lang->security_process_title = '프로세스 격리';
+$lang->security_process_desc1 = '모듈별 독립 프로세스 실행';
+$lang->security_process_desc2 = '메모리 직접 접근 차단';
+$lang->security_filesystem_title = '파일 시스템 격리';
+$lang->security_filesystem_desc1 = '모듈별 전용 디렉토리 할당';
+$lang->security_filesystem_desc2 = '타 모듈 키 파일 접근 불가';
+$lang->security_filesystem_desc3 = '삭제/덮어쓰기 공격 무력화';
+$lang->security_architecture_title = '아키텍처의 확실한 보안성';
+$lang->security_architecture_subtitle = '직접 통제하고, 직접 확인하는 Anam Wallet의 새로운 보안 방식';
+$lang->security_patents_title = 'AnamWallet의 특허 소개';
 $lang->security_encryption = '암호화';
 $lang->security_protection = '자산 보호';
 $lang->security_authentication = '인증';

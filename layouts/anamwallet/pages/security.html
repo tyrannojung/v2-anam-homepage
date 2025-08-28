@@ -1,11 +1,11 @@
 <div class="security_wrap">
 	<div class="sub_page_title ta-c animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
 		<p class="title1">Security</p>
-		<p class="title2">AnamWallet의 아키텍처</p>
+		<p class="title2" data-lang="security_subtitle">AnamWallet Architecture</p>
 	</div>
 	<div class="security_con con1">
 		<div class="security_img_wrap animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
-			<p class="img_title">악성 모듈 시나리오</p>
+			<p class="img_title" data-lang="security_scenario_title">Malicious Module Scenario</p>
 			<img src="/assets/images/sub/security_img.svg" alt="">
 		</div>
 		<div class="security_slider_wrap animate-in" data-anim-delay="0" data-anim-type="fade-in-up">
@@ -15,10 +15,10 @@
 						<div class="item_inner">
 							<div class="item_icon"><img src="/assets/images/sub/item_icon1.svg" alt=""></div>
 							<div class="item_con">
-								<p class="title">Zero Trust 아키텍처</p>
+								<p class="title" data-lang="security_zero_trust">Zero Trust Architecture</p>
 								<div class="item_dot_list">
-									<p>모든 모듈은 잠재적 위협으로 간주</p>
-									<p>악성 모듈 존재 가정한 설계</p>
+									<p data-lang="security_zero_trust_desc1">All modules are considered potential threats</p>
+									<p data-lang="security_zero_trust_desc2">Design assumes presence of malicious modules</p>
 								</div>
 							</div>
 						</div>
@@ -27,11 +27,11 @@
 						<div class="item_inner">
 							<div class="item_icon"><img src="/assets/images/sub/item_icon2.svg" alt=""></div>
 							<div class="item_con">
-								<p class="title">종간단 암호화 통신</p>
+								<p class="title" data-lang="security_e2e_title">End-to-End Encrypted Communication</p>
 								<div class="item_dot_list">
-									<p>IPC Binder + 추가 암호화 레이어</p>
-									<p>비대칭키 교환 대칭키 통신</p>
-									<p>도청/ 변조 원천 차단</p>
+									<p data-lang="security_e2e_desc1">IPC Binder + Additional encryption layer</p>
+									<p data-lang="security_e2e_desc2">Asymmetric key exchange, symmetric key communication</p>
+									<p data-lang="security_e2e_desc3">Complete prevention of eavesdropping/tampering</p>
 								</div>
 							</div>
 						</div>
@@ -40,10 +40,10 @@
 						<div class="item_inner">
 							<div class="item_icon"><img src="/assets/images/sub/item_icon3.svg" alt=""></div>
 							<div class="item_con">
-								<p class="title">프로세스 격리</p>
+								<p class="title" data-lang="security_process_title">Process Isolation</p>
 								<div class="item_dot_list">
-									<p>모듈별 독립 프로세스 실행</p>
-									<p>메모리 직접 접근 차단</p>
+									<p data-lang="security_process_desc1">Independent process execution per module</p>
+									<p data-lang="security_process_desc2">Direct memory access blocked</p>
 								</div>
 							</div>
 						</div>
@@ -52,11 +52,11 @@
 						<div class="item_inner">
 							<div class="item_icon"><img src="/assets/images/sub/item_icon4.svg" alt=""></div>
 							<div class="item_con">
-								<p class="title">파일 시스템 격리</p>
+								<p class="title" data-lang="security_filesystem_title">File System Isolation</p>
 								<div class="item_dot_list">
-									<p>모듈별 전용 디렉토리 할당</p>
-									<p>타 모듈 키 파일 접근 불가</p>
-									<p>삭제/덮어쓰기 공격 무력화</p>
+									<p data-lang="security_filesystem_desc1">Dedicated directory allocation per module</p>
+									<p data-lang="security_filesystem_desc2">Other modules cannot access key files</p>
+									<p data-lang="security_filesystem_desc3">Delete/overwrite attacks neutralized</p>
 								</div>
 							</div>
 						</div>
@@ -80,10 +80,10 @@
 						<div class="item_inner">
 							<div class="item_img"><img src="/assets/images/sub/security_img1.jpg" alt=""></div>
 							<div class="item_con">
-								<p>
-									셀프 커스터디 방식은 사용자가 자금을 직접
-									<br> 통제한다는 의미입니다.
-									<br> 저희는 절대 접근할 수 없습니다.
+								<p data-lang="security_slide1_text">
+									Self-custody means users have direct
+									<br> control over their funds.
+									<br> We have absolutely no access.
 								</p>
 							</div>
 						</div>
@@ -92,9 +92,9 @@
 						<div class="item_inner">
 							<div class="item_img"><img src="/assets/images/sub/security_img2.jpg" alt=""></div>
 							<div class="item_con">
-								<p>
-									항상 자신이 무엇에 로그인 하는지,
-									<br> 무엇에 서명하는지 정확히 알 수 있습니다.
+								<p data-lang="security_slide2_text">
+									You always know exactly what you're
+									<br> logging into and what you're signing.
 								</p>
 							</div>
 						</div>
@@ -103,9 +103,9 @@
 						<div class="item_inner">
 							<div class="item_img"><img src="/assets/images/sub/security_img3.jpg" alt=""></div>
 							<div class="item_con">
-								<p>
-									자유로운 모듈 설치, 철저한 보안 격리.
-									<br> 신뢰하지 않음으로써 더 안전합니다.
+								<p data-lang="security_slide3_text">
+									Free module installation, thorough security isolation.
+									<br> More secure through zero trust.
 								</p>
 							</div>
 						</div>
@@ -114,10 +114,10 @@
 						<div class="item_inner">
 							<div class="item_img"><img src="/assets/images/sub/security_img4.jpg" alt=""></div>
 							<div class="item_con">
-								<p>
-									탈중앙화 신원(DID)으로 완성한 절대 보안.
-									<br> 해킹할 중앙 서버가 없고, 유출될 비밀번호도
-									<br> 없습니다.
+								<p data-lang="security_slide4_text">
+									Absolute security with Decentralized Identity (DID).
+									<br> No central server to hack,
+									<br> no passwords to leak.
 								</p>
 							</div>
 						</div>

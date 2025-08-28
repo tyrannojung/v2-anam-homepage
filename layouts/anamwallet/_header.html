@@ -130,10 +130,12 @@
 							<a class="hover:bh_color_main active:bh_color_main after:bh_bg_color_main"|cond="!$layout_info->main_menu_text_color" class="bh_color_gray_50 hover:bh_color_white active:bh_color_white after:bh_bg_color_white"|cond="$layout_info->main_menu_text_color" href="{getUrl('', 'mid', $mid ?? '', 'act', 'dispMemberFindAccount')}"><span>{$lang->cmd_find_member_account}</span></a>
 						</li>
 					<!--@end-->
-					<!-- Language Toggle - Temporarily enabled -->
+					<!-- Language Toggle -->
 					<div class="select_lang">
-						<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="icon langToggle" title="Select Language">EN <img src="img/lang_EN.png" alt="EN" /></a>
-						<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="icon langToggle" title="Select Language">KO <img src="img/lang_KO.png" alt="KO" /></a>
+						<a href="#" onclick="toggleLanguage();return false;" class="icon langToggle" title="Select Language">
+							<span class="lang-ko">KO</span>
+							<span class="lang-en" style="display:none;">EN</span>
+						</a>
 					</div>
 					<div class="select_lang_dropdown" cond="$layout_info->use_select_lang2">
 						<a class="bh_color_333 hover:bh_color_main active:bh_color_main after:bh_bg_color_main" href="#"><span>Language</span><i class="xi-angle-down"></i></a>
@@ -286,9 +288,11 @@
 				</a>
 			</div>
 			<a href="#" class="mobile_menu_btn mobile_menu mobile_menu_act bh_layer_toggle" data-target="bh_layer_m_menu"><i class="ri-menu-fill"></i></a>
-			<!-- Mobile Language Toggle - Temporarily enabled -->
-			<a cond="$lang_type == 'ko'" href="#" onclick="doChangeLangType('en');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_EN.png" alt="EN" /></a>
-			<a cond="$lang_type == 'en'" href="#" onclick="doChangeLangType('ko');return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language"><img src="img/lang_KO.png" alt="KO" /></a>
+			<!-- Mobile Language Toggle -->
+			<a href="#" onclick="toggleLanguage();return false;" class="mobile_act_btn mobile_menu mobile_menu_phone icon langToggle" title="Select Language">
+				<span class="lang-ko">KO</span>
+				<span class="lang-en" style="display:none;">EN</span>
+			</a>
 			<a cond="$layout_info->m_phone_number" href="tel:{$layout_info->m_phone_number}" class="mobile_act_btn mobile_menu mobile_menu_phone"><i class="ri-phone-fill"></i></a>
 			<a cond="$layout_info->m_search" href="#" class="mobile_act_btn mobile_menu mobile_menu_search"><i class="ri-search-line"></i></a>
 			<a cond="0" href="#" onclick="doDarkThemeToggle()" class="mobile_act_btn mobile_menu mobile_menu_dark"><i class="ri-moon-fill ds-ib dark:ds-n"></i><i class="ri-sun-fill ds-n dark:ds-ib"></i></a>
