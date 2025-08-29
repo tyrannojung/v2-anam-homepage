@@ -1,8 +1,749 @@
-<div style="padding: 40px; text-align: center;">
-    <h1>부산일보 후원</h1>
-    <p>여기는 부산일보 후원 페이지입니다.</p>
-    <br>
-    <p>부산일보를 후원하여 지역 언론의 발전을 도와주세요.</p>
-    <br><br>
-    <a href="/?mid=busan_wallet" style="display: inline-block; padding: 10px 20px; background: #000; color: #fff; text-decoration: none;">부산월렛으로 돌아가기</a>
+<!-- Busan Ilbo Support Page -->
+<div class="busan_wrap busan_support_page">
+	<!-- Hero Section -->
+	<div class="support_hero">
+		<div class="hero_pattern"></div>
+		<div class="hero_glow"></div>
+		<div
+			class="hero_content animate-in"
+			data-anim-delay="0"
+			data-anim-type="fade-in-up"
+		>
+			<span class="hero_badge">BLOCKCHAIN JOURNALISM</span>
+			<h1 class="hero_title">부산일보의 미래를 함께 만들어주세요</h1>
+			<p class="hero_subtitle">
+				투명한 블록체인 후원으로 더 나은 저널리즘을 실현합니다
+			</p>
+		</div>
+	</div>
+
+	<!-- Main Content -->
+	<div class="support_main">
+		<!-- Ethereum Support Section -->
+		<div class="eth_support_section">
+			<div
+				class="eth_card animate-in"
+				data-anim-delay="200"
+				data-anim-type="fade-in-up"
+			>
+				<!-- Left Side - QR Code -->
+				<div class="qr_section">
+					<div class="qr_wrapper">
+						<div class="qr_glow"></div>
+						<div class="qr_code">
+							<div class="qr_placeholder">QR Code</div>
+						</div>
+						<div class="eth_logo">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+								<circle cx="16" cy="16" r="16" fill="white" />
+								<path
+									d="M15.927 4L15.747 4.61V20.664L15.927 20.844L23.854 16.291L15.927 4Z"
+									fill="#627EEA"
+								/>
+								<path d="M15.927 4L8 16.291L15.927 20.844V4Z" fill="#8EA2F4" />
+								<path
+									d="M15.927 22.228L15.827 22.35V28.547L15.927 28.847L23.858 17.677L15.927 22.228Z"
+									fill="#627EEA"
+								/>
+								<path
+									d="M15.927 28.847V22.228L8 17.677L15.927 28.847Z"
+									fill="#8EA2F4"
+								/>
+								<path
+									d="M15.927 20.844L23.854 16.291L15.927 12.837V20.844Z"
+									fill="#546BDB"
+								/>
+								<path
+									d="M8 16.291L15.927 20.844V12.837L8 16.291Z"
+									fill="#6F84E2"
+								/>
+							</svg>
+						</div>
+					</div>
+					<p class="qr_text">QR코드로 간편 후원</p>
+				</div>
+
+				<!-- Right Side - Address & Info -->
+				<div class="info_section">
+					<div class="info_header">
+						<h2>이더리움으로 후원하기</h2>
+						<p>블록체인 기반 투명한 후원 시스템</p>
+					</div>
+
+					<div class="address_container">
+						<div class="official_badge">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+								<path
+									d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"
+									fill="#10b981"
+								/>
+								<path
+									d="M10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"
+									fill="white"
+								/>
+							</svg>
+							<span>부산일보 공식 이더리움 주소</span>
+						</div>
+						<label class="address_label">ETH Wallet Address</label>
+						<div class="address_wrapper">
+							<input
+								type="text"
+								class="address_input"
+								value="0x1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234abcd"
+								readonly
+							/>
+							<button class="copy_btn" onclick="copyAddress()">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									class="copy_icon"
+								>
+									<path
+										d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<span class="copy_text">복사</span>
+							</button>
+						</div>
+						<p class="address_warning">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+								<path
+									d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+									fill="currentColor"
+								/>
+							</svg>
+							이더리움(ETH) 메인넷으로만 전송해주세요
+						</p>
+					</div>
+
+					<div class="steps_minimal">
+						<div class="step">
+							<span class="step_num">01</span>
+							<span class="step_text">QR 스캔 또는 주소 복사</span>
+						</div>
+						<div class="step_line"></div>
+						<div class="step">
+							<span class="step_num">02</span>
+							<span class="step_text">ETH 전송</span>
+						</div>
+						<div class="step_line"></div>
+						<div class="step">
+							<span class="step_num">03</span>
+							<span class="step_text">블록체인 기록</span>
+						</div>
+					</div>
+
+					<div class="transaction_info">
+						<div class="info_item">
+							<span class="info_label">예상 수수료</span>
+							<span class="info_value">~0.002 ETH</span>
+						</div>
+						<div class="info_item">
+							<span class="info_label">처리 시간</span>
+							<span class="info_value">~2분</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Minimal Contact -->
+			<div
+				class="contact_minimal animate-in"
+				data-anim-delay="400"
+				data-anim-type="fade-in-up"
+			>
+				<a href="mailto:support@busanilbo.com" class="contact_item">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+							fill="currentColor"
+						/>
+					</svg>
+					support@busanilbo.com
+				</a>
+				<a href="tel:051-123-4567" class="contact_item">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+							fill="currentColor"
+						/>
+					</svg>
+					051-123-4567
+				</a>
+			</div>
+		</div>
+
+		<!-- Back Button -->
+		<div class="support_actions">
+			<a
+				href="/?mid=busan_wallet"
+				class="back_btn animate-in"
+				data-anim-delay="500"
+				data-anim-type="fade-in-up"
+			>
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+					<path
+						d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+						fill="currentColor"
+					/>
+				</svg>
+				부산월렛으로 돌아가기
+			</a>
+		</div>
+	</div>
 </div>
+
+<style>
+	/* Support Page Styles */
+	.busan_wrap.busan_support_page {
+		min-height: 100vh;
+		background: #fafbfc;
+		padding-top: 0;
+	}
+
+	/* Hero Section */
+	.support_hero {
+		position: relative;
+		height: 420px;
+		background: linear-gradient(135deg, #1a2332 0%, #243557 50%, #2d4470 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero_pattern {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0.03;
+		background-image: repeating-linear-gradient(
+				45deg,
+				transparent,
+				transparent 35px,
+				rgba(255, 255, 255, 0.1) 35px,
+				rgba(255, 255, 255, 0.1) 70px
+			),
+			repeating-linear-gradient(
+				-45deg,
+				transparent,
+				transparent 35px,
+				rgba(255, 255, 255, 0.05) 35px,
+				rgba(255, 255, 255, 0.05) 70px
+			);
+	}
+
+	.hero_glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 600px;
+		height: 600px;
+		background: radial-gradient(
+			circle,
+			rgba(98, 126, 234, 0.1) 0%,
+			transparent 70%
+		);
+		animation: pulse 4s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			opacity: 0.5;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		50% {
+			opacity: 0.8;
+			transform: translate(-50%, -50%) scale(1.1);
+		}
+	}
+
+	.hero_content {
+		position: relative;
+		text-align: center;
+		color: white;
+		z-index: 1;
+		padding: 0 20px;
+	}
+
+	.hero_badge {
+		display: inline-block;
+		padding: 6px 16px;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 20px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		margin-bottom: 24px;
+		text-transform: uppercase;
+	}
+
+	.hero_title {
+		font-size: 48px;
+		font-weight: 700;
+		margin-bottom: 16px;
+		line-height: 1.2;
+		background: linear-gradient(to right, #fff, #e0e8ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero_subtitle {
+		font-size: 18px;
+		line-height: 1.6;
+		opacity: 0.9;
+		font-weight: 400;
+	}
+
+	/* Main Content */
+	.support_main {
+		max-width: 1000px;
+		margin: -80px auto 0;
+		padding: 0 20px 80px;
+		position: relative;
+		z-index: 10;
+	}
+
+	/* Ethereum Card */
+	.eth_card {
+		background: white;
+		border-radius: 24px;
+		padding: 0;
+		box-shadow: 0 20px 60px rgba(36, 53, 87, 0.08),
+			0 0 0 1px rgba(36, 53, 87, 0.05);
+		display: flex;
+		overflow: hidden;
+		min-height: 500px;
+	}
+
+	/* QR Section */
+	.qr_section {
+		flex: 0 0 40%;
+		background: linear-gradient(135deg, #f8f9fb 0%, #f0f2f7 100%);
+		padding: 60px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.qr_wrapper {
+		position: relative;
+	}
+
+	.qr_glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 250px;
+		height: 250px;
+		background: radial-gradient(
+			circle,
+			rgba(98, 126, 234, 0.2) 0%,
+			transparent 70%
+		);
+		filter: blur(40px);
+	}
+
+	.qr_code {
+		position: relative;
+		padding: 24px;
+		background: white;
+		border-radius: 20px;
+		box-shadow: 0 10px 40px rgba(36, 53, 87, 0.1),
+			inset 0 0 0 2px rgba(36, 53, 87, 0.05);
+	}
+
+	.qr_placeholder {
+		width: 180px;
+		height: 180px;
+		background: linear-gradient(135deg, #f0f2f7 0%, #e8ebf2 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #a8b2c1;
+		font-size: 14px;
+		font-weight: 600;
+		border-radius: 12px;
+	}
+
+	.eth_logo {
+		position: absolute;
+		bottom: -16px;
+		right: -16px;
+		width: 48px;
+		height: 48px;
+		background: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 12px rgba(98, 126, 234, 0.3);
+	}
+
+	.qr_text {
+		margin-top: 24px;
+		font-size: 14px;
+		color: #64748b;
+		font-weight: 500;
+	}
+
+	/* Info Section */
+	.info_section {
+		flex: 1;
+		padding: 60px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.info_header {
+		margin-bottom: 40px;
+	}
+
+	.info_header h2 {
+		font-size: 32px;
+		font-weight: 700;
+		color: #1a2332;
+		margin-bottom: 8px;
+	}
+
+	.info_header p {
+		font-size: 16px;
+		color: #64748b;
+	}
+
+	/* Address Container */
+	.address_container {
+		margin-bottom: 40px;
+	}
+
+	.official_badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+		border: 1px solid #10b981;
+		border-radius: 20px;
+		margin-bottom: 16px;
+	}
+
+	.official_badge svg {
+		flex-shrink: 0;
+	}
+
+	.official_badge span {
+		font-size: 13px;
+		font-weight: 600;
+		color: #059669;
+	}
+
+	.address_label {
+		display: block;
+		font-size: 12px;
+		font-weight: 600;
+		color: #64748b;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-bottom: 12px;
+	}
+
+	.address_wrapper {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+
+	.address_input {
+		flex: 1;
+		padding: 14px 18px;
+		border: 2px solid #e2e8f0;
+		border-radius: 12px;
+		font-size: 13px;
+		font-family: "SF Mono", "Monaco", "Inconsolata", monospace;
+		background: #f8fafc;
+		color: #1a2332;
+		font-weight: 500;
+		transition: all 0.2s;
+	}
+
+	.address_input:focus {
+		outline: none;
+		border-color: #627eea;
+		background: white;
+	}
+
+	.copy_btn {
+		padding: 0 20px;
+		background: #1a2332;
+		color: white;
+		border: none;
+		border-radius: 12px;
+		cursor: pointer;
+		font-size: 14px;
+		font-weight: 600;
+		transition: all 0.2s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		white-space: nowrap;
+		min-width: 100px;
+	}
+
+	.copy_btn:hover {
+		background: #243557;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(36, 53, 87, 0.2);
+	}
+
+	.copy_btn:active {
+		transform: translateY(0);
+	}
+
+	.address_warning {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 13px;
+		color: #f59e0b;
+		background: #fef3c7;
+		padding: 10px 14px;
+		border-radius: 8px;
+	}
+
+	.address_warning svg {
+		flex-shrink: 0;
+	}
+
+	/* Steps Minimal */
+	.steps_minimal {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 40px 0;
+		padding: 24px;
+		background: #f8fafc;
+		border-radius: 12px;
+	}
+
+	.step {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.step_num {
+		font-size: 12px;
+		font-weight: 700;
+		color: #627eea;
+		letter-spacing: 1px;
+	}
+
+	.step_text {
+		font-size: 13px;
+		color: #475569;
+		font-weight: 500;
+	}
+
+	.step_line {
+		flex: 1;
+		height: 2px;
+		background: linear-gradient(to right, #e2e8f0, #cbd5e1, #e2e8f0);
+		margin: 0 20px;
+	}
+
+	/* Transaction Info */
+	.transaction_info {
+		display: flex;
+		gap: 24px;
+		padding: 20px;
+		background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+		border-radius: 12px;
+		border: 1px solid #e2e8f0;
+	}
+
+	.info_item {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.info_label {
+		font-size: 13px;
+		color: #64748b;
+		font-weight: 500;
+	}
+
+	.info_value {
+		font-size: 14px;
+		color: #1a2332;
+		font-weight: 600;
+	}
+
+	/* Contact Minimal */
+	.contact_minimal {
+		display: flex;
+		justify-content: center;
+		gap: 32px;
+		margin-top: 32px;
+		padding: 24px;
+		background: white;
+		border-radius: 12px;
+		border: 1px solid #e2e8f0;
+	}
+
+	.contact_item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		color: #64748b;
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: 500;
+		transition: all 0.2s;
+	}
+
+	.contact_item:hover {
+		color: #1a2332;
+	}
+
+	.contact_item svg {
+		color: #94a3b8;
+	}
+
+	/* Back Button */
+	.support_actions {
+		text-align: center;
+		margin-top: 48px;
+	}
+
+	.back_btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		padding: 14px 28px;
+		background: white;
+		color: #475569;
+		text-decoration: none;
+		border-radius: 12px;
+		font-weight: 600;
+		font-size: 15px;
+		transition: all 0.2s;
+		border: 2px solid #e2e8f0;
+	}
+
+	.back_btn:hover {
+		background: #f8fafc;
+		border-color: #cbd5e1;
+		transform: translateY(-1px);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero_title {
+			font-size: 32px;
+		}
+
+		.eth_card {
+			flex-direction: column;
+		}
+
+		.qr_section {
+			flex: none;
+			padding: 40px;
+		}
+
+		.info_section {
+			padding: 40px 30px;
+		}
+
+		.steps_minimal {
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.step_line {
+			width: 2px;
+			height: 20px;
+			margin: 0;
+		}
+
+		.transaction_info {
+			flex-direction: column;
+			gap: 16px;
+		}
+
+		.contact_minimal {
+			flex-direction: column;
+			gap: 16px;
+		}
+
+		.address_wrapper {
+			flex-direction: column;
+		}
+
+		.copy_btn {
+			width: 100%;
+			padding: 14px 20px;
+		}
+
+		.official_badge {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
+	}
+</style>
+
+<script>
+	function copyAddress() {
+		const addressInput = document.querySelector(".address_input");
+		addressInput.select();
+		addressInput.setSelectionRange(0, 99999);
+
+		navigator.clipboard
+			.writeText(addressInput.value)
+			.then(function () {
+				const copyBtn = document.querySelector(".copy_btn");
+				const originalHTML = copyBtn.innerHTML;
+				copyBtn.innerHTML =
+					'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="copy_icon"><path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/></svg><span class="copy_text">복사됨</span>';
+				copyBtn.style.background = "#10b981";
+
+				setTimeout(() => {
+					copyBtn.innerHTML = originalHTML;
+					copyBtn.style.background = "#1a2332";
+				}, 2000);
+			})
+			.catch(function (err) {
+				// Fallback for mobile
+				addressInput.select();
+				document.execCommand("copy");
+
+				const copyBtn = document.querySelector(".copy_btn");
+				const originalHTML = copyBtn.innerHTML;
+				copyBtn.innerHTML =
+					'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="copy_icon"><path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/></svg><span class="copy_text">복사됨</span>';
+				copyBtn.style.background = "#10b981";
+
+				setTimeout(() => {
+					copyBtn.innerHTML = originalHTML;
+					copyBtn.style.background = "#1a2332";
+				}, 2000);
+			});
+	}
+</script>
