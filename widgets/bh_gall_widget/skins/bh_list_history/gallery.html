@@ -3,18 +3,27 @@
 <div class="history_item_inner">
 	<p class="item_year">
 		<span class="dot"></span>
-		<span class="year">{{ $tab->title }}</span>
+		@php
+			$year_title = $tab->title;
+			$lang_key = '';
+			if (strpos($year_title, '2023 상반기') !== false) {
+				$lang_key = 'about_history_2023_h1';
+			} elseif (strpos($year_title, '2023 하반기') !== false) {
+				$lang_key = 'about_history_2023_h2';
+			}
+		@endphp
+		<span class="year"@if($lang_key) data-lang="{{ $lang_key }}"@endif>{{ $tab->title }}</span>
 	</p>
 	<div class="item_con_list">
 	@foreach ($widget_info->content_items as $key => $item)
-		<div class="item_con">
+		<div class="item_con" data-month="{{ $item->getTitle($widget_info->subject_cut_size) }}" data-year="{{ $tab->title }}">
 			<p class="month">{{ $item->getTitle($widget_info->subject_cut_size)|noescape }}</p>
 			<div class="content">
 				@php
 					$history_con_arr = explode("<br />", $item->getExtraVar_1());
 				@endphp
 				@foreach($history_con_arr as $key => $val)
-				<p>{{ str_replace("|", "<br>", $val)|noescape }}</p>
+				<p class="history-content">{{ str_replace("|", "<br>", $val)|noescape }}</p>
 				@endforeach
 			</div>
 		</div>

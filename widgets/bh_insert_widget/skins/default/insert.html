@@ -96,7 +96,7 @@
 				@endforeach
 				@if ($widget_info->use_content !== 'N')
 					<div class="form_item lg:col-12">
-						<div class="item_title"><span class="name">문의 내용 <em>*</em></span></div>
+						<div class="item_title"><span class="name" data-lang="contact_inquiry_content">문의 내용</span> <em>*</em></div>
 						<div class="item_input">
 							<div class="write_editor@if ($widget_info->content_default && $widget_info->use_content == 'file_only') editor_file_only@end">
 								{{ $editor|noescape }}
@@ -111,7 +111,7 @@
 			<input type="checkbox" name="accept_agreement" value="Y" id="accept_agreement">
 			<label for="accept_agreement">
 				<div class="checkbox"><i class="ri-check-line"></i></div>
-				<p>개인정보처리방침에 동의합니다. <a href="/privacy">[자세히보기]</a></p>
+				<p><span data-lang="contact_privacy_agree">개인정보처리방침에 동의합니다.</span> <a href="/privacy" data-lang="contact_privacy_detail">[자세히보기]</a></p>
 			</label>
 		</div>
 		<div class="common_btn_wrap submit_btn_wrap">
@@ -122,31 +122,132 @@
 </div>
 @verbatim
 <script>
-	document.querySelector('[name="extra_vars1"]').setAttribute('placeholder', '이름을 입력해 주세요.')
-	document.querySelector('[name^="extra_vars2"]').setAttribute('placeholder', '연락처를 입력해 주세요.')
+	// Get current language
+	function getCurrentFormLang() {
+		var lang = 'en'; // default
+		var cookies = document.cookie.split(';');
+		for(var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i].trim();
+			if (cookie.indexOf('rx_lang=') === 0) {
+				lang = cookie.substring(8);
+				break;
+			}
+		}
+		return lang;
+	}
+	
+	// Set placeholders based on language
+	var currentLang = getCurrentFormLang();
+	var namePlaceholder = currentLang === 'ko' ? '이름을 입력해 주세요.' : 'Please enter your name';
+	var contactPlaceholder = currentLang === 'ko' ? '연락처를 입력해 주세요.' : 'Please enter your contact information';
+	var contentPlaceholder = currentLang === 'ko' ? '문의 내용을 입력해 주세요.' : 'Please enter your inquiry';
+	
+	if(document.querySelector('[name="extra_vars1"]')) {
+		document.querySelector('[name="extra_vars1"]').setAttribute('placeholder', namePlaceholder);
+	}
+	if(document.querySelector('[name^="extra_vars2"]')) {
+		document.querySelector('[name^="extra_vars2"]').setAttribute('placeholder', contactPlaceholder);
+	}
 
 	let content = document.querySelector('.rx_simpleeditor');
 	let contentVal = document.querySelector('[name="insert_content"]');
-	content.classList.add('has_placeholder');
-	content.addEventListener('focus', () => {
-		if(event.currentTarget.classList.contains('has_placeholder')){
-			content.textContent = '';
-			event.currentTarget.classList.remove('has_placeholder')
+	if(content) {
+		content.classList.add('has_placeholder');
+		content.textContent = contentPlaceholder;
+		content.addEventListener('focus', () => {
+			if(event.currentTarget.classList.contains('has_placeholder')){
+				content.textContent = '';
+				event.currentTarget.classList.remove('has_placeholder')
+			}
+		})
+		content.addEventListener('blur', () => {
+			let val = contentVal.value.replace(/<[^>]*>?/g, '');
+			if(val == ''){
+				content.textContent = contentPlaceholder;
+				event.currentTarget.classList.add('has_placeholder')
+			}
+		})
+	}
+	
+	// Apply translations to data-lang elements
+	function applyFormTranslations() {
+		if (typeof window.langTexts !== 'undefined' && window.applyLanguageTexts) {
+			window.applyLanguageTexts(currentLang);
 		}
-	})
-	content.addEventListener('blur', () => {
-		let val = contentVal.value.replace(/<[^>]*>?/g, '');
-		if(val == ''){
-			content.textContent = '문의 내용을 입력해 주세요.';
-			event.currentTarget.classList.add('has_placeholder')
+	}
+	
+	// Update placeholders and labels when language changes
+	function updatePlaceholders() {
+		var newLang = getCurrentFormLang();
+		var newNamePlaceholder = newLang === 'ko' ? '이름을 입력해 주세요.' : 'Please enter your name';
+		var newContactPlaceholder = newLang === 'ko' ? '연락처를 입력해 주세요.' : 'Please enter your contact information';
+		var newContentPlaceholder = newLang === 'ko' ? '문의 내용을 입력해 주세요.' : 'Please enter your inquiry';
+		
+		// Update placeholders
+		if(document.querySelector('[name="extra_vars1"]')) {
+			document.querySelector('[name="extra_vars1"]').setAttribute('placeholder', newNamePlaceholder);
 		}
-	})
+		if(document.querySelector('[name^="extra_vars2"]')) {
+			document.querySelector('[name^="extra_vars2"]').setAttribute('placeholder', newContactPlaceholder);
+		}
+		if(content && content.classList.contains('has_placeholder')) {
+			content.textContent = newContentPlaceholder;
+		}
+		
+		// Update labels for extra fields
+		var formItems = document.querySelectorAll('.bh_insert_widget .form_item');
+		formItems.forEach(function(item) {
+			var input = item.querySelector('input[name="extra_vars1"]');
+			if (input) {
+				var label = item.querySelector('.item_title .name');
+				if (label) {
+					// 텍스트만 변경하고 * 표시는 유지
+					var hasAsterisk = label.parentElement.querySelector('em');
+					label.textContent = newLang === 'ko' ? '이름' : 'Name';
+				}
+			}
+			
+			var input2 = item.querySelector('input[name^="extra_vars2"]');
+			if (input2) {
+				var label = item.querySelector('.item_title .name');
+				if (label) {
+					// 텍스트만 변경하고 * 표시는 유지
+					var hasAsterisk = label.parentElement.querySelector('em');
+					label.textContent = newLang === 'ko' ? '연락처' : 'Contact';
+				}
+			}
+		});
+	}
+	
+	// Apply translations on page load
+	document.addEventListener('DOMContentLoaded', function() {
+		// Initial setup with delay to ensure form elements are loaded
+		setTimeout(function() {
+			updatePlaceholders();
+			applyFormTranslations();
+		}, 100);
+		
+		// Check for language changes periodically
+		setInterval(function() {
+			var newLang = getCurrentFormLang();
+			if (newLang !== currentLang) {
+				currentLang = newLang;
+				namePlaceholder = currentLang === 'ko' ? '이름을 입력해 주세요.' : 'Please enter your name';
+				contactPlaceholder = currentLang === 'ko' ? '연락처를 입력해 주세요.' : 'Please enter your contact information';
+				contentPlaceholder = currentLang === 'ko' ? '문의 내용을 입력해 주세요.' : 'Please enter your inquiry';
+				updatePlaceholders();
+				applyFormTranslations();
+			}
+		}, 500);
+	});
 
 	let is_submit = false;
 	function insertdocument() {
 		if (is_submit) {
 			return false;
 		}
+		
+		var currentLang = getCurrentFormLang();
 
 		if (jQuery('input[name="password"]').val() == '') {
 			alert('비밀번호를 입력해 주세요');
@@ -154,30 +255,37 @@
 			return false;
 		}
 		if (!jQuery('input[name="accept_agreement"]').is(':checked')) {
-			alert('개인정보수집 및 이용약관에 동의해 주세요');
+			var alertMsg = currentLang === 'ko' ? '개인정보수집 및 이용약관에 동의해 주세요' : 'Please agree to the privacy policy and terms.';
+			alert(alertMsg);
 			jQuery('input[name="accept_agreement"]').focus();
 			return false;
 		}
 		if (jQuery('input[name="extra_vars1"]').val() == '') {
-			alert('이름을 입력해 주세요');
+			var alertMsg = currentLang === 'ko' ? '이름을 입력해 주세요' : 'Please enter your name.';
+			alert(alertMsg);
 			jQuery('input[name="extra_vars1"]').focus();
 			return false;
 		}
 		if (jQuery('input[name^="extra_vars2"]').val() == '') {
-			alert('연락처를 입력해 주세요');
+			var alertMsg = currentLang === 'ko' ? '연락처를 입력해 주세요' : 'Please enter your contact information.';
+			alert(alertMsg);
 			jQuery('input[name^="extra_vars2"]').focus();
 			return false;
 		}
 		const phoneRegex = new RegExp(/^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/); // 휴대폰
 
 		if(!phoneRegex.test(jQuery('input[name^="extra_vars2"]').val())){
-			alert('연락처를 형식에 맞게 입력해 주세요');
+			var alertMsg = currentLang === 'ko' ? '연락처를 형식에 맞게 입력해 주세요' : 'Please enter a valid phone number format.';
+			alert(alertMsg);
 			jQuery('input[name^="extra_vars2"]').focus();
 			return false;
 		}
 		let ctVal = contentVal.value.replace(/<[^>]*>?/g, '');
-		if(ctVal == '' || ctVal == '문의 내용을 입력해 주세요.'){
-			alert('문의 내용을 입력해 주세요.');
+		var contentPlaceholderKo = '문의 내용을 입력해 주세요.';
+		var contentPlaceholderEn = 'Please enter your inquiry';
+		if(ctVal == '' || ctVal == contentPlaceholderKo || ctVal == contentPlaceholderEn){
+			var alertMsg = currentLang === 'ko' ? '문의 내용을 입력해 주세요.' : 'Please enter your inquiry content.';
+			alert(alertMsg);
 			content.focus();
 			return false;
 		}

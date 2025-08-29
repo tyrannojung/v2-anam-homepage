@@ -16,7 +16,7 @@
 @endphp
 
 <div class="common_slider_title_wrap">
-	<p class="common_slider_title">AnamWallet과 함께하는 사람들</p>
+	<p class="common_slider_title" data-lang="about_team_title">AnamWallet과 함께하는 사람들</p>
 	<div class="common_slider_title_nav">
 		<a href="#" class="nav_el member_nav nav_prev"><i class="ri-arrow-left-s-line"></i></a>
 		<a href="#" class="nav_el member_nav nav_next"><i class="ri-arrow-right-s-line"></i></a>
@@ -35,7 +35,7 @@
 						<img src="{{ $thumbnail_src }}" srcset="{{ $item->getThumbnail(2) }} 2x"|cond="$item->getThumbnail(2)" alt="image">
 					</div>
 					<div class="item_content">
-						<p class="name">{{ $item->getTitle($widget_info->subject_cut_size)|noescape }}</p>
+						<p class="name member-name">{{ $item->getTitle($widget_info->subject_cut_size)|noescape }}</p>
 						<p class="position">{{ $item->getExtraVar_1() }}</p>
 					</div>
 				</div>

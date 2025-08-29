@@ -500,7 +500,7 @@
 			<div class="footer<!--@if(!$layout_info->footer_text_color)--> style_white<!--@end-->">
 				<div class="bh_wrap">
 					<nav class="footer_menu" id="footer_menu" cond="count($footer_menu->list) > 0">
-						<a href="/privacy" class="footer_menu_item item_privacy">개인정보처리방침</a>
+						<a href="/privacy" class="footer_menu_item item_privacy" data-lang="footer_privacy">개인정보처리방침</a>
 						<ul>
 							<!--@foreach($footer_menu->list as $key1 => $val1)-->
 							<li>
@@ -515,19 +515,17 @@
 						</div>
 						<div class="footer_con" cond="!$layout_info->footer_html">
 							<div class="footer_con_items">
-								<div class="footer_con_item"><span>안암145</span></div>
-								<div class="footer_con_item"><span>대표</span> 이중희/심준식</div>
+								<div class="footer_con_item"><span data-lang="footer_company">안암145</span></div>
+								<div class="footer_con_item"><span data-lang="footer_ceo">대표</span> <span data-lang="footer_ceo_name">이중희/심준식</span></div>
 							</div>
 							<div class="footer_con_items">
-								<div class="footer_con_item"><span>대표 전화</span> 000-0000-0000</div>
-								<div class="footer_con_item"><span>이메일</span> tyrannojung@anam145.com</div>
-								<div class="footer_con_item"><span>팩스</span> 000-000-0000</div>
-								<div class="footer_con_item"><span>사업자 등록번호</span> 140-86-02988</div>
+								<div class="footer_con_item"><span data-lang="footer_email">이메일</span> contact@anam145.com</div>
+								<div class="footer_con_item"><span data-lang="footer_business_number">사업자 등록번호</span> 140-86-02988</div>
 							</div>
 							<div class="footer_con_items">
-								<div class="footer_con_item"><span>주소</span> 서울특별시 성북구 안암로 145, 고려대학교 로봇융합관 308호(안암동5가)</div>
+								<div class="footer_con_item"><span data-lang="footer_address">주소</span> <span data-lang="footer_address_detail">서울특별시 성북구 안암로 145, 고려대학교 로봇융합관 308호(안암동5가)</span></div>
 							</div>
-							<div class="footer_copyright_text">Copyright 2025. 안암145 Co. All rights reserved.</div>
+							<div class="footer_copyright_text" data-lang="footer_copyright">Copyright 2025. 안암145 Co. All rights reserved.</div>
 						</div>
 						<div class="footer_con" cond="$layout_info->footer_html">
 							{$layout_info->footer_html}

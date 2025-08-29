@@ -1,6 +1,41 @@
 // <![CDATA[
 jQuery(function($){
 	"use strict";
+	
+	// Fix image URLs to use relative paths or current domain
+	$(document).ready(function() {
+		// Get current base URL
+		var currentHost = window.location.host; // includes domain and port
+		var currentProtocol = window.location.protocol;
+		
+		// Fix all image sources that have wrong domain/port
+		$('img').each(function() {
+			var src = $(this).attr('src');
+			if (src && src.match(/^https?:\/\/[^\/]+\//)) {
+				// If it's an absolute URL but different from current host
+				var srcHost = src.match(/^https?:\/\/([^\/]+)\//)[1];
+				if (srcHost !== currentHost) {
+					// Replace with current host
+					var newSrc = src.replace(/^https?:\/\/[^\/]+\//, currentProtocol + '//' + currentHost + '/');
+					$(this).attr('src', newSrc);
+				}
+			}
+		});
+		
+		// Fix background images in inline styles
+		$('[style*="url"]').each(function() {
+			var style = $(this).attr('style');
+			if (style) {
+				var newStyle = style.replace(/url\(['"]?(https?:\/\/[^\/]+)([^'")]+)['"]?\)/gi, function(match, proto, path) {
+					return 'url(' + currentProtocol + '//' + currentHost + path + ')';
+				});
+				if (newStyle !== style) {
+					$(this).attr('style', newStyle);
+				}
+			}
+		});
+	});
+
 
 	// Page loader
 	if ($('.bh_loader').length > 0) {
