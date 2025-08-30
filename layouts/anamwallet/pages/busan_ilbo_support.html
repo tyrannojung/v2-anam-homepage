@@ -2,6 +2,12 @@
 <div class="busan_wrap busan_support_page">
 	<!-- Hero Section -->
 	<div class="support_hero">
+		<a href="/?mid=busan_wallet" class="hero_back_btn">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+				<path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="currentColor" />
+			</svg>
+			<span>뒤로가기</span>
+		</a>
 		<div class="hero_pattern"></div>
 		<div class="hero_glow"></div>
 		<div
@@ -14,6 +20,38 @@
 			<p class="hero_subtitle">
 				투명한 블록체인 후원으로 더 나은 저널리즘을 실현합니다
 			</p>
+		</div>
+	</div>
+
+	<!-- About Busan Ilbo Section -->
+	<div class="about_section">
+		<div
+			class="about_content animate-in"
+			data-anim-delay="100"
+			data-anim-type="fade-in-up"
+		>
+			<h2><span class="highlight">부산일보</span>가 걸어온 길</h2>
+			<div class="about_text">
+				<p>
+					<span class="highlight">1946년</span> 창간 이후, 부산일보는
+					부산·울산·경남의 대표 신문으로
+					<span class="highlight">지역의 목소리</span>를 대변해 왔습니다.
+				</p>
+				<p>
+					<span class="highlight">21세기 디지털 시대</span>, 부산일보는 혁신적인
+					CMS를 도입하고 busan.com을 통해
+					<span class="highlight">뉴미디어 시대를 선도</span>하고 있었습니다.
+				</p>
+				<p>
+					이제 <span class="highlight">블록체인 기술</span>과 함께 투명하고
+					신뢰할 수 있는 <span class="highlight">차세대 저널리즘</span>으로 한
+					단계 더 도약하려 합니다.
+				</p>
+				<p class="support_message">
+					부산일보가 <span class="highlight">블록체인 저널리즘</span>의 새로운
+					미래를 만들어갈 수 있도록 여러분의 후원이 필요합니다.
+				</p>
+			</div>
 		</div>
 	</div>
 
@@ -31,7 +69,7 @@
 					<div class="qr_wrapper">
 						<div class="qr_glow"></div>
 						<div class="qr_code">
-							<div class="qr_placeholder">QR Code</div>
+							<img src="/layouts/anamwallet/img/ad/ethereumqr.png" alt="Ethereum QR Code">
 						</div>
 						<div class="eth_logo">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -66,7 +104,7 @@
 				<!-- Right Side - Address & Info -->
 				<div class="info_section">
 					<div class="info_header">
-						<h2>이더리움으로 후원하기</h2>
+						<h2>이더리움 후원하기</h2>
 						<p>블록체인 기반 투명한 후원 시스템</p>
 					</div>
 
@@ -75,7 +113,7 @@
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
 								<path
 									d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"
-									fill="#10b981"
+									fill="#243557"
 								/>
 								<path
 									d="M10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"
@@ -108,15 +146,6 @@
 								<span class="copy_text">복사</span>
 							</button>
 						</div>
-						<p class="address_warning">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-								<path
-									d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
-									fill="currentColor"
-								/>
-							</svg>
-							이더리움(ETH) 메인넷으로만 전송해주세요
-						</p>
 					</div>
 
 					<div class="steps_minimal">
@@ -133,17 +162,6 @@
 						<div class="step">
 							<span class="step_num">03</span>
 							<span class="step_text">블록체인 기록</span>
-						</div>
-					</div>
-
-					<div class="transaction_info">
-						<div class="info_item">
-							<span class="info_label">예상 수수료</span>
-							<span class="info_value">~0.002 ETH</span>
-						</div>
-						<div class="info_item">
-							<span class="info_label">처리 시간</span>
-							<span class="info_value">~2분</span>
 						</div>
 					</div>
 				</div>
@@ -213,6 +231,83 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+	}
+	
+	.hero_back_btn {
+		position: absolute;
+		top: 30px;
+		left: 30px;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 18px;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 30px;
+		color: white;
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		z-index: 10;
+		backdrop-filter: blur(10px);
+	}
+	
+	.hero_back_btn:hover {
+		background: rgba(255, 255, 255, 0.2);
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: translateX(-3px);
+	}
+	
+	.hero_back_btn svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	/* About Section */
+	.about_section {
+		background: #f8fafc;
+		padding: 60px 20px;
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	.about_content {
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.about_content h2 {
+		font-size: 32px;
+		font-weight: 700;
+		color: #1a2332;
+		margin-bottom: 40px;
+	}
+
+	.about_text {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.about_text p {
+		font-size: 16px;
+		line-height: 1.8;
+		color: #475569;
+		margin-bottom: 20px;
+	}
+
+	.about_text .highlight {
+		color: #243557;
+		font-weight: 600;
+	}
+
+	.about_text .support_message {
+		margin-top: 30px;
+		padding-top: 30px;
+		border-top: 2px solid #e2e8f0;
+		font-size: 18px;
+		color: #1a2332;
+		font-weight: 500;
 	}
 
 	.hero_pattern {
@@ -307,7 +402,7 @@
 	/* Main Content */
 	.support_main {
 		max-width: 1000px;
-		margin: -80px auto 0;
+		margin: 80px auto 0;
 		padding: 0 20px 80px;
 		position: relative;
 		z-index: 10;
@@ -329,7 +424,7 @@
 	.qr_section {
 		flex: 0 0 40%;
 		background: linear-gradient(135deg, #f8f9fb 0%, #f0f2f7 100%);
-		padding: 60px;
+		padding: 40px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -365,17 +460,11 @@
 			inset 0 0 0 2px rgba(36, 53, 87, 0.05);
 	}
 
-	.qr_placeholder {
-		width: 180px;
-		height: 180px;
-		background: linear-gradient(135deg, #f0f2f7 0%, #e8ebf2 100%);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: #a8b2c1;
-		font-size: 14px;
-		font-weight: 600;
-		border-radius: 12px;
+	.qr_code img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		border-radius: 8px;
 	}
 
 	.eth_logo {
@@ -402,41 +491,42 @@
 	/* Info Section */
 	.info_section {
 		flex: 1;
-		padding: 60px;
+		padding: 45px 50px;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 	}
 
 	.info_header {
-		margin-bottom: 40px;
+		margin-bottom: 28px;
 	}
 
 	.info_header h2 {
-		font-size: 32px;
+		font-size: 26px;
 		font-weight: 700;
 		color: #1a2332;
-		margin-bottom: 8px;
+		margin-bottom: 6px;
 	}
 
 	.info_header p {
-		font-size: 16px;
+		font-size: 14px;
 		color: #64748b;
 	}
 
 	/* Address Container */
 	.address_container {
-		margin-bottom: 40px;
+		margin-bottom: 30px;
 	}
 
 	.official_badge {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		padding: 8px 16px;
-		background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-		border: 1px solid #10b981;
+		padding: 6px 14px;
+		background: linear-gradient(135deg, #e8f0ff 0%, #d4e3ff 100%);
+		border: 1px solid #243557;
 		border-radius: 20px;
-		margin-bottom: 16px;
+		margin-bottom: 18px;
 	}
 
 	.official_badge svg {
@@ -446,7 +536,7 @@
 	.official_badge span {
 		font-size: 13px;
 		font-weight: 600;
-		color: #059669;
+		color: #243557;
 	}
 
 	.address_label {
@@ -512,28 +602,14 @@
 		transform: translateY(0);
 	}
 
-	.address_warning {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 13px;
-		color: #f59e0b;
-		background: #fef3c7;
-		padding: 10px 14px;
-		border-radius: 8px;
-	}
-
-	.address_warning svg {
-		flex-shrink: 0;
-	}
 
 	/* Steps Minimal */
 	.steps_minimal {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin: 40px 0;
-		padding: 24px;
+		margin: 30px 0 0 0;
+		padding: 20px;
 		background: #f8fafc;
 		border-radius: 12px;
 	}
@@ -548,7 +624,7 @@
 	.step_num {
 		font-size: 12px;
 		font-weight: 700;
-		color: #627eea;
+		color: #243557;
 		letter-spacing: 1px;
 	}
 
@@ -563,35 +639,6 @@
 		height: 2px;
 		background: linear-gradient(to right, #e2e8f0, #cbd5e1, #e2e8f0);
 		margin: 0 20px;
-	}
-
-	/* Transaction Info */
-	.transaction_info {
-		display: flex;
-		gap: 24px;
-		padding: 20px;
-		background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-		border-radius: 12px;
-		border: 1px solid #e2e8f0;
-	}
-
-	.info_item {
-		flex: 1;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.info_label {
-		font-size: 13px;
-		color: #64748b;
-		font-weight: 500;
-	}
-
-	.info_value {
-		font-size: 14px;
-		color: #1a2332;
-		font-weight: 600;
 	}
 
 	/* Contact Minimal */
@@ -657,6 +704,30 @@
 		.hero_title {
 			font-size: 32px;
 		}
+		
+		.hero_back_btn {
+			top: 20px;
+			left: 20px;
+			padding: 8px 15px;
+			font-size: 13px;
+		}
+
+		.about_section {
+			padding: 40px 20px;
+		}
+
+		.about_content h2 {
+			font-size: 24px;
+			margin-bottom: 30px;
+		}
+
+		.about_text p {
+			font-size: 14px;
+		}
+
+		.about_text .support_message {
+			font-size: 16px;
+		}
 
 		.eth_card {
 			flex-direction: column;
@@ -668,7 +739,7 @@
 		}
 
 		.info_section {
-			padding: 40px 30px;
+			padding: 35px 25px;
 		}
 
 		.steps_minimal {
@@ -707,6 +778,19 @@
 			text-align: center;
 		}
 	}
+	
+	@media (max-width: 480px) {
+		.hero_back_btn span {
+			display: none;
+		}
+		
+		.hero_back_btn {
+			padding: 10px;
+			width: 40px;
+			height: 40px;
+			justify-content: center;
+		}
+	}
 </style>
 
 <script>
@@ -722,7 +806,7 @@
 				const originalHTML = copyBtn.innerHTML;
 				copyBtn.innerHTML =
 					'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="copy_icon"><path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/></svg><span class="copy_text">복사됨</span>';
-				copyBtn.style.background = "#10b981";
+				copyBtn.style.background = "#243557";
 
 				setTimeout(() => {
 					copyBtn.innerHTML = originalHTML;
@@ -738,7 +822,7 @@
 				const originalHTML = copyBtn.innerHTML;
 				copyBtn.innerHTML =
 					'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="copy_icon"><path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/></svg><span class="copy_text">복사됨</span>';
-				copyBtn.style.background = "#10b981";
+				copyBtn.style.background = "#243557";
 
 				setTimeout(() => {
 					copyBtn.innerHTML = originalHTML;
