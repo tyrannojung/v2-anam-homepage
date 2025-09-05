@@ -1,14 +1,14 @@
 <load target="_header.scss" />
 
 <style>
-<!--@if($layout_info->logo_margin)-->
-.bh .logo {margin: {$layout_info->logo_margin};}
-<!--@end-->
-.busan-header .logo a {
-    font-size: 28px;
-    font-weight: 700;
-    color: #000000;
-}
+	<!--@if($layout_info->logo_margin)-->
+	.bh .logo {margin: {$layout_info->logo_margin};}
+	<!--@end-->
+	.busan-header .logo a {
+	    font-size: 28px;
+	    font-weight: 700;
+	    color: #000000;
+	}
 </style>
 
 <!-- 부산월렛 전용 심플 헤더 -->
@@ -18,6 +18,20 @@
 			<h1 class="logo col">
 				<a href="/?mid=busan_wallet">Busan Wallet</a>
 			</h1>
+		</div>
+	</div>
+</header>
+
+<!-- 모바일 헤더 추가 -->
+<header class="bh mobile_header_wrap">
+	<div class="bh mobile_header_top bh_bg_color_white">
+		<div class="bh mobile_logo">
+			<a
+				href="/?mid=busan_wallet"
+				style="font-size: 20px; font-weight: 700; color: #000"
+			>
+				Busan Wallet
+			</a>
 		</div>
 	</div>
 </header>
